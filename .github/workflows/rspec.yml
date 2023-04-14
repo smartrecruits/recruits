@@ -28,4 +28,4 @@ jobs:
           ruby-version: '2.7.4'
       - run: cd api && bundle install
       - run: cd api && bundle exec rails db:migrate RAILS_ENV=test
-      - run: cd api && bundle exec rspec spec
+      - run: cd api && bundle exec rspec 
