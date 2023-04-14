@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install dependencies
-      run: npm ci 
+      run: cd client && npm ci 
 
     - name: Run Jest tests
-      run: npm test
+      run: cd client && npm test
