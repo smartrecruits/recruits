@@ -23,7 +23,7 @@ class IntervieweesController < ApplicationController
         end
     end
 
-    def logou
+    def logout
         remove_user
     end
 
