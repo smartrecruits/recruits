@@ -2,7 +2,7 @@ class RecruitersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def register
-        user =  Recruiter.create(user_params)
+        user =  Recruiter.create(recruiter_params)
         if user.valid?
             save_user(user.id)
             render json: user,status: :created
