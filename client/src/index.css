@@ -1,3 +1,6 @@
 body {
-  background-color: #beaac5ec;
+  background-image: url(https://media.istockphoto.com/id/1461611747/photo/abstract-blue-wave-on-a-blue-background-with-interesting-light-refraction-3d-render.jpg?s=612x612&w=0&k=20&c=sHX2aEp8iSF8n4y4u5amyt2Dbrx3K3aHNBkdjaFs04Y=);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
