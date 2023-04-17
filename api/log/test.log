@@ -2132,3 +2132,381 @@ Processing by IntervieweesController#login as HTML
 [active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.29ms)
 Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 845)
   [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (42.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "api_test"[0m
+  [1m[35m (227.8ms)[0m  [1m[35mCREATE DATABASE "api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "answers" CASCADE[0m
+  [1m[35m (18.7ms)[0m  [1m[35mCREATE TABLE "answers" ("id" bigserial primary key, "question_id" integer, "answer1" character varying, "answer2" character varying, "answer3" character varying, "answer4" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "assessments" CASCADE[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "assessments" ("id" bigserial primary key, "interviewee_id" character varying, "recruiter_id" character varying, "name" character varying, "accepted" boolean, "due_date" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "interviewees" CASCADE[0m
+  [1m[35m (18.5ms)[0m  [1m[35mCREATE TABLE "interviewees" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "grades" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "questions" CASCADE[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "assessment_id" integer, "question" character varying, "feedback" character varying, "answer" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "recruiters" CASCADE[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "recruiters" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20230414184511)[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20230414184103),
+(20230414184213),
+(20230414184331),
+(20230414184352);
+
+[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2023-04-17 16:24:15.507852"], ["updated_at", "2023-04-17 16:24:15.507852"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "3281b3f4498633adcc44d8cd34a8d467d8a6cec6"], ["created_at", "2023-04-17 16:24:15.517930"], ["updated_at", "2023-04-17 16:24:15.517930"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (51.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "api_test"[0m
+  [1m[35m (237.3ms)[0m  [1m[35mCREATE DATABASE "api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (2.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "answers" CASCADE[0m
+  [1m[35m (39.3ms)[0m  [1m[35mCREATE TABLE "answers" ("id" bigserial primary key, "question_id" integer, "answer1" character varying, "answer2" character varying, "answer3" character varying, "answer4" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "assessments" CASCADE[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "assessments" ("id" bigserial primary key, "interviewee_id" character varying, "recruiter_id" character varying, "name" character varying, "accepted" boolean, "due_date" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "interviewees" CASCADE[0m
+  [1m[35m (13.8ms)[0m  [1m[35mCREATE TABLE "interviewees" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "bio" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "questions" CASCADE[0m
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "assessment_id" integer, "question" character varying, "feedback" character varying, "answer" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "recruiters" CASCADE[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE "recruiters" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "company" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20230417085139)[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20230414184103),
+(20230414184213),
+(20230414184511),
+(20230417085126);
+
+[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2023-04-17 16:35:54.396901"], ["updated_at", "2023-04-17 16:35:54.396901"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "c586a8e3f2e70737869f75862f692a0bbd68fa33"], ["created_at", "2023-04-17 16:35:54.513053"], ["updated_at", "2023-04-17 16:35:54.513053"]]
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "assessments" DISABLE TRIGGER ALL;ALTER TABLE "interviewees" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "recruiters" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[31mDELETE FROM "assessments";
+DELETE FROM "questions";
+DELETE FROM "answers";
+DELETE FROM "recruiters";
+DELETE FROM "interviewees";
+INSERT INTO "assessments" ("id", "interviewee_id", "recruiter_id", "name", "accepted", "due_date", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', FALSE, '2023-04-14 21:45:11', '2023-04-17 16:35:56.635208', '2023-04-17 16:35:56.635208'), (298486374, 'MyString', 'MyString', 'MyString', FALSE, '2023-04-14 21:45:11', '2023-04-17 16:35:56.635208', '2023-04-17 16:35:56.635208');
+INSERT INTO "questions" ("id", "assessment_id", "question", "feedback", "answer", "created_at", "updated_at") VALUES (980190962, 1, 'MyString', 'MyString', 'MyString', '2023-04-17 16:35:56.655343', '2023-04-17 16:35:56.655343'), (298486374, 1, 'MyString', 'MyString', 'MyString', '2023-04-17 16:35:56.655343', '2023-04-17 16:35:56.655343');
+INSERT INTO "answers" ("id", "question_id", "answer1", "answer2", "answer3", "answer4", "created_at", "updated_at") VALUES (980190962, 1, 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:35:56.660952', '2023-04-17 16:35:56.660952'), (298486374, 1, 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:35:56.660952', '2023-04-17 16:35:56.660952');
+INSERT INTO "recruiters" ("id", "username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:35:56.664992', '2023-04-17 16:35:56.664992'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:35:56.664992', '2023-04-17 16:35:56.664992');
+INSERT INTO "interviewees" ("id", "username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:35:56.668537', '2023-04-17 16:35:56.668537'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:35:56.668537', '2023-04-17 16:35:56.668537')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "assessments" ENABLE TRIGGER ALL;ALTER TABLE "interviewees" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "recruiters" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.5ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+IntervieweesControllerTest: test_should_login_interviewee_with_valid_credentials
+--------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (1.6ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:35:58.357736"], ["updated_at", "2023-04-17 16:35:58.357736"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee/login" for 127.0.0.1 at 2023-04-17 19:35:58 +0300
+Processing by IntervieweesController#login as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]"}
+  [1m[36mInterviewee Load (1.5ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE (username = NULL OR email = 'test@example.com') ORDER BY "interviewees"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.31ms)
+Completed 200 OK in 193ms (Views: 40.2ms | ActiveRecord: 1.5ms | Allocations: 21430)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------
+IntervieweesControllerTest: test_should_show_interviewee
+--------------------------------------------------------
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (1.6ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:35:58.892854"], ["updated_at", "2023-04-17 16:35:58.892854"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/interviewee/980190964" for 127.0.0.1 at 2023-04-17 19:35:58 +0300
+Processing by IntervieweesController#show as HTML
+  Parameters: {"id"=>"980190964"}
+  [1m[36mInterviewee Load (0.5ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 980190964], ["LIMIT", 1]]
+[active_model_serializers] Rendered IntervieweeSerializer with ActiveModelSerializers::Adapter::Attributes (14.65ms)
+Completed 200 OK in 134ms (Views: 130.2ms | ActiveRecord: 0.9ms | Allocations: 2261)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------
+IntervieweesControllerTest: test_should_reset_interviewee_password_with_valid_email
+-----------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (2.0ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:35:59.095277"], ["updated_at", "2023-04-17 16:35:59.095277"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee/reset" for 127.0.0.1 at 2023-04-17 19:35:59 +0300
+Processing by IntervieweesController#reset_password as HTML
+  Parameters: {"email"=>"test@example.com", "new_password"=>"[FILTERED]"}
+  [1m[36mInterviewee Load (1.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Update (1.0ms)[0m  [1m[33mUPDATE "interviewees" SET "password_digest" = $1, "updated_at" = $2 WHERE "interviewees"."id" = $3[0m  [["password_digest", "[FILTERED]"], ["updated_at", "2023-04-17 16:35:59.130314"], ["id", 980190965]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 200 OK in 25ms (Views: 1.5ms | ActiveRecord: 3.3ms | Allocations: 835)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+IntervieweesControllerTest: test_should_not_reset_interviewee_password_with_invalid_email
+-----------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.6ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:35:59.152889"], ["updated_at", "2023-04-17 16:35:59.152889"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee/reset" for 127.0.0.1 at 2023-04-17 19:35:59 +0300
+Processing by IntervieweesController#reset_password as HTML
+  Parameters: {"email"=>"invalid@example.com", "new_password"=>"[FILTERED]"}
+  [1m[36mInterviewee Load (0.6ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "invalid@example.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Completed 404 Not Found in 3ms (Views: 1.1ms | ActiveRecord: 0.6ms | Allocations: 256)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------
+IntervieweesControllerTest: test_should_register_interviewee
+------------------------------------------------------------
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.9ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:35:59.170147"], ["updated_at", "2023-04-17 16:35:59.170147"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee" for 127.0.0.1 at 2023-04-17 19:35:59 +0300
+Processing by IntervieweesController#register as HTML
+  Parameters: {"username"=>"newuser", "email"=>"newuser@example.com", "password"=>"[FILTERED]", "bio"=>"New bio", "firstname"=>"New", "lastname"=>"User"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.6ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "newuser"], ["email", "newuser@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "New"], ["lastname", "User"], ["bio", "New bio"], ["created_at", "2023-04-17 16:35:59.182643"], ["updated_at", "2023-04-17 16:35:59.182643"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers] Rendered IntervieweeSerializer with ActiveModelSerializers::Adapter::Attributes (0.61ms)
+Completed 201 Created in 10ms (Views: 1.3ms | ActiveRecord: 1.3ms | Allocations: 852)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------
+IntervieweesControllerTest: test_should_not_login_interviewee_with_invalid_credentials
+--------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.5ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:35:59.198567"], ["updated_at", "2023-04-17 16:35:59.198567"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee/login" for 127.0.0.1 at 2023-04-17 19:35:59 +0300
+Processing by IntervieweesController#login as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]"}
+  [1m[36mInterviewee Load (1.0ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE (username = NULL OR email = 'test@example.com') ORDER BY "interviewees"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 401 Unauthorized in 8ms (Views: 0.8ms | ActiveRecord: 1.0ms | Allocations: 515)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+IntervieweesControllerTest: test_should_delete_interviewee_account
+------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.6ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:35:59.220725"], ["updated_at", "2023-04-17 16:35:59.220725"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Count (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "interviewees"[0m
+Started DELETE "/interviewee/delete/980190970" for 127.0.0.1 at 2023-04-17 19:35:59 +0300
+Processing by IntervieweesController#delete_account as HTML
+  Parameters: {"id"=>"980190970"}
+  [1m[36mInterviewee Load (0.5ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 980190970], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Destroy (0.6ms)[0m  [1m[31mDELETE FROM "interviewees" WHERE "interviewees"."id" = $1[0m  [["id", 980190970]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 6ms (ActiveRecord: 2.2ms | Allocations: 348)
+  [1m[36mInterviewee Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "interviewees"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.7ms)[0m  [1m[35mALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "assessments" DISABLE TRIGGER ALL;ALTER TABLE "interviewees" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "recruiters" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mDELETE FROM "assessments";
+DELETE FROM "questions";
+DELETE FROM "answers";
+DELETE FROM "recruiters";
+DELETE FROM "interviewees";
+INSERT INTO "assessments" ("id", "interviewee_id", "recruiter_id", "name", "accepted", "due_date", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', FALSE, '2023-04-14 21:45:11', '2023-04-17 16:43:13.082190', '2023-04-17 16:43:13.082190'), (298486374, 'MyString', 'MyString', 'MyString', FALSE, '2023-04-14 21:45:11', '2023-04-17 16:43:13.082190', '2023-04-17 16:43:13.082190');
+INSERT INTO "questions" ("id", "assessment_id", "question", "feedback", "answer", "created_at", "updated_at") VALUES (980190962, 1, 'MyString', 'MyString', 'MyString', '2023-04-17 16:43:13.109562', '2023-04-17 16:43:13.109562'), (298486374, 1, 'MyString', 'MyString', 'MyString', '2023-04-17 16:43:13.109562', '2023-04-17 16:43:13.109562');
+INSERT INTO "answers" ("id", "question_id", "answer1", "answer2", "answer3", "answer4", "created_at", "updated_at") VALUES (980190962, 1, 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:43:13.120108', '2023-04-17 16:43:13.120108'), (298486374, 1, 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:43:13.120108', '2023-04-17 16:43:13.120108');
+INSERT INTO "recruiters" ("id", "username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:43:13.124627', '2023-04-17 16:43:13.124627'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:43:13.124627', '2023-04-17 16:43:13.124627');
+INSERT INTO "interviewees" ("id", "username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:43:13.128513', '2023-04-17 16:43:13.128513'), (298486374, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2023-04-17 16:43:13.128513', '2023-04-17 16:43:13.128513')[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "assessments" ENABLE TRIGGER ALL;ALTER TABLE "interviewees" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "recruiters" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.1ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_constraint SET convalidated=false WHERE conname = ''%I'' AND connamespace::regnamespace = ''%I''::regnamespace; ALTER TABLE %I.%I VALIDATE CONSTRAINT %I;',
+    constraint_name,
+    table_schema,
+    table_schema,
+    table_name,
+    constraint_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------
+IntervieweesControllerTest: test_should_reset_interviewee_password_with_valid_email
+-----------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.6ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:43:13.566726"], ["updated_at", "2023-04-17 16:43:13.566726"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee/reset" for 127.0.0.1 at 2023-04-17 19:43:13 +0300
+Processing by IntervieweesController#reset_password as HTML
+  Parameters: {"email"=>"test@example.com", "new_password"=>"[FILTERED]"}
+  [1m[36mInterviewee Load (0.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Update (0.5ms)[0m  [1m[33mUPDATE "interviewees" SET "password_digest" = $1, "updated_at" = $2 WHERE "interviewees"."id" = $3[0m  [["password_digest", "[FILTERED]"], ["updated_at", "2023-04-17 16:43:13.790974"], ["id", 980190963]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 200 OK in 120ms (Views: 20.8ms | ActiveRecord: 2.0ms | Allocations: 21229)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+IntervieweesControllerTest: test_should_not_reset_interviewee_password_with_invalid_email
+-----------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.3ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:43:13.836520"], ["updated_at", "2023-04-17 16:43:13.836520"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee/reset" for 127.0.0.1 at 2023-04-17 19:43:13 +0300
+Processing by IntervieweesController#reset_password as HTML
+  Parameters: {"email"=>"invalid@example.com", "new_password"=>"[FILTERED]"}
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "invalid@example.com"], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 404 Not Found in 1ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 256)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------
+IntervieweesControllerTest: test_should_delete_interviewee_account
+------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.3ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:43:13.844889"], ["updated_at", "2023-04-17 16:43:13.844889"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "interviewees"[0m
+Started DELETE "/interviewee/delete/980190965" for 127.0.0.1 at 2023-04-17 19:43:13 +0300
+Processing by IntervieweesController#delete_account as HTML
+  Parameters: {"id"=>"980190965"}
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 980190965], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Destroy (0.3ms)[0m  [1m[31mDELETE FROM "interviewees" WHERE "interviewees"."id" = $1[0m  [["id", 980190965]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 3ms (ActiveRecord: 0.9ms | Allocations: 454)
+  [1m[36mInterviewee Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "interviewees"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------
+IntervieweesControllerTest: test_should_register_interviewee
+------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.4ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:43:13.857793"], ["updated_at", "2023-04-17 16:43:13.857793"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee" for 127.0.0.1 at 2023-04-17 19:43:13 +0300
+Processing by IntervieweesController#register as HTML
+  Parameters: {"username"=>"newuser", "email"=>"newuser@example.com", "password"=>"[FILTERED]", "bio"=>"New bio", "firstname"=>"New", "lastname"=>"User"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.3ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "newuser"], ["email", "newuser@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "New"], ["lastname", "User"], ["bio", "New bio"], ["created_at", "2023-04-17 16:43:13.864549"], ["updated_at", "2023-04-17 16:43:13.864549"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers] Rendered IntervieweeSerializer with ActiveModelSerializers::Adapter::Attributes (1.42ms)
+Completed 201 Created in 62ms (Views: 57.8ms | ActiveRecord: 0.6ms | Allocations: 2587)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------
+IntervieweesControllerTest: test_should_show_interviewee
+--------------------------------------------------------
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (1.5ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:43:13.939733"], ["updated_at", "2023-04-17 16:43:13.939733"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/interviewee/980190968" for 127.0.0.1 at 2023-04-17 19:43:13 +0300
+Processing by IntervieweesController#show as HTML
+  Parameters: {"id"=>"980190968"}
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 980190968], ["LIMIT", 1]]
+[active_model_serializers] Rendered IntervieweeSerializer with ActiveModelSerializers::Adapter::Attributes (0.32ms)
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 382)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------
+IntervieweesControllerTest: test_should_not_login_interviewee_with_invalid_credentials
+--------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.3ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:43:13.990585"], ["updated_at", "2023-04-17 16:43:13.990585"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee/login" for 127.0.0.1 at 2023-04-17 19:43:13 +0300
+Processing by IntervieweesController#login as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]"}
+  [1m[36mInterviewee Load (0.6ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE (username = NULL OR email = 'test@example.com') ORDER BY "interviewees"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 401 Unauthorized in 5ms (Views: 0.8ms | ActiveRecord: 0.6ms | Allocations: 724)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------
+IntervieweesControllerTest: test_should_login_interviewee_with_valid_credentials
+--------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mInterviewee Create (0.4ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "testuser"], ["email", "test@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Test"], ["lastname", "User"], ["bio", "Test bio"], ["created_at", "2023-04-17 16:43:14.004750"], ["updated_at", "2023-04-17 16:43:14.004750"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/interviewee/login" for 127.0.0.1 at 2023-04-17 19:43:14 +0300
+Processing by IntervieweesController#login as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]"}
+  [1m[36mInterviewee Load (0.4ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE (username = NULL OR email = 'test@example.com') ORDER BY "interviewees"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.7ms)
+Completed 200 OK in 6ms (Views: 1.5ms | ActiveRecord: 0.4ms | Allocations: 845)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m

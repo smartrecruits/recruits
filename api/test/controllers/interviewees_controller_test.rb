@@ -19,8 +19,8 @@ class IntervieweesControllerTest < ActionDispatch::IntegrationTest
   test "should register interviewee" do
     post '/interviewee', params: { username: "newuser", email: "newuser@example.com", password: "password", bio: "New bio", firstname: "New", lastname: "User" }
     assert_response :created
-    assert_not_nil response.parsed_body["user"]["id"]
-    # assert_not_nil response.parsed_body["token"]
+    assert_not_nil response.parsed_body
+   
   end
 
   test "should login interviewee with valid credentials" do

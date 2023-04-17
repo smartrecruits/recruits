@@ -1,24 +1,5 @@
-# README
+# SMART RECRUITERS API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+We can visualize the relationship between the tables in the database using an Entity Relationship Diagram (ERD):
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![image](https://user-images.githubusercontent.com/117741313/232131503-7594e510-ecf1-41b6-947a-2aeaae35c795.png)
