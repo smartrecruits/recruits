@@ -11,12 +11,12 @@ class ApplicationController < ActionController::API
             },
             exp: Time.now.to_i + (24 * 3600)
         }
-        JWT.encode(payload,ENV['users_key'], 'HS256')
+        JWT.encode(payload,'users_key', 'HS256')
     end
 
     #unhash token
     def decode(token)
-        JWT.decode(token,ENV['users_key'],true,{algorithm:'HS256'})
+        JWT.decode(token,'users_key',true,{algorithm:'HS256'})
     end
     def verify_auth
         auth_headers = request.headers['Authorization']

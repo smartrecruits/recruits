@@ -94,6 +94,7 @@ GEM
     irb (1.6.4)
       reline (>= 0.3.0)
     jsonapi-renderer (0.2.2)
+    jwt (2.7.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -105,6 +106,7 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.1)
     minitest (5.18.0)
     msgpack (1.7.0)
     msgpack (1.7.0-java)
@@ -119,7 +121,14 @@ GEM
       net-protocol
     nio4r (2.5.9)
     nio4r (2.5.9-java)
-    nokogiri (1.14.3-x86_64-linux)
+    nokogiri (1.14.3)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    nokogiri (1.14.3-java)
+      racc (~> 1.4)
+    nokogiri (1.14.3-x64-mingw32)
+      racc (~> 1.4)
+    nokogiri (1.14.3-x86-mingw32)
       racc (~> 1.4)
     pg (1.4.6)
     pg (1.4.6-x64-mingw32)
@@ -129,6 +138,7 @@ GEM
     puma (5.6.5-java)
       nio4r (~> 2.0)
     racc (1.6.2)
+    racc (1.6.2-java)
     rack (2.2.6.4)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
@@ -188,6 +198,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   debug
+  jwt
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors

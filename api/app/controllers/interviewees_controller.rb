@@ -3,9 +3,9 @@ class IntervieweesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def register
-        user = Interviewee.create(user_params)
+        user = Interviewee.create(interviewee_params)
         if user.valid?
-            save_user(user.id)
+            # save_user(user.id)
             render json: user,status: :created
         else
             render json: {errors: user.errors}, status: :unprocessable_entity
@@ -15,9 +15,9 @@ class IntervieweesController < ApplicationController
     def login 
         sql = "username = :username OR email = :email"
         user = Interviewee.where(sql, {username: interviewee_params[:username], email: interviewee_params[:email]}).first
-        if user&.authenticate(user_params[:password])
-            save_user(user.id)
+        if user&.authenticate(interviewee_params[:password])
             token = encode(user.id,user.email)
+            save_user(token)
             render json: {user: user, token: token}
         else
             render json: {errors: "invalid username or password"}, status: :unauthorized

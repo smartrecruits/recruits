@@ -14,7 +14,7 @@ class RecruitersController < ApplicationController
     def login 
         sql = "username = :username OR email = :email"
         user = Recruiter.where(sql, {username: recruiter_params[:username], email: recruiter_params[:email]}).first
-        if user&.authenticate(user_params[:password])
+        if user&.authenticate(recruiter_params[:password])
             save_user(user.id)
             token = encode(user.id,user.email)
             render json: {user: user, token: token}
