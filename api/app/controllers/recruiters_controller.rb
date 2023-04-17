@@ -58,6 +58,6 @@ class RecruitersController < ApplicationController
     end
 
     def recruiter_params 
-        params.permit(:username,:email,:password)
+        params.permit(:username,:email,:password,:firstname,:lastname,:company)
     end
 end
