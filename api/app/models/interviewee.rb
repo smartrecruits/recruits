@@ -1,5 +1,6 @@
 class Interviewee < ApplicationRecord
     has_secure_password
+    has_many :assessments 
 
     # validates :email,{
     #     uniqueness: true,

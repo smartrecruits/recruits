@@ -1,5 +1,7 @@
 class Recruiter < ApplicationRecord
     has_secure_password
+    has_many :assessments
+    has_many :interviewees, through: :assessments
  
     validates :email,{
         uniqueness: true,
