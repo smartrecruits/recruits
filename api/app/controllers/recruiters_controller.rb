@@ -4,7 +4,7 @@ class RecruitersController < ApplicationController
     def register
         user =  Recruiter.create(recruiter_params)
         if user.valid?
-            save_user(user.id)
+            save_user_session(user.id)
             render json: user,status: :created
         else
             render json: {errors: user.errors}, status: :unprocessable_entity
@@ -15,8 +15,9 @@ class RecruitersController < ApplicationController
         sql = "username = :username OR email = :email"
         user = Recruiter.where(sql, {username: recruiter_params[:username], email: recruiter_params[:email]}).first
         if user&.authenticate(recruiter_params[:password])
-            save_user(user.id)
+            save_user_session(user.id)
             token = encode(user.id,user.email)
+            save_user(token)
             render json: {user: user, token: token}
         else
             render json: {errors: "invalid username or password"}, status: :unauthorized
