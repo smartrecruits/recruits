@@ -1,5 +1,6 @@
 import React from "react";
 import CompanyLogos from "./Components/CompanyLogo";
+import Footer from "./Components/footer";
 import LandingPage from "./Components/LandingPage";
 import Mission from "./Components/mission";
 import Navbar from "./Components/Navbar";
@@ -14,6 +15,7 @@ function App() {
       <CompanyLogos />
       <Mission />
       <Vision />
+      <Footer />
       </>
     </div>
   );

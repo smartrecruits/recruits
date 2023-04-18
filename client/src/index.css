@@ -1,6 +1,8 @@
 body {
-  background-color: #E4AFDB;
+  background: linear-gradient(180deg, #000000 -23.28%, #FFFFFF 2.24%, #D3B8E2 39.22%, #B77FBE 57.97%, #BF87B6 67.29%);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+
