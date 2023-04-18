@@ -4,7 +4,7 @@ import github from '../github.png';
 import placeholderLogo from '../placeholderLogo.png';
 import huawei from '../huawei.jpg';
 import apple from '../apple.png';
-import amazon from '../amazon.webp';
+import amazon from '../amazon.jpg';
 import './CompanyLogo.css'
 
 const CompanyLogos = () => {
