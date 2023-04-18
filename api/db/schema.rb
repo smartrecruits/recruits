@@ -10,32 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_18_186213) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_17_085139) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "answers", force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.string "answer1"
-    t.string "answer2"
-    t.string "answer3"
-    t.string "answer4"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_answers_on_question_id"
-  end
-
-  create_table "assessments", force: :cascade do |t|
-    t.bigint "interviewee_id", null: false
-    t.bigint "recruiter_id", null: false
-    t.string "name"
-    t.boolean "accepted"
-    t.datetime "due_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["interviewee_id"], name: "index_assessments_on_interviewee_id"
-    t.index ["recruiter_id"], name: "index_assessments_on_recruiter_id"
-  end
 
   create_table "interviewees", force: :cascade do |t|
     t.string "username"
@@ -46,16 +23,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_186213) do
     t.string "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.bigint "assessment_id", null: false
-    t.string "question"
-    t.string "feedback"
-    t.string "answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["assessment_id"], name: "index_questions_on_assessment_id"
   end
 
   create_table "recruiters", force: :cascade do |t|
@@ -69,8 +36,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_186213) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "answers", "questions"
-  add_foreign_key "assessments", "interviewees"
-  add_foreign_key "assessments", "recruiters"
-  add_foreign_key "questions", "assessments"
 end
