@@ -93,6 +93,7 @@ GEM
     irb (1.6.4)
       reline (>= 0.3.0)
     jsonapi-renderer (0.2.2)
+    jwt (2.7.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -190,6 +191,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   debug
+  jwt
   minitest
   pg (~> 1.1)
   puma (~> 5.0)

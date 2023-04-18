@@ -5,8 +5,7 @@ class CreateAnswers < ActiveRecord::Migration[7.0]
       t.integer :question_id
       t.integer :assessment_id
       t.integer :interviewee_id
-      t.datetime :created_at
-      t.datetime :updated_at
+  
 
       t.timestamps
     end
