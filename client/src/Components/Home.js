@@ -8,7 +8,7 @@ import Vision from "./vision";
 
 function Home(){
     return(
-        <div className="App">
+        <div className="App" data-testid="home">
         <>
         {/* <Navbar /> */}
         <LandingPage />

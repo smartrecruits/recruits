@@ -17,7 +17,7 @@ function Signing() {
   }
 
   return (
-    <div className="container">
+    <div className="container" data-testid="signing">
       <div className="login-container">
         <input id="item-1" type="radio" name="item" className="sign-in" checked />
         <label htmlFor="item-1" className="item">Sign In</label>

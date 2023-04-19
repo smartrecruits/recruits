@@ -21,14 +21,17 @@
     margin-right: 100px;
   }
   .about h2 {
-    font-size: 50px;
+    font-size: 40px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    padding: none;
+    margin-bottom: 0;
   }
 
   .paragh {
     font-size: 21px;
     margin-left: 60px;
+    text-align: left;
   }
 
   .button-wrapper {
