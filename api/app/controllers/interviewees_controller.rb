@@ -40,6 +40,11 @@ class IntervieweesController < ApplicationController
         remove_user
     end
 
+    def index 
+        interviewees = Interviewee.all 
+        render json: interviewees, status: :ok
+    end
+
     def reset_password
         user = Interviewee.find_by(email: params[:email])
         if user.present?
