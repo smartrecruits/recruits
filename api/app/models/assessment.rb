@@ -1,4 +1,4 @@
-require_relative './concerns/codewars_module'
+require_relative './concerns/codewars'
 
 class Assessment < ApplicationRecord
   include Codewars

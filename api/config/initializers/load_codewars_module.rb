@@ -1,1 +1,1 @@
-require 'codewars_module'
+require 'Codewars'
