@@ -1,1 +1,0 @@
-require 'codewars_module'
