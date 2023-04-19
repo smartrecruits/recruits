@@ -38,17 +38,24 @@
   }
   
   .button1, .button2 {
-    background-color: rgb(206, 71, 206);
-    color: white;
     border-radius: 50px;
     padding: 10px 20px;
-    box-shadow: 2px 2px 5px rgb(238, 232, 237);
     border: none;
     font-size: 16px;
     margin-right: 10px;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
   }
+
+  .button1, .button2:hover {
+    background: #ee52ad;
+    box-shadow: 0 0 5px #ff96ad, 0 0 25px #ff96ad, 0 0 50px #ff96ad, 0 0 200px #ff96ad;
+  }
+
+  .button2, .button1:hover {
+    background: #ee52ad;
+    box-shadow: 0 0 5px #e7e5e5, 0 0 25px #ff96ad, 0 0 50px #ff96ad, 0 0 200px #ff96ad;
+  }
+  
   
   @media (max-width: 768px) {
     .button1, .button2 {

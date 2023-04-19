@@ -5,6 +5,7 @@ import LandingPage from "./LandingPage";
 import Mission from "./mission";
 import Navbar from "./Navbar";
 import Vision from "./vision";
+
 function Home(){
     return(
         <div className="App">
@@ -18,9 +19,6 @@ function Home(){
         </>
       </div>
     )
-}
+
+} 
 export default Home
-
-
-
-

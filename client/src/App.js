@@ -7,22 +7,23 @@ import Navbar from "./Components/Navbar";
 import Signing from "./Components/Signing";
 import Vision from "./Components/vision";
 import Home from "./Components/Home";
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './index.css'
-import {  Routes, Route, } from 'react-router-dom';
+import Client from "./Components/Client";
 
 function App() {
   return (
     <div className="App">
       <>
       <Navbar />
-      {/* <LandingPage /> */}
       <Routes>
-      <Route path="/" eleent={<Home/>} />
-      <Route path="/Signing" element={<Signing/>} />
+        <Route path='/' element={<Home/>}></Route>
+        <Route path='/signing' element={<Signing/>}></Route>
+        <Route path='/Client' element={<Client/>}></Route>
+
+
       </Routes>
-      {/* <CompanyLogos />
-      <Mission />
-      <Vision /> */}
+     
       <Footer />
       </>
     </div>
