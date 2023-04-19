@@ -4,7 +4,7 @@ class IntervieweesController < ApplicationController
 
     def register
         user = Interviewee.create(interviewee_params)
-        if user.valid?
+        if user.valid? 
             # save_user(user.id)
             render json: user,status: :created
         else

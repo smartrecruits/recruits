@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-    before_action :set_question, only: [:show, :edit, :update, :destroy]
-
+   # before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :verify_auth
 
 
 
@@ -12,11 +12,29 @@ class QuestionsController < ApplicationController
       question = Question.find(params[:id])
       render json: question
     end
+    #   def show 
+    # def show
+      # def show 
+      #   question = Question.includes(answers: :user).find_by(id: params[:id])
+      #   if question 
+      #     render json: {
+      #       id: question.id,
+      #       content: content.id,
+      #       answers: question.answers,
+      #       feedback: feedback.id,
+      #       assessment: assessment_id
+      #     }
+      #   else
+      #     render json: { error: "Question not found" }, status: :not_found
+      #   end
   
     def create
-      question = Question.new(question_params)
+      question = recruiter.question.new(question_params)
+
       if question.save
-        render json: question, status: :created
+        #render json: question, status: :created
+        render json: question.slice(:id, :question, :content, :answers, :feedback, :assessment_id), status: :created
+
       else
         render json: { errors: question.errors.full_messages }, status: :unprocessable_entity
       end
@@ -40,8 +58,18 @@ class QuestionsController < ApplicationController
     private
   
     def question_params
-      params.require(:question).permit(:question, :feedback, :assessment_id)
+      params.require(:question).permit(:content, :feedback, :assessment_id)
     end
+
+  # def verify_auth
+  #   auth_headers = request.headers['Authorization']
+  #   if !auth_headers
+  #       render json: {message: 'Your request is not authorized'}, status: 401
+  #   else
+  #       token = auth_headers.split(' ')[1]
+  #       save_user(:uid)
+  #   end
+  # end
   
   end
   
