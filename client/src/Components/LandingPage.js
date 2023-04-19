@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './LandingPage.css';
 
 const LandingPage = () => {
@@ -14,7 +15,9 @@ const LandingPage = () => {
           <p className='paragh'>order for businesses to hire the best talent,people</p>
           <p className='paragh'>deserve to easily find a job they love</p>
           <div className="button-wrapper">
+            <Link to="/Signing">
             <button className="button1">Recruiter</button>
+            </Link>
             <button className="button2">Client</button>
           </div>
         </div>
