@@ -1,6 +1,8 @@
 require_relative "boot"
 
 require "rails/all"
+require_relative "../app/models/concerns/codewars_module.rb"
+require "open-uri"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
