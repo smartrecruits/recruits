@@ -1,3 +1,5 @@
+require_relative './concerns/codewars_module'
+
 class Assessment < ApplicationRecord
   extend Codewars
   belongs_to :interviewee
