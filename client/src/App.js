@@ -6,6 +6,7 @@ import Mission from "./Components/mission";
 import Navbar from "./Components/Navbar";
 import Signing from "./Components/Signing";
 import Vision from "./Components/vision";
+import Home from "./Components/Home";
 import './index.css'
 import {  Routes, Route, } from 'react-router-dom';
 
@@ -14,13 +15,14 @@ function App() {
     <div className="App">
       <>
       <Navbar />
-      <LandingPage />
+      {/* <LandingPage /> */}
       <Routes>
-      <Route path="/Signing" component={Signing} />
+      <Route path="/" eleent={<Home/>} />
+      <Route path="/Signing" element={<Signing/>} />
       </Routes>
-      <CompanyLogos />
+      {/* <CompanyLogos />
       <Mission />
-      <Vision />
+      <Vision /> */}
       <Footer />
       </>
     </div>
