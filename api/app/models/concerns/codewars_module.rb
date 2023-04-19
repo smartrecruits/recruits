@@ -1,4 +1,4 @@
-module Assessment::Codewars
+module Codewars
     def code_challenges
         def to_camel_case(str)
             regexFilter = /(?:(?<=^| )|[_-])[A-Za-z][^ _-]*/
