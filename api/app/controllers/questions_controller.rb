@@ -1,8 +1,6 @@
 class QuestionsController < ApplicationController
     before_action :set_question, only: [:show, :edit, :update, :destroy]
-
-
-
+    before_action :verify_auth
 
     def index
       render json: Question.all
@@ -14,7 +12,7 @@ class QuestionsController < ApplicationController
     end
   
     def create
-      question = Question.new(question_params)
+      question = recruiter.questions.new(question_params)
       if question.save
         render json: question, status: :created
       else

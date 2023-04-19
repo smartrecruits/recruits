@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
     before_action :set_answer, only: [:show, :update, :destroy]
-  
+    before_action :verify_auth
+
     # GET /answers
     def index
       @answers = Answer.all

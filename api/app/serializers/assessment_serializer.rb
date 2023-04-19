@@ -1,3 +1,5 @@
 class AssessmentSerializer < ActiveModel::Serializer
-  attributes :id, :interviewee_id, :recruiter_id, :name, :accepted, :due_date
+  attributes :id, :name, :accepted, :duedate
+  has_one :interviewee
+  has_one :recruiter
 end
