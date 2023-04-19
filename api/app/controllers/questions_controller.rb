@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-    before_action :set_question, only: [:show, :edit, :update, :destroy]
+    # before_action :set_question, only: [:show, :edit, :update, :destroy]
     before_action :verify_auth
 
     def index
@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
     end
   
     def update
-      question = Question.find(params[:id])
+      question = recruiter.questions.find(params[:id])
       if question.update(question_params)
         render json: question
       else
@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
     end
   
     def destroy
-      question = Question.find(params[:id])
+      question = recruiter.questions.find(params[:id])
       question.destroy
       head :no_content
     end

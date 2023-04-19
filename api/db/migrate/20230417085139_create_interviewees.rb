@@ -7,6 +7,7 @@ class CreateInterviewees < ActiveRecord::Migration[7.0]
       t.string :firstname
       t.string :lastname
       t.string :bio
+      t.integer :grades
 
       t.timestamps
     end
