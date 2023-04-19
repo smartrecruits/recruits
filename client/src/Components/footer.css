@@ -1,0 +1,35 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px; /* set the height of the footer */
+}
+
+.footer-social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px; /* add margin between the icons and the contact info */
+}
+
+.footer-social-icons a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px; /* add margin around the icons */
+  text-decoration: none;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-contact p {
+  margin: 0;
+  line-height: 1.5;
+}
