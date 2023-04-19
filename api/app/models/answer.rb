@@ -4,4 +4,5 @@ class Answer < ApplicationRecord
     has_many :interviewees
 
     validates :content, presence: true
+    validates :answers, presence: true
 end

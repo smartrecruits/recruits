@@ -20,15 +20,15 @@ class InvitesController < ApplicationController
         head :no_content
     end
 
-    def update 
-        invite = Invite.find(params[:id])
-        if invite.interviewee == interviewee
-            invite.update!(invite_params)
-            render json: invite, status: :ok
-        else
-            render json: { errors: 'Access denied' }, status: :unauthorized
-        end
-    end
+    # def update 
+    #     invite = Invite.find(params[:id])
+    #     if invite.interviewee == interviewee
+    #         invite.update!(invite_params)
+    #         render json: invite, status: :ok
+    #     else
+    #         render json: { errors: 'Access denied' }, status: :unauthorized
+    #     end
+    # end
 
     private
 

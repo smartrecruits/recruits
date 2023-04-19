@@ -33,7 +33,6 @@ Rails.application.routes.draw do
  #recruiter routes
  delete '/recruiter/logout', to: "recruiters#logout"
  post '/recruiter', to:"recruiters#register"
-
  post '/recruiter/login', to:"recruiters#login"
  post '/recruiter/reset', to:"recruiters#reset_password"
  get 'recruiter/:id', to:"recruiters#show"

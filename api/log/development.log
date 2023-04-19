@@ -2545,3 +2545,1269 @@ Completed 422 Unprocessable Entity in 158ms (Views: 4.2ms | ActiveRecord: 10.2ms
   [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "api_development"[0m
+Started POST "/questions" for ::1 at 2023-04-19 13:01:18 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "question"=>{"content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (2.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 422 Unprocessable Entity in 163ms (Views: 2.2ms | ActiveRecord: 11.2ms | Allocations: 45298)
+
+
+Started GET "/questions" for ::1 at 2023-04-19 13:01:45 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "question"=>{"content"=>"which language did you learn first"}}
+  [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (11.84ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 47ms (Views: 0.7ms | ActiveRecord: 2.8ms | Allocations: 22315)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 13:02:25 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (1.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.23ms)
+Completed 422 Unprocessable Entity in 19ms (Views: 1.8ms | ActiveRecord: 1.6ms | Allocations: 3169)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 13:03:45 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 32ms (Views: 0.9ms | ActiveRecord: 5.5ms | Allocations: 9461)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 13:05:03 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 8ms (Views: 1.2ms | ActiveRecord: 3.0ms | Allocations: 2493)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:13:25 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 161ms (Views: 5.2ms | ActiveRecord: 10.2ms | Allocations: 45300)
+
+
+Started GET "/" for ::1 at 2023-04-19 14:14:03 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/elvis/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/elvis/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.7ms | Allocations: 660)
+Completed 200 OK in 25ms (Views: 6.2ms | ActiveRecord: 0.0ms | Allocations: 5684)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:22:04 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 31ms (Views: 1.7ms | ActiveRecord: 19.2ms | Allocations: 9567)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:22:16 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 13ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 3170)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:28:03 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.2ms)
+Completed 422 Unprocessable Entity in 38ms (Views: 1.7ms | ActiveRecord: 11.8ms | Allocations: 24636)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddRecruiterIdFieldsToQuestions (20230419113229)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "questions" ADD "recruiter_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230419113229"]]
+  [1m[36mTRANSACTION (45.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/questions" for ::1 at 2023-04-19 14:34:26 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (1.4ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:34:26.935077"], ["updated_at", "2023-04-19 11:34:26.935077"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (22.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 65]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (5.22ms)
+Completed 201 Created in 226ms (Views: 6.1ms | ActiveRecord: 34.8ms | Allocations: 67829)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:37:07 +0300
+Error occurred while parsing request parameters.
+Contents:
+
+{
+     "content": "which language did you learn first",
+     "question": "hdh"
+     "answer1": "ruby",
+     "answer2": "react",
+     "answer3": "rails",
+     "feedback": "jdjd"
+     
+}
+Processing by QuestionsController#create as */*
+  [1m[36mRecruiter Load (2.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 32ms (Views: 2.0ms | ActiveRecord: 7.7ms | Allocations: 7272)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:37:19 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "question"=>"hdh", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd"}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 8ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 1958)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:37:29 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.5ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:37:29.659164"], ["updated_at", "2023-04-19 11:37:29.659164"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (19.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 66]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (6.45ms)
+Completed 201 Created in 54ms (Views: 6.3ms | ActiveRecord: 25.5ms | Allocations: 8355)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:39:04 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.6ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:39:04.490209"], ["updated_at", "2023-04-19 11:39:04.490209"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (17.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (1.3ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 67]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (9.08ms)
+Completed 201 Created in 82ms (Views: 9.0ms | ActiveRecord: 32.4ms | Allocations: 14701)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:39:44 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.5ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:39:44.117393"], ["updated_at", "2023-04-19 11:39:44.117393"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (14.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 422 Unprocessable Entity in 74ms (Views: 2.8ms | ActiveRecord: 23.2ms | Allocations: 15618)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:41:45 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.6ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:41:45.573925"], ["updated_at", "2023-04-19 11:41:45.573925"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (13.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 67ms (Views: 2.1ms | ActiveRecord: 21.8ms | Allocations: 15610)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:42:09 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (1.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.5ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:42:09.568371"], ["updated_at", "2023-04-19 11:42:09.568371"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (20.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (0.29ms)
+Completed 201 Created in 66ms (Views: 2.9ms | ActiveRecord: 34.4ms | Allocations: 10774)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:42:41 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:42:41.406491"], ["updated_at", "2023-04-19 11:42:41.406491"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (9.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 50ms (Views: 1.7ms | ActiveRecord: 20.1ms | Allocations: 13021)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:43:43 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:43:43.533339"], ["updated_at", "2023-04-19 11:43:43.533339"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (10.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 56ms (Views: 1.4ms | ActiveRecord: 19.4ms | Allocations: 13054)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:43:45 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.7ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:43:45.631454"], ["updated_at", "2023-04-19 11:43:45.631454"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (13.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.23ms)
+Completed 422 Unprocessable Entity in 38ms (Views: 1.5ms | ActiveRecord: 14.8ms | Allocations: 4947)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:44:18 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:44:18.682966"], ["updated_at", "2023-04-19 11:44:18.682966"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (19.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (1.0ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 74]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (15.49ms)
+Completed 201 Created in 95ms (Views: 15.0ms | ActiveRecord: 35.0ms | Allocations: 14685)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:45:26 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "assesment_id"=>"5", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (2.5ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:45:26.262629"], ["updated_at", "2023-04-19 11:45:26.262629"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (21.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 75]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (4.06ms)
+Completed 201 Created in 43ms (Views: 5.0ms | ActiveRecord: 25.3ms | Allocations: 3481)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:49:17 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (1.4ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:49:17.650171"], ["updated_at", "2023-04-19 11:49:17.650171"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (20.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 76]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (6.89ms)
+Completed 201 Created in 202ms (Views: 6.0ms | ActiveRecord: 34.2ms | Allocations: 67820)
+
+
+Started GET "/questions" for ::1 at 2023-04-19 14:49:33 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.67ms)
+Completed 422 Unprocessable Entity in 15ms (Views: 3.0ms | ActiveRecord: 0.4ms | Allocations: 3220)
+
+
+Started GET "/questions" for ::1 at 2023-04-19 14:49:39 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.9ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.4ms)
+Completed 422 Unprocessable Entity in 22ms (Views: 2.6ms | ActiveRecord: 0.9ms | Allocations: 3169)
+
+
+Started GET "/questions/1" for ::1 at 2023-04-19 14:50:10 +0300
+Processing by QuestionsController#show as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "id"=>"1", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.22ms)
+Completed 422 Unprocessable Entity in 15ms (Views: 1.0ms | ActiveRecord: 0.3ms | Allocations: 3169)
+
+
+Started POST "/questions/1" for ::1 at 2023-04-19 14:50:54 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/questions/1"):
+  
+Started PUT "/questions/1" for ::1 at 2023-04-19 14:51:05 +0300
+  
+ActionController::RoutingError (No route matches [PUT] "/questions/1"):
+  
+Started PUT "/questions" for ::1 at 2023-04-19 14:51:10 +0300
+  
+ActionController::RoutingError (No route matches [PUT] "/questions"):
+  
+Started POST "/question" for ::1 at 2023-04-19 14:51:21 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/question"):
+  
+Started POST "/questions" for ::1 at 2023-04-19 14:51:26 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.8ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:51:26.152814"], ["updated_at", "2023-04-19 11:51:26.152814"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (18.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 77]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (3.47ms)
+Completed 201 Created in 35ms (Views: 4.2ms | ActiveRecord: 19.9ms | Allocations: 3489)
+
+
+Started GET "/answers" for ::1 at 2023-04-19 14:51:52 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/answers"):
+  
+Started GET "/" for ::1 at 2023-04-19 14:52:02 +0300
+Processing by Rails::WelcomeController#index as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "welcome"=>{"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd"}}
+  Rendering /home/elvis/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/elvis/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.3ms | Allocations: 660)
+Completed 200 OK in 20ms (Views: 8.3ms | ActiveRecord: 0.0ms | Allocations: 5307)
+
+
+Started GET "/questions" for ::1 at 2023-04-19 14:52:12 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 17ms (Views: 1.0ms | ActiveRecord: 0.3ms | Allocations: 3150)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 14:53:58 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"which language did you learn first", "answer1"=>"ruby", "answer2"=>"react", "answer3"=>"rails", "feedback"=>"jdjd", "question"=>{"feedback"=>"jdjd", "content"=>"which language did you learn first"}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.5ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", "jdjd"], ["assessment_id", nil], ["created_at", "2023-04-19 11:53:58.672161"], ["updated_at", "2023-04-19 11:53:58.672161"], ["question", nil], ["content", "which language did you learn first"], ["recruiter_id", 3]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (47.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (1.0ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 78]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (3.9ms)
+Completed 201 Created in 69ms (Views: 4.7ms | ActiveRecord: 49.7ms | Allocations: 3490)
+
+
+Started POST "/" for ::1 at 2023-04-19 14:57:23 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+Started POST "/" for ::1 at 2023-04-19 14:57:38 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+Started POST "/recruiter" for ::1 at 2023-04-19 14:57:57 +0300
+Processing by RecruitersController#register as */*
+  Parameters: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}}
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: register, request: #<ActionDispatch::Request:0x00007f3db0c8ac40>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"register", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mRecruiter Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "elvisrono90@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mRecruiter Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "elvis"], ["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mRecruiter Create (0.8ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "elvis"], ["email", "elvisrono90@gmail.com"], ["password_digest", "[FILTERED]"], ["firstname", nil], ["lastname", nil], ["company", nil], ["created_at", "2023-04-19 11:57:57.721622"], ["updated_at", "2023-04-19 11:57:57.721622"]]
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mTRANSACTION (36.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mRecruiter Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 AND "recruiters"."id" != $2 LIMIT $3[0m  [["email", "elvisrono90@gmail.com"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:6:in `register'
+  [1m[36mRecruiter Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 AND "recruiters"."id" != $2 LIMIT $3[0m  [["username", "elvis"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:6:in `register'
+[active_model_serializers] Rendered RecruiterSerializer with ActiveModelSerializers::Adapter::Attributes (0.94ms)
+Completed 201 Created in 341ms (Views: 9.2ms | ActiveRecord: 40.6ms | Allocations: 7288)
+
+
+Started POST "/recruiter/login" for ::1 at 2023-04-19 14:58:22 +0300
+Processing by RecruitersController#login as */*
+  Parameters: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}}
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3d9c14c310>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3d9c14c310>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+  [1m[36mRecruiter Load (1.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE (username = 'elvis' OR email = 'elvisrono90@gmail.com') ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:16:in `login'
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3d9c14c310>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.36ms)
+Completed 200 OK in 277ms (Views: 1.0ms | ActiveRecord: 1.4ms | Allocations: 1842)
+
+
+Started POST "/recruiter/login" for ::1 at 2023-04-19 14:58:55 +0300
+Processing by RecruitersController#login as */*
+  Parameters: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}}
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3da8123da0>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3da8123da0>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE (username = 'elvis' OR email = 'elvisrono90@gmail.com') ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:16:in `login'
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3da8123da0>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.24ms)
+Completed 200 OK in 264ms (Views: 0.7ms | ActiveRecord: 0.5ms | Allocations: 1623)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 14:59:59 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"intervieew_id"=>"1", "invite"=>{}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 13ms (Views: 0.8ms | ActiveRecord: 2.7ms | Allocations: 3131)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:01:01 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"intervieew_id"=>"1", "invite"=>{}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameters: :intervieew_id, :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3d90210ed8>, params: {"intervieew_id"=>"1", "controller"=>"invites", "action"=>"create", "invite"=>{}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 56ms (Views: 0.9ms | ActiveRecord: 11.1ms | Allocations: 26116)
+
+
+Started POST "/intervieew" for ::1 at 2023-04-19 15:02:28 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/intervieew"):
+  
+Started POST "/interviewee" for ::1 at 2023-04-19 15:03:15 +0300
+Processing by IntervieweesController#register as */*
+  Parameters: {"username"=>"kamau", "email"=>"kamau@gmail.com", "password"=>"[FILTERED]", "interviewee"=>{"username"=>"kamau", "email"=>"kamau@gmail.com"}}
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: register, request: #<ActionDispatch::Request:0x00007f3d9c183428>, params: {"username"=>"kamau", "email"=>"kamau@gmail.com", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"register", "interviewee"=>{"username"=>"kamau", "email"=>"kamau@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "kamau@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "kamau"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Create (0.6ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "kamau"], ["email", "kamau@gmail.com"], ["password_digest", "[FILTERED]"], ["firstname", nil], ["lastname", nil], ["bio", nil], ["created_at", "2023-04-19 12:03:15.564269"], ["updated_at", "2023-04-19 12:03:15.564269"]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mTRANSACTION (12.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 AND "interviewees"."id" != $2 LIMIT $3[0m  [["email", "kamau@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 AND "interviewees"."id" != $2 LIMIT $3[0m  [["username", "kamau"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+[active_model_serializers] Rendered IntervieweeSerializer with ActiveModelSerializers::Adapter::Attributes (0.44ms)
+Completed 201 Created in 327ms (Views: 3.7ms | ActiveRecord: 19.7ms | Allocations: 19380)
+
+
+Started POST "/" for ::1 at 2023-04-19 15:04:04 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/"):
+  
+Started POST "/interviewee" for ::1 at 2023-04-19 15:04:20 +0300
+Processing by IntervieweesController#register as */*
+  Parameters: {"username"=>"elvis", "email"=>"elvis90@@gmail.com", "password"=>"[FILTERED]", "interviewee"=>{"username"=>"elvis", "email"=>"elvis90@@gmail.com"}}
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: register, request: #<ActionDispatch::Request:0x00007f3d981d1aa0>, params: {"username"=>"elvis", "email"=>"elvis90@@gmail.com", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"register", "interviewee"=>{"username"=>"elvis", "email"=>"elvis90@@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "elvis90@@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "elvis"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Create (0.4ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "elvis"], ["email", "elvis90@@gmail.com"], ["password_digest", "[FILTERED]"], ["firstname", nil], ["lastname", nil], ["bio", nil], ["created_at", "2023-04-19 12:04:20.372658"], ["updated_at", "2023-04-19 12:04:20.372658"]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mTRANSACTION (17.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 AND "interviewees"."id" != $2 LIMIT $3[0m  [["email", "elvis90@@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+  [1m[36mInterviewee Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 AND "interviewees"."id" != $2 LIMIT $3[0m  [["username", "elvis"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+[active_model_serializers] Rendered IntervieweeSerializer with ActiveModelSerializers::Adapter::Attributes (0.42ms)
+Completed 201 Created in 333ms (Views: 1.1ms | ActiveRecord: 20.3ms | Allocations: 4857)
+
+
+Started POST "/interviewee" for ::1 at 2023-04-19 15:04:32 +0300
+Processing by IntervieweesController#register as */*
+  Parameters: {"username"=>"elvis", "email"=>"elvisrono90@@gmail.com", "password"=>"[FILTERED]", "interviewee"=>{"username"=>"elvis", "email"=>"elvisrono90@@gmail.com"}}
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: register, request: #<ActionDispatch::Request:0x00007f3d90585280>, params: {"username"=>"elvis", "email"=>"elvisrono90@@gmail.com", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"register", "interviewee"=>{"username"=>"elvis", "email"=>"elvisrono90@@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "elvisrono90@@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "elvis"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "elvisrono90@@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "elvis"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.74ms)
+Completed 422 Unprocessable Entity in 285ms (Views: 1.2ms | ActiveRecord: 2.4ms | Allocations: 4448)
+
+
+Started POST "/recruiter/login" for ::1 at 2023-04-19 15:04:49 +0300
+Processing by RecruitersController#login as */*
+  Parameters: {"username"=>"elvis", "email"=>"elvisrono90@@gmail.com", "password"=>"[FILTERED]", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@@gmail.com"}}
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3da1102620>, params: {"username"=>"elvis", "email"=>"elvisrono90@@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@@gmail.com"}} }[0m
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3da1102620>, params: {"username"=>"elvis", "email"=>"elvisrono90@@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@@gmail.com"}} }[0m
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE (username = 'elvis' OR email = 'elvisrono90@@gmail.com') ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:16:in `login'
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3da1102620>, params: {"username"=>"elvis", "email"=>"elvisrono90@@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@@gmail.com"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.35ms)
+Completed 200 OK in 268ms (Views: 0.9ms | ActiveRecord: 0.6ms | Allocations: 1832)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:05:30 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>"1", "invite"=>{"interviewee_id"=>"1"}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3d9c288968>, params: {"interviewee_id"=>"1", "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>"1"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (1.0ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 1], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:05:30.662442"], ["updated_at", "2023-04-19 12:05:30.662442"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (29.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:88:in `interviewee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 167ms (Views: 0.6ms | ActiveRecord: 31.9ms | Allocations: 38413)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:05:47 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>"4", "invite"=>{"interviewee_id"=>"4"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3da81acab0>, params: {"interviewee_id"=>"4", "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>"4"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 16ms (Views: 0.8ms | ActiveRecord: 1.1ms | Allocations: 3931)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:06:01 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>"1", "invite"=>{"interviewee_id"=>"1"}}
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3d9827d148>, params: {"interviewee_id"=>"1", "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>"1"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (0.5ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 1], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:06:01.958333"], ["updated_at", "2023-04-19 12:06:01.958333"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (16.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mInterviewee Load (0.5ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:88:in `interviewee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 40ms (Views: 0.6ms | ActiveRecord: 19.5ms | Allocations: 4582)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:06:09 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>"2", "invite"=>{"interviewee_id"=>"2"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3d9064c3d0>, params: {"interviewee_id"=>"2", "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>"2"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.4ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (0.8ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 2], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:06:09.696095"], ["updated_at", "2023-04-19 12:06:09.696095"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (12.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.7ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mInterviewee Load (0.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:88:in `interviewee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.42ms)
+Completed 422 Unprocessable Entity in 65ms (Views: 2.3ms | ActiveRecord: 15.9ms | Allocations: 4587)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:06:20 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>1, "invite"=>{"interviewee_id"=>1}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3d906547d8>, params: {"interviewee_id"=>1, "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (0.7ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 1], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:06:20.163230"], ["updated_at", "2023-04-19 12:06:20.163230"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (14.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:88:in `interviewee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.27ms)
+Completed 422 Unprocessable Entity in 36ms (Views: 2.3ms | ActiveRecord: 16.5ms | Allocations: 4583)
+
+
+Started POST "/interviewee" for ::1 at 2023-04-19 15:08:11 +0300
+Processing by IntervieweesController#register as */*
+  Parameters: {"username"=>"meme", "email"=>"graceaaloo@gmail.com", "password"=>"[FILTERED]", "interviewee"=>{"username"=>"meme", "email"=>"graceaaloo@gmail.com"}}
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: register, request: #<ActionDispatch::Request:0x00007f3d982be990>, params: {"username"=>"meme", "email"=>"graceaaloo@gmail.com", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"register", "interviewee"=>{"username"=>"meme", "email"=>"graceaaloo@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "graceaaloo@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "meme"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "graceaaloo@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+  [1m[36mInterviewee Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "meme"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.65ms)
+Completed 422 Unprocessable Entity in 287ms (Views: 2.8ms | ActiveRecord: 2.6ms | Allocations: 4425)
+
+
+Started POST "/interviewee" for ::1 at 2023-04-19 15:08:19 +0300
+Processing by IntervieweesController#register as */*
+  Parameters: {"username"=>"memememe", "email"=>"graceaaloo@gmail.com", "password"=>"[FILTERED]", "interviewee"=>{"username"=>"memememe", "email"=>"graceaaloo@gmail.com"}}
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: register, request: #<ActionDispatch::Request:0x00007f3d98276848>, params: {"username"=>"memememe", "email"=>"graceaaloo@gmail.com", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"register", "interviewee"=>{"username"=>"memememe", "email"=>"graceaaloo@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "graceaaloo@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "memememe"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Create (0.7ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "memememe"], ["email", "graceaaloo@gmail.com"], ["password_digest", "[FILTERED]"], ["firstname", nil], ["lastname", nil], ["bio", nil], ["created_at", "2023-04-19 12:08:19.279274"], ["updated_at", "2023-04-19 12:08:19.279274"]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mTRANSACTION (16.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 AND "interviewees"."id" != $2 LIMIT $3[0m  [["email", "graceaaloo@gmail.com"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+  [1m[36mInterviewee Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 AND "interviewees"."id" != $2 LIMIT $3[0m  [["username", "memememe"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+[active_model_serializers] Rendered IntervieweeSerializer with ActiveModelSerializers::Adapter::Attributes (0.48ms)
+Completed 201 Created in 304ms (Views: 2.6ms | ActiveRecord: 18.9ms | Allocations: 4858)
+
+
+Started POST "/recruiter/login" for ::1 at 2023-04-19 15:09:29 +0300
+Processing by RecruitersController#login as */*
+  Parameters: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}}
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3da81eb8f0>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3da81eb8f0>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE (username = 'elvis' OR email = 'elvisrono90@gmail.com') ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:16:in `login'
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f3da81eb8f0>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.27ms)
+Completed 200 OK in 278ms (Views: 0.8ms | ActiveRecord: 0.6ms | Allocations: 1638)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:10:15 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>3, "invite"=>{"interviewee_id"=>3}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3dac038630>, params: {"interviewee_id"=>3, "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>3}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (0.6ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 3], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:10:15.605489"], ["updated_at", "2023-04-19 12:10:15.605489"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (17.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.7ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mInterviewee Load (0.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:88:in `interviewee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 38ms (Views: 0.8ms | ActiveRecord: 20.0ms | Allocations: 4582)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:10:42 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>1, "invite"=>{"interviewee_id"=>1}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3da11a19a0>, params: {"interviewee_id"=>1, "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (0.7ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 1], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:10:42.656590"], ["updated_at", "2023-04-19 12:10:42.656590"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (13.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mInterviewee Load (0.4ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:88:in `interviewee'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 36ms (Views: 0.8ms | ActiveRecord: 15.9ms | Allocations: 4581)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:13:06 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>1, "invite"=>{"interviewee_id"=>1}}
+  [1m[36mRecruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3d9c28c9a0>, params: {"interviewee_id"=>1, "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (0.5ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 1], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:13:06.701407"], ["updated_at", "2023-04-19 12:13:06.701407"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (134.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 202ms (Views: 1.3ms | ActiveRecord: 150.0ms | Allocations: 21708)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:13:57 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>1, "invite"=>{"interviewee_id"=>1}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3d904b6cf0>, params: {"interviewee_id"=>1, "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (1.1ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 1], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:13:57.884679"], ["updated_at", "2023-04-19 12:13:57.884679"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (9.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.7ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 92ms (Views: 1.5ms | ActiveRecord: 24.7ms | Allocations: 21663)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:14:43 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>1, "invite"=>{"interviewee_id"=>1}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3da0fa0ca0>, params: {"interviewee_id"=>1, "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (0.8ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 1], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:14:43.306052"], ["updated_at", "2023-04-19 12:14:43.306052"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (18.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.7ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+RecruiterMailer#invites: processed outbound mail in 1.0ms
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 92ms (Views: 1.8ms | ActiveRecord: 33.8ms | Allocations: 19793)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:16:21 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>4, "invite"=>{"interviewee_id"=>4}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x00007f3db0ff9a48>, params: {"interviewee_id"=>4, "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>4}} }[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.4ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 61ms (Views: 2.2ms | ActiveRecord: 17.3ms | Allocations: 15006)
+
+
+Started POST "/interviewee" for ::1 at 2023-04-19 15:17:00 +0300
+Processing by IntervieweesController#register as */*
+  Parameters: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "interviewee"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}}
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: register, request: #<ActionDispatch::Request:0x00007f3db0be5038>, params: {"username"=>"elvis", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"register", "interviewee"=>{"username"=>"elvis", "email"=>"elvisrono90@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "elvisrono90@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "elvis"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "elvisrono90@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "elvis"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.11ms)
+Completed 422 Unprocessable Entity in 284ms (Views: 2.6ms | ActiveRecord: 2.4ms | Allocations: 6412)
+
+
+Started POST "/interviewee" for ::1 at 2023-04-19 15:17:11 +0300
+Processing by IntervieweesController#register as */*
+  Parameters: {"username"=>"elvisrono", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "interviewee"=>{"username"=>"elvisrono", "email"=>"elvisrono90@gmail.com"}}
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: register, request: #<ActionDispatch::Request:0x00007f3db09fd4f0>, params: {"username"=>"elvisrono", "email"=>"elvisrono90@gmail.com", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"register", "interviewee"=>{"username"=>"elvisrono", "email"=>"elvisrono90@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "elvisrono90@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "elvisrono"], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Create (0.9ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "elvisrono"], ["email", "elvisrono90@gmail.com"], ["password_digest", "[FILTERED]"], ["firstname", nil], ["lastname", nil], ["bio", nil], ["created_at", "2023-04-19 12:17:12.289173"], ["updated_at", "2023-04-19 12:17:12.289173"]]
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mTRANSACTION (21.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviewees_controller.rb:6:in `register'
+  [1m[36mInterviewee Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 AND "interviewees"."id" != $2 LIMIT $3[0m  [["email", "elvisrono90@gmail.com"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+  [1m[36mInterviewee Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 AND "interviewees"."id" != $2 LIMIT $3[0m  [["username", "elvisrono"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:7:in `register'
+[active_model_serializers] Rendered IntervieweeSerializer with ActiveModelSerializers::Adapter::Attributes (0.71ms)
+Completed 201 Created in 331ms (Views: 5.1ms | ActiveRecord: 24.6ms | Allocations: 5141)
+
+
+Started POST "/invites" for ::1 at 2023-04-19 15:18:25 +0300
+Processing by InvitesController#create as */*
+  Parameters: {"interviewee_id"=>4, "invite"=>{"interviewee_id"=>4}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[31mUnpermitted parameter: :invite. Context: { controller: InvitesController, action: create, request: #<ActionDispatch::Request:0x000055e5da9ef280>, params: {"interviewee_id"=>4, "controller"=>"invites", "action"=>"create", "invite"=>{"interviewee_id"=>4}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInterviewee Load (0.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mInvite Create (0.8ms)[0m  [1m[32mINSERT INTO "invites" ("interviewee_id", "recruiter_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["interviewee_id", 4], ["recruiter_id", 4], ["status", nil], ["created_at", "2023-04-19 12:18:25.489455"], ["updated_at", "2023-04-19 12:18:25.489455"]]
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (27.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/invites_controller.rb:7:in `create'
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:88:in `interviewee'
+  Rendering layout layouts/mailer.html.erb
+  Rendering recruiter_mailer/invites.html.erb within layouts/mailer
+  Rendered recruiter_mailer/invites.html.erb within layouts/mailer (Duration: 0.9ms | Allocations: 362)
+  Rendered layout layouts/mailer.html.erb (Duration: 14.5ms | Allocations: 600)
+RecruiterMailer#invites: processed outbound mail in 94.4ms
+Delivered mail 643fdc11a27f6_feab2be8923c3@elvis-HP-EliteBook-840-G1.mail (3872.0ms)
+Date: Wed, 19 Apr 2023 15:18:25 +0300
+From: from@example.com
+To: elvisrono90@gmail.com
+Message-ID: <643fdc11a27f6_feab2be8923c3@elvis-HP-EliteBook-840-G1.mail>
+Subject: Invite
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Challenge Invite</title>
+  <style>
+    /* Add some basic styling to the email */
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+      color: #000;
+      background-color: green;
+    }
+    .token{
+      color: #000;
+      margin: 20px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 0;
+      color: #000;
+    }
+    .container {
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 600px;
+        padding: 20px;
+      }
+    p {
+      margin: 0 0 1em;
+      color: #000;
+    }
+    .button:hover {
+      background-color: #0069d9;
+    }
+    .list {
+        list-style-type:none;
+        text_align: center;  
+    }
+    
+    #head{
+        color: blue;
+    }
+    #status{
+        color: green;
+        font-weight: bold;
+    }
+    
+  </style>
+</head>
+<body>
+<div class="container">
+    <h1>Challenge Invite</h1>
+    <p>Dear elvisrono,</p>
+    <p>This is to inform you that you have been invited to undertake an assesment</p>
+    <p></p>
+    <br/>
+    <p></p>
+    <br/>
+    <p>Best regards,</p>
+    <p>elvis,</p>
+</div>
+</body>
+</html>
+  </body>
+</html>
+
+[active_model_serializers] Rendered InviteSerializer with ActiveModelSerializers::Adapter::Attributes (2.35ms)
+Completed 201 Created in 4070ms (Views: 20.2ms | ActiveRecord: 29.7ms | Allocations: 33004)
+
+
+Started POST "/assessments" for ::1 at 2023-04-19 15:26:12 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/assessments"):
+  
+Started GET "/ivites" for ::1 at 2023-04-19 15:26:46 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ivites"):
+  
+Started GET "/ivites" for ::1 at 2023-04-19 15:26:48 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ivites"):
+  
+Started GET "/ivites" for ::1 at 2023-04-19 15:26:54 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ivites"):
+  
+Started GET "/invites" for ::1 at 2023-04-19 15:27:01 +0300
+Processing by InvitesController#index as */*
+  Parameters: {"interviewee_id"=>4, "invite"=>{"interviewee_id"=>4}}
+  [1m[36mRecruiter Load (0.8ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mInvite Load (1.3ms)[0m  [1m[34mSELECT "invites".* FROM "invites" WHERE "invites"."recruiter_id" = $1[0m  [["recruiter_id", 4]]
+  ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mCACHE Interviewee Load (0.0ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.8ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mCACHE Interviewee Load (0.0ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (1.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mCACHE Interviewee Load (0.0ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mCACHE Interviewee Load (0.1ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mCACHE Interviewee Load (0.0ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mCACHE Interviewee Load (0.0ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (2.0ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (54.48ms)
+Completed 200 OK in 87ms (Views: 57.8ms | ActiveRecord: 16.5ms | Allocations: 17314)
+
+
+Started GET "/questions" for ::1 at 2023-04-19 15:29:16 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"interviewee_id"=>4, "question"=>{}}
+  [1m[36mRecruiter Load (1.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 16ms (Views: 0.6ms | ActiveRecord: 8.6ms | Allocations: 3223)
+
+
+Started POST "/question" for ::1 at 2023-04-19 15:29:40 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/question"):
+  
+Started POST "/questions" for ::1 at 2023-04-19 15:29:45 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"interviewee_id"=>4, "question"=>{}}
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 6ms (Views: 1.0ms | ActiveRecord: 0.5ms | Allocations: 875)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 15:30:43 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"question"=>"react.js", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f"}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 6ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 1934)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 15:30:55 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"react.js", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "question"=>{"content"=>"react.js"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (1.2ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", nil], ["assessment_id", nil], ["created_at", "2023-04-19 12:30:55.136288"], ["updated_at", "2023-04-19 12:30:55.136288"], ["question", nil], ["content", "react.js"], ["recruiter_id", 4]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (20.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (1.7ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 79]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (18.3ms)
+Completed 201 Created in 97ms (Views: 14.2ms | ActiveRecord: 31.4ms | Allocations: 9296)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 15:33:24 +0300
+Error occurred while parsing request parameters.
+Contents:
+
+{
+   "content": "react.js",[
+   "answer1": "y",
+   "answer2": "e",
+   "answer3": "f"
+   ],
+     
+}
+Processing by QuestionsController#create as */*
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 5ms (Views: 1.1ms | ActiveRecord: 0.4ms | Allocations: 783)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 15:33:58 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"redux", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "question"=>{"content"=>"redux"}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.6ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", nil], ["assessment_id", nil], ["created_at", "2023-04-19 12:33:58.177071"], ["updated_at", "2023-04-19 12:33:58.177071"], ["question", nil], ["content", "redux"], ["recruiter_id", 4]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (35.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 80]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (6.72ms)
+Completed 201 Created in 59ms (Views: 7.4ms | ActiveRecord: 37.2ms | Allocations: 3469)
+
+
+Started GET "/questions" for ::1 at 2023-04-19 15:34:05 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"content"=>"redux", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "question"=>{"content"=>"redux"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 422 Unprocessable Entity in 11ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 3176)
+
+
+Started GET "/questions" for ::1 at 2023-04-19 15:34:10 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"content"=>"redux", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "question"=>{"content"=>"redux"}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.37ms)
+Completed 422 Unprocessable Entity in 18ms (Views: 2.6ms | ActiveRecord: 0.2ms | Allocations: 3175)
+
+
+Started GET "/questions/3" for ::1 at 2023-04-19 15:34:17 +0300
+Processing by QuestionsController#show as */*
+  Parameters: {"content"=>"redux", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "id"=>"3", "question"=>{"content"=>"redux"}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 13ms (Views: 1.6ms | ActiveRecord: 0.4ms | Allocations: 3175)
+
+
+Started GET "/question" for ::1 at 2023-04-19 15:34:22 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/question"):
+  
+Started POST "/questions" for ::1 at 2023-04-19 15:35:39 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"re", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "question"=>{"content"=>"re"}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (1.5ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", nil], ["assessment_id", nil], ["created_at", "2023-04-19 12:35:39.223431"], ["updated_at", "2023-04-19 12:35:39.223431"], ["question", nil], ["content", "re"], ["recruiter_id", 4]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (19.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (1.0ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 81]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (11.59ms)
+Completed 201 Created in 46ms (Views: 12.4ms | ActiveRecord: 22.0ms | Allocations: 3468)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 15:43:55 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"re", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "question"=>{"content"=>"re"}}
+  [1m[36mRecruiter Load (2.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (1.9ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", nil], ["assessment_id", nil], ["created_at", "2023-04-19 12:43:56.129006"], ["updated_at", "2023-04-19 12:43:56.129006"], ["question", nil], ["content", "re"], ["recruiter_id", 4]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (17.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.9ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 82]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (11.06ms)
+Completed 201 Created in 92ms (Views: 12.3ms | ActiveRecord: 36.1ms | Allocations: 15193)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 15:45:39 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"re", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "question"=>{"content"=>"re"}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", nil], ["assessment_id", nil], ["created_at", "2023-04-19 12:45:39.734217"], ["updated_at", "2023-04-19 12:45:39.734217"], ["question", nil], ["content", "re"], ["recruiter_id", 4]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (15.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 422 Unprocessable Entity in 102ms (Views: 2.2ms | ActiveRecord: 32.7ms | Allocations: 16740)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 15:46:15 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"re", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "question"=>{"content"=>"re"}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (10.2ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", nil], ["assessment_id", nil], ["created_at", "2023-04-19 12:46:15.249746"], ["updated_at", "2023-04-19 12:46:15.249746"], ["question", nil], ["content", "re"], ["recruiter_id", 4]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (13.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 84]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (18.23ms)
+Completed 201 Created in 119ms (Views: 15.1ms | ActiveRecord: 44.2ms | Allocations: 15851)
+
+
+Started POST "/questions" for ::1 at 2023-04-19 15:46:54 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"re", "answer1"=>"y", "answer2"=>"e", "answer3"=>"f", "question"=>{"content"=>"re"}}
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mQuestion Create (4.8ms)[0m  [1m[32mINSERT INTO "questions" ("feedback", "assessment_id", "created_at", "updated_at", "question", "content", "recruiter_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["feedback", nil], ["assessment_id", nil], ["created_at", "2023-04-19 12:46:54.287518"], ["updated_at", "2023-04-19 12:46:54.287518"], ["question", nil], ["content", "re"], ["recruiter_id", 4]]
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (50.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:16:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.8ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."question_id" = $1[0m  [["question_id", 85]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveSupport::HashWithIndifferentAccess (15.26ms)
+Completed 201 Created in 143ms (Views: 12.0ms | ActiveRecord: 73.1ms | Allocations: 15810)
+
+

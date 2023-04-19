@@ -1,39 +1,21 @@
 class QuestionsController < ApplicationController
-   # before_action :set_question, only: [:show, :edit, :update, :destroy]
+  
   before_action :verify_auth
-
-
-
     def index
-      render json: Question.all
+      render json: recruiter.question.all
     end
   
     def show
-      question = Question.find(params[:id])
+      question = recruiter.question.find(params[:id])
       render json: question
     end
-    #   def show 
-    # def show
-      # def show 
-      #   question = Question.includes(answers: :user).find_by(id: params[:id])
-      #   if question 
-      #     render json: {
-      #       id: question.id,
-      #       content: content.id,
-      #       answers: question.answers,
-      #       feedback: feedback.id,
-      #       assessment: assessment_id
-      #     }
-      #   else
-      #     render json: { error: "Question not found" }, status: :not_found
-      #   end
-  
+    
     def create
-      question = recruiter.question.new(question_params)
+      question = recruiter.questions.new(question_params)
 
       if question.save
         #render json: question, status: :created
-        render json: question.slice(:id, :question, :content, :answers, :feedback, :assessment_id), status: :created
+        render json: question.slice(:id, :question, :content, :answers, :feedback, :assessment_id, ), status: :created
 
       else
         render json: { errors: question.errors.full_messages }, status: :unprocessable_entity
@@ -41,7 +23,7 @@ class QuestionsController < ApplicationController
     end
   
     def update
-      question = Question.find(params[:id])
+      question = recruiter.question.find(params[:id])
       if question.update(question_params)
         render json: question
       else
@@ -50,7 +32,7 @@ class QuestionsController < ApplicationController
     end
   
     def destroy
-      question = Question.find(params[:id])
+      question = recruiter.question.find(params[:id])
       question.destroy
       head :no_content
     end
@@ -58,7 +40,7 @@ class QuestionsController < ApplicationController
     private
   
     def question_params
-      params.require(:question).permit(:content, :feedback, :assessment_id)
+      params.require(:question).permit(:question, :content, :answer1, :answer2, :answer3, :feedback, :assessment_id)
     end
 
   # def verify_auth
