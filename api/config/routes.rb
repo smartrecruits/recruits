@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  resources :invites
 
   resources :answers, only: [:create]
   get '/questions/:question_id/answers', to: 'answers#index'
