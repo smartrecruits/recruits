@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :responses
   resources :code_challenges
   resources :assessments
   resources :invites, only: [:index,:destroy]
