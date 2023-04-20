@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_04_19_113229) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
+>>>>>>> b7bace1d1de336f7bf0d66afb61215e18e7f98e4
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +27,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_113229) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
+=======
+  create_table "assessments", force: :cascade do |t|
+    t.bigint "interviewee_id", null: false
+    t.bigint "recruiter_id", null: false
+    t.string "name"
+    t.boolean "accepted"
+    t.datetime "duedate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interviewee_id"], name: "index_assessments_on_interviewee_id"
+    t.index ["recruiter_id"], name: "index_assessments_on_recruiter_id"
+  end
+
+>>>>>>> b7bace1d1de336f7bf0d66afb61215e18e7f98e4
   create_table "interviewees", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -46,12 +65,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_113229) do
 
   create_table "questions", force: :cascade do |t|
     t.string "feedback"
+<<<<<<< HEAD
     t.integer "assessment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "question"
     t.text "content"
     t.integer "recruiter_id"
+=======
+    t.text "content"
+    t.string "answer_1"
+    t.string "answer_2"
+    t.string "answer_3"
+    t.string "answer_4"
+    t.string "correct_answer"
+    t.integer "assessment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> b7bace1d1de336f7bf0d66afb61215e18e7f98e4
   end
 
   create_table "recruiters", force: :cascade do |t|
@@ -65,6 +96,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_113229) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
+=======
+  add_foreign_key "assessments", "interviewees"
+  add_foreign_key "assessments", "recruiters"
+>>>>>>> b7bace1d1de336f7bf0d66afb61215e18e7f98e4
   add_foreign_key "invites", "interviewees"
   add_foreign_key "invites", "recruiters"
 end

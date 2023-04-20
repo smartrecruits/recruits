@@ -1,4 +1,36 @@
 class AssessmentsController < ApplicationController
-    before_action :verify_auth
+    # before_action :verify_auth
+    def index 
+        assessments = Assessment.all
+        render json: assessments
+    end
 
+    def add_question
+        @assessment = Assessment.find(params[:assessment_id])
+        @question = Question.find(params[:question_id])
+        @assessment.questions << @question
+        render json: @assessment
+    end
+    
+    def remove_question
+        @assessment = Assessment.find(params[:assessment_id])
+        @question = Question.find(params[:question_id])
+        @assessment.questions.delete(@question)
+        render json: @assessment
+    end
+
+    def add_code_challenge
+        @assessment = Assessment.find(params[:assessment_id])
+        @code_challenge = CodeChallenge.find(params[:code_challenge_id])
+        @assessment.code_challenges << @code_challenge
+        render json: @assessment
+    end
+
+    def remove_code_challenge
+        @assessment = Assessment.find(params[:assessment_id])
+        @code_challenge = CodeChallenge.find(params[:code_challenge_id])
+        @assessment.code_challenges.delete(@code_challenge)
+        render json: @assessment
+    end
+    
 end
