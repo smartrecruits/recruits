@@ -1,4 +1,4 @@
 class Question < ApplicationRecord
-    belongs_to :assessment
-    has_many :answers
+    belongs_to :recruiter
+
 end

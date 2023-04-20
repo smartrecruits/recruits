@@ -4,10 +4,14 @@ one:
   username: MyString
   email: MyString
   password_digest: MyString
-  grades: 1
+  firstname: MyString
+  lastname: MyString
+  bio: MyString
 
 two:
   username: MyString
   email: MyString
   password_digest: MyString
-  grades: 1
+  firstname: MyString
+  lastname: MyString
+  bio: MyString
