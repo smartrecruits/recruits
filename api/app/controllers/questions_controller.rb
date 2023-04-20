@@ -34,6 +34,20 @@ class QuestionsController < ApplicationController
       question.destroy
       head :no_content
     end
+
+    def assign_to_assessment
+      assessment = Assessment.find(params[:assessment_id])
+      question = Question.find(params[:question_id])
+      assessment.questions << question
+      render json:assessment
+    end
+
+    def unassign_from_assessment
+      assessment = Assessment.find(params[:assessment_id])
+      question = Question.find(params[:question_id])
+      assessment.questions.delete(question)
+      render json: assessment
+    end
   
     private
   
