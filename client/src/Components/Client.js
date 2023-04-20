@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate,Link } from "react-router-dom";
-import { saveUser,storeToken } from "./utils/auth";
+import { saveInterviewee,storeIntervieweeToken } from "./utils/auth";
 
 import './Client.css'
 function Client() {
@@ -38,8 +38,8 @@ function Client() {
         })
         .then(data => {
           // Store session ID in browser storage
-          saveUser(data.user.id)
-          storeToken(data.token)
+          saveInterviewee(data.user.id)
+          storeIntervieweeToken(data.token)
           //  console.log(data.user.id)
           navigate('/');
         })

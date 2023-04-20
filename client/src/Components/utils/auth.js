@@ -1,29 +1,51 @@
-const saveUser = (uid) => {
+const saveInterviewee = (uid) => {
     localStorage.setItem('uid', uid.toString());
-  };
-  
-  const getUser = () => {
+};
+const saveRecruiter = (uid) => {
+    localStorage.setItem('uid', uid.toString());
+};
+
+const getInterviewee = () => {
     const uid = localStorage.getItem('uid');
     return uid ? parseInt(uid) : null;
-  };
-  
-  const removeUser = () => {
+};
+const getRecruiter = () => {
+    const uid = localStorage.getItem('uid');
+    return uid ? parseInt(uid) : null;
+};
+
+const removeRecruiter = () => {
     localStorage.removeItem('uid');
-  };
-  
-  const isUserLoggedIn = () => {
-    return !!getToken();
-  };
-  
-  const storeToken = (token) => {
+};
+
+const removeInterviewee = () => {
+    localStorage.removeItem('uid');
+};
+
+const isIntervieweeLoggedIn = () => {
+    return !!getIntervieweeToken();
+};
+
+const isRecruiterLoggedIn = () => {
+    return !!getRecruiterToken();
+    };
+const storeRecruiterToken = (token) => {
     localStorage.setItem('token', token);
-  };
-  export function removeUserToken() {
+};
+const storeIntervieweeToken = (token) => {
+    localStorage.setItem('token', token);
+};
+export function removeIntervieweeToken() {
     localStorage.removeItem("token");
-  }
-  
-  const getToken = () => {
+}
+export function removeRecruiterToken() {
+    localStorage.removeItem("token");
+}
+const getIntervieweeToken = () => {
     return localStorage.getItem('token');
-  };
+};
+const getRecruiterToken = () => {
+    return localStorage.getItem('token');
+};
   
-  export { saveUser, getUser, removeUser, isUserLoggedIn, storeToken, getToken };
+export { saveInterviewee, saveRecruiter, getInterviewee, getRecruiter, removeRecruiter, removeInterviewee, isRecruiterLoggedIn, isIntervieweeLoggedIn, storeRecruiterToken, storeIntervieweeToken, getRecruiterToken,getIntervieweeToken };

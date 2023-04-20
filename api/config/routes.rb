@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   post '/invites/:interviewee_id', to: 'invites#create'
   put '/invites/:interviewee_id/:id', to: 'invites#update'
 
-  put '/interviewees/:interviewee_id/invites/:id/deny', to: 'invites#accept', as: 'deny_interviewee_invite'
+  put 'interviewees/:interviewee_id/invites/:id/accept_assessment', to: 'invites#accept_assessment', as: 'accept_interviewee_invite_path'
+
+  put '/interviewees/:interviewee_id/invites/:id/deny', to: 'invites#accept', as: 'accept_interviewee_invite'
   # get '/interviewees/:interviewee_id/invites/:id/deny', to: 'invites#accept', as: 'deny_interviewee_invite'
 
-  put '/interviewees/:interviewee_id/invites/:id/accept', to: 'invites#decline', as: 'accept_interviewee_invite'
+  put '/interviewees/:interviewee_id/invites/:id/accept', to: 'invites#decline', as: 'deny_interviewee_invite'
   # get '/interviewees/:interviewee_id/invites/:id/accept', to: 'invites#accept', as: 'accept_interviewee_invite'
 
   resources :answers, only: [:create]

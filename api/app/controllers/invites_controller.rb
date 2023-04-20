@@ -20,6 +20,20 @@ class InvitesController < ApplicationController
         head :no_content
     end
 
+    def accept_assessment
+        inter = Interviewee.find(params[:interviewee_id])
+        invite = Invite.find(params[:id])
+        assessment = invite.assessment
+    
+        if invite.interviewee == inter && assessment
+          assessment.update!(accepted: true)
+          invite.update!(status: 'accepted')
+          render json: { assessment: assessment, invite: invite }, status: :ok
+        else
+          render json: { errors: 'Access denied or assessment not found' }, status: :unprocessable_entity
+        end
+    end
+
     def update 
         inter = Interviewee.find(params[:interviewee_id])
         invite = Invite.find(params[:id])

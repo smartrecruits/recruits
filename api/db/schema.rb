@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_20_111420) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
     t.datetime "updated_at", null: false
     t.index ["interviewee_id"], name: "index_assessments_on_interviewee_id"
     t.index ["recruiter_id"], name: "index_assessments_on_recruiter_id"
+  end
+
+  create_table "code_challenges", force: :cascade do |t|
+    t.bigint "assessment_id", null: false
+    t.integer "grades"
+    t.string "feedback"
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assessment_id"], name: "index_code_challenges_on_assessment_id"
   end
 
   create_table "interviewees", force: :cascade do |t|
@@ -82,6 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
 
   add_foreign_key "assessments", "interviewees"
   add_foreign_key "assessments", "recruiters"
+  add_foreign_key "code_challenges", "assessments"
   add_foreign_key "invites", "interviewees"
   add_foreign_key "invites", "recruiters"
 end

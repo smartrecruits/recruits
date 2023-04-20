@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { saveUser,storeToken } from "./utils/auth";
+import { saveRecruiter,storeRecruiterToken } from "./utils/auth";
 import { useNavigate,Link } from "react-router-dom";
 import './Signing.css'
 
@@ -38,8 +38,8 @@ function Signing() {
     })
     .then(data => {
       // Store session ID in browser storage
-      saveUser(data.user.id)
-      storeToken(data.token)
+      saveRecruiter(data.user.id)
+      storeRecruiterToken(data.token)
       //  console.log(data.user.id)
       navigate('/');
     })
