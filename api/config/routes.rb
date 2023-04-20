@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :assessments
+  resources :asssessments
   resources :invites
 
   resources :answers, only: [:create]

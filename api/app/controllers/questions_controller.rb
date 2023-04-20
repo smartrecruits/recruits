@@ -1,6 +1,9 @@
 class QuestionsController < ApplicationController
-  
-  before_action :verify_auth
+
+
+
+
+
     def index
       render json: recruiter.question.all
     end
@@ -11,19 +14,16 @@ class QuestionsController < ApplicationController
     end
     
     def create
-      question = recruiter.questions.new(question_params)
-
+      question = Question.new(question_params)
       if question.save
-        #render json: question, status: :created
-        render json: question.slice(:id, :question, :content, :answers, :feedback, :assessment_id, ), status: :created
-
+        render json: question, status: :created
       else
         render json: { errors: question.errors.full_messages }, status: :unprocessable_entity
       end
     end
   
     def update
-      question = recruiter.question.find(params[:id])
+      question = Question.find(params[:id])
       if question.update(question_params)
         render json: question
       else
@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
     end
   
     def destroy
-      question = recruiter.question.find(params[:id])
+      question = Question.find(params[:id])
       question.destroy
       head :no_content
     end

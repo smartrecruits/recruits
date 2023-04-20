@@ -3,9 +3,9 @@ class InvitesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def create 
-        
+        inter = Interviewee.find(params[:id])
         invite = recruiter.invites.create!(invite_params)
-        RecruiterMailer.invites(recruiter,interviewee).deliver_now
+        RecruiterMailer.invites(recruiter,inter).deliver_now
         render json: invite, status: :created
     end
 

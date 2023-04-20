@@ -5,7 +5,7 @@ import { MdEmail } from 'react-icons/md';
 
 const Footer = () => {
   return (
-    <div className="page-container">
+    <div className="page-container" data-testid="footer">
       <header className="header">
         {/* Header content */}
       </header>
