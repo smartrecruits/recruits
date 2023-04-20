@@ -1,4 +1,4 @@
 class Question < ApplicationRecord
-    #belongs_to :recruiter
+    belongs_to :recruiter
 
 end

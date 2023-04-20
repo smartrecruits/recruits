@@ -3,9 +3,9 @@ class InvitesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def create 
-        inter = Interviewee.find(params[:id])
-        invite = recruiter.invites.create!(invite_params)
-        RecruiterMailer.invites(recruiter,inter).deliver_now
+        inter = Interviewee.find(params[:interviewee_id])
+        invite = recruiter.invites.create!(invite_params.merge(status: "pending"))
+        RecruiterMailer.invites(recruiter,inter,invite).deliver_now
         render json: invite, status: :created
     end
 
@@ -21,14 +21,41 @@ class InvitesController < ApplicationController
     end
 
     def update 
+        inter = Interviewee.find(params[:interviewee_id])
         invite = Invite.find(params[:id])
-        if invite.interviewee == interviewee
+        if invite.interviewee == inter
             invite.update!(invite_params)
             render json: invite, status: :ok
         else
             render json: { errors: 'Access denied' }, status: :unauthorized
         end
     end
+
+
+  def accept
+    inter = Interviewee.find(params[:interviewee_id])
+    invite = Invite.find(params[:id])
+    if invite.interviewee == inter
+        invite.update!(status: 'accepted')
+        render json: invite, status: :ok
+        # redirect_to root_path, notice: 'Invite accepted'
+    else
+        render json: { errors: 'Access denied' }, status: :unauthorized
+    end
+  end
+
+  def decline
+    inter = Interviewee.find(params[:interviewee_id])
+    invite = Invite.find(params[:id])
+    if invite.interviewee == inter
+        invite.update!(status:'rejected')
+        render json: invite, status: :ok
+
+        # redirect_to root_path, notice: 'Invite declined'
+    else
+        render json: { errors: 'Access denied' }, status: :unauthorized
+    end
+  end
 
     private
 

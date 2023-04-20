@@ -63,7 +63,9 @@
     <p>This is to inform you that you have been invited to undertake an assesment</p>
     <p></p>
     <br/>
-    <p></p>
+    <p>Please select one of the following options:</p>
+<a  href="<%= accept_interviewee_invite_url(@interviewee, @invite) %>">Accept</a>
+<a href="<%= deny_interviewee_invite_url(@interviewee, @invite) %>">Decline</a>
     <br/>
     <p>Best regards,</p>
     <p><%= @recruiter.username %>,</p>

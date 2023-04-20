@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   resources :assessments
-  resources :asssessments
-  resources :invites
+  resources :invites, only: [:index,:destroy]
+  post '/invites/:interviewee_id', to: 'invites#create'
+  put '/invites/:interviewee_id/:id', to: 'invites#update'
+
+  put '/interviewees/:interviewee_id/invites/:id/deny', to: 'invites#accept', as: 'deny_interviewee_invite'
+  # get '/interviewees/:interviewee_id/invites/:id/deny', to: 'invites#accept', as: 'deny_interviewee_invite'
+
+  put '/interviewees/:interviewee_id/invites/:id/accept', to: 'invites#decline', as: 'accept_interviewee_invite'
+  # get '/interviewees/:interviewee_id/invites/:id/accept', to: 'invites#accept', as: 'accept_interviewee_invite'
 
   resources :answers, only: [:create]
   get '/questions/:question_id/answers', to: 'answers#index'
@@ -10,12 +17,8 @@ Rails.application.routes.draw do
   patch '/questions/:question_id/answers/:id', to: 'answers#update'
   delete '/questions/:question_id/answers/:id', to: 'answers#destroy'
 
-
-  get '/questions', to: 'questions#index'
-  get '/questions/:id', to: 'questions#show'
-  post '/questions', to: 'questions#create'
-  patch '/questions/:id', to: 'questions#update'
-  delete '/questions/:id', to: 'questions#destroy'
+  resources :questions
+ 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
