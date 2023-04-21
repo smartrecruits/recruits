@@ -1,5 +1,6 @@
 class AssessmentsController < ApplicationController
-    # before_action :verify_auth
+    before_action :verify_auth
+    
     def index 
         assessments = Assessment.all
         render json: assessments
@@ -16,6 +17,12 @@ class AssessmentsController < ApplicationController
         assessment = Assessment.find(params[:id])
         assessment.destroy 
         head :no_content
+    end
+
+    def update 
+        assessment = Assessment.find(params[:id])
+        assessment.update!(assessment_params)
+        render json: assessment
     end
 
     def add_question
@@ -48,7 +55,7 @@ class AssessmentsController < ApplicationController
 
     private
     def assessment_params 
-        params.permit(:name,:accepted,:duedate,:recruiter_id)
+        params.permit(:name,:reviewed,:accepted,:duedate,:recruiter_id)
     end
     
 end

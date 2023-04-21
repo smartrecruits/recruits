@@ -54,6 +54,10 @@ class QuestionsController < ApplicationController
       response = current_interviewee.responses.find_or_create_by(question_id: params[:question_id])
       response.update(chosen_answer: params[:chosen_answer])
       response.mark_as_correct
+      if response.correct
+        question = Question.find(params[:question_id])
+        question.update(grades: question.grades + 1)
+      end
       render json: { correct: response.correct }
     end
   

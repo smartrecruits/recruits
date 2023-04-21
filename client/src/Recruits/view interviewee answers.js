@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getRecruiter, getInterviewee, getRecruiterToken,getIntervieweeToken } from '../Components/utils/auth';
 
-function IntervieweeResponses({intervieweeId}) {
+function IntervieweeResponses({intervieweeId, assessmentId}) {
   const [questions, setQuestions] = useState([]);
   const [responses, setResponses] = useState([]);
   const [feedback, setFeedback] = useState('');
   const [errors,setErrors] = useState([])
+  const [reviewed, setReviewed] = useState(false);
   const recruiterId = getRecruiter() 
   const recruiterToken = getRecruiterToken()
   
@@ -28,6 +29,25 @@ function IntervieweeResponses({intervieweeId}) {
         })
     },[intervieweeId,recruiterToken])
 
+    function handleReviewChange(event) {
+        setReviewed(event.target.value === 'true');
+      }
+    function handleReviewSubmit() {
+        fetch(`/assessments/${assessmentId}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${recruiterToken}`,
+          },
+          body: JSON.stringify({ reviewed: reviewed }),
+        }).then((res) => {
+          if (res.ok) {
+            // handle successful submission
+          } else {
+            res.json().then((err) => setErrors([err.errors]));
+          }
+        });
+      }
     function handleFeedbackChange(event) {
         setFeedback(event.target.value);
       }
@@ -52,33 +72,60 @@ function IntervieweeResponses({intervieweeId}) {
     }
 
 return (
-<div>
-    {errors.length > 0 && (
-          <div className="text-danger">
-            {errors.map((error, index) => (
-              <p key={index}>{error}</p>
-            ))}
-          </div>
-        )}
-    {/* <h2>Questions:</h2>
-    {questions.map(question => (
-    <div key={question.id}>
-        <h3>{question.content}</h3>
-        <p>Correct Answer: {question.correct_answer}</p>
-    </div>
-    ))} */}
-    <h2>Interviewee Responses:</h2>
-    {responses.map(response => (
-        <div key={response.id}>
-            <p>Question: {response.question.content}</p>
-            <p>Answer: {response.chosen_answer}</p>
-            <p>Correct: {response.correct ? 'Yes' : 'No'}</p>
-            <p>Recruiter Feedback</p>
-            <textarea onChange={handleFeedbackChange} value={feedback}></textarea>
-            <button onClick={() => handleFeedbackSubmit(response.id, feedback)}>Submit</button>
+    <div>
+        {errors.length > 0 && (
+            <div className="text-danger">
+                {errors.map((error, index) => (
+                <p key={index}>{error}</p>
+                ))}
+            </div>
+            )}
+        {/* <h2>Questions:</h2>
+        {questions.map(question => (
+        <div key={question.id}>
+            <h3>{question.content}</h3>
+            <p>Correct Answer: {question.correct_answer}</p>
         </div>
-    ))}
-</div>
+        ))} */}
+        <h2>Interviewee Responses:</h2>
+        {responses.map(response => (
+            <div key={response.id}>
+                <p>Question: {response.question.content}</p>
+                <p>Answer: {response.chosen_answer}</p>
+                <p>Correct: {response.correct ? 'Yes' : 'No'}</p>
+                <p>Recruiter Feedback</p>
+                <textarea onChange={handleFeedbackChange} value={feedback}></textarea>
+                <button onClick={() => handleFeedbackSubmit(response.id, feedback)}>Submit</button>
+            </div>
+        ))}
+         <div>
+      <h6>Mark as reviewed</h6>
+      <form>
+        <label>
+          Reviewed:
+          <input
+            type="radio"
+            name="reviewed"
+            value="true"
+            checked={reviewed}
+            onChange={handleReviewChange}
+          />
+          Yes
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="reviewed"
+            value="false"
+            checked={!reviewed}
+            onChange={handleReviewChange}
+          />
+          No
+        </label>
+      </form>
+      <button onClick={handleReviewSubmit}>Submit</button>
+    </div>
+    </div>
 );
 }
 

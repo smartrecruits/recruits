@@ -5,6 +5,7 @@ class CreateResponses < ActiveRecord::Migration[7.0]
       t.belongs_to :interviewee, null: false, foreign_key: true
       t.string :chosen_answer
       t.string :feedback
+      # t.integer :grades
       t.boolean :correct
 
       t.timestamps

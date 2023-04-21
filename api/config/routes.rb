@@ -41,15 +41,15 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  #  get '/all', to:"users#index"
-
   #interviewee routes
-  get '/all', to: "interviewees#index"
+  get '/interviewees/scores', to: "interviewees#sort_by_score"
+  get '/interviewees', to: "interviewees#index"
   delete '/interviewee/logout', to: "interviewees#logout"
   post '/interviewee', to:"interviewees#register"
   post '/interviewee/login', to:"interviewees#login"
   post '/interviewee/reset', to:"interviewees#reset_password"
-  get 'interviewee/:id', to:"interviewees#show"
+  get '/interviewee/:id', to:"interviewees#show"
+  get '/interviewee/grades/:id', to: "interviewees#show_grades"
   #to delete a user 
  delete '/interviewee/delete/:id', to:"interviewees#delete_account" 
 

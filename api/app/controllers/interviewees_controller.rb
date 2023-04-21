@@ -35,6 +35,19 @@ class IntervieweesController < ApplicationController
         render json: user 
     end
 
+    def show_grades
+        interviewee = Interviewee.find(params[:id])
+        assessment = interviewee.assessment
+    
+        if assessment.reviewed
+          grades = interviewee.responses.joins(:question)
+                                         .where(questions: { assessment_id: assessment.id })
+                                         .sum(:grades)
+          render json: { grades: grades }
+        else
+          render json: { message: "Grades not available yet. Please wait for the assessment to be reviewed." }
+        end
+    end
 
     def logout
         remove_user
@@ -44,6 +57,14 @@ class IntervieweesController < ApplicationController
         interviewees = Interviewee.all 
         render json: interviewees, status: :ok
     end
+
+    def sort_by_score
+        interviewees = Interviewee.joins(:responses)
+                                  .group('interviewees.id')
+                                  .select('interviewees.*, SUM(responses.correct::integer) AS total_score')
+                                  .order('total_score DESC')
+        render json: interviewees
+      end
 
     def reset_password
         user = Interviewee.find_by(email: params[:email])
