@@ -10,6 +10,14 @@ class ResponsesController < ApplicationController
             render json: response, status: :created
         end
     end
+    def update
+        @response = Response.find(params[:id])
+        if @response.update(response_params)
+          render json: @response, status: :ok
+        else
+          render json: { errors: @response.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
 
     def index 
         interviewee = Interviewee.find(params[:interviewee_id])
@@ -21,6 +29,6 @@ class ResponsesController < ApplicationController
     private 
 
     def response_params 
-        params.permit(:question_id,:interviewee_id,:chosen_answer,:correct)
+        params.permit(:question_id,:interviewee_id,:chosen_answer,:correct,:feedback)
     end
 end
