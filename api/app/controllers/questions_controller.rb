@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
 
-
+  before_action :verify_auth
 
 
     def index
@@ -9,12 +9,12 @@ class QuestionsController < ApplicationController
     end
   
     def show
-      question = recruiter.question.find(params[:id])
+      question = recruiter.question.includes(params[:id])
       render json: question
     end
     
     def create
-      question = Question.new(question_params)
+      question = recruiter.questions.new(question_params)
       if question.save
         render json: question, status: :created
       else
@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
     end
   
     def update
-      question = Question.find(params[:id])
+      question = recruiter.questions.find(params[:id])
       if question.update(question_params)
         render json: question
       else
@@ -32,21 +32,21 @@ class QuestionsController < ApplicationController
     end
   
     def destroy
-      question = Question.find(params[:id])
+      question = recruiter.questions.find(params[:id])
       question.destroy
       head :no_content
     end
 
     def assign_to_assessment
       assessment = Assessment.find(params[:assessment_id])
-      question = Question.find(params[:question_id])
+      question = recruiter.questions.find(params[:question_id])
       assessment.questions << question
       render json:assessment
     end
 
     def unassign_from_assessment
       assessment = Assessment.find(params[:assessment_id])
-      question = Question.find(params[:question_id])
+      question = recruiter.questions.find(params[:question_id])
       assessment.questions.delete(question)
       render json: assessment
     end
@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
     private
   
     def question_params
-      params.require(:question).permit(:question, :content, :answer1, :answer2, :answer3, :feedback, :assessment_id)
+      params.require(:question).permit(:question, :content, :answers, :answer2, :answer3, :feedback, :assessment_id)
     end
 
   # def verify_auth

@@ -3,6 +3,7 @@ class Recruiter < ApplicationRecord
     has_many :assessments
     has_many :interviewees, through: :assessments
     has_many :invites
+    has_many :questions
     #has_many :answers
  
     validates :email,{
