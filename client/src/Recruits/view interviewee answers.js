@@ -4,24 +4,28 @@ import { getRecruiter, getInterviewee, getRecruiterToken,getIntervieweeToken } f
 function IntervieweeResponses() {
   const [questions, setQuestions] = useState([]);
   const [responses, setResponses] = useState([]);
+  const [errors,setErrors] = useState([])
   const recruiterId = getRecruiter() 
   const intervieweeId = getInterviewee()
   const recruiterToken = getRecruiterToken()
   const IntervieweeToken = getIntervieweeToken()
   useEffect(() => {
     fetch(`/interviewees/${intervieweeId}/responses`)
-      .then(response => response.json())
-      .then(data => {
-        setQuestions(data.questions);
-        setResponses(data.responses);
-      })
-      .catch(error => {
-        // handle error
-      });
-  }, [intervieweeId]);
+    .then(res =>{
+        if(res.ok){
+        res.json().then((data)=>{
+            setQuestions(data.questions);
+            setResponses(data.responses);
+          
+            })
+        }else{
+            res.json().then((err)=>setErrors([err.errors]))
+        }
+        })
+    },[intervieweeId])
 
   function handleFeedbackSubmit(responseId, feedback) {
-    fetch(`recruiter/${recruiterId}/responses/${responseId}`, {
+    fetch(`/recruiter/${recruiterId}/responses/${responseId}`, {
       method: 'PATCH',
       headers: {
             'Content-Type': 'application/json',
@@ -29,17 +33,24 @@ function IntervieweeResponses() {
             },
     body: JSON.stringify({ feedback: feedback })
     })
-    .then(response => response.json())
-    .then(data => {
-    // handle response data
-    })
-    .catch(error => {
-    // handle error
+    .then(res => {
+        if (res.ok) {
+            // setIsFavorite(true);
+        } else {
+            res.json().then((err) => setErrors([err.errors]));
+        }
     });
     }
 
 return (
 <div>
+    {errors.length > 0 && (
+          <div className="text-danger">
+            {errors.map((error, index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
+        )}
     {/* <h2>Questions:</h2>
     {questions.map(question => (
     <div key={question.id}>
