@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getRecruiter, getInterviewee } from '../Components/utils/auth';
+import { getRecruiter, getInterviewee, getRecruiterToken,getIntervieweeToken } from '../Components/utils/auth';
 
 function IntervieweeResponses() {
   const [questions, setQuestions] = useState([]);
   const [responses, setResponses] = useState([]);
   const recruiterId = getRecruiter() 
   const intervieweeId = getInterviewee()
+  const recruiterToken = getRecruiterToken()
+  const IntervieweeToken = getIntervieweeToken()
   useEffect(() => {
     fetch(`/interviewees/${intervieweeId}/responses`)
       .then(response => response.json())
@@ -23,7 +25,7 @@ function IntervieweeResponses() {
       method: 'PATCH',
       headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Authorization': `Bearer ${recruiterToken}`
             },
     body: JSON.stringify({ feedback: feedback })
     })
