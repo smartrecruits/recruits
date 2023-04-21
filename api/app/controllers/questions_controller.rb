@@ -50,7 +50,7 @@ class QuestionsController < ApplicationController
     end
 
     def check_answer
-      current_interviewee = Interviewee.find(params[:id])
+      current_interviewee = Interviewee.find(params[:interviewee_id])
       response = current_interviewee.responses.find_or_create_by(question_id: params[:question_id])
       response.update(chosen_answer: params[:chosen_answer])
       response.mark_as_correct

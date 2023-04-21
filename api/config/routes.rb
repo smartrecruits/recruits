@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  resources :responses
-  resources :code_challenges
+  resources :questions
+  post '/interviewee/:interviewee_id/question/:question_id/check_answer', to:"questions#checkanswer"
+
+  resources :responses, only: [:create]
+  get '/interviewee/:interviewee_id/responses', to: "responses#index"
+  put '/recruiter/:recruiter_id/responses/:id', to: 'responses#update'
+
+  resources :code_challenges, only: [:index]
   resources :assessments
   resources :invites, only: [:index,:destroy]
   post '/invites/:interviewee_id', to: 'invites#create'
@@ -21,7 +27,6 @@ Rails.application.routes.draw do
   patch '/questions/:question_id/answers/:id', to: 'answers#update'
   delete '/questions/:question_id/answers/:id', to: 'answers#destroy'
 
-  resources :questions
 
   # Assign question to assessment
   post '/assessments/:assessment_id/questions/:question_id', to: 'assessments#add_question'

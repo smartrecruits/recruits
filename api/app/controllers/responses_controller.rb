@@ -11,12 +11,19 @@ class ResponsesController < ApplicationController
         end
     end
     def update
-        @response = Response.find(params[:id])
-        if @response.update(response_params)
-          render json: @response, status: :ok
+        recruiter = Recruiter.find(params[:recruiter_id])
+        response = Response.find(params[:id])
+        assessment = response.question.assessment
+
+        if recruiter.id = assessment.recruiter_id
+            if response.update(response_params)
+            render json: response, status: :ok
+            else
+            render json: { errors: response.errors.full_messages }, status: :unprocessable_entity
+            end
         else
-          render json: { errors: @response.errors.full_messages }, status: :unprocessable_entity
-        end
+            render json: { error: "You are not authorized to update this response." }, status: :unauthorized
+        end    
       end
 
     def index 
