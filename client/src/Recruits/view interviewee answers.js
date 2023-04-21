@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { getRecruiter, getInterviewee, getRecruiterToken,getIntervieweeToken } from '../Components/utils/auth';
 
-function IntervieweeResponses() {
+function IntervieweeResponses({intervieweeId}) {
   const [questions, setQuestions] = useState([]);
   const [responses, setResponses] = useState([]);
+  const [feedback, setFeedback] = useState('');
   const [errors,setErrors] = useState([])
   const recruiterId = getRecruiter() 
-  const intervieweeId = getInterviewee()
   const recruiterToken = getRecruiterToken()
-  const IntervieweeToken = getIntervieweeToken()
+  
   useEffect(() => {
-    fetch(`/interviewees/${intervieweeId}/responses`)
+    fetch(`/interviewees/${intervieweeId}/responses`,{
+        headers: {
+            Authorization: `Bearer ${recruiterToken}`
+          }
+    })
     .then(res =>{
         if(res.ok){
         res.json().then((data)=>{
@@ -22,7 +26,12 @@ function IntervieweeResponses() {
             res.json().then((err)=>setErrors([err.errors]))
         }
         })
-    },[intervieweeId])
+    },[intervieweeId,recruiterToken])
+
+    function handleFeedbackChange(event) {
+        setFeedback(event.target.value);
+      }
+      
 
   function handleFeedbackSubmit(responseId, feedback) {
     fetch(`/recruiter/${recruiterId}/responses/${responseId}`, {
@@ -65,7 +74,8 @@ return (
             <p>Answer: {response.chosen_answer}</p>
             <p>Correct: {response.correct ? 'Yes' : 'No'}</p>
             <p>Recruiter Feedback</p>
-            <textarea onChange={event => handleFeedbackSubmit(response.id, event.target.value)}></textarea>
+            <textarea onChange={handleFeedbackChange} value={feedback}></textarea>
+            <button onClick={() => handleFeedbackSubmit(response.id, feedback)}>Submit</button>
         </div>
     ))}
 </div>
