@@ -6,7 +6,7 @@ const initialState = {
 
 export const fetchAssess = createAsyncThunk("assess/fetchAssess", () => {
     // return a Promise containing the data we want
-    return fetch("/assessments")
+    return fetch("https://recruits.onrender.com/assessments")
       .then((response) => response.json())
       .then((data) => data);
   });

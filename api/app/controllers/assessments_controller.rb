@@ -1,4 +1,4 @@
-require_relative './concerns/codewars_module'
+require_relative '../models/concerns/codewars_module'
 
 class AssessmentsController < ApplicationController
     before_action :verify_auth
