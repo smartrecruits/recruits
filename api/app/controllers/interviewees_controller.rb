@@ -64,7 +64,7 @@ class IntervieweesController < ApplicationController
                                   .select('interviewees.*, SUM(responses.correct::integer) AS total_score')
                                   .order('total_score DESC')
         render json: interviewees
-      end
+    end
 
     def reset_password
         user = Interviewee.find_by(email: params[:email])
