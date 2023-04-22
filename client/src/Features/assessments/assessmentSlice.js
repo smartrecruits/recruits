@@ -11,17 +11,17 @@ export const fetchAssess = createAsyncThunk("assess/fetchAssess", () => {
       .then((data) => data);
   });
 
-function assesmentReducer(state = initialState, action) {
-    switch (action.type) {
-      case 'SET_ASSESSMENTS':
-        return { ...state, assessments: action.payload };
-      default:
-        return state;
-    }
-}
+// function assesmentReducer(state = initialState, action) {
+//     switch (action.type) {
+//       case 'SET_ASSESSMENTS':
+//         return { ...state, assessments: action.payload };
+//       default:
+//         return state;
+//     }
+// }
 
-const assessmentSlice =  createSlice({
-    name: "assessments",
+export const assessmentSlice =  createSlice({
+    name: "assessment",
     initialState:{
         assessments: [],
         status: "idle",
@@ -42,4 +42,5 @@ const assessmentSlice =  createSlice({
     }
 })
  
-export default assesmentReducer
+
+export default assessmentSlice.reducer

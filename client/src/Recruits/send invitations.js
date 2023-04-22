@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getRecruiterToken,getRecruiter } from '../Components/utils/auth';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAssess } from '../Features/assessments/assessmentSlice';
 
 function IntervieweeList() {
   const assessments = useSelector(state => state.assessments);
@@ -9,6 +10,8 @@ function IntervieweeList() {
   const [selectedAssessment, setSelectedAssessment] = useState(null);
   const recruiterToken = getRecruiterToken()
   const recruiterId = getRecruiter()
+  const dispatch = useDispatch()
+
   setSelectedAssessment(assessments[0])
   useEffect(() => {
     fetch('/interviewees')
@@ -16,6 +19,10 @@ function IntervieweeList() {
       .then(data => setInterviewees(data))
       .catch(error => setErrors([error]));
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchAssess());
+  }, [dispatch]);
 
   const handleInvite = (id) => {
     const requestBody = {

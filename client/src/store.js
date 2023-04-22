@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import assesmentReducer from "./Features/assessments/assessmentSlice";
+import assessmentReducer from "./Features/assessments/assessmentSlice";
 
 const store = configureStore({
     reducer:{
-        assessments: assesmentReducer,
+        assessments: assessmentReducer,
     },
 })
 export default store
