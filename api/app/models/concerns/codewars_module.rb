@@ -29,4 +29,11 @@ module CodewarsModule
         end
         return katas
     end
+
+    def one_code(id)
+        code = []
+        url = "https://www.codewars.com/api/v1/code-challenges/#{id}"
+        response = Net::HTTP.get_response(URI.parse(url))
+        code.push(JSON.parse(response.body))
+    end
 end

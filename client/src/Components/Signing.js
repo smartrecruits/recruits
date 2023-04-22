@@ -16,7 +16,7 @@ function Signing() {
     event.preventDefault();
     // Code to handle sign in submission
     setLoading(true)  
-    fetch('https://backend-dc1w.onrender.com/users/login', {
+    fetch('https://recruits.onrender.com/recruiter/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ function Signing() {
     event.preventDefault();
     // Code to handle sign up submission
     setLoading(true)  
-    fetch('https://backend-dc1w.onrender.com/users/login', {
+    fetch('https://recruits.onrender.com/recruiter', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -109,9 +109,9 @@ function Signing() {
               <div className="group">
                 <input placeholder="Password" id="password" type="password" className="input" data-type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
               </div>
-              <div className="group">
+              {/* <div className="group">
                 <input placeholder="Confirm password" id="confirm-password" type="password" className="input" data-type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
-              </div>
+              </div> */}
               <div className="group">
                 <input type="submit" className="button" value="Sign Up" />
               </div>

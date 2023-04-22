@@ -1,8 +1,31 @@
 class CodeChallengesController < ApplicationController
 
     def index 
-      codes =  CodeChallenge.code_challenges
+      api_codes =  CodeChallenge.code_challenges
+      recruiter_codes = CodeChallenge.all
+      codes = api_codes + recruiter_codes
       render json: codes, status: :ok
+    end
+
+    def show 
+      code = CodeChallenge.one_code(params[:id])
+      code ||= CodeChallenge.find(params[:id])
+      if code
+        render json: code, status: :ok
+      else
+        render json: { errors: "Code challenge not found" }, status: :not_found
+      end
+    end
+
+    def create 
+      code = CodeChallenge.create!(code_challenge_params)
+      render json: code, status: :created
+    end
+
+    def update 
+      code = CodeChallenge.find(params[:id])
+      code.update!(code_challenge_params)
+      render json: code, status: :ok
     end
 
     def assign_to_assessment
@@ -17,5 +40,11 @@ class CodeChallengesController < ApplicationController
       code_challenge = CodeChallenge.find(params[:code_challenge_id])
       assessment.code_challenges.delete(code_challenge)
       render json: assessment
+    end
+
+    private 
+
+    def code_challenge_params 
+      params.permit(:assessment_id,:description,:name,:totalAttempts,:totalCompleted)
     end
 end

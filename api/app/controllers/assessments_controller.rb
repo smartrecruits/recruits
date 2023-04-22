@@ -1,6 +1,8 @@
+require_relative './concerns/codewars_module'
+
 class AssessmentsController < ApplicationController
     before_action :verify_auth
-    
+
     def index 
         assessments = Assessment.all
         render json: assessments
@@ -40,17 +42,23 @@ class AssessmentsController < ApplicationController
     end
 
     def add_code_challenge
-        @assessment = Assessment.find(params[:assessment_id])
-        @code_challenge = CodeChallenge.find(params[:code_challenge_id])
-        @assessment.code_challenges << @code_challenge
-        render json: @assessment
+        assessment = Assessment.find(params[:assessment_id])
+        code_challenge = CodeChallenge.code_one(params[:code_challenge_id])
+        if code_challenge.nil?
+            code_challenge = CodeChallenge.find(params[:code_challenge_id])
+        end
+        assessment.code_challenges << code_challenge
+        render json: assessment
     end
 
     def remove_code_challenge
-        @assessment = Assessment.find(params[:assessment_id])
-        @code_challenge = CodeChallenge.find(params[:code_challenge_id])
-        @assessment.code_challenges.delete(@code_challenge)
-        render json: @assessment
+        assessment = Assessment.find(params[:assessment_id])
+        code_challenge = CodeChallenge.code_one(params[:code_challenge_id])
+        if code_challenge.nil?
+            code_challenge = CodeChallenge.find(params[:code_challenge_id])
+        end
+        assessment.code_challenges.delete(code_challenge)
+        render json: assessment
     end
 
     private
