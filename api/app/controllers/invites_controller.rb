@@ -14,6 +14,18 @@ class InvitesController < ApplicationController
         render json: invites 
     end
 
+    def index_interviewee_invites
+        interviewee = Interviewee.find(params[:interviewee_id])
+        invites = interviewee.invites.all 
+        render json: invites
+    end
+
+    def show_interviewee_invite
+        interviewee = Interviewee.find(params[:interviewee_id])
+        invite = interviewee.invites.find(params[:id]) 
+        render json: invite
+    end
+
     def destroy 
         invite = find_invite
         invite.destroy
@@ -28,6 +40,10 @@ class InvitesController < ApplicationController
         if invite.interviewee == inter && assessment
           assessment.update!(accepted: true)
           invite.update!(status: 'accepted')
+           # update due date if accepted is true
+            if assessment.accepted
+                assessment.update!(duedate: Date.today + 7.days)
+            end
           render json: { assessment: assessment, invite: invite }, status: :ok
         else
           render json: { errors: 'Access denied or assessment not found' }, status: :unprocessable_entity
@@ -78,7 +94,7 @@ class InvitesController < ApplicationController
     end
 
     def invite_params
-        params.permit(:recruiter_id,:interviewee_id,:status)
+        params.permit(:recruiter_id,:interviewee_id,:assessment_id,:status)
     end
 
     def render_unprocessable_entity_response(invalid)

@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
     # before_action :set_question, only: [:show, :edit, :update, :destroy]
     before_action :verify_auth
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index
       render json: Question.all
@@ -25,7 +26,7 @@ class QuestionsController < ApplicationController
       if question.update(question_params)
         render json: question
       else
-        render json: { error: question.errors.full_messages.join(', ') }, status: :unprocessable_entity
+        render json: { errors: question.errors.full_messages.join(', ') }, status: :unprocessable_entity
       end
     end
   
@@ -55,8 +56,7 @@ class QuestionsController < ApplicationController
       response.update(chosen_answer: params[:chosen_answer])
       response.mark_as_correct
       if response.correct
-        question = Question.find(params[:question_id])
-        question.update(grades: question.grades + 1)
+        response.update(grades: response.grades + 1)
       end
       render json: { correct: response.correct }
     end
@@ -65,6 +65,10 @@ class QuestionsController < ApplicationController
   
     def question_params
       params.require(:question).permit(:content, :answer_1, :answer_2, :answer_3, :answer_4, :correct_answer, :assessment_id)
+    end
+
+    def render_unprocessable_entity_response(invalid)
+      render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
   
   end

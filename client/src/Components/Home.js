@@ -8,14 +8,14 @@ import Vision from "./vision";
 
 function Home(){
     return(
-        <div className="App" data-testid="home">
+      <div className="App" data-testid="home">
         <>
-        {/* <Navbar /> */}
-        <LandingPage />
-        <CompanyLogos />
-        <Mission />
-        <Vision />
-        {/* <Footer /> */}
+          {/* <Navbar /> */}
+          <LandingPage />
+          <CompanyLogos />
+          <Mission id="mission"/>
+          <Vision />
+          {/* <Footer /> */}
         </>
       </div>
     )

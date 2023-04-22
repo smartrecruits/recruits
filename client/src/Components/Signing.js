@@ -7,7 +7,8 @@ function Signing() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loginemail, setLoginEmail] = useState('');
+  const [loginpassword, setLoginPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   let navigate = useNavigate();
@@ -22,8 +23,8 @@ function Signing() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email: loginemail,
+        password: loginpassword,
       }),
     })
     .then(response => {
@@ -84,36 +85,63 @@ function Signing() {
           <div className="sign-in-htm">
             <form onSubmit={handleSignInSubmit}>
               <div className="group">
-                <input placeholder="Email" id="user" type="text" className="input" value={email} onChange={(event) => setEmail(event.target.value)} />
+                <input placeholder="Email" id="loginemail" name="loginemail" type="text" className="input" value={loginemail} onChange={(event) => setLoginEmail(event.target.value)} />
               </div>
               <div className="group">
-                <input placeholder="Password" id="pass" type="password" className="input" data-type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+                <input placeholder="Password" id="loginpassword" name="loginpassword" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
               <div className="group">
-                <input type="submit" className="button" value="Sign In" />
+              { loading ? (<div className="d-flex align-items-center">
+                                        <strong>Please Wait...</strong>
+                        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                        </div> ): (
+                                <input type="submit" className="button" value="Sign In" />
+                        )
+               }
               </div>
+              {errors.length > 0 && (
+                <div className="text-danger">
+                {errors.map((error, index) => (
+                    <p key={index}>{error}</p>
+                ))}
+                </div>
+            )}
             </form>
             <div className="hr"></div>
             <div className="footer">
-              <a href="#forgot">Forgot Password?</a>
+              <Link to="/RecruiterReset">Forgot Password?</Link>
             </div>
           </div>
           <div className="sign-up-htm">
             <form onSubmit={handleSignUpSubmit}>
               <div className="group">
-                <input placeholder="Username" id="user" type="text" className="input" value={username} onChange={(event) => setUsername(event.target.value)} />
+                <input placeholder="Username" id="username" name='username' type="text" className="input" value={username} onChange={(event) => setUsername(event.target.value)} />
               </div>
               <div className="group">
-                <input placeholder="Email address" id="email" type="text" className="input" value={email} onChange={(event) => setEmail(event.target.value)} />
+                <input placeholder="Email address" id="email" name='email' type="text" className="input" value={email} onChange={(event) => setEmail(event.target.value)} />
               </div>
               <div className="group">
-                <input placeholder="Password" id="password" type="password" className="input" data-type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+                <input placeholder="Password" id="password" name='password' type="password" className="input" data-type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
               </div>
               {/* <div className="group">
                 <input placeholder="Confirm password" id="confirm-password" type="password" className="input" data-type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
               </div> */}
               <div className="group">
-                <input type="submit" className="button" value="Sign Up" />
+              { loading ? (<div className="d-flex align-items-center">
+                                        <strong>Please Wait...</strong>
+                        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                        </div> ): (
+                                <input type="submit" className="button" value="Sign Up" />
+                        )
+               }
+               {Object.keys(errors).length > 0 &&
+                Object.entries(errors).map(([key, value]) => {
+                  return value.map((error, index) => (
+                    <div key={`${key}-${index}`} className="text-danger">
+                      {error}
+                    </div>
+                  ));
+                })}
               </div>
             </form>
             <div className="hr"></div>

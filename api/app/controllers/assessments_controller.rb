@@ -2,10 +2,16 @@ require_relative '../models/concerns/codewars_module'
 
 class AssessmentsController < ApplicationController
     before_action :verify_auth
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index 
         assessments = Assessment.all
         render json: assessments
+    end
+
+    def create 
+        assessment = Assessment.create!(assessment_params)
+        render json: assessment, status: :created 
     end
 
     def show
@@ -66,4 +72,7 @@ class AssessmentsController < ApplicationController
         params.permit(:name,:reviewed,:accepted,:duedate,:recruiter_id)
     end
     
+    def render_unprocessable_entity_response(invalid)
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+    end
 end

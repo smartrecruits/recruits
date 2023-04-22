@@ -1,4 +1,6 @@
 class CodeChallengesController < ApplicationController
+  before_action :verify_auth
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index 
       api_codes =  CodeChallenge.code_challenges
@@ -46,5 +48,9 @@ class CodeChallengesController < ApplicationController
 
     def code_challenge_params 
       params.permit(:assessment_id,:description,:name,:totalAttempts,:totalCompleted)
+    end
+
+    def render_unprocessable_entity_response(invalid)
+      render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 end

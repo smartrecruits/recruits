@@ -10,7 +10,7 @@ const Vision = () => {
         <p>We are committed to helping job seekers find meaningful work, and helping employers build diverse and inclusive teams that drive innovation and success. By connecting people with the right jobs, we aim to make a difference in the lives of millions of people around the world.</p>
       </div>
       <div className="section-image">
-        <img src="https://media.istockphoto.com/id/1180562750/photo/global-business-concept-communication-network.jpg?s=612x612&w=0&k=20&c=4Hv7zFpfmm7LXe3OGZSu-wkxLbsmOXYM_DQrWWNYsuQ=" alt="Section Image" />
+        <img src="https://media.istockphoto.com/id/1180562750/photo/global-business-concept-communication-network.jpg?s=612x612&w=0&k=20&c=4Hv7zFpfmm7LXe3OGZSu-wkxLbsmOXYM_DQrWWNYsuQ=" alt="Section" />
       </div>
     </div>
   );

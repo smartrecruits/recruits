@@ -1,5 +1,4 @@
 class IntervieweesController < ApplicationController
-
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def register
@@ -40,12 +39,12 @@ class IntervieweesController < ApplicationController
         assessment = interviewee.assessment
     
         if assessment.reviewed
-          grades = interviewee.responses.joins(:question)
-                                         .where(questions: { assessment_id: assessment.id })
-                                         .sum(:grades)
+          grades = interviewee.responses
+                                     .where(question_id: assessment.questions.pluck(:id))
+                                     .sum(:grades)
           render json: { grades: grades }
         else
-          render json: { message: "Grades not available yet. Please wait for the assessment to be reviewed." }
+          render json: { errors: "Grades not available yet. Please wait for the assessment to be reviewed." }
         end
     end
 

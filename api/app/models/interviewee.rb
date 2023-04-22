@@ -1,10 +1,10 @@
 class Interviewee < ApplicationRecord
     has_secure_password
-    # has_many :assessments 
     has_many :invites 
     has_many :responses
     has_many :questions
     has_many :recruiters, through: :invites 
+    has_many :assessments, through: :invites 
 
     validates :email,{
         uniqueness: true,

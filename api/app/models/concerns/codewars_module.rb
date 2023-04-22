@@ -13,7 +13,7 @@ module CodewarsModule
             end
         end
 
-        html = open("https://www.codewars.com/kata/latest")
+        html = URI.open("https://www.codewars.com/kata/latest")
         doc = Nokogiri::HTML(html)
         nokogiriKatas = doc.css(".ml-2")
         kataIDs = []

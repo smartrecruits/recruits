@@ -7,9 +7,8 @@ class CreateQuestions < ActiveRecord::Migration[7.0]
       t.string :answer_3
       t.string :answer_4
       t.string :correct_answer
-      t.integer :grades
+      t.integer :totalAttempts
       t.integer :assessment_id
-  
 
       t.timestamps
     end

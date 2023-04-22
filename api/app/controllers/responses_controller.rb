@@ -1,4 +1,6 @@
 class ResponsesController < ApplicationController
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    before_action :verify_auth
 
     def create 
         response = Response.find_or_create_by(response_params)
@@ -22,7 +24,7 @@ class ResponsesController < ApplicationController
             render json: { errors: response.errors.full_messages }, status: :unprocessable_entity
             end
         else
-            render json: { error: "You are not authorized to update this response." }, status: :unauthorized
+            render json: { errors: "You are not authorized to update this response." }, status: :unauthorized
         end    
       end
 
@@ -37,5 +39,9 @@ class ResponsesController < ApplicationController
 
     def response_params 
         params.permit(:question_id,:interviewee_id,:chosen_answer,:correct,:feedback)
+    end
+
+    def render_unprocessable_entity_response(invalid)
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 end

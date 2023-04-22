@@ -1,37 +1,48 @@
-class Assessment {
-  constructor(name) {
-    this.name = name;
-    this.questions = [];
+import React, { useState } from 'react';
+import { getRecruiter } from '../Components/utils/auth';
+
+function CreateAssessment() {
+  const [name, setName] = useState('');
+  const [errors, setErrors] = useState([])
+  const  recruiterId = getRecruiter()
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetch('/assessments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        recruiter_id: recruiterId
+      })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => setErrors([error.errors]));
   }
 
-  addQuestion(question) {
-    this.questions.push(question);
-  }
+  return (
+    <div>
+      <h1>Create Assessment</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        </label>
+        <br />
+        <input type="submit" value="Create Assessment" />
+        {errors.length > 0 && (
+                <div className="text-danger">
+                {errors.map((error, index) => (
+                    <p key={index}>{error}</p>
+                ))}
+                </div>
+            )}
+      </form>
+    </div>
+  );
 }
 
-class Question {
-  constructor(prompt, answerType) {
-    this.prompt = prompt;
-    this.answerType = answerType;
-  }
-}
-
-class MultipleChoice extends Question {
-  constructor(prompt, choices) {
-    super(prompt, 'Multiple Choice');
-    this.choices = choices;
-  }
-}
-
-class FreeText extends Question {
-  constructor(prompt) {
-    super(prompt, 'Free Text');
-  }
-}
-
-class CodingChallenge extends Question {
-  constructor(prompt, testCases) {
-    super(prompt, 'Coding Challenge');
-    this.testCases = testCases;
-  }
-}
+export default CreateAssessment;

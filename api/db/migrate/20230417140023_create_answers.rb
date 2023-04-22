@@ -7,7 +7,6 @@ class CreateAnswers < ActiveRecord::Migration[7.0]
       t.integer :code_challenge_id
       t.integer :assessment_id
       t.integer :interviewee_id
-  
 
       t.timestamps
     end
