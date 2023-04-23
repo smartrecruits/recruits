@@ -64,26 +64,12 @@ class QuestionsController < ApplicationController
     private
   
     def question_params
-<<<<<<< HEAD
-      params.require(:question).permit(:content, :question, :answer_1, :answer_2, :answer_3, :answer_4, :correct_answer, :assessment_id)
+      params.require(:question).permit(:recruiter_id,:content, :question, :answer_1, :answer_2, :answer_3, :answer_4, :correct_answer, :assessment_id)
     end
 
     def render_unprocessable_entity_response(invalid)
       render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
-=======
-      params.require(:question).permit(:question, :content, :answers, :answer2, :answer3, :feedback, :assessment_id)
->>>>>>> d5cab90122950c5f6c8e24951b2644b2a3b32c5f
     end
-
-  # def verify_auth
-  #   auth_headers = request.headers['Authorization']
-  #   if !auth_headers
-  #       render json: {message: 'Your request is not authorized'}, status: 401
-  #   else
-  #       token = auth_headers.split(' ')[1]
-  #       save_user(:uid)
-  #   end
-  # end
   
   end
   
