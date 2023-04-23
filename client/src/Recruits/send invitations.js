@@ -14,11 +14,15 @@ function IntervieweeList() {
 
   setSelectedAssessment(assessments[0])
   useEffect(() => {
-    fetch('/interviewees')
+    fetch('/interviewees',{
+      headers: {
+        'Authorization': `Bearer ${recruiterToken}`
+    }, }
+    )
       .then(res => res.json())
       .then(data => setInterviewees(data))
       .catch(error => setErrors([error]));
-  }, []);
+  }, [recruiterToken]);
 
   useEffect(() => {
     dispatch(fetchAssess());

@@ -7,7 +7,7 @@ class CreateQuestions < ActiveRecord::Migration[7.0]
       t.string :answer_3
       t.string :answer_4
       t.string :correct_answer
-      t.integer :totalAttempts
+      t.integer :totalAttempts, dafault: 0
       t.integer :assessment_id
 
       t.timestamps

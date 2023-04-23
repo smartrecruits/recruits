@@ -1,12 +1,17 @@
 import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getRecruiterToken } from "../../Components/utils/auth";
 
-const initialState = {
-    assessments: []
-};
+const recruiterToken = getRecruiterToken()
+// const initialState = {
+//     assessments: []
+// };
 
 export const fetchAssess = createAsyncThunk("assess/fetchAssess", () => {
     // return a Promise containing the data we want
-    return fetch("https://recruits.onrender.com/assessments")
+    return fetch("https://recruits.onrender.com/assessments",{
+        headers: {
+          'Authorization': `Bearer ${recruiterToken}`
+      }, })
       .then((response) => response.json())
       .then((data) => data);
   });

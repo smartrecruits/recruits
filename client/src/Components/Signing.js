@@ -11,6 +11,8 @@ function Signing() {
   const [loginpassword, setLoginPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [loginerrors, setLoginErrors] = useState([]);
+
   let navigate = useNavigate();
 
   const handleSignInSubmit = (event) => {
@@ -33,7 +35,7 @@ function Signing() {
         // setIsLoggedIn(true);
         // navigate("/profile");
       } else {
-        response.json().then((err)=>setErrors([err.error]))
+        response.json().then((err)=>setLoginErrors([err.errors]))
       }
       setLoading(false)
     })
@@ -44,9 +46,7 @@ function Signing() {
       //  console.log(data.user.id)
       navigate('/');
     })
-   
   }
-
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign up submission
@@ -68,11 +68,12 @@ function Signing() {
         // setIsLoggedIn(true);
         // navigate("/profile");
       } else {
-        response.json().then((err)=>setErrors([err.error]))
+        response.json().then((err)=>setErrors([err.errors]))
       }
       setLoading(false)
     })
   }
+  console.log(errors)
 
   return (
     <div className="container" data-testid="signing">
@@ -91,18 +92,18 @@ function Signing() {
                 <input placeholder="Password" id="loginpassword" name="loginpassword" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
               <div className="group">
-              { loading ? (<div className="d-flex align-items-center">
+              { loading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
-                        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                        <div className="spinner-border ms-auto" role="status" id="loader" aria-hidden="true"></div>
                         </div> ): (
                                 <input type="submit" className="button" value="Sign In" />
                         )
                }
               </div>
-              {errors.length > 0 && (
-                <div className="text-danger">
-                {errors.map((error, index) => (
-                    <p key={index}>{error}</p>
+              {loginerrors.length > 0 && (
+                <div className="text-danger" id="errors">
+                {loginerrors.map((error, index) => (
+                    <p key={index} >{error}</p>
                 ))}
                 </div>
             )}
@@ -123,26 +124,41 @@ function Signing() {
               <div className="group">
                 <input placeholder="Password" id="password" name='password' type="password" className="input" data-type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
               </div>
-              {/* <div className="group">
-                <input placeholder="Confirm password" id="confirm-password" type="password" className="input" data-type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
-              </div> */}
               <div className="group">
-              { loading ? (<div className="d-flex align-items-center">
+              { loading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                         </div> ): (
                                 <input type="submit" className="button" value="Sign Up" />
                         )
                }
-               {Object.keys(errors).length > 0 &&
+               {/* {Object.keys(errors).length > 0 &&
                 Object.entries(errors).map(([key, value]) => {
                   return value.map((error, index) => (
-                    <div key={`${key}-${index}`} className="text-danger">
+                    <div key={`${key}-${index}`} className="text-danger" id="errors">
                       {error}
                     </div>
                   ));
-                })}
+                })} */}
+                
               </div>
+              {Object.keys(errors).length > 0 &&
+                  Object.entries(errors).map(([key, value]) => {
+                    if (Array.isArray(value)) {
+                      return value.map((error, index) => (
+                        <div key={`${key}-${index}`} className="text-danger" id="errors">
+                          {error}
+                        </div>
+                      ));
+                    } else {
+                      return (
+                        <div key={`${key}-error`} className="text-danger" id="errors">
+                          Invalid {key}
+                        </div>
+                      );
+                    }
+                  })}
+               
             </form>
             <div className="hr"></div>
             <div className="footer">

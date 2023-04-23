@@ -63,7 +63,7 @@ export const RecruiterPasswordreset = () => {
               ));
             })} */}
             {errors.length > 0 && (
-                <div className="text-danger">
+                <div className="text-danger" id="errors">
                 {errors.map((error, index) => (
                     <p key={index}>{error}</p>
                 ))}

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { getRecruiter } from '../Components/utils/auth';
+import { getRecruiter, getRecruiterToken } from '../../Components/utils/auth';
 
 function CreateAssessment() {
   const [name, setName] = useState('');
   const [errors, setErrors] = useState([])
   const  recruiterId = getRecruiter()
-
+  let recruiterToken = getRecruiterToken()
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch('/assessments', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${recruiterToken}`
       },
       body: JSON.stringify({
         name: name,

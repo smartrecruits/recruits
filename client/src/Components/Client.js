@@ -12,6 +12,7 @@ function Client() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   let navigate = useNavigate();
+  const [loginerrors, setLoginErrors] = useState([]);
 
   const handleSignInSubmit = (event) => {
     event.preventDefault();
@@ -33,7 +34,7 @@ function Client() {
             // setIsLoggedIn(true);
             // navigate("/profile");
           } else {
-            response.json().then((err)=>setErrors([err.error]))
+            response.json().then((err)=>setLoginErrors([err.errors]))
           }
           setLoading(false)
         })
@@ -68,7 +69,7 @@ function Client() {
         // setIsLoggedIn(true);
         // navigate("/profile");
       } else {
-        response.json().then((err)=>setErrors([err.error]))
+        response.json().then((err)=>setErrors([err.errors]))
       }
       setLoading(false)
     })
@@ -91,7 +92,7 @@ function Client() {
                 <input placeholder="Password" id="loginpassword" name="loginpassword" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
               <div className="group">
-              { loading ? (<div className="d-flex align-items-center">
+              { loading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                         </div> ): (
@@ -99,9 +100,9 @@ function Client() {
                         )
                }
               </div>
-              {errors.length > 0 && (
-                <div className="text-danger">
-                {errors.map((error, index) => (
+              {loginerrors.length > 0 && (
+                <div className="text-danger" id="errors">
+                {loginerrors.map((error, index) => (
                     <p key={index}>{error}</p>
                 ))}
                 </div>
@@ -127,7 +128,7 @@ function Client() {
                 <input placeholder="Confirm password" id="confirm-password" type="password" className="input" data-type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
               </div> */}
               <div className="group">
-              { loading ? (<div className="d-flex align-items-center">
+              { loading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                         </div> ): (
@@ -137,7 +138,7 @@ function Client() {
                {Object.keys(errors).length > 0 &&
                 Object.entries(errors).map(([key, value]) => {
                   return value.map((error, index) => (
-                    <div key={`${key}-${index}`} className="text-danger">
+                    <div key={`${key}-${index}`} className="text-danger" id="errors">
                       {error}
                     </div>
                   ));

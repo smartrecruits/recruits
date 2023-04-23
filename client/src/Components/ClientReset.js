@@ -47,9 +47,9 @@ export const ClientPasswordreset = () => {
             <input className="input" value={formData.email} onChange={handleChange} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
             <label className="label" form="pasword">password</label>
             <input className="input" value={formData.password} onChange={handleChange}type="password" placeholder="*******" id="password" name="password" />
-            { loading ? (<div className="d-flex align-items-center">
+            { loading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
-                        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                        <div className="spinner-border ms-auto" role="status" id="loader" aria-hidden="true"></div>
                         </div> ): (
                         <button className="login" type="submit">Reset Password</button>
                         )
@@ -63,7 +63,7 @@ export const ClientPasswordreset = () => {
               ));
             })} */}
             {errors.length > 0 && (
-                <div className="text-danger">
+                <div className="text-danger" id="errors">
                 {errors.map((error, index) => (
                     <p key={index}>{error}</p>
                 ))}
