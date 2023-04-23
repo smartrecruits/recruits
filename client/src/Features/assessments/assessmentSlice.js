@@ -16,6 +16,31 @@ export const fetchAssess = createAsyncThunk("assess/fetchAssess", () => {
       .then((data) => data);
   });
 
+  export const createAssessment = createAsyncThunk(
+    "assess/createAssessment",
+    async (assessmentData, { rejectWithValue, getState }) => {
+      const { recruiterToken } = getState();
+      try {
+        const response = await fetch("https://recruits.onrender.com/assessments", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${recruiterToken}`,
+          },
+          body: JSON.stringify(assessmentData),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          return data;
+        } else {
+          return rejectWithValue(data.errors);
+        }
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );
+
 // function assesmentReducer(state = initialState, action) {
 //     switch (action.type) {
 //       case 'SET_ASSESSMENTS':
@@ -25,7 +50,7 @@ export const fetchAssess = createAsyncThunk("assess/fetchAssess", () => {
 //     }
 // }
 
-export const assessmentSlice =  createSlice({
+ const assessmentSlice =  createSlice({
     name: "assessment",
     initialState:{
         assessments: [],
@@ -42,6 +67,10 @@ export const assessmentSlice =  createSlice({
         },
         [fetchAssess.fulfilled](state, action) {
             state.entities = action.payload;
+            state.status = "idle";
+        },
+        [createAssessment.fulfilled](state, action) {
+            state.assessments.push(action.payload);
             state.status = "idle";
         },
     }

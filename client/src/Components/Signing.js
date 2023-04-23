@@ -10,6 +10,7 @@ function Signing() {
   const [loginemail, setLoginEmail] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loginloading, setLoginLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [loginerrors, setLoginErrors] = useState([]);
 
@@ -18,7 +19,7 @@ function Signing() {
   const handleSignInSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign in submission
-    setLoading(true)  
+    setLoginLoading(true)  
     fetch('https://recruits.onrender.com/recruiter/login', {
       method: 'POST',
       headers: {
@@ -37,7 +38,7 @@ function Signing() {
       } else {
         response.json().then((err)=>setLoginErrors([err.errors]))
       }
-      setLoading(false)
+      setLoginLoading(false)
     })
     .then(data => {
       // Store session ID in browser storage
@@ -78,7 +79,7 @@ function Signing() {
   return (
     <div className="container" data-testid="signing">
       <div className="login-container">
-        <input id="item-1" type="radio" name="item" className="sign-in" checked />
+        <input id="item-1" type="radio" name="item" className="sign-in"/>
         <label htmlFor="item-1" className="item">Sign In</label>
         <input id="item-2" type="radio" name="item" className="sign-up" />
         <label htmlFor="item-2" className="item">Sign Up</label>
@@ -92,7 +93,7 @@ function Signing() {
                 <input placeholder="Password" id="loginpassword" name="loginpassword" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
               <div className="group">
-              { loading ? (<div className="d-flex align-items-center" id="loader">
+              { loginloading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" id="loader" aria-hidden="true"></div>
                         </div> ): (
@@ -153,7 +154,7 @@ function Signing() {
                     } else {
                       return (
                         <div key={`${key}-error`} className="text-danger" id="errors">
-                          Invalid {key}
+                          Invalid {key[0]}
                         </div>
                       );
                     }

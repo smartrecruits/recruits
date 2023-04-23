@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
-import { getRecruiter, getRecruiterToken } from '../../Components/utils/auth';
-
+import { getRecruiter } from '../../Components/utils/auth';
+import { useDispatch } from 'react-redux';
+import { createAssessment } from './assessmentSlice';
 function CreateAssessment() {
+  let dispatch = useDispatch()
   const [name, setName] = useState('');
   const [errors, setErrors] = useState([])
   const  recruiterId = getRecruiter()
-  let recruiterToken = getRecruiterToken()
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('/assessments', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${recruiterToken}`
-      },
-      body: JSON.stringify({
+    dispatch(
+      createAssessment({
         name: name,
-        recruiter_id: recruiterId
+        recruiter_id: recruiterId,
       })
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => setErrors([error.errors]));
+    )
+      .then((result) => {
+        // handle successful createAssessment action
+        console.log(result);
+      })
+      .catch((error) => {
+        // handle createAssessment error
+        setErrors(error.payload || [error.message]);
+      });
   }
 
   return (

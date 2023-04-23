@@ -11,13 +11,14 @@ function Client() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [loginloading, setLoginLoading] = useState(false);
   let navigate = useNavigate();
   const [loginerrors, setLoginErrors] = useState([]);
 
   const handleSignInSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign in submission
-    setLoading(true)  
+    setLoginLoading(true)  
         fetch('https://recruits.onrender.com/interviewee/login', {
           method: 'POST',
           headers: {
@@ -36,7 +37,7 @@ function Client() {
           } else {
             response.json().then((err)=>setLoginErrors([err.errors]))
           }
-          setLoading(false)
+          setLoginLoading(false)
         })
         .then(data => {
           // Store session ID in browser storage
@@ -78,7 +79,7 @@ function Client() {
   return (
     <div className="container">
       <div className="login-container">
-        <input id="item-1" type="radio" name="item" className="sign-in" checked />
+        <input id="item-1" type="radio" name="item" className="sign-in"/>
         <label htmlFor="item-1" className="item">Sign In</label>
         <input id="item-2" type="radio" name="item" className="sign-up" />
         <label htmlFor="item-2" className="item">Sign Up</label>
@@ -92,7 +93,7 @@ function Client() {
                 <input placeholder="Password" id="loginpassword" name="loginpassword" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
               <div className="group">
-              { loading ? (<div className="d-flex align-items-center" id="loader">
+              { loginloading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                         </div> ): (
