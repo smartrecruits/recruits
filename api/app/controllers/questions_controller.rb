@@ -1,14 +1,7 @@
 class QuestionsController < ApplicationController
-<<<<<<< HEAD
     # before_action :set_question, only: [:show, :edit, :update, :destroy]
     before_action :verify_auth
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-=======
-
-
-  before_action :verify_auth
-
->>>>>>> d5cab90122950c5f6c8e24951b2644b2a3b32c5f
 
     def index
       render json: recruiter.question.all

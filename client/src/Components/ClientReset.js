@@ -55,14 +55,6 @@ export const ClientPasswordreset = () => {
                         <button className="login" type="submit">Reset Password</button>
                         )
             }
-         {/* {Object.keys(errors).length > 0 &&
-            Object.entries(errors).map(([key, value]) => {
-              return value.map((error, index) => (
-                <div key={`${key}-${index}`} className="text-danger">
-                  {error}
-                </div>
-              ));
-            })} */}
             {errors.length > 0 && (
                 <div className="text-danger" id="errors">
                 {errors.map((error, index) => (
