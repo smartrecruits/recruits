@@ -1,5 +1,5 @@
-class QuestionSerializer < ActiveModel::Serializer
-  attributes :id, :question, :content, :feedback, :assessment_id, :created_at, :updated_at, :answer
+class AnswerSerializer < ActiveModel::Serializer
+  attributes :id, :code_challenge_id,:interviewee_id,:grades, :content, :feedback, :assessment_id, :created_at, :updated_at, :answer
 
   def answer
     # Map the answers to the format specified in the question payload
