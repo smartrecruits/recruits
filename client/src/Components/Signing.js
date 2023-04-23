@@ -87,10 +87,10 @@ function Signing() {
           <div className="sign-in-htm">
             <form onSubmit={handleSignInSubmit}>
               <div className="group">
-                <input placeholder="Email" id="loginemail" name="loginemail" type="text" className="input" value={loginemail} onChange={(event) => setLoginEmail(event.target.value)} />
+                <input placeholder="Email" id="email" name="email" type="text" className="input" value={loginemail} onChange={(event) => setLoginEmail(event.target.value)} />
               </div>
               <div className="group">
-                <input placeholder="Password" id="loginpassword" name="loginpassword" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
+                <input placeholder="Password" id="password" name="password" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
               <div className="group">
               { loginloading ? (<div className="d-flex align-items-center" id="loader">
@@ -133,14 +133,6 @@ function Signing() {
                                 <input type="submit" className="button" value="Sign Up" />
                         )
                }
-               {/* {Object.keys(errors).length > 0 &&
-                Object.entries(errors).map(([key, value]) => {
-                  return value.map((error, index) => (
-                    <div key={`${key}-${index}`} className="text-danger" id="errors">
-                      {error}
-                    </div>
-                  ));
-                })} */}
                 
               </div>
               {Object.keys(errors).length > 0 &&
