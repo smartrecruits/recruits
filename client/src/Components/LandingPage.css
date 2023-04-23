@@ -5,32 +5,33 @@
   
   .about-image {
     flex: 0 0 auto; /* disable flex grow and shrink */
-    margin-right: 20px;
     height: 390px;
     width: 600px;
     border-radius: 10px;
-    margin-left: 40px;
+    margin-left: 60px;
     margin-right: 20px;
-    margin-top: 50px;
+    margin-top: 0px;
     box-shadow: black;
   }
   
   .about-text {
     flex: 1 1 auto; /* allow flex grow and shrink */
-    margin-left: 80px;
-    margin-right: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   .about h2 {
-    font-size: 40px;
+    font-size: 35px;
     font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+    /* text-align: center; */
     padding: none;
     margin-bottom: 0;
+    margin-left: 20px;
+
   }
 
   .paragh {
     font-size: 21px;
-    margin-left: 60px;
+    margin-left: 20px;
     text-align: left;
   }
 
