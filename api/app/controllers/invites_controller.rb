@@ -32,6 +32,7 @@ class InvitesController < ApplicationController
         head :no_content
     end
 
+<<<<<<< HEAD
     def accept_assessment
         inter = Interviewee.find(params[:interviewee_id])
         invite = Invite.find(params[:id])
@@ -50,6 +51,19 @@ class InvitesController < ApplicationController
         end
     end
 
+=======
+<<<<<<< HEAD
+    # def update 
+    #     invite = Invite.find(params[:id])
+    #     if invite.interviewee == interviewee
+    #         invite.update!(invite_params)
+    #         render json: invite, status: :ok
+    #     else
+    #         render json: { errors: 'Access denied' }, status: :unauthorized
+    #     end
+    # end
+=======
+>>>>>>> d5cab90122950c5f6c8e24951b2644b2a3b32c5f
     def update 
         inter = Interviewee.find(params[:interviewee_id])
         invite = Invite.find(params[:id])
@@ -60,6 +74,7 @@ class InvitesController < ApplicationController
             render json: { errors: 'Access denied' }, status: :unauthorized
         end
     end
+>>>>>>> b7bace1d1de336f7bf0d66afb61215e18e7f98e4
 
 
   def accept
