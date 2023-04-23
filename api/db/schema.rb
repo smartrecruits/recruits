@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_20_201212) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,15 +68,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_201212) do
 
   create_table "questions", force: :cascade do |t|
     t.string "feedback"
-    t.text "content"
-    t.string "answer_1"
-    t.string "answer_2"
-    t.string "answer_3"
-    t.string "answer_4"
-    t.string "correct_answer"
     t.integer "assessment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "question"
+    t.text "content"
+    t.integer "recruiter_id"
   end
 
   create_table "recruiters", force: :cascade do |t|
@@ -100,6 +97,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_201212) do
     t.datetime "updated_at", null: false
     t.index ["interviewee_id"], name: "index_responses_on_interviewee_id"
     t.index ["question_id"], name: "index_responses_on_question_id"
+  end
+
+  create_table "statistics", force: :cascade do |t|
+    t.integer "total_questions"
+    t.integer "total_interviewees"
+    t.integer "total_responses"
+    t.integer "correct_responses"
+    t.float "average_score"
+    t.integer "highest_score"
+    t.integer "lowest_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "assessments", "interviewees"

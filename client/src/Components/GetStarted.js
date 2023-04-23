@@ -16,7 +16,7 @@ function UserTypeSelection() {
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div>
+      <div className='button'>
         <button onClick={handleRecruiterClick}>Recruiter</button>
         <button onClick={handleClientClick}>Client</button>
       </div>
