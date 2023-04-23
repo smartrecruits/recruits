@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getRecruiter, getInterviewee, getRecruiterToken,getIntervieweeToken } from '../Components/utils/auth';
+import { reviewAssesment } from '../Features/assessments/assessmentSlice';
+import { useDispatch } from 'react-redux';
 
 function IntervieweeResponses({intervieweeId, assessmentId}) {
   const [questions, setQuestions] = useState([]);
@@ -9,7 +11,7 @@ function IntervieweeResponses({intervieweeId, assessmentId}) {
   const [reviewed, setReviewed] = useState(false);
   const recruiterId = getRecruiter() 
   const recruiterToken = getRecruiterToken()
-  
+  const dispatch = useDispatch()
   useEffect(() => {
     fetch(`/interviewees/${intervieweeId}/responses`,{
         headers: {
@@ -33,20 +35,20 @@ function IntervieweeResponses({intervieweeId, assessmentId}) {
         setReviewed(event.target.value === 'true');
       }
     function handleReviewSubmit() {
-        fetch(`/assessments/${assessmentId}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${recruiterToken}`,
-          },
-          body: JSON.stringify({ reviewed: reviewed }),
-        }).then((res) => {
-          if (res.ok) {
-            // handle successful submission
-          } else {
-            res.json().then((err) => setErrors([err.errors]));
-          }
-        });
+        dispatch(
+          reviewAssesment({
+            assessmentId : assessmentId,
+            reviewData: {
+              reviewed: true
+            }
+          })
+          )
+          .then((result) => {
+            console.log(result)
+          })
+          .catch((err) => {
+            setErrors([err.payload] || [err.message])
+          })
       }
     function handleFeedbackChange(event) {
         setFeedback(event.target.value);

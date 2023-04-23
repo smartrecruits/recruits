@@ -2,18 +2,15 @@ import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getRecruiterToken } from "../../Components/utils/auth";
 
 const recruiterToken = getRecruiterToken()
-// const initialState = {
-//     assessments: []
-// };
 
-export const fetchAssess = createAsyncThunk("assess/fetchAssess", () => {
-    // return a Promise containing the data we want
-    return fetch("https://recruits.onrender.com/assessments",{
-        headers: {
-          'Authorization': `Bearer ${recruiterToken}`
-      }, })
-      .then((response) => response.json())
-      .then((data) => data);
+export const fetchAssess = createAsyncThunk("assess/fetchAssess", async() => {
+    const response = await fetch("https://recruits.onrender.com/assessments", {
+      headers: {
+        Authorization: `Bearer ${recruiterToken}`,
+      },
+    });
+    const data = await response.json();
+    return data;
   });
 
   export const createAssessment = createAsyncThunk(
@@ -41,6 +38,35 @@ export const fetchAssess = createAsyncThunk("assess/fetchAssess", () => {
     }
   );
 
+  export const reviewAssesment = createAsyncThunk("assess/reviewAssessment",
+  async ({ assessmentId, reviewData }, { rejectWithValue, getState }) => {
+    const { recruiterToken } = getState();
+    try {
+      const response = await fetch(
+        `https://recruits.onrender.com/assessments/${assessmentId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${recruiterToken}`,
+          },
+          body: JSON.stringify(reviewData),
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        // handle successful submission
+        return data
+      } else {
+        return rejectWithValue(data.errors);
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+   
+  )
+
 // function assesmentReducer(state = initialState, action) {
 //     switch (action.type) {
 //       case 'SET_ASSESSMENTS':
@@ -58,7 +84,10 @@ export const fetchAssess = createAsyncThunk("assess/fetchAssess", () => {
     },
     reducers:{
         setAssessment(state,action){
-
+          state.assessments = action.payload;
+        },
+        addAssessment(state, action) {
+          state.assessments.push(action.payload);
         }
     },
     extraReducers:{
@@ -66,13 +95,17 @@ export const fetchAssess = createAsyncThunk("assess/fetchAssess", () => {
             state.status = "loading";
         },
         [fetchAssess.fulfilled](state, action) {
-            state.entities = action.payload;
+            state.assessments = action.payload;
             state.status = "idle";
         },
         [createAssessment.fulfilled](state, action) {
             state.assessments.push(action.payload);
             state.status = "idle";
         },
+        [reviewAssesment.fulfilled](state, action) {
+          state.assessments.push(action.payload);
+          state.status = "idle";
+      },
     }
 })
  

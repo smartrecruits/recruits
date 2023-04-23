@@ -21,7 +21,7 @@ function CreateAssessment() {
       })
       .catch((error) => {
         // handle createAssessment error
-        setErrors(error.payload || [error.message]);
+        setErrors([error.payload] || [error.message]);
       });
   }
 
