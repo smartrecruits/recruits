@@ -2,13 +2,17 @@ import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getRecruiterToken } from "../../Components/utils/auth";
 const recruiterToken = getRecruiterToken()
 
-export const fetchQuestions = createAsyncThunk("questions/fetchQuestions", async() => {
+export const fetchQuestions = createAsyncThunk("questions/fetchQuestions", async(rejectWithValue) => {
     const response = await fetch("https://recruits.onrender.com/questions", {
       headers: {
         Authorization: `Bearer ${recruiterToken}`,
       },
     });
     const data = await response.json();
+
+    if (!response.ok) {
+      return rejectWithValue(data.errors);
+    }
     return data;
   });
 
@@ -45,10 +49,10 @@ export const fetchQuestions = createAsyncThunk("questions/fetchQuestions", async
     },
     reducers:{
         setAssessment(state,action){
-          state.assessments = action.payload;
+          state.questions = action.payload;
         },
         addAssessment(state, action) {
-          state.assessments.push(action.payload);
+          state.questions.push(action.payload);
         }
     },
     extraReducers:{

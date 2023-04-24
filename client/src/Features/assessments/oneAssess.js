@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-
+import QuestionList from '../questions/questionlist'
 function OneAssessment() {
   const [assessment, setAssessment] = useState(null);
   const { id } = useParams()
   const [errors,setErrors] = useState([])
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     fetch(`https://recruits.onrender.com/assessments/${id}`)
@@ -17,6 +18,9 @@ function OneAssessment() {
     return <div>Loading assessment...</div>;
   }
 
+  function handleAddQuestionClick() {
+    setShowPopup(true);
+  }
   return (
     <div>
          {errors.length > 0 && (
@@ -28,6 +32,7 @@ function OneAssessment() {
         )}
       <h2>{assessment.name}</h2>
       <h4>Questions</h4>
+      <button onClick={handleAddQuestionClick}>AddQuestion</button>
       <ul>
         {assessment.questions.map(question => (
           <li key={question.id}>
@@ -43,6 +48,14 @@ function OneAssessment() {
           </li>
         ))}
       </ul>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <button onClick={() => setShowPopup(false)}>Close</button>
+            <QuestionList assessmentId={id} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
