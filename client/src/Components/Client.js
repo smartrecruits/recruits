@@ -9,16 +9,16 @@ function Client() {
   const [loginemail, setLoginEmail] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [loginloading, setLoginLoading] = useState(false);
+  // const [loginloading, setLoginLoading] = useState(false);
   let navigate = useNavigate();
   const [loginerrors, setLoginErrors] = useState([]);
 
   const handleSignInSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign in submission
-    setLoginLoading(true)  
+    // setLoginLoading(true)  
         fetch('https://recruits.onrender.com/interviewee/login', {
           method: 'POST',
           headers: {
@@ -37,7 +37,7 @@ function Client() {
           } else {
             response.json().then((err)=>setLoginErrors([err.errors]))
           }
-          setLoginLoading(false)
+          // setLoginLoading(false)
           setLoginEmail('')
           setLoginPassword('')
         })
@@ -56,7 +56,7 @@ function Client() {
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign up submission
-    setLoading(true)  
+    // setLoading(true)  
     fetch('https://recruits.onrender.com/interviewee', {
       method: 'POST',
       headers: {
@@ -77,7 +77,7 @@ function Client() {
       } else {
         response.json().then((err)=>setErrors([err.errors]))
       }
-      setLoading(false)
+      // setLoading(false)
       setEmail('')
       setPassword('')
       setUsername('')
@@ -101,13 +101,13 @@ function Client() {
                 <input placeholder="Password" id="password" name="password" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
               <div className="group">
-              { loginloading ? (<div className="d-flex align-items-center" id="loader">
+              {/* { loginloading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                        </div> ): (
+                        </div> ): ( */}
                                 <input type="submit" className="button" value="Sign In" />
-                        )
-               }
+                        {/* )
+               } */}
               </div>
               {loginerrors.length > 0 && (
                 <div className="text-danger" id="errors">
@@ -137,14 +137,14 @@ function Client() {
                 <input placeholder="Confirm password" id="confirm-password" type="password" className="input" data-type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
               </div> */}
               <div className="group">
-              { loading ? (<div className="d-flex align-items-center" id="loader">
+              {/* { loading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                        </div> ): (
+                        </div> ): ( */}
                                 <input type="submit" className="button" value="Sign Up" />
-                        )
+                        {/* )
                }
-            
+             */}
               </div>
               {Object.keys(errors).length > 0 &&
                   Object.entries(errors).map(([key, value]) => {

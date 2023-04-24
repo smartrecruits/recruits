@@ -11,7 +11,7 @@ function AppRoutes() {
     return (
         
             <Routes>
-                <Route path="/" element={<Dashboard />}></Route>
+                {/* <Route path="/clientdb" element={<Dashboard />}></Route> */}
                 <Route path="/assessments" element={<Assessments />}></Route>
                 <Route path="/code-challenge" element={<CodeChallenge />}></Route>
                 <Route path="/grades" element={<Grades />}></Route>
