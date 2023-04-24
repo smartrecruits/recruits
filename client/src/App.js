@@ -10,6 +10,9 @@ import Client from "./Components/Client";
 import { ClientPasswordreset } from "./Components/ClientReset";
 import { RecruiterPasswordreset } from "./Components/RecruiterReset";
 import AppInterviewee from "./AppInterviewee";
+import QuestionList from "./Features/questions/questionlist";
+import OneAssessment from "./Features/assessments/oneAssess";
+import AssessmentsList from "./Features/assessments/listAssessments";
 function App() {
   return (
     <div className="App">
@@ -17,6 +20,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home/>}></Route>
+        <Route path='/RecruiterAssessList' element={<AssessmentsList/>}></Route>
+        <Route path='/RecruiterAssessList/:id' element={<OneAssessment/>}></Route>
+        <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route>
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
         <Route path='/ClientReset' element={<ClientPasswordreset/>}></Route>

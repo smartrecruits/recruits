@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAssess } from "./assessmentSlice";
 import CreateAssessment from "./create assessments";
+import { Link } from "react-router-dom";
+
 const AssessmentsList = () => {
   const dispatch = useDispatch();
   const assessments = useSelector((state) => state.assessment.assessments);
@@ -26,7 +28,9 @@ const AssessmentsList = () => {
       <ul>
         {assessments.map((assessment) => (
           <li key={assessment.id}>
-            <p>Name: {assessment.name}</p>
+            <Link to={`/RecruiterAssessList/${assessment.id}`}>
+              <p>Name: {assessment.name}</p>
+            </Link>
           </li>
         ))}
       </ul>

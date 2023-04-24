@@ -18,7 +18,7 @@ class AssessmentsController < ApplicationController
         @assessment = Assessment.find(params[:id])
         @questions = @assessment.questions
         @code_challenges = @assessment.code_challenges
-        render json: { questions: @questions, code_challenges: @code_challenges }, status: :ok
+        render json: { assessment: @assessment,questions: @questions, code_challenges: @code_challenges }, status: :ok
     end
 
     def destroy 

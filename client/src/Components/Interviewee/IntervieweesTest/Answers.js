@@ -35,55 +35,58 @@ function AnswerForm({ question }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="field">
-        <input
-          type="radio"
-          name="chosen_answer"
-          value={question.answer_1}
-          checked={chosenAnswer === question.answer_1}
-          onChange={event => setChosenAnswer(event.target.value)}
-        />
-        <label>{question.answer_1}</label>
-      </div>
+    <div>
+      <p>{question.content}</p>
+      <form onSubmit={handleSubmit}>
+        <div className="field">
+          <input
+            type="radio"
+            name="chosen_answer"
+            value={question.answer_1}
+            checked={chosenAnswer === question.answer_1}
+            onChange={event => setChosenAnswer(event.target.value)}
+          />
+          <label>{question.answer_1}</label>
+        </div>
 
-      <div className="field">
-        <input
-          type="radio"
-          name="chosen_answer"
-          value={question.answer_2}
-          checked={chosenAnswer === question.answer_2}
-          onChange={event => setChosenAnswer(event.target.value)}
-        />
-        <label>{question.answer_2}</label>
-      </div>
+        <div className="field">
+          <input
+            type="radio"
+            name="chosen_answer"
+            value={question.answer_2}
+            checked={chosenAnswer === question.answer_2}
+            onChange={event => setChosenAnswer(event.target.value)}
+          />
+          <label>{question.answer_2}</label>
+        </div>
 
-      <div className="field">
-        <input
-          type="radio"
-          name="chosen_answer"
-          value={question.answer_3}
-          checked={chosenAnswer === question.answer_3}
-          onChange={event => setChosenAnswer(event.target.value)}
-        />
-        <label>{question.answer_3}</label>
-      </div>
+        <div className="field">
+          <input
+            type="radio"
+            name="chosen_answer"
+            value={question.answer_3}
+            checked={chosenAnswer === question.answer_3}
+            onChange={event => setChosenAnswer(event.target.value)}
+          />
+          <label>{question.answer_3}</label>
+        </div>
 
-      <div className="field">
-        <input
-          type="radio"
-          name="chosen_answer"
-          value={question.answer_4}
-          checked={chosenAnswer === question.answer_4}
-          onChange={event => setChosenAnswer(event.target.value)}
-        />
-        <label>{question.answer_4}</label>
-      </div>
+        <div className="field">
+          <input
+            type="radio"
+            name="chosen_answer"
+            value={question.answer_4}
+            checked={chosenAnswer === question.answer_4}
+            onChange={event => setChosenAnswer(event.target.value)}
+          />
+          <label>{question.answer_4}</label>
+        </div>
 
-      <div className="actions">
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+        <div className="actions">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
   );
 }
 

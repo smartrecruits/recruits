@@ -66,6 +66,7 @@ function Client() {
         return response.json();
         // setIsLoggedIn(true);
         // navigate("/profile");
+        
       
       } else {
         response.json().then((err)=>setErrors([err.errors]))

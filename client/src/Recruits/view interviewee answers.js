@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getRecruiter, getInterviewee, getRecruiterToken,getIntervieweeToken } from '../Components/utils/auth';
+import { getRecruiter, getRecruiterToken} from '../Components/utils/auth';
 import { reviewAssesment } from '../Features/assessments/assessmentSlice';
 import { useDispatch } from 'react-redux';
 
