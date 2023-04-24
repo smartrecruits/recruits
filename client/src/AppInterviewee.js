@@ -2,10 +2,12 @@ import React from 'react';
 import './AppInterviewee.css';
 import styled from 'styled-components';
 import Sidebar from './Components/Interviewee/everything/Sidebar'
-import MainContent from './Components/Interviewee/everything/MainContent';
+import AppRoutes from './Components/Interviewee/everything/AppRoutes';
+
+// import MainContent from './Components/Interviewee/everything/MainContent';
 // import Dashboard from './Components/Interviewees/IntervieweesTest/dashboard';
 // import AssessmentReviewedNotification from './Components/Interviewees/IntervieweesTest/AssessmentReview';
-// import AppRoutes from './Components/Interviewees/everything/AppRoutes';
+
 
 
 
@@ -15,7 +17,8 @@ function AppInterviewee() {
     <div>
     <Container>
       <Sidebar />
-      <MainContent />
+      <AppRoutes />
+      {/* <MainContent /> */}
     </Container>
     </div>
   )
