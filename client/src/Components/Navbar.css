@@ -1,0 +1,120 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 20px;
+  }
+  
+  .navbar-logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .navbar-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .animated {
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .navbar-links {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+  
+  .navbar-link-item {
+    margin: 0 20px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  .navbar-link-item-first {
+    position: relative;
+    top: -10px;
+    margin-right: 10px;
+  }
+  
+  .navbar-links a {
+    font-family: "Times New Roman", Times, serif;
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-links a:hover::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    left: -5px;
+    right: -5px;
+    border: 2px solid #f700ff;
+    border-radius: 5px;
+  }
+  
+  .navbar-links a:hover {
+    color: #ff00dd;
+  }
+
+  .animate-charcter
+{
+  align-self:left;
+  text-align: left;
+   text-transform: none;
+  background-image: linear-gradient(
+    -225deg,
+    #df2bc1 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: rgb(148, 236, 47);
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+      font-size: 30px;
+      margin-top: 16px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+  

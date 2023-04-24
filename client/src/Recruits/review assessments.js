@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class AssessmentReview {
   constructor(assessment, interviewees) {
     this.assessment = assessment;
@@ -102,3 +103,5 @@ const interviewees = [
 ];
 
 const assessmentReview = new
+=======
+>>>>>>> 8d751f54af52037cca89169bc6d5a7aaf84d4afc

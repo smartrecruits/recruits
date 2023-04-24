@@ -1,0 +1,37 @@
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+  }
+  
+  .imge {
+    flex: 1;
+    max-width: 50%;
+  }
+  
+  .imge img {
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+    border-radius: 20px;
+  }
+  
+  .txt {
+    flex: 1;
+    max-width: 50%;
+    padding-left: 50px;
+  }
+  
+  .txt h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .txt p {
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-size: 25px;
+  }
+  

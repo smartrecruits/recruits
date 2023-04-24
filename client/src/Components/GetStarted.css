@@ -1,0 +1,25 @@
+.button-about{
+    background-color: aqua;
+    border: none;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.button-about #button-about{
+    border-radius: 50px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    background: #ee52ad;
+
+}
+#button1-about:hover{
+    transform: scale(1.05);
+    background: #ee52ad;
+    box-shadow: 0 0 5px #ff96ad, 0 0 25px #ff96ad, 0 0 50px #ff96ad, 0 0 200px #ff96ad;
+}
+#button3:active {
+    transform: scale(0.95);
+    box-shadow: 1px 1px 3px pink;
+  }
