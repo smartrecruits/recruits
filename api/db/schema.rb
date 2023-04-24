@@ -17,8 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
   create_table "answers", force: :cascade do |t|
     t.text "content"
     t.string "feedback"
-    t.integer "grades"
-    t.integer "code_challenge_id"
+    t.integer "question_id"
     t.integer "assessment_id"
     t.integer "interviewee_id"
     t.datetime "created_at", null: false
@@ -30,7 +29,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
     t.string "name"
     t.boolean "accepted", default: false
     t.datetime "duedate"
-    t.boolean "reviewed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recruiter_id"], name: "index_assessments_on_recruiter_id"
@@ -38,10 +36,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
 
   create_table "code_challenges", force: :cascade do |t|
     t.bigint "assessment_id", null: false
-    t.string "name"
-    t.string "description"
-    t.integer "totalAttempts"
-    t.integer "totalCompleted"
+    t.integer "grades"
+    t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["assessment_id"], name: "index_code_challenges_on_assessment_id"
@@ -62,7 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
   create_table "invites", force: :cascade do |t|
     t.bigint "interviewee_id", null: false
     t.bigint "recruiter_id", null: false
-    t.integer "assessment_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -77,9 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
     t.string "answer_3"
     t.string "answer_4"
     t.string "correct_answer"
-    t.integer "totalAttempts"
+    t.integer "grades"
     t.integer "assessment_id"
-    t.integer "recruiter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -100,7 +94,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
     t.bigint "interviewee_id", null: false
     t.string "chosen_answer"
     t.string "feedback"
-    t.integer "grades"
     t.boolean "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

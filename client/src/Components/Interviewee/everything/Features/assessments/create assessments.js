@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getRecruiter } from '../../Components/utils/auth';
+import { getRecruiter } from '../../../../utils/auth';
 import { useDispatch } from 'react-redux';
 import { createAssessment } from './assessmentSlice';
 function CreateAssessment() {
@@ -21,10 +21,10 @@ function CreateAssessment() {
       })
       .catch((error) => {
         // handle createAssessment error
-        setErrors([error.payload] || [error.message]);
+        setErrors([error.payload]);
       });
   }
-
+console.log(errors)
   return (
     <div>
       <h1>Create Assessment</h1>

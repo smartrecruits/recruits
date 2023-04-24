@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Badge from './Badge';
-import AvatarImage from '../assets/avatarImage2.jpeg';
+import AvatarImage from '../assets/avatarImage4.jpg';
 import { darkThemeColor } from '../../utils/Interview';
 import { RiHomeLine, RiFileCopyLine} from "react-icons/ri"
 // import { FaWallet } from "react-icons/fa"
@@ -67,7 +67,7 @@ function Sidebar() {
 }
 
 const Container = styled.div`
-  width: 20%;
+  width: 100%;
   height: 100% !important;
   border-radius: 2rem;
   background-color: #091322;
