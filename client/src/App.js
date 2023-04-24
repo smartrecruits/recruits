@@ -10,6 +10,10 @@ import Client from "./Components/Client";
 import { ClientPasswordreset } from "./Components/ClientReset";
 import { RecruiterPasswordreset } from "./Components/RecruiterReset";
 import AppInterviewee from "./AppInterviewee";
+// import QuestionList from "./Features/questions/questionlist";
+
+import AssessmentsList from "./Features/assessments/listAssessments";
+import OneAssessment from "./Components/Interviewee/everything/Features/assessments/oneAssess";
 function App() {
   return (
     <div className="App">
@@ -19,8 +23,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/RecruiterAssessList' element={<AssessmentsList/>}></Route>
-        <Route path='/RecruiterAssessList/:id' element={<OneAssessment/>}></Route>
-        <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route>
+        <Route path='/RecruiterAssessList/:id' element={<OneAssessment />}></Route>
+        {/* <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route> */}
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
         <Route path='/AppInterviewee' element={<AppInterviewee />}></Route>

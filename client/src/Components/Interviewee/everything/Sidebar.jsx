@@ -30,13 +30,13 @@ function Sidebar() {
   </ProfileContainer>
   <LinksContainer>
     <Links>
-      <NewLink onClick={() => navigate("/clientdb")}>
+      <NewLink onClick={() => navigate("/MainContent")}>
         <li>
           <RiHomeLine />
           <h3>Dashboard</h3>
         </li>
       </NewLink>
-      <NewLink onClick={() => navigate("/assessments")}>
+      <NewLink onClick={() => navigate("/RecruiterAssessList/:id")}>
         <li>
           <RiFileCopyLine />
           <h3>Assessments</h3>

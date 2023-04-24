@@ -7,7 +7,7 @@ function OneAssessment() {
   const [errors,setErrors] = useState([])
 
   useEffect(() => {
-    fetch(`https://recruits.onrender.com/assessments/${id}`)
+    fetch(`http://127.0.0.1:3000/assessments/${id}`)
       .then(response => response.json())
       .then(data => setAssessment(data))
       .catch(error => setErrors(error));
