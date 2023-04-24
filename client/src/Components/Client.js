@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate,Link } from "react-router-dom";
 import { saveInterviewee,storeIntervieweeToken } from "./utils/auth";
-
+// import AppInterviewee from '../AppInterviewee';
 import './Client.css'
+
+
 function Client() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -43,8 +45,11 @@ function Client() {
           navigate('/clientdb');
           setLoginEmail('')
           setLoginPassword('')
+          navigate('/AppInterviewee');
         })
-       
+        navigate('/clientdb');
+          setLoginEmail('')
+          setLoginPassword('')
   }
 
   const handleSignUpSubmit = (event) => {

@@ -10,13 +10,11 @@ import Client from "./Components/Client";
 import { ClientPasswordreset } from "./Components/ClientReset";
 import { RecruiterPasswordreset } from "./Components/RecruiterReset";
 import AppInterviewee from "./AppInterviewee";
-import QuestionList from "./Features/questions/questionlist";
-import OneAssessment from "./Features/assessments/oneAssess";
-import AssessmentsList from "./Features/assessments/listAssessments";
 function App() {
   return (
     <div className="App">
       <>
+      <AppInterviewee />
       <Navbar />
       <Routes>
         <Route path='/' element={<Home/>}></Route>
@@ -25,6 +23,7 @@ function App() {
         <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route>
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
+        <Route path='/AppInterviewee' element={<AppInterviewee />}></Route>
         <Route path='/ClientReset' element={<ClientPasswordreset/>}></Route>
         <Route path='/RecruiterReset' element={<RecruiterPasswordreset/>}></Route>
         <Route path='/getStarted' element={<UserTypeSelection/>}></Route>

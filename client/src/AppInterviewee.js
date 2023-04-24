@@ -1,7 +1,7 @@
 import React from 'react';
 import './AppInterviewee.css';
 import styled from 'styled-components';
-import Sidebar from './Components/Interviewee/everything/Sidebar'
+import Sidebar from './Components/Interviewee/everything/Sidebar';
 import MainContent from './Components/Interviewee/everything/MainContent';
 // import Dashboard from './Components/Interviewees/IntervieweesTest/dashboard';
 // import AssessmentReviewedNotification from './Components/Interviewees/IntervieweesTest/AssessmentReview';
@@ -16,7 +16,6 @@ function AppInterviewee() {
     <Container>
       <Sidebar />
       <MainContent />
-      
     </Container>
     </div>
   )
