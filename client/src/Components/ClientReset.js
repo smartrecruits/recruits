@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import { useNavigate} from "react-router-dom";
+import "./clientReset.css"
 
 export const ClientPasswordreset = () => {
     const [errors, setErrors] = useState([]);
@@ -41,11 +42,11 @@ export const ClientPasswordreset = () => {
     return(
         <div className="form">
         <div className="auth-form-container">
-        <h2>Password Reset</h2>
+        <h1>Password Reset</h1>
         <form className="passwordreset-form" onSubmit={handleSumbit}>
-            <label className="label" form="email">email</label>
+            <label className="email" form="email">email</label>
             <input className="input" value={formData.email} onChange={handleChange} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
-            <label className="label" form="pasword">password</label>
+            <label className="password" form="pasword">password</label>
             <input className="input" value={formData.password} onChange={handleChange}type="password" placeholder="*******" id="password" name="password" />
             { loading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
@@ -54,14 +55,6 @@ export const ClientPasswordreset = () => {
                         <button className="login" type="submit">Reset Password</button>
                         )
             }
-         {/* {Object.keys(errors).length > 0 &&
-            Object.entries(errors).map(([key, value]) => {
-              return value.map((error, index) => (
-                <div key={`${key}-${index}`} className="text-danger">
-                  {error}
-                </div>
-              ));
-            })} */}
             {errors.length > 0 && (
                 <div className="text-danger" id="errors">
                 {errors.map((error, index) => (

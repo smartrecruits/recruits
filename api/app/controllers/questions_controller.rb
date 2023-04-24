@@ -4,14 +4,14 @@ class QuestionsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index
-      render json: Question.all
+      render json: recruiter.question.all
     end
   
     def show
-      question = Question.find(params[:id])
+      question = recruiter.question.includes(params[:id])
       render json: question
     end
-  
+    
     def create
       question = recruiter.questions.new(question_params)
       if question.save
@@ -38,14 +38,14 @@ class QuestionsController < ApplicationController
 
     def assign_to_assessment
       assessment = Assessment.find(params[:assessment_id])
-      question = Question.find(params[:question_id])
+      question = recruiter.questions.find(params[:question_id])
       assessment.questions << question
       render json:assessment
     end
 
     def unassign_from_assessment
       assessment = Assessment.find(params[:assessment_id])
-      question = Question.find(params[:question_id])
+      question = recruiter.questions.find(params[:question_id])
       assessment.questions.delete(question)
       render json: assessment
     end
@@ -64,7 +64,7 @@ class QuestionsController < ApplicationController
     private
   
     def question_params
-      params.require(:question).permit(:content, :answer_1, :answer_2, :answer_3, :answer_4, :correct_answer, :assessment_id)
+      params.require(:question).permit(:recruiter_id,:content, :question, :answer_1, :answer_2, :answer_3, :answer_4, :correct_answer, :assessment_id)
     end
 
     def render_unprocessable_entity_response(invalid)

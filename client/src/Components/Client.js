@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate,Link } from "react-router-dom";
 import { saveInterviewee,storeIntervieweeToken } from "./utils/auth";
-
+// import AppInterviewee from '../AppInterviewee';
 import './Client.css'
+
+
 function Client() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -44,7 +46,7 @@ function Client() {
           saveInterviewee(data.user.id)
           storeIntervieweeToken(data.token)
           //  console.log(data.user.id)
-          navigate('/');
+          navigate('/AppInterviewee');
         })
        
   }

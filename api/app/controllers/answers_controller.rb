@@ -3,6 +3,7 @@ class AnswersController < ApplicationController
     before_action :verify_auth
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
+  
     # GET /answers
     def index
       answers = Answer.all
@@ -24,6 +25,7 @@ class AnswersController < ApplicationController
         render json: answer.errors, status: :unprocessable_entity
       end
     end
+    
   
     # PATCH/PUT /answers/1
     def update

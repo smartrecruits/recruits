@@ -61,7 +61,6 @@ class InvitesController < ApplicationController
         end
     end
 
-
   def accept
     inter = Interviewee.find(params[:interviewee_id])
     invite = Invite.find(params[:id])
