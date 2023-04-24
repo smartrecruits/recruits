@@ -9,7 +9,7 @@ import UserTypeSelection from "./Components/GetStarted";
 import Client from "./Components/Client";
 import { ClientPasswordreset } from "./Components/ClientReset";
 import { RecruiterPasswordreset } from "./Components/RecruiterReset";
-// import AppInterviewee from "./AppInterviewee";
+import AppInterviewee from "./AppInterviewee";
 function App() {
   return (
     <div className="App">
@@ -22,7 +22,7 @@ function App() {
         <Route path='/ClientReset' element={<ClientPasswordreset/>}></Route>
         <Route path='/RecruiterReset' element={<RecruiterPasswordreset/>}></Route>
         <Route path='/getStarted' element={<UserTypeSelection/>}></Route>
-        {/* <Route path='/clientdb' element={<AppInterviewee/>}></Route> */}
+        <Route path='/clientdb' element={<AppInterviewee/>}></Route>
 
       </Routes>
      
