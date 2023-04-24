@@ -8,7 +8,7 @@ function OneAssessment() {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:3000/assessments/${id}`)
+    fetch(`https://recruits.onrender.com/assessments/${id}`)
       .then(response => response.json())
       .then(data => setAssessment(data))
       .catch(error => setErrors(error));
@@ -40,7 +40,7 @@ function OneAssessment() {
           </li>
         ))}
         </ul>
-        <h4>Assessments</h4>
+        <h4>Code Challenges</h4>
         <ul>
          {assessment.code_challenges.map(question => (
           <li key={question.id}>

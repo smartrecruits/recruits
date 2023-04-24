@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getRecruiterToken } from "../../../../utils/auth";
+import { getRecruiterToken } from "../../Components/utils/auth";
 const recruiterToken = getRecruiterToken()
 
 export const fetchQuestions = createAsyncThunk("questions/fetchQuestions", async(rejectWithValue) => {

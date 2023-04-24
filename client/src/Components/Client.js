@@ -45,9 +45,7 @@ function Client() {
           navigate('/clientdb');
           setLoginEmail('')
           setLoginPassword('')
-=========
           navigate('/AppInterviewee');
->>>>>>>>> Temporary merge branch 2
         })
         navigate('/clientdb');
           setLoginEmail('')
