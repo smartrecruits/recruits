@@ -1,0 +1,60 @@
+.Menu {
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Menu input, button {
+    width: 300px;
+    height: 50px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+
+  .Quiz {
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    background-image: url(https://img.freepik.com/free-vector/realistic-glassmorphism-background_23-2149441716.jpg?size=626&ext=jpg);
+    opacity: 80%;
+    background-color: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Menu, .Quiz, .EndScreen h1 {
+    color: white;
+  }
+
+  .EndScreen {
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #nextQuestion {
+    width: 200px;
+  }
+  
+  h3 {
+    color: #ffffff;
+  
+  }

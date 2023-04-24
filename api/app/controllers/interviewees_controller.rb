@@ -1,14 +1,13 @@
 class IntervieweesController < ApplicationController
-
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def register
         user = Interviewee.create(interviewee_params)
-        if user.valid?
+        if user.valid? 
             # save_user(user.id)
             render json: user,status: :created
         else
-            render json: {errors: user.errors}, status: :unprocessable_entity
+            render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
         end 
     end
 
@@ -35,6 +34,19 @@ class IntervieweesController < ApplicationController
         render json: user 
     end
 
+    def show_grades
+        interviewee = Interviewee.find(params[:id])
+        assessment = interviewee.assessment
+    
+        if assessment.reviewed
+          grades = interviewee.responses
+                                     .where(question_id: assessment.questions.pluck(:id))
+                                     .sum(:grades)
+          render json: { grades: grades }
+        else
+          render json: { errors: "Grades not available yet. Please wait for the assessment to be reviewed." }
+        end
+    end
 
     def logout
         remove_user
@@ -43,6 +55,14 @@ class IntervieweesController < ApplicationController
     def index 
         interviewees = Interviewee.all 
         render json: interviewees, status: :ok
+    end
+
+    def sort_by_score
+        interviewees = Interviewee.joins(:responses)
+                                  .group('interviewees.id')
+                                  .select('interviewees.*, SUM(responses.correct::integer) AS total_score')
+                                  .order('total_score DESC')
+        render json: interviewees
     end
 
     def reset_password

@@ -1,4 +1,4 @@
-module Codewars
+module CodewarsModule
     def code_challenges
         def to_camel_case(str)
             regexFilter = /(?:(?<=^| )|[_-])[A-Za-z][^ _-]*/
@@ -13,7 +13,7 @@ module Codewars
             end
         end
 
-        html = open("https://www.codewars.com/kata/latest")
+        html = URI.open("https://www.codewars.com/kata/latest")
         doc = Nokogiri::HTML(html)
         nokogiriKatas = doc.css(".ml-2")
         kataIDs = []
@@ -28,5 +28,12 @@ module Codewars
             katas.push(JSON.parse(response.body))
         end
         return katas
+    end
+
+    def one_code(id)
+        code = []
+        url = "https://www.codewars.com/api/v1/code-challenges/#{id}"
+        response = Net::HTTP.get_response(URI.parse(url))
+        code.push(JSON.parse(response.body))
     end
 end

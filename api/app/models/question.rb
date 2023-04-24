@@ -1,4 +1,10 @@
 class Question < ApplicationRecord
-    #belongs_to :recruiter
+    belongs_to :recruiter
+    has_many :responses
+    has_and_belongs_to_many :assessment
+    validates :question, presence: true
 
+    def total_grades
+        resonses.sum(:grades)
+      end
 end
