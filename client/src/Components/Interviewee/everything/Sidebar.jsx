@@ -30,7 +30,7 @@ function Sidebar() {
   </ProfileContainer>
   <LinksContainer>
     <Links>
-      <NewLink onClick={() => navigate("/")}>
+      <NewLink onClick={() => navigate("/clientdb")}>
         <li>
           <RiHomeLine />
           <h3>Dashboard</h3>

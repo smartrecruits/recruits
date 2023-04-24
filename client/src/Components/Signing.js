@@ -9,8 +9,8 @@ function Signing() {
   const [email, setEmail] = useState('');
   const [loginemail, setLoginEmail] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [loginloading, setLoginLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  // const [loginloading, setLoginLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [loginerrors, setLoginErrors] = useState([]);
 
@@ -19,7 +19,7 @@ function Signing() {
   const handleSignInSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign in submission
-    setLoginLoading(true)  
+    // setLoginLoading(true)  
     fetch('https://recruits.onrender.com/recruiter/login', {
       method: 'POST',
       headers: {
@@ -38,7 +38,7 @@ function Signing() {
       } else {
         response.json().then((err)=>setLoginErrors([err.errors]))
       }
-      setLoginLoading(false)
+      // setLoginLoading(false)
     })
     .then(data => {
       // Store session ID in browser storage
@@ -51,7 +51,7 @@ function Signing() {
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign up submission
-    setLoading(true)  
+    // setLoading(true)  
     fetch('https://recruits.onrender.com/recruiter', {
       method: 'POST',
       headers: {
@@ -71,7 +71,7 @@ function Signing() {
       } else {
         response.json().then((err)=>setErrors([err.errors]))
       }
-      setLoading(false)
+      // setLoading(false)
     })
   }
   console.log(errors)
@@ -93,13 +93,13 @@ function Signing() {
                 <input placeholder="Password" id="password" name="password" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
               <div className="group">
-              { loginloading ? (<div className="d-flex align-items-center" id="loader">
+              {/* { loginloading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" id="loader" aria-hidden="true"></div>
-                        </div> ): (
+                        </div> ): ( */}
                                 <input type="submit" className="button" value="Sign In" />
-                        )
-               }
+                        {/* )
+               } */}
               </div>
               {loginerrors.length > 0 && (
                 <div className="text-danger" id="errors">
@@ -126,14 +126,14 @@ function Signing() {
                 <input placeholder="Password" id="password" name='password' type="password" className="input" data-type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
               </div>
               <div className="group">
-              { loading ? (<div className="d-flex align-items-center" id="loader">
+              {/* { loading ? (<div className="d-flex align-items-center" id="loader">
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                        </div> ): (
+                        </div> ): ( */}
                                 <input type="submit" className="button" value="Sign Up" />
-                        )
+                        {/* )
                }
-                
+                 */}
               </div>
               {Object.keys(errors).length > 0 &&
                   Object.entries(errors).map(([key, value]) => {

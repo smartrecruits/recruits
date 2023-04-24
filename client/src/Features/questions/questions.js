@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
-import { getRecruiterToken } from '../Components/utils/auth';
-function CreateQuestion({assessmentId}) {
+import { createQuestion } from './questionsSlice';
+import { useDispatch } from 'react-redux';
+
+function CreateQuestion() {
+  const [errors, setErrors] = useState([])
   const [content, setContent] = useState('');
   const [answer1, setAnswer1] = useState('');
   const [answer2, setAnswer2] = useState('');
   const [answer3, setAnswer3] = useState('');
   const [answer4, setAnswer4] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState('');
-  let recruiterToken = getRecruiterToken
+  let dispatch = useDispatch()
   const handleSubmit = (e) => {
     e.preventDefault();
-    // send form data to server for processing
-    fetch('/assessments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${recruiterToken}`
-        },
-        body: JSON.stringify({
-          content: content,
-          answer1: answer1,
-          answer2: answer2,
-          answer3: answer3,
-          answer4: answer4,
-          correctAnswer: correctAnswer
-        })
+    dispatch(
+      createQuestion({
+              content: content,
+              answer1: answer1,
+              answer2: answer2,
+              answer3: answer3,
+              answer4: answer4,
+              correctAnswer: correctAnswer
       })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+    )
+    .then((result) => {
+      // handle successful createAssessment action
+      console.log(result);
+    })
+    .catch((error) => {
+      // handle createAssessment error
+      setErrors([error.payload] || [error.message]);
+    });
     }
 
   return (

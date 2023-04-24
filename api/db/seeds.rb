@@ -170,6 +170,6 @@ questions = [
   ]
   questions.each do |q|
     q[:assessment_id] = assessment_ids.sample
-    q[:grades] = nil
+    q[:totalAttempts] = nil
     Question.create(q)
   end
