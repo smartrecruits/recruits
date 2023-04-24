@@ -40,7 +40,7 @@ function OneAssessment() {
           </li>
         ))}
         </ul>
-        <h4>Assessments</h4>
+        <h4>Code Challenges</h4>
         <ul>
          {assessment.code_challenges.map(question => (
           <li key={question.id}>
