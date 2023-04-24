@@ -46,7 +46,7 @@ function Client() {
           saveInterviewee(data.user.id)
           storeIntervieweeToken(data.token)
           //  console.log(data.user.id)
-          navigate('/');
+          navigate('/clientdb');
           setLoginEmail('')
           setLoginPassword('')
         })
