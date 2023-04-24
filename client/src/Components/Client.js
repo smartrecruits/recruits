@@ -38,6 +38,8 @@ function Client() {
             response.json().then((err)=>setLoginErrors([err.errors]))
           }
           setLoginLoading(false)
+          setLoginEmail('')
+          setLoginPassword('')
         })
         .then(data => {
           // Store session ID in browser storage
@@ -45,6 +47,8 @@ function Client() {
           storeIntervieweeToken(data.token)
           //  console.log(data.user.id)
           navigate('/');
+          setLoginEmail('')
+          setLoginPassword('')
         })
        
   }
@@ -69,10 +73,14 @@ function Client() {
         return response.json();
         // setIsLoggedIn(true);
         // navigate("/profile");
+      
       } else {
         response.json().then((err)=>setErrors([err.errors]))
       }
       setLoading(false)
+      setEmail('')
+      setPassword('')
+      setUsername('')
     })
   }
 
