@@ -1,59 +1,93 @@
-// import React, { useEffect } from 'react';
-// import CreateQuestion from './questions';
-// import { useDispatch, useSelector } from 'react-redux';
-// // import { fetchQuestions } from './questionsSlice';
+import React, { useEffect } from 'react';
+import CreateQuestion from './questions';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchQuestions } from './questionsSlice';
+import styled from 'styled-components';
 
-// function QuestionList({assessmentId}) {
-//   // const [questions, setQuestions] = useState([]);
-//   const dispatch = useDispatch
+const Wrapper = styled.div`
+  background: linear-gradient(90deg, #FF6B8A, #C93C80);
+  padding: 20px;
+`;
 
-//   // useEffect(() => {
-//   //   dispatch(fetchQuestions());
-//   // }, [dispatch]);
+const Question = styled.li`
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+`;
 
-//   const questions = useSelector((state) => state.question.questions);
-//   const status = useSelector((state) => state.question.status);
+const QuestionText = styled.h6`
+  flex: 1;
+  margin: 0;
+  color: #FFF;
+`;
 
-//   if (status === "loading") {
-//     return <div>Loading assessments...</div>;
-//   }
+const AddButton = styled.button`
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #FFF;
+  color: #C93C80;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+`;
 
-//   if (!questions || questions.length === 0) {
-//     return <div>No questions found.</div>;
-//   }
+const RemoveButton = styled(AddButton)`
+  background-color: #C93C80;
+  color: #FFF;
+`;
 
-//   function addToAssessment(questionId) {
-//     fetch(`/assessments/${assessmentId}/questions/${questionId}`, {
-//       method: 'POST'
-//     })
-//       .then(response => response.json())
-//       .then(data => console.log(data))
-//       .catch(error => console.log(error));
-//   }
-//   function removeFromAssessment(questionId) {
-//     fetch(`/assessments/${assessmentId}/questions/${questionId}`, {
-//       method: 'DELETE'
-//     })
-//       .then(response => response.json())
-//       .then(data => console.log(data))
-//       .catch(error => console.log(error));
-//   }
+function QuestionList({assessmentId}) {
+  const dispatch = useDispatch();
 
-//   return (
-//     <div>
-//       <h2>Questions</h2>
-//       <CreateQuestion/>
-//       <ul>
-//         {questions.map(question => (
-//           <li key={question.id}>
-//             <h6>{question.content}</h6>
-//             <button onClick={() => addToAssessment(question.id)}>Add To Assessment</button>
-//             <button onClick={() => removeFromAssessment(question.id)}>Remove from Assessment</button>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
+  useEffect(() => {
+    dispatch(fetchQuestions());
+  }, [dispatch]);
 
-// export default QuestionList;
+  const questions = useSelector((state) => state.question.questions);
+
+  const status = useSelector((state) => state.question.status);
+
+  if (status === "loading") {
+    return <div>Loading assessments...</div>;
+  }
+
+  if (!questions || questions.length === 0) {
+    return <div>No questions found.</div>;
+  }
+
+  function addToAssessment(questionId) {
+    fetch(`/assessments/${assessmentId}/questions/${questionId}`, {
+      method: 'POST'
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
+  }
+
+  function removeFromAssessment(questionId) {
+    fetch(`/assessments/${assessmentId}/questions/${questionId}`, {
+      method: 'DELETE'
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
+  }
+
+  return (
+    <Wrapper>
+      <h2 style={{color: "#FFF"}}>Questions</h2>
+      <CreateQuestion/>
+      <ul>
+        {questions.map(question => (
+          <Question key={question.id}>
+            <QuestionText>{question.content}</QuestionText>
+            <AddButton onClick={() => addToAssessment(question.id)}>Add To Assessment</AddButton>
+            <RemoveButton onClick={() => removeFromAssessment(question.id)}>Remove from Assessment</RemoveButton>
+          </Question>
+        ))}
+      </ul>
+    </Wrapper>
+  );
+}
+
+export default QuestionList;

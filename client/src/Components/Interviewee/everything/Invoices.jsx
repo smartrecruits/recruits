@@ -4,10 +4,12 @@ import Badge from "./Badge";
 import AvatarImage from "../assets/avatarImage5.jpg";
 import AvatarImage2 from "../assets/avatarImage6.jpg";
 import { cardShadow,hoverEffect } from '../../utils/Interview';
-
+import { useNavigate } from 'react-router-dom';
 
 
 function Invoices() {
+  const navigate = useNavigate();
+
   return (
     <InvoicesContainer>
       <CardContent>
@@ -22,7 +24,7 @@ function Invoices() {
             </TextContainer>
           </Info>
           <Container>
-            <Badge content="Attained" paid />
+            <Badge onClick={() => navigate("/reports")} content="Attained" paid />
             <Price>80%</Price>
           </Container>
         </Invoice>
@@ -37,7 +39,7 @@ function Invoices() {
             </TextContainer>
           </Info>
           <Container>
-            <Badge content="Attained" late />
+            <Badge onClick={() => navigate("/reports")} content="Attained" late />
             <Price>67%</Price>
           </Container>
         </Invoice>
@@ -108,6 +110,7 @@ const SubTitle = styled.h5`
 
 const Container = styled.div`
   display: flex;
+  cursor: pointer;
   justify-content: space-between;
   width: 30%;
   align-items: center;

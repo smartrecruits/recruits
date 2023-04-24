@@ -6,8 +6,10 @@ import { Route, Routes } from "react-router-dom"
 // import Feedback from "../../Pages/Feedback"
 // import FAQ from "../../Pages/FAQ"
 import MainContent from "../MainContent"
-// import Assessments from "../Pages/Assessments"
 import OneAssessment from "../Features/assessments/oneAssess"
+
+// import Assessments from "../Pages/Assessments"
+
 
 
 

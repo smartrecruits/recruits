@@ -3,7 +3,7 @@ import { getRecruiterToken } from "../../../../utils/auth";
 const recruiterToken = getRecruiterToken()
 
 export const fetchQuestions = createAsyncThunk("questions/fetchQuestions", async(rejectWithValue) => {
-    const response = await fetch("https://recruits.onrender.com/questions", {
+    const response = await fetch("http://127.0.0.1:3000/questions", {
       headers: {
         Authorization: `Bearer ${recruiterToken}`,
       },
