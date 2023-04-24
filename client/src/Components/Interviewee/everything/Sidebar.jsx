@@ -6,20 +6,22 @@ import Badge from './Badge';
 import AvatarImage from '../assets/avatarImage2.jpeg';
 import { darkThemeColor } from '../../utils/Interview';
 import { RiHomeLine, RiFileCopyLine} from "react-icons/ri"
-import { FaWallet } from "react-icons/fa"
+// import { FaWallet } from "react-icons/fa"
 import {  AiOutlinePieChart } from "react-icons/ai";
 // import { Menu } from 'antd';
 // import Assessments from '../Pages/Assessments';
 // import { themeColor } from '../../utils/Interview';
 // import { Menu } from 'antd';
 // import AppRoutes from './AppRoutes';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Sidebar() {
-  
+  const navigate = useNavigate();
+
   return (
+    <div className="SideMenu">
     <Container>
   <ProfileContainer>
     <Avatar src={AvatarImage}/>
@@ -28,47 +30,33 @@ function Sidebar() {
   </ProfileContainer>
   <LinksContainer>
     <Links>
-      <NewLink>
-        <Link to="/clientdb">
-          <li>
-            <RiHomeLine />
-            <h3>Dashboard</h3>
-          </li>
-        </Link>
+      <NewLink onClick={() => navigate("/MainContent")}>
+        <li>
+          <RiHomeLine />
+          <h3>Dashboard</h3>
+        </li>
       </NewLink>
-      <NewLink>
-        <Link to="/assessments">
-          <li>
-            <RiFileCopyLine />
-            <h3>Assessments</h3>
-          </li>
-        </Link>
+      <NewLink onClick={() => navigate("/RecruiterAssessList/:id")}>
+        <li>
+          <RiFileCopyLine />
+          <h3>Assessments</h3>
+        </li>
       </NewLink>
-      <NewLink>
-        <Link to="/code-challenge">
-          <li>
-            <FaWallet />
-            <h3>Code-Challenge</h3>
-          </li>
-        </Link>
-      </NewLink>
-      <NewLink>
-        <Link to="/reports">
-          <li>
-            <AiOutlinePieChart />
-            <h3>Reports</h3>
-          </li>
-        </Link>
+      
+      <NewLink onClick={() => navigate("/reports")}>
+        <li>
+          <AiOutlinePieChart />
+          <h3>Reports</h3>
+        </li>
       </NewLink>
     </Links>
     <ContactContainer>
-   
       <span>Having troubles?</span>
       <Link to="/contact">Contact us</Link>
     </ContactContainer>
   </LinksContainer>
 </Container>
-
+</div>
 
   )
 }

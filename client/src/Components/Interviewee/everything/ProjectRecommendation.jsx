@@ -3,8 +3,10 @@ import styled from "styled-components";
 import Badge from "./Badge";
 import AvatarImage from "../assets/avatarImage4.jpg";
 import { cardShadow,hoverEffect } from "../../utils/Interview";
+import { useNavigate } from "react-router-dom";
 
 function ProjectRecommendation() {
+  const navigate = useNavigate();
   return (
     <RecommendProject>
       <CardContent>
@@ -27,9 +29,9 @@ function ProjectRecommendation() {
         Success in your code test,<br/>
           Looking for a talented Programmer to join the family of my new startup.
         </ProjectInfo>
-        <PriceContainer>
+        <PriceContainer onClick={() => navigate("/")}>
           <Price>Success</Price>
-          <Badge content="Start" clean />
+          <Badge content="Start Code-Challenge" clean />
         </PriceContainer>
       </CardContent>
     </RecommendProject>
@@ -101,6 +103,7 @@ const ProjectInfo = styled.p`
 const PriceContainer = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
   justify-content: space-between;
   margin: 0 1rem;
   padding: 0.5rem 1rem;
