@@ -10,55 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
-=======
-<<<<<<< HEAD
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_113229) do
-=======
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
->>>>>>> b7bace1d1de336f7bf0d66afb61215e18e7f98e4
->>>>>>> d5cab90122950c5f6c8e24951b2644b2a3b32c5f
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
     t.text "content"
-    t.integer "question_id"
+    t.string "feedback"
+    t.integer "grades"
+    t.integer "code_challenge_id"
     t.integer "assessment_id"
     t.integer "interviewee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-=======
   create_table "assessments", force: :cascade do |t|
-    t.bigint "interviewee_id", null: false
     t.bigint "recruiter_id", null: false
     t.string "name"
-    t.boolean "accepted"
+    t.boolean "accepted", default: false
     t.datetime "duedate"
+    t.boolean "reviewed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["interviewee_id"], name: "index_assessments_on_interviewee_id"
     t.index ["recruiter_id"], name: "index_assessments_on_recruiter_id"
   end
 
-<<<<<<< HEAD
   create_table "code_challenges", force: :cascade do |t|
     t.bigint "assessment_id", null: false
-    t.integer "grades"
-    t.string "feedback"
-    t.string "text"
+    t.string "name"
+    t.string "description"
+    t.integer "totalAttempts"
+    t.integer "totalCompleted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["assessment_id"], name: "index_code_challenges_on_assessment_id"
   end
 
-=======
->>>>>>> b7bace1d1de336f7bf0d66afb61215e18e7f98e4
->>>>>>> d5cab90122950c5f6c8e24951b2644b2a3b32c5f
   create_table "interviewees", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -66,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
     t.string "firstname"
     t.string "lastname"
     t.string "bio"
+    t.integer "grades"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
   create_table "invites", force: :cascade do |t|
     t.bigint "interviewee_id", null: false
     t.bigint "recruiter_id", null: false
+    t.integer "assessment_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -81,34 +71,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "feedback"
-<<<<<<< HEAD
-    t.integer "assessment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "question"
-    t.text "content"
-    t.integer "recruiter_id"
-=======
-<<<<<<< HEAD
-    t.integer "assessment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "question"
-    t.text "content"
-    t.integer "recruiter_id"
-=======
     t.text "content"
     t.string "answer_1"
     t.string "answer_2"
     t.string "answer_3"
     t.string "answer_4"
     t.string "correct_answer"
+    t.integer "totalAttempts"
     t.integer "assessment_id"
+    t.integer "recruiter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
->>>>>>> b7bace1d1de336f7bf0d66afb61215e18e7f98e4
->>>>>>> d5cab90122950c5f6c8e24951b2644b2a3b32c5f
   end
 
   create_table "recruiters", force: :cascade do |t|
@@ -122,12 +95,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
   create_table "responses", force: :cascade do |t|
     t.bigint "question_id", null: false
     t.bigint "interviewee_id", null: false
     t.string "chosen_answer"
     t.string "feedback"
+    t.integer "grades"
     t.boolean "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -147,16 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_090035) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "assessments", "interviewees"
   add_foreign_key "assessments", "recruiters"
   add_foreign_key "code_challenges", "assessments"
-=======
-<<<<<<< HEAD
-=======
-  add_foreign_key "assessments", "interviewees"
-  add_foreign_key "assessments", "recruiters"
->>>>>>> b7bace1d1de336f7bf0d66afb61215e18e7f98e4
->>>>>>> d5cab90122950c5f6c8e24951b2644b2a3b32c5f
   add_foreign_key "invites", "interviewees"
   add_foreign_key "invites", "recruiters"
   add_foreign_key "responses", "interviewees"

@@ -3,8 +3,11 @@ import styled from "styled-components";
 import AvatarImage from '../assets/avatarImage5.jpg'
 import AvatarImage2 from '../assets/avatarImage4.jpg'
 import { cardShadow,hoverEffect, themeColor } from "../../utils/Interview";
+// import { Content } from "antd/es/layout/layout";
+import { useNavigate } from "react-router-dom";
 
 function Projects() {
+  const navigate = useNavigate();
   return (
     <YourProjects>
       <Project>
@@ -12,7 +15,7 @@ function Projects() {
           <img src={AvatarImage} alt="" />
         </Avatar>
         <Detail>
-          <Title>Choose me Quiz</Title>
+          <Title onClick={() => navigate("/Quizapp")} >Choose me Quiz</Title>
           <SubTitle>1 day remaining</SubTitle>
         </Detail>
       </Project>
@@ -62,11 +65,13 @@ const Avatar = styled.div`
 `;
 const Detail = styled.div`
   margin-left: 1rem;
+  cursor: pointer;
 `;
 const Title = styled.h3`
   font-weight: 500;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     font-size: 1rem;
+    cursor: pointer;
   }
 `;
 const SubTitle = styled.h5`

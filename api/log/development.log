@@ -6058,3 +6058,94 @@ No serializer found for resource: {"id"=>"583203e6eb35d7980400002a", "name"=>"Co
 Completed 200 OK in 20167ms (Views: 31.4ms | ActiveRecord: 4.9ms | Allocations: 46407)
 
 
+  [1m[35m (20.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRecruiters (20230417081126)
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (772.1ms)[0m  [1m[35mCREATE TABLE "recruiters" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "company" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (9.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417081126"]]
+  [1m[36mTRANSACTION (18.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInterviewees (20230417085139)
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (126.6ms)[0m  [1m[35mCREATE TABLE "interviewees" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "bio" character varying, "grades" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417085139"]]
+  [1m[36mTRANSACTION (23.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAnswers (20230417140023)
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (113.2ms)[0m  [1m[35mCREATE TABLE "answers" ("id" bigserial primary key, "content" text, "feedback" character varying, "grades" integer, "code_challenge_id" integer, "assessment_id" integer, "interviewee_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417140023"]]
+  [1m[36mTRANSACTION (21.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateQuestions (20230418053617)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (111.6ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "content" text, "answer_1" character varying, "answer_2" character varying, "answer_3" character varying, "answer_4" character varying, "correct_answer" character varying, "totalAttempts" integer, "assessment_id" integer, "recruiter_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230418053617"]]
+  [1m[36mTRANSACTION (17.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInvites (20230419060150)
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (124.4ms)[0m  [1m[35mCREATE TABLE "invites" ("id" bigserial primary key, "interviewee_id" bigint NOT NULL, "recruiter_id" bigint NOT NULL, "assessment_id" integer, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_b4435670b0"
+FOREIGN KEY ("interviewee_id")
+  REFERENCES "interviewees" ("id")
+, CONSTRAINT "fk_rails_c42353fbaf"
+FOREIGN KEY ("recruiter_id")
+  REFERENCES "recruiters" ("id")
+)[0m
+  [1m[35m (56.0ms)[0m  [1m[35mCREATE INDEX "index_invites_on_interviewee_id" ON "invites" ("interviewee_id")[0m
+  [1m[35m (63.3ms)[0m  [1m[35mCREATE INDEX "index_invites_on_recruiter_id" ON "invites" ("recruiter_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (4.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230419060150"]]
+  [1m[36mTRANSACTION (14.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAssessments (20230419090035)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (139.3ms)[0m  [1m[35mCREATE TABLE "assessments" ("id" bigserial primary key, "recruiter_id" bigint NOT NULL, "name" character varying, "accepted" boolean DEFAULT FALSE, "duedate" timestamp(6), "reviewed" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_a7ac1b7547"
+FOREIGN KEY ("recruiter_id")
+  REFERENCES "recruiters" ("id")
+)[0m
+  [1m[35m (85.0ms)[0m  [1m[35mCREATE INDEX "index_assessments_on_recruiter_id" ON "assessments" ("recruiter_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230419090035"]]
+  [1m[36mTRANSACTION (16.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCodeChallenges (20230420111420)
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (144.5ms)[0m  [1m[35mCREATE TABLE "code_challenges" ("id" bigserial primary key, "assessment_id" bigint NOT NULL, "name" character varying, "description" character varying, "totalAttempts" integer, "totalCompleted" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7cec7f1052"
+FOREIGN KEY ("assessment_id")
+  REFERENCES "assessments" ("id")
+)[0m
+  [1m[35m (72.0ms)[0m  [1m[35mCREATE INDEX "index_code_challenges_on_assessment_id" ON "code_challenges" ("assessment_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230420111420"]]
+  [1m[36mTRANSACTION (22.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResponses (20230420201212)
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (146.4ms)[0m  [1m[35mCREATE TABLE "responses" ("id" bigserial primary key, "question_id" bigint NOT NULL, "interviewee_id" bigint NOT NULL, "chosen_answer" character varying, "feedback" character varying, "grades" integer, "correct" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_325af149a3"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+, CONSTRAINT "fk_rails_15fe94701f"
+FOREIGN KEY ("interviewee_id")
+  REFERENCES "interviewees" ("id")
+)[0m
+  [1m[35m (69.1ms)[0m  [1m[35mCREATE INDEX "index_responses_on_question_id" ON "responses" ("question_id")[0m
+  [1m[35m (52.7ms)[0m  [1m[35mCREATE INDEX "index_responses_on_interviewee_id" ON "responses" ("interviewee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230420201212"]]
+  [1m[36mTRANSACTION (20.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStatistics (20230421130719)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (73.7ms)[0m  [1m[35mCREATE TABLE "statistics" ("id" bigserial primary key, "total_questions" integer, "total_interviewees" integer, "total_responses" integer, "correct_responses" integer, "average_score" float, "highest_score" integer, "lowest_score" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230421130719"]]
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (31.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-24 16:27:03 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.34ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 28ms (Views: 27.0ms | ActiveRecord: 0.0ms | Allocations: 645)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-24 16:27:04 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.24ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 5.3ms | ActiveRecord: 0.0ms | Allocations: 180)
+
+

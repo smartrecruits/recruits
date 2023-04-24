@@ -11,15 +11,19 @@ function QuestionList({assessmentId}) {
     dispatch(fetchQuestions());
   }, [dispatch]);
 
-  const questions = useSelector((state) => state.question.questions);
-  const status = useSelector((state) => state.question.status);
+  const questions = useSelector((state) => state.questions.questions);
+  const status = useSelector((state) => state.questions.status);
+  const errors = useSelector((state) => state.questions.errors);
 
   if (status === "loading") {
-    return <div>Loading assessments...</div>;
+    return <div>Loading questions...</div>;
   }
 
   if (!questions || questions.length === 0) {
     return <div>No questions found.</div>;
+  }
+  if (errors) {
+    return <div>Error: {errors}</div>;
   }
 
   function addToAssessment(questionId) {
