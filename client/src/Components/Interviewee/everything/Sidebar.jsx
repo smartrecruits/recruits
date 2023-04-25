@@ -36,7 +36,7 @@ function Sidebar() {
           <h3>Dashboard</h3>
         </li>
       </NewLink>
-      <NewLink onClick={() => navigate("/assessments")}>
+      <NewLink onClick={() => navigate("/QuizApp")}>
         <li>
           <RiFileCopyLine />
           <h3>Assessments</h3>

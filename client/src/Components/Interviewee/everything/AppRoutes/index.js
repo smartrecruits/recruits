@@ -7,19 +7,15 @@ import { Route, Routes } from "react-router-dom"
 // import FAQ from "../../Pages/FAQ"
 import MainContent from "../MainContent"
 import OneAssessment from "../Features/assessments/oneAssess"
-
-// import Assessments from "../Pages/Assessments"
-
-
+import QuizApp from "../../QuizApp/QuizApp"
 
 
 function AppRoutes() {
     return (
         
             <Routes>
-                {/* <Route path="/" element={<Dashboard />}></Route> */}
-
-                <Route path="/assessments" element={<OneAssessment  />}></Route>                
+                <Route path="/QuizApp" element={<QuizApp  />}></Route> 
+                <Route path="/assessments" element={<OneAssessment  />}></Route>  
                 <Route path="/MainContent" element={<MainContent/>}></Route>
             </Routes>
         
