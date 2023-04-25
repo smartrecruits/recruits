@@ -15,6 +15,10 @@ import OneAssessment from './Features/assessments/oneAssess'
 import AssessmentsList from "./Features/assessments/listAssessments";
 import Invites from "./Components/Interviewee/everything/intervieweeAssesmentList";
 import InvitesList from "./Components/Interviewee/everything/invitesList";
+import IntervieweeScoreList from "./Recruits/sort_by_score";
+import IntervieweeList from "./Recruits/send invitations";
+import OneAssessmentInterviewee from "./Components/Interviewee/everything/OneAssessment";
+import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
 function App() {
   return (
     <div className="App">
@@ -22,7 +26,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home/>}></Route>
+        <Route path='/intervieweescorelist/:id' element={<IntervieweeAssessments/>}></Route>
+        <Route exact path='/intervieweescorelist' element={<IntervieweeScoreList/>}></Route>
+        <Route path='/intervieweeList' element={<IntervieweeList/>}></Route>
         <Route path='/assessments' element={<Invites/>}></Route>
+        <Route path='/assessments/:id' element={<OneAssessmentInterviewee/>}></Route>
         <Route path='/invites' element={<InvitesList/>}></Route>
         <Route exact path='/RecruiterAssessList' element={<AssessmentsList/>}></Route>
         <Route path='/RecruiterAssessList/:id' element={<OneAssessment />}></Route>
