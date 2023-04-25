@@ -20,6 +20,7 @@ import IntervieweeList from "./Recruits/send invitations";
 import OneAssessmentInterviewee from "./Components/Interviewee/everything/OneAssessment";
 import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
 import IntervieweeResponses from "./Recruits/view interviewee answers";
+import QuizApp from "./Components/Interviewee/QuizApp/QuizApp";
 function App() {
   return (
     <div className="App">
@@ -39,7 +40,7 @@ function App() {
         <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route>
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
-        <Route path='/AppInterviewee' element={<AppInterviewee />}></Route>
+        <Route path="/QuizApp" element={<QuizApp  />}></Route> 
         <Route path='/ClientReset' element={<ClientPasswordreset/>}></Route>
         <Route path='/RecruiterReset' element={<RecruiterPasswordreset/>}></Route>
         <Route path='/getStarted' element={<UserTypeSelection/>}></Route>

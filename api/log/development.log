@@ -6805,3 +6805,47 @@ Started GET "/quiz" for 127.0.0.1 at 2023-04-25 11:43:10 +0300
   
 ActionController::RoutingError (No route matches [GET] "/quiz"):
   
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 12:20:01 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 12:41:48 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 12:42:02 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 12:49:23 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 13:00:59 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 13:07:17 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 13:12:26 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 13:17:28 +0300
+Processing by QuestionsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.43ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 14ms (Views: 6.2ms | Allocations: 289)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2023-04-25 14:11:16 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/brian/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/brian/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 145.8ms | Allocations: 449)
+Completed 200 OK in 260ms (Views: 208.7ms | Allocations: 1096)
+
+
