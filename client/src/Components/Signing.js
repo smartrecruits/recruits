@@ -43,7 +43,7 @@ function Signing() {
       saveRecruiter(data.user.id)
       storeRecruiterToken(data.token)
       //  console.log(data.user.id)
-      navigate('/');
+      navigate('/Recruiterdb');
     })
   }
   const handleSignUpSubmit = (event) => {

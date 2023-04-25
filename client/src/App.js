@@ -21,6 +21,7 @@ import OneAssessmentInterviewee from "./Components/Interviewee/everything/OneAss
 import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
 import CodeChallenges from "./Features/codechallenges/codechallengeslist";
 import IntervieweeResponses from "./Recruits/view interviewee answers";
+import Recruiterdb from "./Recruits/Recruiterdb";
 function App() {
   return (
     <div className="App">
@@ -28,6 +29,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home/>}></Route>
+        <Route path='/Recruiterdb' element={<Recruiterdb/>}></Route>
         <Route path='/answers/:interviewee_id/:assessment_id' element={<IntervieweeResponses/>}></Route>
         <Route path='/intervieweescorelist/:id' element={<IntervieweeAssessments/>}></Route>
         <Route exact path='/intervieweescorelist' element={<IntervieweeScoreList/>}></Route>

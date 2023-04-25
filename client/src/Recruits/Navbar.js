@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import './Navbar.css'
-function Navbar() {
+import { Link } from 'react-router-dom';
+import { removeRecruiter, removeRecruiterToken,getRecruiterToken } from '../Components/utils/auth';
+function RecruiterNavbar() {
   const [activeLink, setActiveLink] = useState('home');
+  let recruiterToken = getRecruiterToken()
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
   };
+  function handleLogout(){
+    fetch("https://backend-dc1w.onrender.com/users/logout", {
+      method: "DELETE",
+    }).then(() => {
+      removeRecruiter();
+      removeRecruiterToken();
+      recruiterToken = null
+    })   
+  }
 
   return (
     <div className="navbar-wrapper">
@@ -13,19 +25,19 @@ function Navbar() {
         <ul>
           <div className="nav-item1">
             <li>
-              <a
-                href="/"
+              <Link
+                to="/"
                 className={activeLink === 'home' ? 'active' : ''}
                 onClick={() => handleLinkClick('home')}
               >
                 Home
-              </a>
+              </Link>
             </li>
           </div>
           <div className="nav-item2">
             <li>
               <a
-                href="/about"
+                href="#mision"
                 className={activeLink === 'about' ? 'active' : ''}
                 onClick={() => handleLinkClick('about')}
               >
@@ -35,13 +47,13 @@ function Navbar() {
           </div>
           <div className="nav-item3">
             <li>
-              <a
-                href="/logout"
+              <Link
+                to="/"
                 className={activeLink === 'logout' ? 'active' : ''}
-                onClick={() => handleLinkClick('logout')}
+                onClick={handleLogout}
               >
                 Logout
-              </a>
+              </Link>
             </li>
           </div>
         </ul>
@@ -50,4 +62,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default RecruiterNavbar;
