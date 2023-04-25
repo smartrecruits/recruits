@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getRecruiter, getRecruiterToken } from '../Components/utils/auth';
 import { reviewAssesment } from '../Features/assessments/assessmentSlice';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function IntervieweeAssessments() {
   const [assessments, setAssessments] = useState([]);
@@ -44,8 +44,7 @@ function IntervieweeAssessments() {
       <h2>Interviewee Marked as Done Assessments:</h2>
       {assessments.map((assessment) => (
         <div key={assessment.id}>
-          <p>Assessment ID: {assessment.id}</p>
-          <p>Status: {assessment.status}</p>
+          <Link to={`/answers/${id}/${assessment.id}`}><p>Assessment name: {assessment.name}</p></Link>
         </div>
       ))}
     </div>
