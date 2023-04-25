@@ -1,18 +1,22 @@
 import React from 'react'
 import styled from 'styled-components';
-import { IoStatsChart } from "react-icons/io5";
+
 import { themeColor, hoverEffect } from '../../utils/Interview';
+import { useNavigate } from 'react-router-dom';
+import { RiFileCopyLine } from 'react-icons/ri';
+
 
 function Earnings() {
+  const navigate = useNavigate();
   return (
     <EarningsCard>
       <CardContent>
         <Chart>
-          <IoStatsChart />
+        <RiFileCopyLine />
         </Chart>
-        <EarningsText>Tech World </EarningsText>
-        <Earning>$7,890</Earning>
-        <EarningsIncrease>+ 10% since last month</EarningsIncrease>
+        <EarningsText >TRIAL </EarningsText>
+        <Earning>Assessment</Earning>
+        <EarningsIncrease onClick={() => navigate("/QuizApp")}>Get the gist</EarningsIncrease>
       </CardContent>
     </EarningsCard>
   )
@@ -60,6 +64,7 @@ const Earning = styled.h2`
 
 const EarningsIncrease = styled.h5`
   text-align: center;
+  cursor: pointer;
   font-weight: normal;
   background-color: rgba(0, 0, 0, 0.2);
   padding: 0.5rem;

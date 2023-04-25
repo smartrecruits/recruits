@@ -24,8 +24,8 @@ function Sidebar() {
     <div className="SideMenu">
     <Container>
   <ProfileContainer>
-    <Avatar src={AvatarImage}/>
-    <Name> Mahat Maghadhi </Name>
+    <Avatar onClick={() => navigate("/MainContent")} src={AvatarImage}/>
+    <Name > Mahat Maghadhi </Name>
     <Badge content= "I am a Profound Software Engineer. Call me Daddy, hehe!!"/>
   </ProfileContainer>
   <LinksContainer>
@@ -43,7 +43,7 @@ function Sidebar() {
         </li>
       </NewLink>
       
-      <NewLink onClick={() => navigate("/reports")}>
+      <NewLink onClick={() => navigate("/result")}>
         <li>
           <AiOutlinePieChart />
           <h3>Reports</h3>
@@ -85,9 +85,9 @@ const ProfileContainer = styled.div`
 `;
 
 const Avatar = styled.img`
-  height: 7rem;
+  height: 8rem;
   border-radius: 8rem;
-  margin-top: 20%;
+  margin-top: 8%;
 `;
 
 const Name = styled.h1`
