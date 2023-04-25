@@ -11,6 +11,7 @@ function Client() {
   const [loginemail, setLoginEmail] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [errors, setErrors] = useState([]);
   let navigate = useNavigate();
   const [loginerrors, setLoginErrors] = useState([]);
@@ -68,17 +69,20 @@ function Client() {
     })
     .then(response => {
       if (response.ok) {
-        return response.json();
-        // setIsLoggedIn(true);
-        // navigate("/profile");
-        
-      
+        return response.json();     
       } else {
         response.json().then((err)=>setErrors([err.errors]))
       }
       setEmail('')
       setPassword('')
       setUsername('')
+    }).then(data => {
+      if (data) {
+        setSuccessMessage('Successfully signed up!');
+        setEmail('')
+        setPassword('')
+        setUsername('')
+      }
     })
   }
 
@@ -131,6 +135,9 @@ function Client() {
                 <input type="submit" className="button" value="Sign Up" />
             
               </div>
+              {successMessage && (
+                <p>{successMessage}</p>
+              )}
               {Object.keys(errors).length > 0 &&
                   Object.entries(errors).map(([key, value]) => {
                     if (Array.isArray(value)) {
