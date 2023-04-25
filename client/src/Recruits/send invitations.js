@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAssess } from '../Features/assessments/assessmentSlice';
 
 function IntervieweeList() {
-  const assessments = useSelector(state => state.assessments);
+  const assessments = useSelector(state => state.assessments.assessments);
   const [interviewees, setInterviewees] = useState([]);
   const [errors, setErrors]  = useState([])
   const [selectedAssessment, setSelectedAssessment] = useState(null);

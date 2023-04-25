@@ -1,8 +1,8 @@
 class Recruiter < ApplicationRecord
     has_secure_password
     has_many :assessments
-    has_many :interviewees, through: :assessments
     has_many :invites
+    has_many :interviewees, through: :invites
     has_many :questions
     #has_many :answers
  

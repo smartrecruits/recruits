@@ -5,7 +5,7 @@ import Earnings from './Earnings';
 import Info from './Info';
 import Projects from './Projects';
 import Invoices from './Invoices';
-import JoinSlack from './JoinSlack';
+// import JoinSlack from './JoinSlack';
 import ProjectRecommendation from './ProjectRecommendation';
 
 function MainContent() {
@@ -29,7 +29,7 @@ function MainContent() {
               <TitleText>Recent Assessments </TitleText>
               <Invoices />
             </InvoiceContainer>
-            <JoinSlack />
+            {/* <JoinSlack /> */}
           </ColumnOne2>
           <ColumnTwo2>
             <TitleText> UPCOMING CODE-CHALLENGE </TitleText>

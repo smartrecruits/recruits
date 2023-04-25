@@ -31,12 +31,12 @@ Rails.application.routes.draw do
   put '/interviewees/:interviewee_id/invites/:id/accept', to: 'invites#decline', as: 'deny_interviewee_invite'
   # get '/interviewees/:interviewee_id/invites/:id/accept', to: 'invites#accept', as: 'accept_interviewee_invite'
 
-  resources :answers, only: [:create]
-  get '/questions/:question_id/answers', to: 'answers#index'
-  get '/questions/:question_id/answers/:id', to: 'answers#show'
-  put '/questions/:question_id/answers/:id', to: 'answers#update'
-  patch '/questions/:question_id/answers/:id', to: 'answers#update'
-  delete '/questions/:question_id/answers/:id', to: 'answers#destroy'
+  resources :answers, only: [:create,:index,:show ]
+  # get '/code_challenges/:code_challenge_id/answers', to: 'answers#index'
+  # get '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#show'
+  put '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#update'
+  patch '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#update'
+  delete '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#destroy'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

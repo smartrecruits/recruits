@@ -4,11 +4,11 @@ class QuestionsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index
-      render json: recruiter.question.all
+      render json: Question.all
     end
   
     def show
-      question = recruiter.question.includes(params[:id])
+      question = Question.find(params[:id])
       render json: question
     end
     

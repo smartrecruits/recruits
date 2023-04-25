@@ -4,7 +4,6 @@ import Card from "./Card"
 // import './Assessment.css'
 
 
-
 function Assessments() {
     return <div>
         <Typography.Title level={4} style={{ color: 'white' }}>

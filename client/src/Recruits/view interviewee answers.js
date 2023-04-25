@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { getRecruiter, getInterviewee, getRecruiterToken,getIntervieweeToken } from '../Components/utils/auth';
+import { getRecruiter, getRecruiterToken} from '../Components/utils/auth';
 import { reviewAssesment } from '../Features/assessments/assessmentSlice';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-function IntervieweeResponses({intervieweeId, assessmentId}) {
+function IntervieweeResponses({assessmentId}) {
   const [questions, setQuestions] = useState([]);
   const [responses, setResponses] = useState([]);
   const [feedback, setFeedback] = useState('');
@@ -12,8 +13,9 @@ function IntervieweeResponses({intervieweeId, assessmentId}) {
   const recruiterId = getRecruiter() 
   const recruiterToken = getRecruiterToken()
   const dispatch = useDispatch()
+  const {id} = useParams()
   useEffect(() => {
-    fetch(`/interviewees/${intervieweeId}/responses`,{
+    fetch(`/interviewees/${id}/responses`,{
         headers: {
             Authorization: `Bearer ${recruiterToken}`
           }
@@ -29,7 +31,7 @@ function IntervieweeResponses({intervieweeId, assessmentId}) {
             res.json().then((err)=>setErrors([err.errors]))
         }
         })
-    },[intervieweeId,recruiterToken])
+    },[id,recruiterToken])
 
     function handleReviewChange(event) {
         setReviewed(event.target.value === 'true');

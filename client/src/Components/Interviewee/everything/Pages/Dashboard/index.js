@@ -1,8 +1,7 @@
 import { MediumWorkmarkOutlined, TrophyOutlined } from "@ant-design/icons"
 import { Card, Space, Statistic, Table, Typography } from "antd"
 import { useEffect, useState } from "react";
-// import {getAssessments, getComments} from "../../../API";
-import { getAssessments, getComments } from "../../../../API";
+import {getAssessments, getComments} from "../../../API";
 
 function Dashboard() {
     return ( 
