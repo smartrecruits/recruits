@@ -10,7 +10,7 @@ function Home(){
     return(
       <div className="App" data-testid="home">
         <>
-          {/* <Navbar /> */}
+          <Navbar />
           <LandingPage />
           <CompanyLogos />
           <Mission id="mission"/>
