@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { getInterviewee, getIntervieweeToken } from '../../utils/auth';
-const Invites = () => {
+const InvitesList = () => {
   const [invites, setInvites] = useState([]);
   const [errors, setErrors] = useState([])
   let intervieweeId = getInterviewee()
@@ -67,4 +67,4 @@ const Invites = () => {
   );
 };
 
-export default Invites;
+export default InvitesList;

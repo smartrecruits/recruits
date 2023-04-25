@@ -10,21 +10,23 @@ import Client from "./Components/Client";
 import { ClientPasswordreset } from "./Components/ClientReset";
 import { RecruiterPasswordreset } from "./Components/RecruiterReset";
 import AppInterviewee from "./AppInterviewee";
-// import QuestionList from "./Features/questions/questionlist";
-
+import QuestionList from "./Features/questions/questionlist";
+import OneAssessment from './Features/assessments/oneAssess'
 import AssessmentsList from "./Features/assessments/listAssessments";
-import OneAssessment from "./Components/Interviewee/everything/Features/assessments/oneAssess";
+import Invites from "./Components/Interviewee/everything/intervieweeAssesmentList";
+import InvitesList from "./Components/Interviewee/everything/invitesList";
 function App() {
   return (
     <div className="App">
       <>
-      <AppInterviewee />
       <Navbar />
       <Routes>
         <Route path='/' element={<Home/>}></Route>
-        <Route path='/RecruiterAssessList' element={<AssessmentsList/>}></Route>
+        <Route path='/assessments' element={<Invites/>}></Route>
+        <Route path='/invites' element={<InvitesList/>}></Route>
+        <Route exact path='/RecruiterAssessList' element={<AssessmentsList/>}></Route>
         <Route path='/RecruiterAssessList/:id' element={<OneAssessment />}></Route>
-        {/* <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route> */}
+        <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route>
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
         <Route path='/AppInterviewee' element={<AppInterviewee />}></Route>
