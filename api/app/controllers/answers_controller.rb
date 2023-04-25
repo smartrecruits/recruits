@@ -6,7 +6,9 @@ class AnswersController < ApplicationController
   
     # GET /answers
     def index
-      answers = Answer.all
+      interviewee = Interviewee.find(params[:interviewee_id])
+      code_challenges = interviewee.code_challenges
+      answers = interviewee.answers.includes(:code_challenge) 
       render json: answers
     end
   
@@ -29,11 +31,24 @@ class AnswersController < ApplicationController
   
     # PATCH/PUT /answers/1
     def update
-      if answer.update(answer_params)
-        render json: answer
-      else
-        render json: answer.errors, status: :unprocessable_entity
-      end
+      recruiter = Recruiter.find(params[:recruiter_id])
+      answer = Answer.find(params[:id])
+      assessment = answer.code_challenge.assessment
+
+        if recruiter.id = assessment.recruiter_id
+            if answer.update(answer_params)
+            render json: answer, status: :ok
+            else
+            render json: { errors: answer.errors.full_messages }, status: :unprocessable_entity
+            end
+        else
+            render json: { errors: "You are not authorized to update this response." }, status: :unauthorized
+        end   
+      # if answer.update(answer_params)
+      #   render json: answer
+      # else
+      #   render json: answer.errors, status: :unprocessable_entity
+      # end
     end
   
     # DELETE /answers/1

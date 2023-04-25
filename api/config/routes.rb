@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :responses, only: [:create]
   get '/interviewee/:interviewee_id/responses', to: "responses#index"
   put '/recruiter/:recruiter_id/responses/:id', to: 'responses#update'
+  patch '/recruiter/:recruiter_id/responses/:id', to: 'responses#update'
 
   resources :code_challenges
 
@@ -23,21 +24,17 @@ Rails.application.routes.draw do
   get '/interviewee/:interviewee_id/invites', to: "invites#index_interviewee_invites"
   get '/interviewee/:interviewee_id/invites/:id', to: "invites#show_interviewee_invite"
 
-  put 'interviewees/:interviewee_id/invites/:id/accept_assessment', to: 'invites#accept_assessment', as: 'accept_interviewee_invite_path'
+  put 'interviewees/:interviewee_id/invites/:id/accept_assessment', to: 'invites#accept_assessment'
 
-  put '/interviewees/:interviewee_id/invites/:id/deny', to: 'invites#accept', as: 'accept_interviewee_invite'
-  # get '/interviewees/:interviewee_id/invites/:id/deny', to: 'invites#accept', as: 'deny_interviewee_invite'
-
-  put '/interviewees/:interviewee_id/invites/:id/accept', to: 'invites#decline', as: 'deny_interviewee_invite'
-  # get '/interviewees/:interviewee_id/invites/:id/accept', to: 'invites#accept', as: 'accept_interviewee_invite'
-
-  resources :answers, only: [:create,:index,:show ]
-  # get '/code_challenges/:code_challenge_id/answers', to: 'answers#index'
+  resources :answers, only: [:create,:show ]
+  get '/interviewee/:interviewee_id/answers', to: 'answers#index'
   # get '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#show'
-  put '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#update'
-  patch '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#update'
-  delete '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#destroy'
+  # put '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#update'
+  # patch '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#update'
+  # delete '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#destroy'
 
+  put '/recruiter/:recruiter_id/answers/:id', to: 'answers#update'
+  patch '/recruiter/:recruiter_id/answers/:id', to: 'answers#update'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
