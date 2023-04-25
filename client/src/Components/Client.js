@@ -9,16 +9,12 @@ function Client() {
   const [loginemail, setLoginEmail] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
   const [email, setEmail] = useState('');
-  // const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
-  // const [loginloading, setLoginLoading] = useState(false);
   let navigate = useNavigate();
   const [loginerrors, setLoginErrors] = useState([]);
 
   const handleSignInSubmit = (event) => {
     event.preventDefault();
-    // Code to handle sign in submission
-    // setLoginLoading(true)  
         fetch('https://recruits.onrender.com/interviewee/login', {
           method: 'POST',
           headers: {
@@ -32,12 +28,10 @@ function Client() {
         .then(response => {
           if (response.ok) {
             return response.json();
-            // setIsLoggedIn(true);
-            // navigate("/profile");
+           
           } else {
             response.json().then((err)=>setLoginErrors([err.errors]))
           }
-          // setLoginLoading(false)
           setLoginEmail('')
           setLoginPassword('')
         })
@@ -46,7 +40,7 @@ function Client() {
           saveInterviewee(data.user.id)
           storeIntervieweeToken(data.token)
           //  console.log(data.user.id)
-          navigate('/');
+          navigate('/clientdb');
           setLoginEmail('')
           setLoginPassword('')
         })
@@ -56,7 +50,6 @@ function Client() {
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign up submission
-    // setLoading(true)  
     fetch('https://recruits.onrender.com/interviewee', {
       method: 'POST',
       headers: {
@@ -77,7 +70,6 @@ function Client() {
       } else {
         response.json().then((err)=>setErrors([err.errors]))
       }
-      // setLoading(false)
       setEmail('')
       setPassword('')
       setUsername('')
@@ -100,14 +92,8 @@ function Client() {
               <div className="group">
                 <input placeholder="Password" id="password" name="password" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
-              <div className="group">
-              {/* { loginloading ? (<div className="d-flex align-items-center" id="loader">
-                                        <strong>Please Wait...</strong>
-                        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                        </div> ): ( */}
-                                <input type="submit" className="button" value="Sign In" />
-                        {/* )
-               } */}
+              <div className="group">   
+                    <input type="submit" className="button" value="Sign In" />
               </div>
               {loginerrors.length > 0 && (
                 <div className="text-danger" id="errors">
@@ -133,18 +119,11 @@ function Client() {
               <div className="group">
                 <input placeholder="Password" id="password" name="password" type="password" className="input" data-type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
               </div>
-              {/* <div className="group">
-                <input placeholder="Confirm password" id="confirm-password" type="password" className="input" data-type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
-              </div> */}
+           
               <div className="group">
-              {/* { loading ? (<div className="d-flex align-items-center" id="loader">
-                                        <strong>Please Wait...</strong>
-                        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                        </div> ): ( */}
-                                <input type="submit" className="button" value="Sign Up" />
-                        {/* )
-               }
-             */}
+            
+                <input type="submit" className="button" value="Sign Up" />
+            
               </div>
               {Object.keys(errors).length > 0 &&
                   Object.entries(errors).map(([key, value]) => {

@@ -29,7 +29,7 @@ function Sidebar() {
   <LinksContainer>
     <Links>
       <NewLink>
-        <Link to="/">
+        <Link to="/clientdb">
           <li>
             <RiHomeLine />
             <h3>Dashboard</h3>
