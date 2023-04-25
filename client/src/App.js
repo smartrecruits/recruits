@@ -20,6 +20,8 @@ import OneAssessmentInterviewee from "./Components/Interviewee/everything/OneAss
 import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
 import CodeChallenges from "./Features/codechallenges/codechallengeslist";
 import IntervieweeResponses from "./Recruits/view interviewee answers";
+// import Results from "./Components/Interviewee/QuizApp/Results";
+
 function App() {
   const location = useLocation();
 

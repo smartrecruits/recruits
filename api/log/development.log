@@ -6882,3 +6882,107 @@ Filter chain halted as :verify_auth rendered or redirected
 Completed 401 Unauthorized in 192ms (Views: 191.4ms | Allocations: 177)
 
 
+Started GET "/ws" for ::1 at 2023-04-25 23:45:28 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/" for 127.0.0.1 at 2023-04-25 23:45:29 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/brian/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/brian/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 3.2ms | Allocations: 458)
+Completed 200 OK in 22ms (Views: 4.4ms | ActiveRecord: 0.0ms | Allocations: 3874)
+
+
+Started GET "/ws" for ::1 at 2023-04-25 23:45:37 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-25 23:45:53 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 23:46:16 +0300
+Processing by QuestionsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 2.6ms | ActiveRecord: 0.0ms | Allocations: 640)
+
+
+Started GET "/ws" for ::1 at 2023-04-25 23:46:25 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 23:46:34 +0300
+Processing by QuestionsController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 178)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-04-25 23:46:35 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/ws" for ::1 at 2023-04-25 23:47:30 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 23:47:56 +0300
+Processing by QuestionsController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 176)
+
+
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 23:47:59 +0300
+Processing by QuestionsController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 177)
+
+
+Started GET "/interviewee/questions" for 127.0.0.1 at 2023-04-25 23:48:43 +0300
+Processing by IntervieweesController#show as HTML
+  Parameters: {"id"=>"questions"}
+  [1m[36mInterviewee Load (1.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:33:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 54ms (Views: 0.7ms | ActiveRecord: 11.8ms | Allocations: 9776)
+
+
+Started GET "/interviewee/:interviewee_id/responses" for 127.0.0.1 at 2023-04-25 23:49:25 +0300
+Processing by ResponsesController#index as HTML
+  Parameters: {"interviewee_id"=>":interviewee_id"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 195)
+
+
+Started GET "/interviewee/:interviewee_id/responses" for 127.0.0.1 at 2023-04-25 23:49:30 +0300
+Processing by ResponsesController#index as HTML
+  Parameters: {"interviewee_id"=>":interviewee_id"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 177)
+
+
+Started GET "/ws" for ::1 at 2023-04-25 23:49:39 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 23:51:54 +0300
+Processing by QuestionsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 178)
+
+
+Started GET "/ws" for ::1 at 2023-04-25 23:53:56 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-26 00:02:29 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
