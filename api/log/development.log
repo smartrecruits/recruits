@@ -6149,3 +6149,659 @@ Filter chain halted as :verify_auth rendered or redirected
 Completed 401 Unauthorized in 7ms (Views: 5.3ms | ActiveRecord: 0.0ms | Allocations: 180)
 
 
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-04-25 00:08:04 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/brian/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/brian/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.5ms | Allocations: 766)
+Completed 200 OK in 29ms (Views: 10.7ms | ActiveRecord: 0.0ms | Allocations: 6152)
+
+
+Started GET "/ws" for ::1 at 2023-04-25 00:08:04 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-25 00:08:13 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:08:29 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 640)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:08:29 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms | Allocations: 180)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:09:25 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 180)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:09:25 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 179)
+
+
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 00:13:38 +0300
+Processing by QuestionsController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 195)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-04-25 00:13:39 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:14:30 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:14:30 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:14:37 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:14:37 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 5.6ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:17:45 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:17:45 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.7ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:18:24 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:18:24 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:20:00 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:20:00 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:20:06 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:20:06 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.7ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:20:28 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:20:28 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:21:36 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 179)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:21:36 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:23:08 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.22ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.9ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:23:08 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:23:15 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:23:15 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:23:44 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:23:44 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:24:54 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:24:54 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:24:54 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:24:54 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 1.2ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:24:57 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:24:57 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:25:08 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:25:08 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:25:24 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:25:24 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:25:29 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.3ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:25:29 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:25:48 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:25:48 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 3.0ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:05 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:05 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:09 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:09 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:25 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:25 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:27 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:27 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:29 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:26:29 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:28:12 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:28:12 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:28:17 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:28:17 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.1ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:28:27 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:28:27 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:29:05 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:29:05 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:29:10 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:29:10 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:30:39 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:30:39 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:36:13 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 0.6ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:36:13 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:36:21 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.2ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:36:21 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:39:46 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:39:46 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:49:56 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:49:56 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:49:59 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 178)
+
+
+Started GET "/assessments/undefined" for 127.0.0.1 at 2023-04-25 00:49:59 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"id"=>"undefined"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | Allocations: 178)
+
+
+  [1m[35m (21.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (11.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (23.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-04-25 10:26:33 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (4.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/brian/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/brian/.rbenv/versions/2.7.4/lib/ruby/gems/2.7.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 101.4ms | Allocations: 766)
+Completed 200 OK in 604ms (Views: 351.6ms | ActiveRecord: 0.0ms | Allocations: 6565)
+
+
+Started GET "//quiz" for 127.0.0.1 at 2023-04-25 11:26:47 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 11:26:54 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 11:27:42 +0300
+Processing by QuestionsController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.27ms)
+Filter chain halted as :verify_auth rendered or redirected
+Completed 401 Unauthorized in 48ms (Views: 44.9ms | Allocations: 630)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2023-04-25 11:27:51 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 11:29:10 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 11:29:23 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 11:39:53 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+Started GET "/quiz" for 127.0.0.1 at 2023-04-25 11:43:10 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
