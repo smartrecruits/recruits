@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "./Components/footer";
 import Signing from "./Components/Signing";
 import Home from "./Components/Home";
-import { Route, Routes} from 'react-router-dom';
+import { Route, Routes, useLocation} from 'react-router-dom';
 import './index.css'
 import UserTypeSelection from "./Components/GetStarted";
 import Client from "./Components/Client";
@@ -21,11 +21,15 @@ import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
 import IntervieweeResponses from "./Recruits/view interviewee answers";
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="App">
       <>
-      
-      
+      <AppInterviewee />
+      {location.pathname.includes('/AppInterviewee') && <AppInterviewee />}
+
+
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/answers/:interviewee_id/:assessment_id' element={<IntervieweeResponses/>}></Route>

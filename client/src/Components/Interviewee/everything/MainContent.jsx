@@ -150,4 +150,4 @@ const ColumnTwo2 = styled.div`
 
 
 
-export default MainContent
+export default MainContent;
