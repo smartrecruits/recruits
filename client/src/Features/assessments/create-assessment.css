@@ -1,0 +1,57 @@
+.create-assessment-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+  }
+  
+  .create-assessment-card {
+    background-color: rgb(220, 180, 228);
+    border-radius: 8px;
+    box-shadow: 0 48px 96px rgba(7, 3, 3, 0.2);
+    padding: 24px;
+    height: 200px;
+    width: 450px;
+    margin-top: 50px;
+  }
+  
+  .create-assessment-heading {
+    font-family: Times New Roman;
+    text-align: center;
+  }
+  
+  .create-assessment-form {
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .create-assessment-label {
+    font-family: Times New Roman;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .create-assessment-button {
+    background-color: #d400ff;
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .create-assessment-button:hover {
+    background-color: #cfe02f;
+  }
+  
+  .create-assessment-error-container {
+    margin-top: 16px;
+  }
+  
+  .create-assessment-error {
+    font-family: Times New Roman;
+    color: red;
+  }
+  
