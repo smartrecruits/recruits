@@ -1,10 +1,9 @@
 import React from "react";
 import Footer from "./Components/footer";
-import Navbar from "./Components/Navbar";
 import Signing from "./Components/Signing";
 import Home from "./Components/Home";
-import { Route, Routes, useLocation } from "react-router-dom";
-import "./index.css";
+import { Route, Routes, useLocation} from 'react-router-dom';
+import './index.css'
 import UserTypeSelection from "./Components/GetStarted";
 import Client from "./Components/Client";
 import { ClientPasswordreset } from "./Components/ClientReset";
@@ -21,13 +20,16 @@ import OneAssessmentInterviewee from "./Components/Interviewee/everything/OneAss
 import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
 import CodeChallenges from "./Features/codechallenges/codechallengeslist";
 import IntervieweeResponses from "./Recruits/view interviewee answers";
-import QuizApp from "./Components/Interviewee/QuizApp/QuizApp";
-import Recruiterdb from "./Recruits/Recruiterdb";
 function App() {
+  const location = useLocation();
+
   return (
     <div className="App">
       <>
-      {/* <Navbar /> */}
+      <AppInterviewee />
+      {location.pathname.includes('/AppInterviewee') && <AppInterviewee />}
+
+
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/Recruiterdb' element={<Recruiterdb/>}></Route>
@@ -43,12 +45,11 @@ function App() {
         <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route>
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
-        <Route path="/QuizApp" element={<QuizApp  />}></Route> 
+        <Route path='/AppInterviewee' element={<AppInterviewee />}></Route>
         <Route path='/ClientReset' element={<ClientPasswordreset/>}></Route>
         <Route path='/RecruiterReset' element={<RecruiterPasswordreset/>}></Route>
         <Route path='/getStarted' element={<UserTypeSelection/>}></Route>
-        <Route path='/clientdb' element={<AppInterviewee/>}></Route>
-        <Route path='/RecruiterCodeChallenges' element={<CodeChallenges/>}></Route>
+        {/* <Route path='/clientdb' element={<AppInterviewee/>}></Route> */}
 
       </Routes>
      
