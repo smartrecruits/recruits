@@ -13,9 +13,7 @@ import AppInterviewee from "./AppInterviewee";
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
-      
-=======
+
       <>
       <Navbar />
       <Routes>
@@ -31,7 +29,7 @@ function App() {
      
       <Footer />
       </>
->>>>>>> 8d751f54af52037cca89169bc6d5a7aaf84d4afc
+
     </div>
   );
 }
