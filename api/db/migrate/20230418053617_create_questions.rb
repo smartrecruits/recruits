@@ -8,7 +8,6 @@ class CreateQuestions < ActiveRecord::Migration[7.0]
       t.string :answer_4
       t.string :correct_answer
       t.integer :totalAttempts, dafault: 0
-      t.integer :assessment_id
       t.integer :recruiter_id
 
       t.timestamps

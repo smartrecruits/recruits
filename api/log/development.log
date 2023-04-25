@@ -6149,3 +6149,1105 @@ Filter chain halted as :verify_auth rendered or redirected
 Completed 401 Unauthorized in 7ms (Views: 5.3ms | ActiveRecord: 0.0ms | Allocations: 180)
 
 
+  [1m[35m (244.7ms)[0m  [1m[35mCREATE DATABASE "api_development" ENCODING = 'unicode'[0m
+  [1m[35m (86.7ms)[0m  [1m[35mCREATE DATABASE "api_test" ENCODING = 'unicode'[0m
+  [1m[35m (12.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRecruiters (20230417081126)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE TABLE "recruiters" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "company" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417081126"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInterviewees (20230417085139)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "interviewees" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "bio" character varying, "grades" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417085139"]]
+  [1m[36mTRANSACTION (8.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAnswers (20230417140023)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (16.8ms)[0m  [1m[35mCREATE TABLE "answers" ("id" bigserial primary key, "content" text, "feedback" character varying, "grades" integer, "code_challenge_id" integer, "assessment_id" integer, "interviewee_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417140023"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateQuestions (20230418053617)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (16.1ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "content" text, "answer_1" character varying, "answer_2" character varying, "answer_3" character varying, "answer_4" character varying, "correct_answer" character varying, "totalAttempts" integer, "assessment_id" integer, "recruiter_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230418053617"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInvites (20230419060150)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "invites" ("id" bigserial primary key, "interviewee_id" bigint NOT NULL, "recruiter_id" bigint NOT NULL, "assessment_id" integer, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_b4435670b0"
+FOREIGN KEY ("interviewee_id")
+  REFERENCES "interviewees" ("id")
+, CONSTRAINT "fk_rails_c42353fbaf"
+FOREIGN KEY ("recruiter_id")
+  REFERENCES "recruiters" ("id")
+)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE INDEX "index_invites_on_interviewee_id" ON "invites" ("interviewee_id")[0m
+  [1m[35m (9.4ms)[0m  [1m[35mCREATE INDEX "index_invites_on_recruiter_id" ON "invites" ("recruiter_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230419060150"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAssessments (20230419090035)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (16.3ms)[0m  [1m[35mCREATE TABLE "assessments" ("id" bigserial primary key, "recruiter_id" bigint NOT NULL, "name" character varying, "accepted" boolean DEFAULT FALSE, "duedate" timestamp(6), "reviewed" boolean DEFAULT FALSE, "done" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_a7ac1b7547"
+FOREIGN KEY ("recruiter_id")
+  REFERENCES "recruiters" ("id")
+)[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE INDEX "index_assessments_on_recruiter_id" ON "assessments" ("recruiter_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230419090035"]]
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCodeChallenges (20230420111420)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.0ms)[0m  [1m[35mCREATE TABLE "code_challenges" ("id" bigserial primary key, "assessment_id" bigint NOT NULL, "name" character varying, "description" character varying, "totalAttempts" integer, "totalCompleted" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_7cec7f1052"
+FOREIGN KEY ("assessment_id")
+  REFERENCES "assessments" ("id")
+)[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE INDEX "index_code_challenges_on_assessment_id" ON "code_challenges" ("assessment_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230420111420"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResponses (20230420201212)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (21.6ms)[0m  [1m[35mCREATE TABLE "responses" ("id" bigserial primary key, "question_id" bigint NOT NULL, "interviewee_id" bigint NOT NULL, "chosen_answer" character varying, "feedback" character varying, "grades" integer, "correct" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_325af149a3"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+, CONSTRAINT "fk_rails_15fe94701f"
+FOREIGN KEY ("interviewee_id")
+  REFERENCES "interviewees" ("id")
+)[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE INDEX "index_responses_on_question_id" ON "responses" ("question_id")[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE INDEX "index_responses_on_interviewee_id" ON "responses" ("interviewee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230420201212"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStatistics (20230421130719)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "statistics" ("id" bigserial primary key, "total_questions" integer, "total_interviewees" integer, "total_responses" integer, "correct_responses" integer, "average_score" float, "highest_score" integer, "lowest_score" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230421130719"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-04-25 18:22:13.717758"], ["updated_at", "2023-04-25 18:22:13.717758"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE DATABASE "api_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE "api_test" ENCODING = 'unicode'[0m
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mRecruiter Load (4.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter1@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter1"], ["LIMIT", 1]]
+  [1m[36mRecruiter Create (3.4ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter1"], ["email", "recruiter1@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "John"], ["lastname", "Doe"], ["company", "ABC Inc."], ["created_at", "2023-04-25 18:58:44.165073"], ["updated_at", "2023-04-25 18:58:44.165073"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter2@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter2"], ["LIMIT", 1]]
+  [1m[36mRecruiter Create (0.2ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter2"], ["email", "recruiter2@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Jane"], ["lastname", "Smith"], ["company", "XYZ Corp."], ["created_at", "2023-04-25 18:58:44.419208"], ["updated_at", "2023-04-25 18:58:44.419208"]]
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter3@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter3"], ["LIMIT", 1]]
+  [1m[36mRecruiter Create (0.2ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter3"], ["email", "recruiter3@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Bob"], ["lastname", "Johnson"], ["company", "123 LLC"], ["created_at", "2023-04-25 18:58:44.660423"], ["updated_at", "2023-04-25 18:58:44.660423"]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (3.4ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter1@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter1"], ["LIMIT", 1]]
+  [1m[36mInterviewee Create (0.5ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "grades", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "recruiter1"], ["email", "recruiter1@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "John"], ["lastname", "Doe"], ["bio", "ABC Inc."], ["grades", nil], ["created_at", "2023-04-25 18:58:45.057199"], ["updated_at", "2023-04-25 18:58:45.057199"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter2@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter2"], ["LIMIT", 1]]
+  [1m[36mInterviewee Create (0.3ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "grades", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "recruiter2"], ["email", "recruiter2@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Jane"], ["lastname", "Smith"], ["bio", "XYZ Corp."], ["grades", nil], ["created_at", "2023-04-25 18:58:45.291624"], ["updated_at", "2023-04-25 18:58:45.291624"]]
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter3@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter3"], ["LIMIT", 1]]
+  [1m[36mInterviewee Create (0.3ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "grades", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "recruiter3"], ["email", "recruiter3@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Bob"], ["lastname", "Johnson"], ["bio", "123 LLC"], ["grades", nil], ["created_at", "2023-04-25 18:58:45.532723"], ["updated_at", "2023-04-25 18:58:45.532723"]]
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (4.4ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 1"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 18:58:45.725426"], ["updated_at", "2023-04-25 18:58:45.725426"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (0.6ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 2"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 18:58:45.742826"], ["updated_at", "2023-04-25 18:58:45.742826"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (0.5ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 3"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 18:58:45.755699"], ["updated_at", "2023-04-25 18:58:45.755699"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (0.3ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 4"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 18:58:45.765088"], ["updated_at", "2023-04-25 18:58:45.765088"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/code_challenges" for 127.0.0.1 at 2023-04-25 22:00:07 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CodeChallengesController#index as */*
+  Parameters: {"code_challenge"=>{}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 422 Unprocessable Entity in 25ms (Views: 23.6ms | ActiveRecord: 23.8ms | Allocations: 759)
+
+
+Started POST "/recruiter/login" for 127.0.0.1 at 2023-04-25 22:01:59 +0300
+Processing by RecruitersController#login as */*
+  Parameters: {"username"=>"recruiter1", "password"=>"[FILTERED]", "recruiter"=>{"username"=>"recruiter1"}}
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f2d60e0a3a0>, params: {"username"=>"recruiter1", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"recruiter1"}} }[0m
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f2d60e0a3a0>, params: {"username"=>"recruiter1", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"recruiter1"}} }[0m
+  [1m[36mRecruiter Load (3.9ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE (username = 'recruiter1' OR email = NULL) ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:16:in `login'
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f2d60e0a3a0>, params: {"username"=>"recruiter1", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"recruiter1"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.32ms)
+Completed 200 OK in 421ms (Views: 0.7ms | ActiveRecord: 9.3ms | Allocations: 38593)
+
+
+Started GET "/code_challenges" for 127.0.0.1 at 2023-04-25 22:02:33 +0300
+Processing by CodeChallengesController#index as */*
+  Parameters: {"username"=>"recruiter1", "password"=>"[FILTERED]", "code_challenge"=>{}}
+  [1m[36mCodeChallenge Load (4.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges"[0m
+  ↳ app/controllers/code_challenges_controller.rb:8:in `+'
+No serializer found for resource: {"id"=>"6347f9715467f0001b434936", "name"=>"Matrix Weight", "slug"=>"matrix-weight", "category"=>"algorithms", "publishedAt"=>"2022-10-14T08:00:00.646Z", "approvedAt"=>"2023-04-25T17:34:46.370Z", "languages"=>["scala", "python", "c", "java"], "url"=>"https://www.codewars.com/kata/6347f9715467f0001b434936", "rank"=>{"id"=>-7, "name"=>"7 kyu", "color"=>"white"}, "createdAt"=>"2022-10-13T11:41:37.164Z", "createdBy"=>{"username"=>"oscar.mm2", "url"=>"https://www.codewars.com/users/oscar.mm2"}, "approvedBy"=>{"username"=>"jallemeister", "url"=>"https://www.codewars.com/users/jallemeister"}, "description"=>"A matrix is \"fat\" when the sum of the roots of its \"Widths\" is greater than the sum of the roots of its \"Heights\". Otherwise, we call it as a \"thin\" matrix.\n\n\nBut what is the meaning of that? \n\n\nA Width of a matrix is the sum of all the elements in a row. \n\nSimilarly, a Height of a matrix is the sum of all the elements in a column.\n\n\nDifficult to assimilate? Let's look at an example.\n\n```\nThe matrix [ [1, 3] , [5, 7] ] :\n\n  - Sum of rooted Widths: √(1+3) + √(5+7) = √4 + √12\n  - Sum of rooted Heights: √(1+5) + √(3+7) = √6 + √10\n  \nSince \"width\" is smaller than \"height\", we determine this matrix is \"thin\".\n\nThe matrix [ [1, 4, 7], [2, 5, 8], [3, 6, 9] ] :\n\n  - Sum of rooted Widths:√(1+4+7) + √(2+5+8) + √(3+6+9)  = √12 + √15 + √18  = 11.57972565...\n  - Sum of rooted Heights: √(1+2+3) + √(4+5+6) + √(7+8+9) = √6 + √15 + √24 = 11.22145257...\n  \nSince \"height\" is smaller than \"width\", we determine this matrix is \"fat\".\n```\n***TASK:\nYour task is to return \"thin\", \"fat\" or \"perfect\" depending on the results obtained.***\n\nNOTES:\n- All matrices will be squared\n- In case that both sums are equal, the matrix will be considered as \"perfect\".\n- DON'T round the roots... every digit matters ;) \n\n  ***Since the results of the roots may have a slight variation, to determine     that a matrix is \"perfect\", I suggest you use an approximate error of 1E-       10.***\n \n- If a Width or a Height is negative, return None \n\n", "totalAttempts"=>279, "totalCompleted"=>77, "totalStars"=>4, "voteScore"=>113, "tags"=>["Matrix"], "contributorsWanted"=>true, "unresolved"=>{"issues"=>0, "suggestions"=>1}}
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (8.27ms)
+Completed 200 OK in 32203ms (Views: 91.0ms | ActiveRecord: 4.4ms | Allocations: 57809)
+
+
+Started POST "/assessments" for 127.0.0.1 at 2023-04-25 22:06:31 +0300
+Processing by AssessmentsController#create as */*
+  Parameters: {"recruiter_id"=>"1", "name"=>"Trial", "assessment"=>{"recruiter_id"=>"1", "name"=>"Trial"}}
+[31mUnpermitted parameter: :assessment. Context: { controller: AssessmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2d54009c80>, params: {"recruiter_id"=>"1", "name"=>"Trial", "controller"=>"assessments", "action"=>"create", "assessment"=>{"recruiter_id"=>"1", "name"=>"Trial"}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mAssessment Create (1.1ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "Trial"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 19:06:32.113423"], ["updated_at", "2023-04-25 19:06:32.113423"]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (26.95ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 279ms (Views: 0.5ms | ActiveRecord: 10.7ms | Allocations: 28968)
+
+
+Started POST "/assessments" for 127.0.0.1 at 2023-04-25 22:13:07 +0300
+Processing by AssessmentsController#create as */*
+  Parameters: {"recruiter_id"=>"1", "name"=>"Trial", "assessment"=>{"recruiter_id"=>"1", "name"=>"Trial"}}
+[31mUnpermitted parameter: :assessment. Context: { controller: AssessmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2d481c8820>, params: {"recruiter_id"=>"1", "name"=>"Trial", "controller"=>"assessments", "action"=>"create", "assessment"=>{"recruiter_id"=>"1", "name"=>"Trial"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mAssessment Create (0.8ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "Trial"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 19:13:08.155667"], ["updated_at", "2023-04-25 19:13:08.155667"]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (15.58ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 135ms (Views: 0.7ms | ActiveRecord: 18.0ms | Allocations: 9636)
+
+
+Started POST "/assessments" for 127.0.0.1 at 2023-04-25 22:16:16 +0300
+Processing by AssessmentsController#create as */*
+  Parameters: {"recruiter_id"=>"1", "name"=>"Trial", "assessment"=>{"recruiter_id"=>"1", "name"=>"Trial"}}
+[31mUnpermitted parameter: :assessment. Context: { controller: AssessmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2d503ba798>, params: {"recruiter_id"=>"1", "name"=>"Trial", "controller"=>"assessments", "action"=>"create", "assessment"=>{"recruiter_id"=>"1", "name"=>"Trial"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mRecruiter Load (3.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mAssessment Create (1.4ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "Trial"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 19:16:17.400980"], ["updated_at", "2023-04-25 19:16:17.400980"]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+[active_model_serializers]   [1m[36mInterviewee Load (2.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:14:in `create'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (165.79ms)
+Completed 201 Created in 332ms (Views: 217.8ms | ActiveRecord: 39.3ms | Allocations: 30139)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-25 22:17:55 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:17:in `create'
+  [1m[36mQuestion Create (3.6ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "assessment_id", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["content", "Random"], ["answer_1", nil], ["answer_2", nil], ["answer_3", nil], ["answer_4", nil], ["correct_answer", nil], ["totalAttempts", nil], ["assessment_id", nil], ["recruiter_id", 1], ["created_at", "2023-04-25 19:17:55.131803"], ["updated_at", "2023-04-25 19:17:55.131803"]]
+  ↳ app/controllers/questions_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:17:in `create'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (15.71ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 57ms (Views: 0.6ms | ActiveRecord: 8.6ms | Allocations: 23854)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-25 22:18:36 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mRecruiter Load (0.9ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:17:in `create'
+  [1m[36mQuestion Create (1.1ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "assessment_id", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["content", "Random"], ["answer_1", nil], ["answer_2", nil], ["answer_3", nil], ["answer_4", nil], ["correct_answer", nil], ["totalAttempts", nil], ["assessment_id", nil], ["recruiter_id", 1], ["created_at", "2023-04-25 19:18:36.822358"], ["updated_at", "2023-04-25 19:18:36.822358"]]
+  ↳ app/controllers/questions_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (4.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:17:in `create'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (65.66ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.23ms)
+Completed 422 Unprocessable Entity in 207ms (Views: 2.0ms | ActiveRecord: 29.6ms | Allocations: 16696)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-25 22:21:22 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mRecruiter Load (4.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:17:in `create'
+  [1m[36mQuestion Create (1.6ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "assessment_id", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["content", "Random"], ["answer_1", nil], ["answer_2", nil], ["answer_3", nil], ["answer_4", nil], ["correct_answer", nil], ["totalAttempts", nil], ["assessment_id", nil], ["recruiter_id", 1], ["created_at", "2023-04-25 19:21:23.904726"], ["updated_at", "2023-04-25 19:21:23.904726"]]
+  ↳ app/controllers/questions_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:17:in `create'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (1.67ms)
+Completed 201 Created in 164ms (Views: 11.8ms | ActiveRecord: 46.4ms | Allocations: 12944)
+
+
+Started GET "/interviewees" for 127.0.0.1 at 2023-04-25 22:22:20 +0300
+Processing by IntervieweesController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "interviewee"=>{}}
+  [1m[36mInterviewee Load (1.1ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees"[0m
+  ↳ app/controllers/interviewees_controller.rb:57:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.73ms)
+Completed 200 OK in 98ms (Views: 89.0ms | ActiveRecord: 15.9ms | Allocations: 15916)
+
+
+Started GET "/assessments" for 127.0.0.1 at 2023-04-25 22:22:59 +0300
+Processing by AssessmentsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "assessment"=>{"recruiter_id"=>"1"}}
+  [1m[36mAssessment Load (5.2ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (1.8ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mRecruiter Load (1.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (1.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 2]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (1.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 3]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (2.0ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 4]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (1.5ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 5]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.8ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 6]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.9ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (227.33ms)
+Completed 200 OK in 290ms (Views: 252.0ms | ActiveRecord: 41.5ms | Allocations: 24088)
+
+
+Started GET "/assessments" for 127.0.0.1 at 2023-04-25 22:26:38 +0300
+Processing by AssessmentsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "assessment"=>{"recruiter_id"=>"1"}}
+  [1m[36mAssessment Load (1.6ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.6ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 2]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (7.5ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 3]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (1.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 4]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (3.8ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 5]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.6ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 6]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (449.09ms)
+Completed 200 OK in 538ms (Views: 455.6ms | ActiveRecord: 85.1ms | Allocations: 37819)
+
+
+Started GET "/assessments" for 127.0.0.1 at 2023-04-25 22:29:39 +0300
+Processing by AssessmentsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "assessment"=>{"recruiter_id"=>"1"}}
+  [1m[36mAssessment Load (0.9ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.2ms)
+Completed 422 Unprocessable Entity in 73ms (Views: 1.9ms | ActiveRecord: 13.0ms | Allocations: 4918)
+
+
+Started GET "/assessments" for 127.0.0.1 at 2023-04-25 22:31:46 +0300
+Processing by AssessmentsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "assessment"=>{"recruiter_id"=>"1"}}
+  [1m[36mAssessment Load (1.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 422 Unprocessable Entity in 110ms (Views: 2.1ms | ActiveRecord: 28.2ms | Allocations: 4894)
+
+
+Started GET "/assessments" for 127.0.0.1 at 2023-04-25 22:32:20 +0300
+Processing by AssessmentsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "assessment"=>{"recruiter_id"=>"1"}}
+  [1m[36mAssessment Load (1.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (16.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mRecruiter Load (1.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (6.1ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (788.21ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.29ms)
+Completed 422 Unprocessable Entity in 858ms (Views: 2.6ms | ActiveRecord: 100.5ms | Allocations: 41370)
+
+
+Started GET "/assessments" for 127.0.0.1 at 2023-04-25 22:36:32 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (5.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 2 pending migrations:
+
+20230425193508_create_assessments_questions.rb
+20230425193623_create_assessments_code_challenges.rb
+
+
+):
+  
+activerecord (7.0.4.3) lib/active_record/migration.rb:627:in `check_pending!'
+activerecord (7.0.4.3) lib/active_record/migration.rb:592:in `block (2 levels) in call'
+activesupport (7.0.4.3) lib/active_support/file_update_checker.rb:83:in `execute'
+activesupport (7.0.4.3) lib/active_support/file_update_checker.rb:93:in `execute_if_updated'
+activerecord (7.0.4.3) lib/active_record/migration.rb:599:in `block in call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4.3) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (5.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAssessmentsQuestions (20230425193508)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.8ms)[0m  [1m[35mCREATE TABLE "assessments_questions" ("id" bigserial primary key, "question_id" bigint NOT NULL, "assessment_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_82241f0979"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+, CONSTRAINT "fk_rails_80956120d9"
+FOREIGN KEY ("assessment_id")
+  REFERENCES "assessments" ("id")
+)[0m
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE INDEX "index_assessments_questions_on_question_id" ON "assessments_questions" ("question_id")[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE INDEX "index_assessments_questions_on_assessment_id" ON "assessments_questions" ("assessment_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230425193508"]]
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAssessmentsCodeChallenges (20230425193623)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.2ms)[0m  [1m[35mCREATE TABLE "assessments_code_challenges" ("id" bigserial primary key, "code_challenge_id" bigint NOT NULL, "assessment_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_3d89f634be"
+FOREIGN KEY ("code_challenge_id")
+  REFERENCES "code_challenges" ("id")
+, CONSTRAINT "fk_rails_f6cf03ec6d"
+FOREIGN KEY ("assessment_id")
+  REFERENCES "assessments" ("id")
+)[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE INDEX "index_assessments_code_challenges_on_code_challenge_id" ON "assessments_code_challenges" ("code_challenge_id")[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE INDEX "index_assessments_code_challenges_on_assessment_id" ON "assessments_code_challenges" ("assessment_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230425193623"]]
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (3.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/assessments" for 127.0.0.1 at 2023-04-25 22:37:23 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "assessment"=>{"recruiter_id"=>"1"}}
+  [1m[36mAssessment Load (1.0ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.8ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mRecruiter Load (0.8ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.9ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (2.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.6ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 2]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.8ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."assessment_id" = $1[0m  [["assessment_id", 2]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (1.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 2]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.6ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 3]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.7ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."assessment_id" = $1[0m  [["assessment_id", 3]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (1.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 3]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 4]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (1.0ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."assessment_id" = $1[0m  [["assessment_id", 4]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (1.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 4]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (2.1ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 5]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.7ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."assessment_id" = $1[0m  [["assessment_id", 5]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (1.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 5]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (1.0ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 6]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.7ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."assessment_id" = $1[0m  [["assessment_id", 6]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (2.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 6]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mInterviewee Load (0.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.5ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (624.33ms)
+Completed 200 OK in 672ms (Views: 590.8ms | ActiveRecord: 83.7ms | Allocations: 68206)
+
+
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 22:38:31 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mRecruiter Load (1.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (116.88ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.25ms)
+Completed 422 Unprocessable Entity in 171ms (Views: 2.2ms | ActiveRecord: 2.0ms | Allocations: 9047)
+
+
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 22:45:26 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mQuestion Load (5.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mRecruiter Load (1.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (3.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (1.8ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (1.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (413.72ms)
+Completed 200 OK in 529ms (Views: 457.8ms | ActiveRecord: 14.8ms | Allocations: 29363)
+
+
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 22:47:12 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mQuestion Load (1.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mRecruiter Load (1.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (1.6ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (1.0ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (1.5ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (203.63ms)
+Completed 200 OK in 310ms (Views: 234.6ms | ActiveRecord: 56.8ms | Allocations: 30129)
+
+
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE DATABASE "api_development" ENCODING = 'unicode'[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE DATABASE "api_test" ENCODING = 'unicode'[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mRecruiter Load (1.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.8ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (8.2ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 1"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 19:48:50.684191"], ["updated_at", "2023-04-25 19:48:50.684191"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.8ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.7ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (1.1ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 2"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 19:48:50.730165"], ["updated_at", "2023-04-25 19:48:50.730165"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.7ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (1.0ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 3"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 19:48:50.751317"], ["updated_at", "2023-04-25 19:48:50.751317"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (1.3ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 4"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 19:48:50.773389"], ["updated_at", "2023-04-25 19:48:50.773389"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 22:50:28 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mQuestion Load (11.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mRecruiter Load (1.7ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (1.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (0.6ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (0.7ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (73.19ms)
+Completed 200 OK in 160ms (Views: 84.7ms | ActiveRecord: 15.8ms | Allocations: 7941)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2023-04-25 22:50:43 +0300
+Processing by QuestionsController#show as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "id"=>"1", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mQuestion Load (1.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:12:in `show'
+[active_model_serializers]   [1m[36mRecruiter Load (1.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:13:in `show'
+[active_model_serializers]   [1m[36mAssessment Load (1.0ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:13:in `show'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (24.41ms)
+Completed 200 OK in 61ms (Views: 24.8ms | ActiveRecord: 3.6ms | Allocations: 3107)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2023-04-25 22:59:29 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#show as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "id"=>"1", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:12:in `show'
+[active_model_serializers]   [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:13:in `show'
+[active_model_serializers]   [1m[36mAssessment Load (0.8ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:13:in `show'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (147.01ms)
+Completed 200 OK in 263ms (Views: 190.2ms | ActiveRecord: 2.7ms | Allocations: 24396)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2023-04-25 23:01:56 +0300
+Processing by QuestionsController#show as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "id"=>"1", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mQuestion Load (1.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:12:in `show'
+[active_model_serializers]   [1m[36mRecruiter Load (2.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:13:in `show'
+[active_model_serializers]   [1m[36mAssessment Load (0.6ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:13:in `show'
+[active_model_serializers]   [1m[36mResponse Load (2.3ms)[0m  [1m[34mSELECT "responses".* FROM "responses" WHERE "responses"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:13:in `show'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (371.59ms)
+Completed 200 OK in 672ms (Views: 366.4ms | ActiveRecord: 90.7ms | Allocations: 29628)
+
+
+Started GET "/questions" for 127.0.0.1 at 2023-04-25 23:02:05 +0300
+Processing by QuestionsController#index as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "question"=>{"content"=>"Random", "recruiter_id"=>"1"}}
+  [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (1.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mResponse Load (0.4ms)[0m  [1m[34mSELECT "responses".* FROM "responses" WHERE "responses"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (0.5ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mResponse Load (0.2ms)[0m  [1m[34mSELECT "responses".* FROM "responses" WHERE "responses"."question_id" = $1[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mCACHE Recruiter Load (0.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers]   [1m[36mResponse Load (0.2ms)[0m  [1m[34mSELECT "responses".* FROM "responses" WHERE "responses"."question_id" = $1[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (22.16ms)
+Completed 200 OK in 25ms (Views: 21.3ms | ActiveRecord: 3.7ms | Allocations: 10874)
+
+
+Started POST "/code_challenges" for 127.0.0.1 at 2023-04-25 23:02:34 +0300
+Processing by CodeChallengesController#create as */*
+  Parameters: {"recruiter_id"=>"1", "content"=>"Random", "code_challenge"=>{}}
+[31mUnpermitted parameters: :recruiter_id, :content, :code_challenge. Context: { controller: CodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f2d612c0e30>, params: {"recruiter_id"=>"1", "content"=>"Random", "controller"=>"code_challenges", "action"=>"create", "code_challenge"=>{}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Create (4.5ms)[0m  [1m[32mINSERT INTO "code_challenges" ("assessment_id", "name", "description", "totalAttempts", "totalCompleted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["assessment_id", nil], ["name", nil], ["description", nil], ["totalAttempts", nil], ["totalCompleted", nil], ["created_at", "2023-04-25 20:02:35.007152"], ["updated_at", "2023-04-25 20:02:35.007152"]]
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 20ms (Views: 0.5ms | ActiveRecord: 9.0ms | Allocations: 16463)
+
+
+Started POST "/code_challenges" for 127.0.0.1 at 2023-04-25 23:02:55 +0300
+Processing by CodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>"1", "content"=>"Random", "code_challenge"=>{"assessment_id"=>"1"}}
+[31mUnpermitted parameters: :content, :code_challenge. Context: { controller: CodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f2d4c33e778>, params: {"assessment_id"=>"1", "content"=>"Random", "controller"=>"code_challenges", "action"=>"create", "code_challenge"=>{"assessment_id"=>"1"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Create (0.6ms)[0m  [1m[32mINSERT INTO "code_challenges" ("assessment_id", "name", "description", "totalAttempts", "totalCompleted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["assessment_id", 1], ["name", nil], ["description", nil], ["totalAttempts", nil], ["totalCompleted", nil], ["created_at", "2023-04-25 20:02:55.566173"], ["updated_at", "2023-04-25 20:02:55.566173"]]
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered CodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (58.07ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 91ms (Views: 0.7ms | ActiveRecord: 4.2ms | Allocations: 5873)
+
+
+  [1m[35m (206.1ms)[0m  [1m[35mCREATE DATABASE "api_development" ENCODING = 'unicode'[0m
+  [1m[35m (107.2ms)[0m  [1m[35mCREATE DATABASE "api_test" ENCODING = 'unicode'[0m
+  [1m[35m (20.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRecruiters (20230417081126)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (17.3ms)[0m  [1m[35mCREATE TABLE "recruiters" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "company" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417081126"]]
+  [1m[36mTRANSACTION (7.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInterviewees (20230417085139)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "interviewees" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "bio" character varying, "grades" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417085139"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAnswers (20230417140023)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "answers" ("id" bigserial primary key, "content" text, "feedback" character varying, "grades" integer, "code_challenge_id" integer, "assessment_id" integer, "interviewee_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417140023"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateQuestions (20230418053617)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "content" text, "answer_1" character varying, "answer_2" character varying, "answer_3" character varying, "answer_4" character varying, "correct_answer" character varying, "totalAttempts" integer, "recruiter_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230418053617"]]
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInvites (20230419060150)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (20.8ms)[0m  [1m[35mCREATE TABLE "invites" ("id" bigserial primary key, "interviewee_id" bigint NOT NULL, "recruiter_id" bigint NOT NULL, "assessment_id" integer, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_b4435670b0"
+FOREIGN KEY ("interviewee_id")
+  REFERENCES "interviewees" ("id")
+, CONSTRAINT "fk_rails_c42353fbaf"
+FOREIGN KEY ("recruiter_id")
+  REFERENCES "recruiters" ("id")
+)[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE INDEX "index_invites_on_interviewee_id" ON "invites" ("interviewee_id")[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE INDEX "index_invites_on_recruiter_id" ON "invites" ("recruiter_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230419060150"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAssessments (20230419090035)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "assessments" ("id" bigserial primary key, "recruiter_id" bigint NOT NULL, "name" character varying, "accepted" boolean DEFAULT FALSE, "duedate" timestamp(6), "reviewed" boolean DEFAULT FALSE, "done" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_a7ac1b7547"
+FOREIGN KEY ("recruiter_id")
+  REFERENCES "recruiters" ("id")
+)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_assessments_on_recruiter_id" ON "assessments" ("recruiter_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230419090035"]]
+  [1m[36mTRANSACTION (6.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCodeChallenges (20230420111420)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE TABLE "code_challenges" ("id" bigserial primary key, "name" character varying, "languages" character varying, "description" character varying, "totalAttempts" integer, "totalCompleted" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230420111420"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResponses (20230420201212)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "responses" ("id" bigserial primary key, "question_id" bigint NOT NULL, "interviewee_id" bigint NOT NULL, "chosen_answer" character varying, "feedback" character varying, "grades" integer, "correct" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_325af149a3"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+, CONSTRAINT "fk_rails_15fe94701f"
+FOREIGN KEY ("interviewee_id")
+  REFERENCES "interviewees" ("id")
+)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_responses_on_question_id" ON "responses" ("question_id")[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_responses_on_interviewee_id" ON "responses" ("interviewee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230420201212"]]
+  [1m[36mTRANSACTION (6.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStatistics (20230421130719)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "statistics" ("id" bigserial primary key, "total_questions" integer, "total_interviewees" integer, "total_responses" integer, "correct_responses" integer, "average_score" float, "highest_score" integer, "lowest_score" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230421130719"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAssessmentsQuestions (20230425193508)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "assessments_questions" ("id" bigserial primary key, "question_id" bigint NOT NULL, "assessment_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_82241f0979"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+, CONSTRAINT "fk_rails_80956120d9"
+FOREIGN KEY ("assessment_id")
+  REFERENCES "assessments" ("id")
+)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE INDEX "index_assessments_questions_on_question_id" ON "assessments_questions" ("question_id")[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_assessments_questions_on_assessment_id" ON "assessments_questions" ("assessment_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230425193508"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAssessmentsCodeChallenges (20230425193623)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "assessments_code_challenges" ("id" bigserial primary key, "code_challenge_id" bigint NOT NULL, "assessment_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_3d89f634be"
+FOREIGN KEY ("code_challenge_id")
+  REFERENCES "code_challenges" ("id")
+, CONSTRAINT "fk_rails_f6cf03ec6d"
+FOREIGN KEY ("assessment_id")
+  REFERENCES "assessments" ("id")
+)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_assessments_code_challenges_on_code_challenge_id" ON "assessments_code_challenges" ("code_challenge_id")[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_assessments_code_challenges_on_assessment_id" ON "assessments_code_challenges" ("assessment_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230425193623"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-04-25 20:04:34.898875"], ["updated_at", "2023-04-25 20:04:34.898875"]]
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE DATABASE "api_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE "api_test" ENCODING = 'unicode'[0m
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter1@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter1"], ["LIMIT", 1]]
+  [1m[36mRecruiter Create (0.4ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter1"], ["email", "recruiter1@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "John"], ["lastname", "Doe"], ["company", "ABC Inc."], ["created_at", "2023-04-25 20:06:22.283037"], ["updated_at", "2023-04-25 20:06:22.283037"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter2@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter2"], ["LIMIT", 1]]
+  [1m[36mRecruiter Create (0.2ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter2"], ["email", "recruiter2@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Jane"], ["lastname", "Smith"], ["company", "XYZ Corp."], ["created_at", "2023-04-25 20:06:22.504003"], ["updated_at", "2023-04-25 20:06:22.504003"]]
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter3@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter3"], ["LIMIT", 1]]
+  [1m[36mRecruiter Create (0.2ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter3"], ["email", "recruiter3@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Bob"], ["lastname", "Johnson"], ["company", "123 LLC"], ["created_at", "2023-04-25 20:06:22.728145"], ["updated_at", "2023-04-25 20:06:22.728145"]]
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter1@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter1"], ["LIMIT", 1]]
+  [1m[36mInterviewee Create (0.4ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "grades", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "recruiter1"], ["email", "recruiter1@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "John"], ["lastname", "Doe"], ["bio", "ABC Inc."], ["grades", nil], ["created_at", "2023-04-25 20:06:22.991209"], ["updated_at", "2023-04-25 20:06:22.991209"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter2@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter2"], ["LIMIT", 1]]
+  [1m[36mInterviewee Create (0.2ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "grades", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "recruiter2"], ["email", "recruiter2@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Jane"], ["lastname", "Smith"], ["bio", "XYZ Corp."], ["grades", nil], ["created_at", "2023-04-25 20:06:23.212177"], ["updated_at", "2023-04-25 20:06:23.212177"]]
+  [1m[36mTRANSACTION (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter3@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter3"], ["LIMIT", 1]]
+  [1m[36mInterviewee Create (0.2ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "grades", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "recruiter3"], ["email", "recruiter3@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Bob"], ["lastname", "Johnson"], ["bio", "123 LLC"], ["grades", nil], ["created_at", "2023-04-25 20:06:23.439879"], ["updated_at", "2023-04-25 20:06:23.439879"]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter1@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter2@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter2"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter3@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter3"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter1@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter2@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter2"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter3@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter3"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (6.1ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 1"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 20:07:06.559372"], ["updated_at", "2023-04-25 20:07:06.559372"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (1.0ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 2"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 20:07:06.585309"], ["updated_at", "2023-04-25 20:07:06.585309"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (0.9ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 3"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 20:07:06.604756"], ["updated_at", "2023-04-25 20:07:06.604756"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (0.5ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 4"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-25 20:07:06.620475"], ["updated_at", "2023-04-25 20:07:06.620475"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/code_challenges" for 127.0.0.1 at 2023-04-25 23:07:30 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>"1", "content"=>"Random", "code_challenge"=>{}}
+[31mUnpermitted parameters: :content, :code_challenge. Context: { controller: CodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f85d8a48430>, params: {"assessment_id"=>"1", "content"=>"Random", "controller"=>"code_challenges", "action"=>"create", "code_challenge"=>{}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 422 Unprocessable Entity in 111ms (Views: 33.1ms | ActiveRecord: 6.3ms | Allocations: 36984)
+
+
+Started POST "/code_challenges" for 127.0.0.1 at 2023-04-25 23:07:41 +0300
+Processing by CodeChallengesController#create as */*
+  Parameters: {"content"=>"Random", "code_challenge"=>{}}
+[31mUnpermitted parameters: :content, :code_challenge. Context: { controller: CodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f85c001a3b8>, params: {"content"=>"Random", "controller"=>"code_challenges", "action"=>"create", "code_challenge"=>{}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Create (0.8ms)[0m  [1m[32mINSERT INTO "code_challenges" ("name", "languages", "description", "totalAttempts", "totalCompleted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", nil], ["languages", nil], ["description", nil], ["totalAttempts", nil], ["totalCompleted", nil], ["created_at", "2023-04-25 20:07:41.726843"], ["updated_at", "2023-04-25 20:07:41.726843"]]
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered CodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (38.95ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 155ms (Views: 0.8ms | ActiveRecord: 2.0ms | Allocations: 9434)
+
+
+Started POST "/code_challenges" for 127.0.0.1 at 2023-04-25 23:09:06 +0300
+Processing by CodeChallengesController#create as */*
+  Parameters: {"content"=>"Random", "code_challenge"=>{}}
+[31mUnpermitted parameters: :content, :code_challenge. Context: { controller: CodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f85d43466b8>, params: {"content"=>"Random", "controller"=>"code_challenges", "action"=>"create", "code_challenge"=>{}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Create (0.3ms)[0m  [1m[32mINSERT INTO "code_challenges" ("name", "languages", "description", "totalAttempts", "totalCompleted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", nil], ["languages", nil], ["description", nil], ["totalAttempts", nil], ["totalCompleted", nil], ["created_at", "2023-04-25 20:09:06.132983"], ["updated_at", "2023-04-25 20:09:06.132983"]]
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+[active_model_serializers]   [1m[36mAssessment Load (5.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_code_challenges" ON "assessments"."id" = "assessments_code_challenges"."assessment_id" WHERE "assessments_code_challenges"."code_challenge_id" = $1[0m  [["code_challenge_id", 2]]
+[active_model_serializers]   ↳ app/controllers/code_challenges_controller.rb:24:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."code_challenge_id" = $1[0m  [["code_challenge_id", 2]]
+[active_model_serializers]   ↳ app/controllers/code_challenges_controller.rb:24:in `create'
+[active_model_serializers] Rendered CodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (231.72ms)
+Completed 201 Created in 245ms (Views: 217.7ms | ActiveRecord: 24.2ms | Allocations: 27765)
+
+
+Started POST "/code_challenges" for 127.0.0.1 at 2023-04-25 23:09:28 +0300
+Processing by CodeChallengesController#create as */*
+  Parameters: {"name"=>"Random", "code_challenge"=>{"name"=>"Random"}}
+[31mUnpermitted parameter: :code_challenge. Context: { controller: CodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f85cc00add0>, params: {"name"=>"Random", "controller"=>"code_challenges", "action"=>"create", "code_challenge"=>{"name"=>"Random"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Create (0.2ms)[0m  [1m[32mINSERT INTO "code_challenges" ("name", "languages", "description", "totalAttempts", "totalCompleted", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Random"], ["languages", nil], ["description", nil], ["totalAttempts", nil], ["totalCompleted", nil], ["created_at", "2023-04-25 20:09:28.531262"], ["updated_at", "2023-04-25 20:09:28.531262"]]
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+[active_model_serializers]   [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_code_challenges" ON "assessments"."id" = "assessments_code_challenges"."assessment_id" WHERE "assessments_code_challenges"."code_challenge_id" = $1[0m  [["code_challenge_id", 3]]
+[active_model_serializers]   ↳ app/controllers/code_challenges_controller.rb:24:in `create'
+[active_model_serializers]   [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."code_challenge_id" = $1[0m  [["code_challenge_id", 3]]
+[active_model_serializers]   ↳ app/controllers/code_challenges_controller.rb:24:in `create'
+[active_model_serializers] Rendered CodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (3.45ms)
+Completed 201 Created in 12ms (Views: 3.4ms | ActiveRecord: 4.7ms | Allocations: 4282)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-25 23:09:42 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"name"=>"Random", "question"=>{}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 20ms (Views: 0.7ms | ActiveRecord: 4.0ms | Allocations: 21941)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-25 23:10:52 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"eecruiter_id"=>1, "name"=>"Random", "question"=>{}}
+  [1m[36mRecruiter Load (9.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (19.87ms)
+Completed 422 Unprocessable Entity in 153ms (Views: 21.9ms | ActiveRecord: 9.5ms | Allocations: 806)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-25 23:11:05 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"recruiter_id"=>1, "name"=>"Random", "question"=>{"recruiter_id"=>1}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.34ms)
+Completed 422 Unprocessable Entity in 727ms (Views: 1.9ms | ActiveRecord: 5.9ms | Allocations: 20824)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-25 23:11:19 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"recruiter_id"=>1, "content"=>"Random", "question"=>{"content"=>"Random", "recruiter_id"=>1}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+  [1m[36mQuestion Create (3.9ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Random"], ["answer_1", nil], ["answer_2", nil], ["answer_3", nil], ["answer_4", nil], ["correct_answer", nil], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-25 20:11:19.264896"], ["updated_at", "2023-04-25 20:11:19.264896"]]
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers]   [1m[36mAssessment Load (1.2ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:19:in `create'
+[active_model_serializers]   [1m[36mResponse Load (1.3ms)[0m  [1m[34mSELECT "responses".* FROM "responses" WHERE "responses"."question_id" = $1[0m  [["question_id", 1]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:19:in `create'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (120.16ms)
+Completed 201 Created in 155ms (Views: 131.7ms | ActiveRecord: 15.9ms | Allocations: 12512)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-25 23:11:28 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"Random", "question"=>{"content"=>"Random"}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Random"], ["answer_1", nil], ["answer_2", nil], ["answer_3", nil], ["answer_4", nil], ["correct_answer", nil], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-25 20:11:28.173551"], ["updated_at", "2023-04-25 20:11:28.173551"]]
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers]   [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:19:in `create'
+[active_model_serializers]   [1m[36mResponse Load (0.2ms)[0m  [1m[34mSELECT "responses".* FROM "responses" WHERE "responses"."question_id" = $1[0m  [["question_id", 2]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:19:in `create'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (4.69ms)
+Completed 201 Created in 16ms (Views: 4.6ms | ActiveRecord: 4.9ms | Allocations: 5051)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-25 23:11:41 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"Randomness", "question"=>{"content"=>"Randomness"}}
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Randomness"], ["answer_1", nil], ["answer_2", nil], ["answer_3", nil], ["answer_4", nil], ["correct_answer", nil], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-25 20:11:41.327618"], ["updated_at", "2023-04-25 20:11:41.327618"]]
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers]   [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:19:in `create'
+[active_model_serializers]   [1m[36mResponse Load (0.2ms)[0m  [1m[34mSELECT "responses".* FROM "responses" WHERE "responses"."question_id" = $1[0m  [["question_id", 3]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:19:in `create'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (5.41ms)
+Completed 201 Created in 15ms (Views: 5.4ms | ActiveRecord: 4.8ms | Allocations: 5050)
+
+
+Started POST "/questions" for 127.0.0.1 at 2023-04-26 00:36:58 +0300
+Processing by QuestionsController#create as */*
+  Parameters: {"content"=>"Randomness", "question"=>{"content"=>"Randomness"}}
+  [1m[36mRecruiter Load (1.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+  [1m[36mQuestion Create (1.0ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Randomness"], ["answer_1", nil], ["answer_2", nil], ["answer_3", nil], ["answer_4", nil], ["correct_answer", nil], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-25 21:36:59.620348"], ["updated_at", "2023-04-25 21:36:59.620348"]]
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/questions_controller.rb:18:in `create'
+[active_model_serializers]   [1m[36mAssessment Load (4.0ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "assessments_questions" ON "assessments"."id" = "assessments_questions"."assessment_id" WHERE "assessments_questions"."question_id" = $1[0m  [["question_id", 4]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:19:in `create'
+[active_model_serializers]   [1m[36mResponse Load (0.4ms)[0m  [1m[34mSELECT "responses".* FROM "responses" WHERE "responses"."question_id" = $1[0m  [["question_id", 4]]
+[active_model_serializers]   ↳ app/controllers/questions_controller.rb:19:in `create'
+[active_model_serializers] Rendered QuestionSerializer with ActiveModelSerializers::Adapter::Attributes (216.48ms)
+Completed 201 Created in 353ms (Views: 230.4ms | ActiveRecord: 32.0ms | Allocations: 29248)
+
+
+Started GET "/invites" for 127.0.0.1 at 2023-04-26 00:37:19 +0300
+Processing by InvitesController#index as */*
+  Parameters: {"content"=>"Randomness", "invite"=>{}}
+  [1m[36mRecruiter Load (1.0ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:83:in `recruiter'
+  [1m[36mInvite Load (4.8ms)[0m  [1m[34mSELECT "invites".* FROM "invites" WHERE "invites"."recruiter_id" = $1[0m  [["recruiter_id", 1]]
+  ↳ app/controllers/invites_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.16ms)
+Completed 200 OK in 45ms (Views: 4.9ms | ActiveRecord: 20.0ms | Allocations: 1747)
+
+

@@ -5,6 +5,16 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+puts "WE ROLLING"
+
+Recruiter.create(username: "recruiter1", email: "recruiter1@example.com", password: "password", firstname: "John", lastname: "Doe", company: "ABC Inc.")
+Recruiter.create(username: "recruiter2", email: "recruiter2@example.com", password: "password", firstname: "Jane", lastname: "Smith", company: "XYZ Corp.")
+Recruiter.create(username: "recruiter3", email: "recruiter3@example.com", password: "password", firstname: "Bob", lastname: "Johnson", company: "123 LLC")
+
+Interviewee.create(username: "recruiter1", email: "recruiter1@example.com", password: "password", firstname: "John", lastname: "Doe", bio: "ABC Inc.")
+Interviewee.create(username: "recruiter2", email: "recruiter2@example.com", password: "password", firstname: "Jane", lastname: "Smith", bio: "XYZ Corp.")
+Interviewee.create(username: "recruiter3", email: "recruiter3@example.com", password: "password", firstname: "Bob", lastname: "Johnson", bio: "123 LLC")
+
 assessment_ids = (1..4).to_a
 questions = [
     {
@@ -169,7 +179,16 @@ questions = [
     }      
   ]
   questions.each do |q|
-    q[:assessment_id] = assessment_ids.sample
     q[:totalAttempts] = nil
     Question.create(q)
   end
+
+  4.times do |n|
+    Assessment.create!(
+      recruiter_id: Recruiter.first.id,
+      name: "trial #{n+1}",
+      duedate: nil,
+    )
+  end
+
+  puts "OVER AND OUT"

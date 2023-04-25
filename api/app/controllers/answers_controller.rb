@@ -44,11 +44,6 @@ class AnswersController < ApplicationController
         else
             render json: { errors: "You are not authorized to update this response." }, status: :unauthorized
         end   
-      # if answer.update(answer_params)
-      #   render json: answer
-      # else
-      #   render json: answer.errors, status: :unprocessable_entity
-      # end
     end
   
     # DELETE /answers/1
@@ -60,7 +55,7 @@ class AnswersController < ApplicationController
     private
 
     def answer_params
-      params.require(:answer).permit(:content,:code_challenge_id, :assessment_id, :interviewee_id,:grades,:feedback)
+      params.require(:answer).permit(:content,:code_challenge_id, :interviewee_id,:grades,:feedback)
     end
 
     def render_unprocessable_entity_response(invalid)

@@ -1,6 +1,7 @@
 class AnswerSerializer < ActiveModel::Serializer
-  attributes :id, :code_challenge_id,:interviewee_id,:grades, :content, :feedback, :assessment_id, :created_at, :updated_at, :answer
-
+  attributes :id,:interviewee_id,:grades, :content, :feedback, :assessment_id, :created_at, :updated_at, :answer
+  has_one :code_challenge
+  has_one :interviewee
   def answer
     # Map the answers to the format specified in the question payload
     object.answers.map.with_index do |answer, index|

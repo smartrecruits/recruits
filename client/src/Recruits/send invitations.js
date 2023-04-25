@@ -10,11 +10,11 @@ function IntervieweeList() {
   const [selectedAssessment, setSelectedAssessment] = useState(null);
   const recruiterToken = getRecruiterToken()
   const recruiterId = getRecruiter()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   setSelectedAssessment(assessments[0])
   useEffect(() => {
-    fetch('/interviewees',{
+    fetch('https://recruits.onrender.com/interviewees',{
       headers: {
         'Authorization': `Bearer ${recruiterToken}`
     }, }
@@ -24,9 +24,9 @@ function IntervieweeList() {
       .catch(error => setErrors([error]));
   }, [recruiterToken]);
 
-  useEffect(() => {
-    dispatch(fetchAssess());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchAssess());
+  // }, [dispatch]);
 
   const handleInvite = (id) => {
     const requestBody = {
@@ -34,7 +34,7 @@ function IntervieweeList() {
         recruiter_id: recruiterId,
         assessment_id: selectedAssessment.id
     };
-    fetch('/invites', {
+    fetch('https://recruits.onrender.com/invites', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

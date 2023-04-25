@@ -1,4 +1,5 @@
 class CodeChallengeSerializer < ActiveModel::Serializer
-  attributes :id
-  has_one :assessment
+  attributes :id, :name, :languages, :description, :totalAttempts, :totalCompleted
+  has_many :assessments
+  has_many :answers
 end

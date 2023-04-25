@@ -6,7 +6,7 @@ const Invites = () => {
   const intervieweeId = getInterviewee();
 
   useEffect(() => {
-    fetch(`/interviewee/${intervieweeId}/invites`)
+    fetch(`https://recruits.onrender.com/interviewee/${intervieweeId}/invites`)
       .then(response => response.json())
       .then(data => setInvites(data.filter(invite => invite.status === "accepted")))
       .catch(error => console.error(error));

@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import CreateQuestion from './questions';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchQuestions } from './questionsSlice';
+import { getRecruiterToken } from '../../Components/utils/auth';
 
 function QuestionList({assessmentId}) {
-  // const [questions, setQuestions] = useState([]);
   const dispatch = useDispatch()
+  const recruiterToken = getRecruiterToken()
 
   useEffect(() => {
     dispatch(fetchQuestions());
@@ -27,16 +28,29 @@ function QuestionList({assessmentId}) {
   }
 
   function addToAssessment(questionId) {
-    fetch(`/assessments/${assessmentId}/questions/${questionId}`, {
-      method: 'POST'
+    fetch(`assessments_questions`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${recruiterToken}`,
+      },
+      body: JSON.stringify({
+        assessment_id: assessmentId,
+        question_id: questionId
+      }),
+
     })
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.log(error));
   }
   function removeFromAssessment(questionId) {
-    fetch(`/assessments/${assessmentId}/questions/${questionId}`, {
-      method: 'DELETE'
+    fetch(`/assessments_questions/${questionId}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${recruiterToken}`,
+      },
     })
       .then(response => response.json())
       .then(data => console.log(data))
@@ -51,8 +65,15 @@ function QuestionList({assessmentId}) {
         {questions.map(question => (
           <li key={question.id}>
             <h6>{question.content}</h6>
-            <button onClick={() => addToAssessment(question.id)}>Add To Assessment</button>
-            <button onClick={() => removeFromAssessment(question.id)}>Remove from Assessment</button>
+            {questions.some((code) => code.id === question.id) ? (
+              <button onClick={() => removeFromAssessment(question.id)}>
+                Remove from Assessment
+              </button>
+            ) : (
+              <button onClick={() => addToAssessment(question.id)}>
+                Add To Assessment
+              </button>
+               )}
           </li>
         ))}
       </ul>

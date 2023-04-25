@@ -10,7 +10,7 @@ function RecruiterNavbar() {
     setActiveLink(link);
   };
   function handleLogout(){
-    fetch("https://backend-dc1w.onrender.com/users/logout", {
+    fetch("https://recruits.onrender.com/reruiter/logout", {
       method: "DELETE",
     }).then(() => {
       removeRecruiter();

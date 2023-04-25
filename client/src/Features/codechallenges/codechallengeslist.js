@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import CreateCodeChallenge from "./codechallenges";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCode } from "./codechallengesSlice";
+import { getRecruiterToken } from "../../Components/utils/auth";
 
 function CodeChallenges({ assessmentId }) {
   const dispatch = useDispatch();
+  const recruiterToken = getRecruiterToken()
 
   useEffect(() => {
     dispatch(fetchCode());
@@ -26,16 +28,28 @@ function CodeChallenges({ assessmentId }) {
   }
 
   function addToAssessment(codeChallengeId) {
-    fetch(`/assessments/${assessmentId}/code_challenges/${codeChallengeId}`, {
+    fetch(`/assessments_code_challenges`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${recruiterToken}`,
+      },
+      body: JSON.stringify({
+        assessment_id: assessmentId,
+        code_challenge_id: codeChallengeId
+      })
     })
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
   }
   function removeFromAssessment(codeChallengeId) {
-    fetch(`/assessments/${assessmentId}/code_challenges/${codeChallengeId}`, {
+    fetch(`/assessments_code_challenges/${codeChallengeId}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${recruiterToken}`,
+      },
     })
       .then((response) => response.json())
       .then((data) => console.log(data))
@@ -51,12 +65,15 @@ function CodeChallenges({ assessmentId }) {
           <li key={codeChallenge.id}>
             <h6>{codeChallenge.name}</h6>
             <h6>{codeChallenge.description}</h6>
-            <button onClick={() => addToAssessment(codeChallenge.id)}>
-              Add To Assessment
-            </button>
-            <button onClick={() => removeFromAssessment(codeChallenge.id)}>
-              Remove from Assessment
-            </button>
+             {codeChallenges.some((code) => code.id === codeChallenge.id) ? (
+              <button onClick={() => removeFromAssessment(codeChallenge.id)}>
+                Remove from Assessment
+              </button>
+            ) : (
+              <button onClick={() => addToAssessment(codeChallenge.id)}>
+                Add To Assessment
+              </button>
+               )}
           </li>
         ))}
       </ul>

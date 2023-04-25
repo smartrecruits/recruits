@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_25_193623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,20 +31,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
     t.boolean "accepted", default: false
     t.datetime "duedate"
     t.boolean "reviewed", default: false
+    t.boolean "done", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recruiter_id"], name: "index_assessments_on_recruiter_id"
   end
 
-  create_table "code_challenges", force: :cascade do |t|
+  create_table "assessments_code_challenges", force: :cascade do |t|
+    t.bigint "code_challenge_id", null: false
     t.bigint "assessment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assessment_id"], name: "index_assessments_code_challenges_on_assessment_id"
+    t.index ["code_challenge_id"], name: "index_assessments_code_challenges_on_code_challenge_id"
+  end
+
+  create_table "assessments_questions", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "assessment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assessment_id"], name: "index_assessments_questions_on_assessment_id"
+    t.index ["question_id"], name: "index_assessments_questions_on_question_id"
+  end
+
+  create_table "code_challenges", force: :cascade do |t|
     t.string "name"
+    t.string "languages"
     t.string "description"
     t.integer "totalAttempts"
     t.integer "totalCompleted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["assessment_id"], name: "index_code_challenges_on_assessment_id"
   end
 
   create_table "interviewees", force: :cascade do |t|
@@ -78,7 +96,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
     t.string "answer_4"
     t.string "correct_answer"
     t.integer "totalAttempts"
-    t.integer "assessment_id"
     t.integer "recruiter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -121,7 +138,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_130719) do
   end
 
   add_foreign_key "assessments", "recruiters"
-  add_foreign_key "code_challenges", "assessments"
+  add_foreign_key "assessments_code_challenges", "assessments"
+  add_foreign_key "assessments_code_challenges", "code_challenges"
+  add_foreign_key "assessments_questions", "assessments"
+  add_foreign_key "assessments_questions", "questions"
   add_foreign_key "invites", "interviewees"
   add_foreign_key "invites", "recruiters"
   add_foreign_key "responses", "interviewees"
