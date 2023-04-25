@@ -154,7 +154,7 @@ function Signing() {
                
             </form>
             <div className="hr"></div>
-            <div className="footer">
+            <div className="tooter">
               <label htmlFor="item-1">Already have an account?</label>
             </div>
           </div>

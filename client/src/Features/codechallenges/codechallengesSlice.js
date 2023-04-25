@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getRecruiterToken } from "../../Components/utils/auth";
-
+import { getIntervieweeToken } from "../../Components/utils/auth";
 const recruiterToken = getRecruiterToken()
-
+const intervieweeToken = getIntervieweeToken()
   export const fetchCode = createAsyncThunk("code/fetchCode", async (_, { rejectWithValue }) => {
     try {
       const response = await fetch("https://recruits.onrender.com/code_challenges", {
@@ -21,6 +21,27 @@ const recruiterToken = getRecruiterToken()
       return rejectWithValue(error.message);
     }
   });
+  export const fetchCodeChallenge = createAsyncThunk(
+    'code/fetchCodeChallenge',
+    async (id , {rejectWithValue}) => {
+      try {
+        const response = await fetch(`https://recruits.onrender.com/code_challenges/${id}`,{
+            headers: {
+                Authorization: `Bearer ${intervieweeToken}`,
+              },
+        });
+        const data = await response.json();
+  
+        if (!response.ok) {
+          return rejectWithValue(data.errors);
+        }
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.message);
+
+      }
+    }
+  );
 
   export const createCode = createAsyncThunk(
     "code/createCode",
@@ -76,20 +97,12 @@ const recruiterToken = getRecruiterToken()
    
 //   )
 
-// function assesmentReducer(state = initialState, action) {
-//     switch (action.type) {
-//       case 'SET_ASSESSMENTS':
-//         return { ...state, assessments: action.payload };
-//       default:
-//         return state;
-//     }
-// }
-
  const codechallengesSlice =  createSlice({
     name: "code_challenges",
     initialState:{
         codes: [],
         status: "idle",
+        error: null
     },
     reducers:{
         setAssessment(state,action){
@@ -111,9 +124,14 @@ const recruiterToken = getRecruiterToken()
             state.codes.push(action.payload);
             state.status = "idle";
         },
-        
+        [fetchCodeChallenge.fulfilled](state, action) {
+            state.codes = action.payload;
+            state.status = "idle";
+        },
     }
 })
  
 
 export default codechallengesSlice.reducer
+
+export const selectCodeChallenge = (state) => state.codes;
