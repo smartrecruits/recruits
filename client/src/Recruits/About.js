@@ -6,8 +6,8 @@ import { faBookOpen, faUserFriends, faQuestionCircle, faChartLine } from '@forta
 import { Link } from 'react-router-dom';
 const About = () => {
   return (
-    <div className="container">
-      <div className="sidebar">
+    <div className="container-rec">
+      <div className="sidebar-rec">
         <div className="d-flex flex-column align-items-center justify-content-center h-100">
           <div className="sidebar-item bg-dark-blue-hover mb-4">
             <FontAwesomeIcon icon={faBookOpen} className="sidebar-icon" />
@@ -27,7 +27,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="about">
+      <div className="about-rec">
         <img src="https://iglu.net/wp-content/uploads/2022/08/Game-Programmer-768x511.png" alt="" />
         <h2>About Company:</h2>
         <p><em>KALEIDICO.</em></p>

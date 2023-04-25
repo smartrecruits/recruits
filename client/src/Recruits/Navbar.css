@@ -9,12 +9,12 @@
   margin-bottom: 6px;
 }
 
-nav ul {
+.nav-rec ul {
   display: flex; /* Use flexbox to create horizontal layout */
   align-items: center; /* Center the links vertically */
 }
 
-nav ul li a {
+.nav-rec ul li a {
   background-color: rgb(190, 45, 190);
   border-radius: 5px;
   color: rgb(49, 12, 90);

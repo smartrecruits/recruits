@@ -21,7 +21,7 @@ function RecruiterNavbar() {
 
   return (
     <div className="navbar-wrapper">
-      <nav>
+      <nav className='nav-rec'>
         <ul>
           <div className="nav-item1">
             <li>
