@@ -9,16 +9,14 @@ function Signing() {
   const [email, setEmail] = useState('');
   const [loginemail, setLoginEmail] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
-  // const [loading, setLoading] = useState(false);
-  // const [loginloading, setLoginLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [loginerrors, setLoginErrors] = useState([]);
+  const [successMessage, setSuccessMessage] = useState('');
 
   let navigate = useNavigate();
 
   const handleSignInSubmit = (event) => {
     event.preventDefault();
-    // Code to handle sign in submission
     // setLoginLoading(true)  
     fetch('https://recruits.onrender.com/recruiter/login', {
       method: 'POST',
@@ -45,7 +43,7 @@ function Signing() {
       saveRecruiter(data.user.id)
       storeRecruiterToken(data.token)
       //  console.log(data.user.id)
-      navigate('/');
+      navigate('/Recruiterdb');
     })
   }
   const handleSignUpSubmit = (event) => {
@@ -72,6 +70,13 @@ function Signing() {
         response.json().then((err)=>setErrors([err.errors]))
       }
       // setLoading(false)
+    }).then(data => {
+      if (data) {
+        setSuccessMessage('Successfully signed up!');
+         setEmail('')
+         setPassword('')
+         setUsername('')
+      }
     })
   }
   console.log(errors)
@@ -135,6 +140,9 @@ function Signing() {
                }
                  */}
               </div>
+              {successMessage && (
+                <p>{successMessage}</p>
+              )}
               {Object.keys(errors).length > 0 &&
                   Object.entries(errors).map(([key, value]) => {
                     if (Array.isArray(value)) {

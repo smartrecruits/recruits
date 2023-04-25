@@ -5,7 +5,7 @@ import { fetchQuestions } from './questionsSlice';
 
 function QuestionList({assessmentId}) {
   // const [questions, setQuestions] = useState([]);
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchQuestions());

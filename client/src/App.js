@@ -3,15 +3,15 @@ import Footer from "./Components/footer";
 import Navbar from "./Components/Navbar";
 import Signing from "./Components/Signing";
 import Home from "./Components/Home";
-import { Route, Routes, useLocation } from 'react-router-dom';
-import './index.css'
+import { Route, Routes, useLocation } from "react-router-dom";
+import "./index.css";
 import UserTypeSelection from "./Components/GetStarted";
 import Client from "./Components/Client";
 import { ClientPasswordreset } from "./Components/ClientReset";
 import { RecruiterPasswordreset } from "./Components/RecruiterReset";
 import AppInterviewee from "./AppInterviewee";
 import QuestionList from "./Features/questions/questionlist";
-import OneAssessment from './Features/assessments/oneAssess'
+import OneAssessment from "./Features/assessments/oneAssess";
 import AssessmentsList from "./Features/assessments/listAssessments";
 import Invites from "./Components/Interviewee/everything/intervieweeAssesmentList";
 import InvitesList from "./Components/Interviewee/everything/invitesList";
@@ -19,15 +19,18 @@ import IntervieweeScoreList from "./Recruits/sort_by_score";
 import IntervieweeList from "./Recruits/send invitations";
 import OneAssessmentInterviewee from "./Components/Interviewee/everything/OneAssessment";
 import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
+import CodeChallenges from "./Features/codechallenges/codechallengeslist";
 import IntervieweeResponses from "./Recruits/view interviewee answers";
 import QuizApp from "./Components/Interviewee/QuizApp/QuizApp";
+import Recruiterdb from "./Recruits/Recruiterdb";
 function App() {
   return (
     <div className="App">
       <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path='/' element={<Home/>}></Route>
+        <Route path='/Recruiterdb' element={<Recruiterdb/>}></Route>
         <Route path='/answers/:interviewee_id/:assessment_id' element={<IntervieweeResponses/>}></Route>
         <Route path='/intervieweescorelist/:id' element={<IntervieweeAssessments/>}></Route>
         <Route exact path='/intervieweescorelist' element={<IntervieweeScoreList/>}></Route>
@@ -45,6 +48,7 @@ function App() {
         <Route path='/RecruiterReset' element={<RecruiterPasswordreset/>}></Route>
         <Route path='/getStarted' element={<UserTypeSelection/>}></Route>
         <Route path='/clientdb' element={<AppInterviewee/>}></Route>
+        <Route path='/RecruiterCodeChallenges' element={<CodeChallenges/>}></Route>
 
       </Routes>
      
