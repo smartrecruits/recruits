@@ -21,6 +21,12 @@ class AssessmentsController < ApplicationController
         render json: { assessment: @assessment,questions: @questions, code_challenges: @code_challenges }, status: :ok
     end
 
+    def index_completed
+        assessments = Assessment.where(done: true, accepted: true) 
+        render json: assessments
+    end
+
+
     def destroy 
         assessment = Assessment.find(params[:id])
         assessment.destroy 
@@ -69,7 +75,7 @@ class AssessmentsController < ApplicationController
 
     private
     def assessment_params 
-        params.permit(:name,:reviewed,:accepted,:duedate,:recruiter_id)
+        params.permit(:name,:reviewed,:accepted,:duedate,:recruiter_id,:done)
     end
     
     def render_unprocessable_entity_response(invalid)

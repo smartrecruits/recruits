@@ -2,18 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { getRecruiter, getRecruiterToken} from '../Components/utils/auth';
 import { reviewAssesment } from '../Features/assessments/assessmentSlice';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-function IntervieweeResponses({intervieweeId, assessmentId}) {
+function IntervieweeResponses() {
   const [questions, setQuestions] = useState([]);
   const [responses, setResponses] = useState([]);
   const [feedback, setFeedback] = useState('');
   const [errors,setErrors] = useState([])
   const [reviewed, setReviewed] = useState(false);
+  const [answers,setanswers] = useState([])
+  const [grades, setGrades] = useState([])
+  const [answerfeedback, setanswerFeedback] = useState('');
   const recruiterId = getRecruiter() 
   const recruiterToken = getRecruiterToken()
   const dispatch = useDispatch()
+  const {interviewee_id, assessment_id} = useParams()
   useEffect(() => {
-    fetch(`/interviewees/${intervieweeId}/responses`,{
+    fetch(`/interviewees/${interviewee_id}/responses`,{
         headers: {
             Authorization: `Bearer ${recruiterToken}`
           }
@@ -22,14 +27,31 @@ function IntervieweeResponses({intervieweeId, assessmentId}) {
         if(res.ok){
         res.json().then((data)=>{
             setQuestions(data.questions);
-            setResponses(data.responses);
+            setResponses(data);
           
             })
         }else{
             res.json().then((err)=>setErrors([err.errors]))
         }
         })
-    },[intervieweeId,recruiterToken])
+    },[interviewee_id,recruiterToken])
+
+    useEffect(() => {
+      fetch(`interviewees/${interviewee_id}/answers`,{
+          headers: {
+              Authorization: `Bearer ${recruiterToken}`
+            }
+      })
+      .then(res =>{
+          if(res.ok){
+          res.json().then((data)=>{
+              setanswers(data);            
+              })
+          }else{
+              res.json().then((err)=>setErrors([err.errors]))
+          }
+          })
+      },[interviewee_id,recruiterToken])
 
     function handleReviewChange(event) {
         setReviewed(event.target.value === 'true');
@@ -37,7 +59,7 @@ function IntervieweeResponses({intervieweeId, assessmentId}) {
     function handleReviewSubmit() {
         dispatch(
           reviewAssesment({
-            assessmentId : assessmentId,
+            assessmentId : assessment_id,
             reviewData: {
               reviewed: true
             }
@@ -52,6 +74,14 @@ function IntervieweeResponses({intervieweeId, assessmentId}) {
       }
     function handleFeedbackChange(event) {
         setFeedback(event.target.value);
+      }
+
+      function handleAnswerFeedbackChange(event) {
+        setanswerFeedback(event.target.value);
+      }
+
+      function handleGradeChange(event) {
+        setGrades(event.target.value);
       }
       
 
@@ -73,6 +103,27 @@ function IntervieweeResponses({intervieweeId, assessmentId}) {
     });
     }
 
+    function handleSubmit(responseId) {
+      fetch(`/recruiter/${recruiterId}/answers/${responseId}`, {
+        method: 'PATCH',
+        headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${recruiterToken}`
+              },
+      body: JSON.stringify({ 
+        feedback: answerfeedback,
+        grades: grades 
+      })
+      })
+      .then(res => {
+          if (res.ok) {
+              // setIsFavorite(true);
+          } else {
+              res.json().then((err) => setErrors([err.errors]));
+          }
+      });
+      }
+
 return (
     <div>
         {errors.length > 0 && (
@@ -82,14 +133,7 @@ return (
                 ))}
             </div>
             )}
-        {/* <h2>Questions:</h2>
-        {questions.map(question => (
-        <div key={question.id}>
-            <h3>{question.content}</h3>
-            <p>Correct Answer: {question.correct_answer}</p>
-        </div>
-        ))} */}
-        <h2>Interviewee Responses:</h2>
+        <h2>Interviewee Question Responses:</h2>
         {responses.map(response => (
             <div key={response.id}>
                 <p>Question: {response.question.content}</p>
@@ -98,6 +142,18 @@ return (
                 <p>Recruiter Feedback</p>
                 <textarea onChange={handleFeedbackChange} value={feedback}></textarea>
                 <button onClick={() => handleFeedbackSubmit(response.id, feedback)}>Submit</button>
+            </div>
+        ))}
+        <h2>Interviewee Code Challenge Responses</h2>
+        {answers.map(response => (
+            <div key={response.id}>
+                <p>Question: {response.code_challenge.content}</p>
+                <p>Answer: {response.content}</p>
+                <p>Grade</p>
+                <input placeholder='Set Grade' type='number' onChange={handleGradeChange}/>
+                <p>Recruiter Feedback</p>
+                <textarea onChange={handleAnswerFeedbackChange} value={feedback}></textarea>
+                <button onClick={() => handleSubmit(response.id)}>Submit</button>
             </div>
         ))}
          <div>

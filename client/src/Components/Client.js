@@ -45,8 +45,11 @@ function Client() {
           navigate('/clientdb');
           setLoginEmail('')
           setLoginPassword('')
+          navigate('/AppInterviewee');
         })
-       
+        navigate('/clientdb');
+          setLoginEmail('')
+          setLoginPassword('')
   }
 
   const handleSignUpSubmit = (event) => {

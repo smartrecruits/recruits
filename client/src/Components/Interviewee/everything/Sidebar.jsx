@@ -42,12 +42,7 @@ function Sidebar() {
           <h3>Assessments</h3>
         </li>
       </NewLink>
-      {/* <NewLink onClick={() => navigate("/code-challenge")}>
-        <li>
-          <FaWallet />
-          <h3>Code-Challenge</h3>
-        </li>
-      </NewLink> */}
+      
       <NewLink onClick={() => navigate("/reports")}>
         <li>
           <AiOutlinePieChart />
