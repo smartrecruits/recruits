@@ -173,3 +173,6 @@ questions = [
     q[:totalAttempts] = nil
     Question.create(q)
   end
+
+
+  

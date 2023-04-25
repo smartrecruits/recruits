@@ -1,9 +1,8 @@
 import React from "react";
 import Footer from "./Components/footer";
-import Navbar from "./Components/Navbar";
 import Signing from "./Components/Signing";
 import Home from "./Components/Home";
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import './index.css'
 import UserTypeSelection from "./Components/GetStarted";
 import Client from "./Components/Client";
@@ -20,12 +19,13 @@ import IntervieweeList from "./Recruits/send invitations";
 import OneAssessmentInterviewee from "./Components/Interviewee/everything/OneAssessment";
 import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
 import IntervieweeResponses from "./Recruits/view interviewee answers";
-import QuizApp from "./Components/Interviewee/QuizApp/QuizApp";
+
 function App() {
   return (
     <div className="App">
       <>
-      <Navbar />
+      
+      
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/answers/:interviewee_id/:assessment_id' element={<IntervieweeResponses/>}></Route>
@@ -40,11 +40,11 @@ function App() {
         <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route>
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
-        <Route path="/QuizApp" element={<QuizApp  />}></Route> 
+        <Route path='/AppInterviewee' element={<AppInterviewee />}></Route>
         <Route path='/ClientReset' element={<ClientPasswordreset/>}></Route>
         <Route path='/RecruiterReset' element={<RecruiterPasswordreset/>}></Route>
         <Route path='/getStarted' element={<UserTypeSelection/>}></Route>
-        <Route path='/clientdb' element={<AppInterviewee/>}></Route>
+        {/* <Route path='/clientdb' element={<AppInterviewee/>}></Route> */}
 
       </Routes>
      
