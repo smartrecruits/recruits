@@ -19,60 +19,12 @@ import IntervieweeList from "./Recruits/send invitations";
 import OneAssessmentInterviewee from "./Components/Interviewee/everything/OneAssessment";
 import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
 import IntervieweeResponses from "./Recruits/view interviewee answers";
-<<<<<<< HEAD
 
 function App() {
 
 
   const location = useLocation();
   
-=======
-// import Results from "./Components/Interviewee/QuizApp/Results";
-// import MainContent from "./Components/Interviewee/MainContent";
-// import QuizApp from "./Components/Interviewee/QuizApp/QuizApp";
-import MainContent from "./Components/Interviewee/everything/MainContent";
-import QuizApp from "./Components/Interviewee/QuizApp/QuizApp";
-import Sidebar from "./Components/Interviewee/everything/Sidebar";
-import styled from "styled-components";
-
-function App() {
-
-const Container = styled.div`
-background-color: #ffc107;
-`;
-
-const Row = styled.div`
-display: flex;
-flex-wrap: wrap;
-`;
-
-const SidebarContainer = styled.div`
-flex: 0 0 16.66667%;
-max-width: 16.66667%;
-`;
-
-const ContentContainer = styled.div`
-flex: 0 0 83.33333%;
-max-width: 83.33333%;
-`;
-  const location = useLocation();
-  const renderComponentWithSidebar = (Component) => {
-    return (
-      <>
-        <Container className="container-fluid">
-          <Row className="row">
-            <SidebarContainer className="col-md-2">
-              <Sidebar />
-            </SidebarContainer>
-            <ContentContainer className="col-md-10">
-              <Component />
-            </ContentContainer>
-          </Row>
-        </Container>
-      </>
-    );
-  };
->>>>>>> 68efb9e4db95e40cb6d91b87e54fc9ae90dd3537
   
   return (
     <div className="App">
@@ -95,12 +47,7 @@ max-width: 83.33333%;
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
         <Route path='/AppInterviewee' element={<AppInterviewee />}></Route>
-<<<<<<< HEAD
         
-=======
-        <Route path="/MainContent" element={renderComponentWithSidebar(MainContent)}></Route>
-        <Route path="/QuizApp" element={renderComponentWithSidebar(QuizApp)}></Route>
->>>>>>> 68efb9e4db95e40cb6d91b87e54fc9ae90dd3537
         <Route path='/ClientReset' element={<ClientPasswordreset/>}></Route>
         <Route path='/RecruiterReset' element={<RecruiterPasswordreset/>}></Route>
         <Route path='/getStarted' element={<UserTypeSelection/>}></Route>
