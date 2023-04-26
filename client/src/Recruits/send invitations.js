@@ -34,7 +34,7 @@ function IntervieweeList() {
         recruiter_id: recruiterId,
         assessment_id: selectedAssessment.id
     };
-    fetch('https://recruits.onrender.com/invites', {
+    fetch(`https://recruits.onrender.com/invites/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -44,11 +44,14 @@ function IntervieweeList() {
     })
     .then(res => {
         if (res.ok) {
-            // setIsFavorite(true);
-        } else {
-            res.json().then((err) => setErrors([err.errors]));
-        }
-    });
+          return res.json();
+        } 
+        // else {
+        //     res.json().then((err) => setErrors([err.errors]));
+        // }
+    }) 
+    .then(data => console.log(data))
+    .catch(error => setErrors([error]));
 };
 const handleAssessmentSelect = (event) => {
   setSelectedAssessment(event.target.value);
