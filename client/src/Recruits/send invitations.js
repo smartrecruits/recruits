@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getRecruiterToken,getRecruiter } from '../Components/utils/auth';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAssess } from '../Features/assessments/assessmentSlice';
-
+import { useNavigate } from 'react-router-dom';
 function IntervieweeList() {
   const assessments = useSelector(state => state.assessments.assessments);
   const [interviewees, setInterviewees] = useState([]);
@@ -11,6 +11,7 @@ function IntervieweeList() {
   const recruiterToken = getRecruiterToken()
   const recruiterId = getRecruiter()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   useEffect(() => {
     fetch('https://recruits.onrender.com/interviewees',{
       headers: {
@@ -59,9 +60,14 @@ const handleAssessmentSelect = (event) => {
   console.log(selectedAssessment)
 
 };
+
+function redirectToScore(){
+    navigate('/intervieweescorelist')
+}
   return (
     <div>
       <h2>List of Interviewees:</h2>
+      <button onClick={redirectToScore}>Interviewees by score</button>
       <ul>
         {interviewees.map(interviewee => (
           <li key={interviewee.id}>
