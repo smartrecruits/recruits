@@ -7699,3 +7699,167 @@ Completed 422 Unprocessable Entity in 9ms (Views: 8.1ms | ActiveRecord: 3.4ms | 
 
 
   [1m[36mQuestion Load (3.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+Started GET "/ws" for ::1 at 2023-04-26 10:28:57 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-26 10:29:02 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/recruiter" for 127.0.0.1 at 2023-04-26 10:29:02 +0300
+Processing by RecruitersController#register as */*
+  Parameters: {"username"=>"recruiter112", "email"=>"recruiter@i23", "password"=>"[FILTERED]", "recruiter"=>{"username"=>"recruiter112", "email"=>"recruiter@i23"}}
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: register, request: #<ActionDispatch::Request:0x00007ff90c00dc98>, params: {"username"=>"recruiter112", "email"=>"recruiter@i23", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"register", "recruiter"=>{"username"=>"recruiter112", "email"=>"recruiter@i23"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mRecruiter Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter@i23"], ["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mRecruiter Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter112"], ["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mRecruiter Create (0.4ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter112"], ["email", "recruiter@i23"], ["password_digest", "[FILTERED]"], ["firstname", nil], ["lastname", nil], ["company", nil], ["created_at", "2023-04-26 07:29:03.497540"], ["updated_at", "2023-04-26 07:29:03.497540"]]
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recruiters_controller.rb:5:in `register'
+  [1m[36mRecruiter Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 AND "recruiters"."id" != $2 LIMIT $3[0m  [["email", "recruiter@i23"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:6:in `register'
+  [1m[36mRecruiter Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 AND "recruiters"."id" != $2 LIMIT $3[0m  [["username", "recruiter112"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:6:in `register'
+[active_model_serializers] Rendered RecruiterSerializer with ActiveModelSerializers::Adapter::Attributes (0.7ms)
+Completed 201 Created in 497ms (Views: 123.8ms | ActiveRecord: 9.8ms | Allocations: 24728)
+
+
+Started POST "/recruiter/login" for 127.0.0.1 at 2023-04-26 10:29:08 +0300
+Processing by RecruitersController#login as */*
+  Parameters: {"username"=>"recruiter112", "email"=>"recruiter@i23", "password"=>"[FILTERED]", "recruiter"=>{"username"=>"recruiter112", "email"=>"recruiter@i23"}}
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007ff904023a50>, params: {"username"=>"recruiter112", "email"=>"recruiter@i23", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"recruiter112", "email"=>"recruiter@i23"}} }[0m
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007ff904023a50>, params: {"username"=>"recruiter112", "email"=>"recruiter@i23", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"recruiter112", "email"=>"recruiter@i23"}} }[0m
+  [1m[36mRecruiter Load (1.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE (username = 'recruiter112' OR email = 'recruiter@i23') ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:16:in `login'
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007ff904023a50>, params: {"username"=>"recruiter112", "email"=>"recruiter@i23", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"recruiter112", "email"=>"recruiter@i23"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.52ms)
+Completed 200 OK in 305ms (Views: 4.8ms | ActiveRecord: 1.3ms | Allocations: 2296)
+
+
+Started GET "/ws" for ::1 at 2023-04-26 10:29:11 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-26 10:29:28 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/assessments" for 127.0.0.1 at 2023-04-26 10:29:48 +0300
+Processing by AssessmentsController#create as */*
+  Parameters: {"name"=>"recruiter112", "assessment"=>{"name"=>"recruiter112"}}
+[31mUnpermitted parameter: :assessment. Context: { controller: AssessmentsController, action: create, request: #<ActionDispatch::Request:0x00007ff910aec5e8>, params: {"name"=>"recruiter112", "controller"=>"assessments", "action"=>"create", "assessment"=>{"name"=>"recruiter112"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.34ms)
+Completed 422 Unprocessable Entity in 75ms (Views: 3.5ms | ActiveRecord: 3.2ms | Allocations: 19787)
+
+
+Started GET "/ws" for ::1 at 2023-04-26 10:30:01 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/assessments" for 127.0.0.1 at 2023-04-26 10:31:04 +0300
+Processing by AssessmentsController#create as */*
+  Parameters: {"name"=>"recruiter112", "assessment"=>{"name"=>"recruiter112"}}
+[31mUnpermitted parameter: :assessment. Context: { controller: AssessmentsController, action: create, request: #<ActionDispatch::Request:0x00007ff90117eab0>, params: {"name"=>"recruiter112", "controller"=>"assessments", "action"=>"create", "assessment"=>{"name"=>"recruiter112"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 18ms (Views: 0.8ms | ActiveRecord: 4.0ms | Allocations: 8243)
+
+
+Started GET "/ws" for ::1 at 2023-04-26 10:31:06 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-26 10:33:15 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/assessments" for 127.0.0.1 at 2023-04-26 10:34:22 +0300
+Processing by AssessmentsController#create as */*
+  Parameters: {"name"=>"recruiter112", "assessment"=>{"name"=>"recruiter112"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 422 Unprocessable Entity in 2ms (Views: 1.2ms | ActiveRecord: 5.9ms | Allocations: 784)
+
+
+Started POST "/assessments" for 127.0.0.1 at 2023-04-26 10:36:20 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsController#create as */*
+  Parameters: {"name"=>"recruiter112", "assessment"=>{"name"=>"recruiter112"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 58ms (Views: 1.2ms | ActiveRecord: 5.7ms | Allocations: 46110)
+
+
+Started GET "/ws" for ::1 at 2023-04-26 10:37:32 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/assessments" for 127.0.0.1 at 2023-04-26 10:38:43 +0300
+Processing by AssessmentsController#create as */*
+  Parameters: {"name"=>"recruiter112", "recruiter_id"=>4, "assessment"=>{"recruiter_id"=>4, "name"=>"recruiter112"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mRecruiter Load (0.7ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mAssessment Create (4.4ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 4], ["name", "recruiter112"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-26 07:38:43.911626"], ["updated_at", "2023-04-26 07:38:43.911626"]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+[active_model_serializers]   [1m[36mInterviewee Load (0.9ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" INNER JOIN "invites" ON "interviewees"."id" = "invites"."interviewee_id" WHERE "invites"."assessment_id" = $1[0m  [["assessment_id", 21]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:14:in `create'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (167.39ms)
+Completed 500 Internal Server Error in 416ms (ActiveRecord: 27.7ms | Allocations: 68264)
+
+
+  
+SystemStackError (stack level too deep):
+  
+app/controllers/assessments_controller.rb:14:in `create'
+Started GET "/assessments" for 127.0.0.1 at 2023-04-26 10:48:59 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsController#index as */*
+  Parameters: {"name"=>"recruiter112", "recruiter_id"=>4, "assessment"=>{"recruiter_id"=>4, "name"=>"recruiter112"}}
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (4.36ms)
+Completed 200 OK in 48ms (Views: 28.3ms | ActiveRecord: 4.9ms | Allocations: 40712)
+
+
+Started POST "/assessments" for 127.0.0.1 at 2023-04-26 10:49:08 +0300
+Processing by AssessmentsController#create as */*
+  Parameters: {"name"=>"recruiter112", "recruiter_id"=>4, "assessment"=>{"recruiter_id"=>4, "name"=>"recruiter112"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mAssessment Create (0.7ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 4], ["name", "recruiter112"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-26 07:49:08.696413"], ["updated_at", "2023-04-26 07:49:08.696413"]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (0.45ms)
+Completed 201 Created in 46ms (Views: 1.3ms | ActiveRecord: 9.2ms | Allocations: 27246)
+
+
+Started POST "/assessments" for 127.0.0.1 at 2023-04-26 10:52:16 +0300
+Processing by AssessmentsController#create as */*
+  Parameters: {"name"=>"recruiter112", "recruiter_id"=>4, "assessment"=>{"recruiter_id"=>4, "name"=>"recruiter112"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mAssessment Create (0.6ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 4], ["name", "recruiter112"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-26 07:52:16.185113"], ["updated_at", "2023-04-26 07:52:16.185113"]]
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (4.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_controller.rb:13:in `create'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (26.3ms)
+Completed 500 Internal Server Error in 73ms (ActiveRecord: 11.1ms | Allocations: 42618)
+
+
+  
+SystemStackError (stack level too deep):
+  
+app/controllers/assessments_controller.rb:14:in `create'

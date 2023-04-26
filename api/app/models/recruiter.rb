@@ -4,7 +4,6 @@ class Recruiter < ApplicationRecord
     has_many :invites
     has_many :interviewees, through: :invites
     has_many :questions
-    #has_many :answers
  
     validates :email,{
         uniqueness: true,

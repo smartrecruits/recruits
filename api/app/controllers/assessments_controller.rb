@@ -41,7 +41,7 @@ class AssessmentsController < ApplicationController
 
     private
     def assessment_params 
-        params.permit(:name,:reviewed,:accepted,:duedate,:recruiter_id,:done)
+        params.require(:assessment).permit(:name,:reviewed,:accepted,:duedate,:recruiter_id,:done)
     end
     
     def render_unprocessable_entity_response(invalid)
