@@ -7,7 +7,7 @@ import Sidebar from './Components/Interviewee/everything/Sidebar'
 // import MainContent from './Components/Interviewee/everything/MainContent';
 // import Dashboard from './Components/Interviewees/IntervieweesTest/dashboard';
 // import AssessmentReviewedNotification from './Components/Interviewees/IntervieweesTest/AssessmentReview';
-
+import AppRoutes from './Components/Interviewee/everything/AppRoutes';
 
 
 
@@ -17,7 +17,7 @@ function AppInterviewee() {
     <div>
     <Container>
       <Sidebar />
-     
+     <AppRoutes />
       {/* <MainContent /> */}
     </Container>
     </div>
