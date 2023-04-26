@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import CreateQuestion from './questions';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchQuestions } from './questionsSlice';
-import { getRecruiterToken } from '../../Components/utils/auth';
+import React, { useEffect } from "react";
+import CreateQuestion from "./questions";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchQuestions } from "./questionsSlice";
+import { getRecruiterToken } from "../../Components/utils/auth";
 
-function QuestionList({assessmentId}) {
-  const dispatch = useDispatch()
-  const recruiterToken = getRecruiterToken()
+function QuestionList({ assessmentId }) {
+  const dispatch = useDispatch();
+  const recruiterToken = getRecruiterToken();
 
   useEffect(() => {
     dispatch(fetchQuestions());
@@ -29,51 +29,56 @@ function QuestionList({assessmentId}) {
 
   function addToAssessment(questionId) {
     fetch(`assessments_questions`, {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${recruiterToken}`,
       },
       body: JSON.stringify({
         assessment_id: assessmentId,
-        question_id: questionId
+        question_id: questionId,
       }),
-
     })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
   }
   function removeFromAssessment(questionId) {
     fetch(`/assessments_questions/${questionId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${recruiterToken}`,
       },
     })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
   }
 
   return (
     <div>
       <h2>Questions</h2>
-      <CreateQuestion/>
+      <CreateQuestion />
       <ul>
-        {questions.map(question => (
+        {questions.map((question) => (
           <li key={question.id}>
-            <h6>{question.content}</h6>
+            <h6 className="question">{question.content}</h6>
             {questions.some((code) => code.id === question.id) ? (
-              <button onClick={() => removeFromAssessment(question.id)}>
+              <button
+                className="button1"
+                onClick={() => removeFromAssessment(question.id)}
+              >
                 Remove from Assessment
               </button>
             ) : (
-              <button onClick={() => addToAssessment(question.id)}>
+              <button
+                className="button2"
+                onClick={() => addToAssessment(question.id)}
+              >
                 Add To Assessment
               </button>
-               )}
+            )}
           </li>
         ))}
       </ul>
