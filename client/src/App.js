@@ -47,7 +47,6 @@ function App() {
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
         <Route path='/AppInterviewee' element={<AppInterviewee />}></Route>
-        
         <Route path='/ClientReset' element={<ClientPasswordreset/>}></Route>
         <Route path='/RecruiterReset' element={<RecruiterPasswordreset/>}></Route>
         <Route path='/getStarted' element={<UserTypeSelection/>}></Route>
