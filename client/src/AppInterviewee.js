@@ -17,7 +17,11 @@ function AppInterviewee() {
     <div>
     <Container>
       <Sidebar />
+<<<<<<< HEAD
      <AppRoutes />
+=======
+     
+>>>>>>> 68efb9e4db95e40cb6d91b87e54fc9ae90dd3537
       {/* <MainContent /> */}
     </Container>
     </div>
