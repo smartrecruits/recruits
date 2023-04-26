@@ -11,9 +11,7 @@ function IntervieweeList() {
   const recruiterToken = getRecruiterToken()
   const recruiterId = getRecruiter()
   const dispatch = useDispatch()
-
   useEffect(() => {
-    setSelectedAssessment(assessments[0])
     fetch('https://recruits.onrender.com/interviewees',{
       headers: {
         'Authorization': `Bearer ${recruiterToken}`
@@ -22,15 +20,16 @@ function IntervieweeList() {
       .then(res => res.json())
       .then(data => setInterviewees(data))
       .catch(error => setErrors([error]));
-  }, [recruiterToken,assessments]);
+  }, [recruiterToken]);
 
   useEffect(() => {
     dispatch(fetchAssess());
   }, [dispatch]);
 
   const handleInvite = (id) => {
+    console.log(selectedAssessment.id)
     const requestBody = {
-        interviewee_id: id, // replace with actual user id
+        interviewee_id: id, 
         recruiter_id: recruiterId,
         assessment_id: selectedAssessment.id
     };
@@ -46,15 +45,19 @@ function IntervieweeList() {
         if (res.ok) {
           return res.json();
         } 
-        // else {
-        //     res.json().then((err) => setErrors([err.errors]));
-        // }
     }) 
     .then(data => console.log(data))
     .catch(error => setErrors([error]));
 };
+// console.log(errors)
 const handleAssessmentSelect = (event) => {
-  setSelectedAssessment(event.target.value);
+  // setSelectedAssessment(event.target.value);
+  // setSelectedAssessment(assessments.find(a => a === event.target.value));
+  const assessmentId = parseInt(event.target.value);
+  const selected = assessments.find(a => a.id === assessmentId);
+  setSelectedAssessment(selected);
+  console.log(selectedAssessment)
+
 };
   return (
     <div>
@@ -62,20 +65,23 @@ const handleAssessmentSelect = (event) => {
       <ul>
         {interviewees.map(interviewee => (
           <li key={interviewee.id}>
-            {interviewee.firstname} {interviewee.lastname}
+            {interviewee.firstname} {interviewee.lastname} {interviewee.email}
             {/* <button onClick={() => handleInvite(interviewee.id)}>
               Invite
             </button> */}
-            {assessments.length > 0 && selectedAssessment && (
+            {assessments.length > 0 && (
               <div>
                 <label htmlFor="assessment-select">Select an assessment:</label>
-                <select id="assessment-select" value={selectedAssessment.id} onChange={handleAssessmentSelect}>
+                <select id="assessment-select" value={selectedAssessment} onChange={handleAssessmentSelect}>
                   {assessments.map(assessment => (
-                    <option key={assessment.id} value={assessment}>
+                    <option key={assessment.id} value={assessment.id}>
                       {assessment.name}
                     </option>
                   ))}
                 </select>
+                {(!selectedAssessment)&&(
+                  <p style={{ fontSize: "10px", color: "red" }}>please select an assessment</p>
+                )}
                 <button onClick={() => handleInvite(interviewee.id)}>Send invite</button>
               </div>
             )}
