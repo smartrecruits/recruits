@@ -51,7 +51,7 @@ class QuestionsController < ApplicationController
     private
   
     def question_params
-      params.require(:question).permit(:recruiter_id,:content, :question, :answer_1, :answer_2, :answer_3, :answer_4, :correct_answer)
+      params.require(:question).permit(:recruiter_id,:content, :answer_1, :answer_2, :answer_3, :answer_4, :correct_answer,:totalAttempts)
     end
 
     def render_unprocessable_entity_response(invalid)

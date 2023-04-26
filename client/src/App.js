@@ -22,7 +22,24 @@ import IntervieweeAssessments from "./Recruits/intervieweeDoneAssess";
 import CodeChallenges from "./Features/codechallenges/codechallengeslist";
 import IntervieweeResponses from "./Recruits/view interviewee answers";
 import Recruiterdb from "./Recruits/Recruiterdb";
+import Sidebar from "./Components/Interviewee/everything/Sidebar";
 function App() {
+  const renderComponentWithSidebar = (Component) => {
+    return (
+      <>
+        <div className="container-fluid bg-warning">
+          <div className="row">
+            <div className="col-md-2">
+              <Sidebar />
+            </div>
+            <div className="col-md-10">
+              <Component />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
   return (
     <div className="App">
       <>

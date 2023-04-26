@@ -15,7 +15,6 @@ Interviewee.create(username: "recruiter1", email: "recruiter1@example.com", pass
 Interviewee.create(username: "recruiter2", email: "recruiter2@example.com", password: "password", firstname: "Jane", lastname: "Smith", bio: "XYZ Corp.")
 Interviewee.create(username: "recruiter3", email: "recruiter3@example.com", password: "password", firstname: "Bob", lastname: "Johnson", bio: "123 LLC")
 
-assessment_ids = (1..4).to_a
 questions = [
     {
       content: "What is the difference between a class and an object in Ruby?",
@@ -178,9 +177,11 @@ questions = [
         correct_answer: "Adding or removing elements from an array requires shifting all the subsequent elements, while in a linked list, adding or removing an element only requires updating the next reference of the previous node.",
     }      
   ]
+  recruiter_ids = [1, 2, 3]
+
   questions.each do |q|
-    q[:totalAttempts] = nil
-    Question.create(q)
+    q[:recruiter_id] = recruiter_ids.sample
+    Question.create!(q)
   end
 
   4.times do |n|
