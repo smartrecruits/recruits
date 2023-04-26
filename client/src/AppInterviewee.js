@@ -2,7 +2,7 @@ import React from 'react';
 import './AppInterviewee.css';
 import styled from 'styled-components';
 import Sidebar from './Components/Interviewee/everything/Sidebar'
-import AppRoutes from './Components/Interviewee/everything/AppRoutes';
+
 
 // import MainContent from './Components/Interviewee/everything/MainContent';
 // import Dashboard from './Components/Interviewees/IntervieweesTest/dashboard';
@@ -17,7 +17,7 @@ function AppInterviewee() {
     <div>
     <Container>
       <Sidebar />
-      <AppRoutes />
+     
       {/* <MainContent /> */}
     </Container>
     </div>
@@ -34,4 +34,4 @@ border-radius: 2rem;
   flex-direction: column;
 `;
 
-export default AppInterviewee
+export default AppInterviewee;
