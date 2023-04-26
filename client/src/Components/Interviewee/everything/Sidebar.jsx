@@ -26,7 +26,7 @@ function Sidebar() {
   <ProfileContainer>
     <Avatar onClick={() => navigate("/MainContent")} src={AvatarImage}/>
     <Name > Mahat Maghadhi </Name>
-    <Badge content= "I am a Profound Software Engineer. Call me Daddy, hehe!!"/>
+    <Badge content= "I am a Profound Software Engineer. Seeked for by the tycoons hehe!!"/>
   </ProfileContainer>
   <LinksContainer>
     <Links>

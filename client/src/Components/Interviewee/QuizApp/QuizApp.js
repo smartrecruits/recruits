@@ -14,6 +14,7 @@ import Timer from './Timer';
 
 const QuizApp = () => {
   const navigate = useNavigate();
+  const [questionsFinished, setQuestionsFinished] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState('')
   const [showResult, setShowResult] = useState(false)
@@ -43,6 +44,8 @@ const QuizApp = () => {
     } else {
       setActiveQuestion(0)
       setShowResult(true)
+      setQuestionsFinished(true);
+
      
     }
   }
@@ -59,12 +62,11 @@ const QuizApp = () => {
   const addLeadingZero = (number) => (number > 9 ? number : `0${number}`)
 
 
-  
 
   return (
     <>
     <div className="quiz-container">
-    <Timer time={600} />
+    <Timer time={60} questionsFinished={questionsFinished}  />
       {!showResult ? (
         <div>
           <div>
@@ -112,7 +114,9 @@ const QuizApp = () => {
             Wrong Answers:<span> {result.wrongAnswers}</span>
           </p>
         </div>
+        
       )}
+      
     </div>
 
     <RecommendProject>
