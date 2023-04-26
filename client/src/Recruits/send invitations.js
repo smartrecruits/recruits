@@ -10,10 +10,10 @@ function IntervieweeList() {
   const [selectedAssessment, setSelectedAssessment] = useState(null);
   const recruiterToken = getRecruiterToken()
   const recruiterId = getRecruiter()
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  setSelectedAssessment(assessments[0])
   useEffect(() => {
+    setSelectedAssessment(assessments[0])
     fetch('https://recruits.onrender.com/interviewees',{
       headers: {
         'Authorization': `Bearer ${recruiterToken}`
@@ -22,11 +22,11 @@ function IntervieweeList() {
       .then(res => res.json())
       .then(data => setInterviewees(data))
       .catch(error => setErrors([error]));
-  }, [recruiterToken]);
+  }, [recruiterToken,assessments]);
 
-  // useEffect(() => {
-  //   dispatch(fetchAssess());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchAssess());
+  }, [dispatch]);
 
   const handleInvite = (id) => {
     const requestBody = {
@@ -66,7 +66,7 @@ const handleAssessmentSelect = (event) => {
             {assessments.length > 0 && selectedAssessment && (
               <div>
                 <label htmlFor="assessment-select">Select an assessment:</label>
-                <select id="assessment-select" value={selectedAssessment} onChange={handleAssessmentSelect}>
+                <select id="assessment-select" value={selectedAssessment.id} onChange={handleAssessmentSelect}>
                   {assessments.map(assessment => (
                     <option key={assessment.id} value={assessment}>
                       {assessment.name}

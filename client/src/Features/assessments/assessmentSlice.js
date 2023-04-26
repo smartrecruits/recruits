@@ -39,9 +39,11 @@ const recruiterToken = getRecruiterToken()
         if (response.ok) {
           return data;
         } else {
+          console.error(data.errors);
           return rejectWithValue(data.errors);
         }
       } catch (error) {
+        console.error(error.message);
         return rejectWithValue(error.message);
       }
     }

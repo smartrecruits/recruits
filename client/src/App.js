@@ -27,7 +27,7 @@ function App() {
   const renderComponentWithSidebar = (Component) => {
     return (
       <>
-        <div className="container-fluid bg-warning">
+        <div className="cont">
           <div className="row">
             <div className="col-md-2">
               <Sidebar />

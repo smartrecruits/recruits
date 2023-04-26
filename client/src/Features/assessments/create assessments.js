@@ -21,10 +21,13 @@ function CreateAssessment() {
       .then((result) => {
         // handle successful createAssessment action
         console.log(result);
+        setName('')
       })
       .catch((error) => {
         // handle createAssessment error
+        console.log([error.payload])
         setErrors([error.payload]);
+        setName('')
       });
   };
 
