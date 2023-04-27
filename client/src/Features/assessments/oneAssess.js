@@ -10,25 +10,33 @@ function OneAssessment() {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
+    fetch(`https://recruits.onrender.com/assessments_questions`)
+      .then(response => response.json())
+      .then(data => {
+        if(data.assessment.id === id){
+          setQuestions(data.question)
+        }
+      })
+      .catch(error => setErrors(error));
+  }, [id]);
+
+  useEffect(() => {
     fetch(`https://recruits.onrender.com/assessments/${id}`)
       .then(response => response.json())
       .then(data => setAssessment(data))
       .catch(error => setErrors(error));
   }, [id]);
 
-  // useEffect(() => {
-  //   fetch(`https://recruits.onrender.com/assessments/${id}`)
-  //     .then(response => response.json())
-  //     .then(data => setAssessment(data))
-  //     .catch(error => setErrors(error));
-  // }, [id]);
-
-  // useEffect(() => {
-  //   fetch(`https://recruits.onrender.com/assessments/${id}`)
-  //     .then(response => response.json())
-  //     .then(data => setAssessment(data))
-  //     .catch(error => setErrors(error));
-  // }, [id]);
+   useEffect(() => {
+     fetch(`https://recruits.onrender.com/assessments_code_challenges`)
+       .then(response => response.json())
+       .then(data => {
+        if(data.assessment.id === id){
+          setCodes(data)
+        }
+  })
+       .catch(error => setErrors(error));
+   }, [id]);
 
   if (!assessment) {
     return <div>Loading assessment...</div>;

@@ -13,47 +13,47 @@ function CreateAssessment() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // dispatch(
-    //   createAssessment({
-    //     name: name,
-    //     recruiter_id: recruiterId,
-    //   })
-    // )
-    //   .then((result) => {
-    //     // handle successful createAssessment action
-    //     console.log(result);
-    //     setName('')
-    //   })
-    //   .catch((error) => {
-    //     // handle createAssessment error
-    //     console.log([error.payload])
-    //     setErrors([error.payload]);
-    //     setName('')
-    //   });
-    fetch(`https://recruits.onrender.com/assessments`, {
-        method: "POST",
-        headers: {
-              "Content-Type": "application/json",
-              'Authorization': `Bearer ${token}`
-            },
-        body: JSON.stringify({
-          recruiter_id: recruiterId,
-          name: name
-        })
+    dispatch(
+      createAssessment({
+        name: name,
+        recruiter_id: recruiterId,
       })
-        .then((res) => {
-          if(res.ok){
-          res.json().then((data) => {
+    )
+      .then((result) => {
+        // handle successful createAssessment action
+        console.log(result);
+        setName('')
+      })
+      // .catch((error) => {
+      //   // handle createAssessment error
+      //   console.log([error.payload])
+      //   setErrors([error.payload]);
+      //   setName('')
+      // });
+    // fetch(`https://recruits.onrender.com/assessments`, {
+    //     method: "POST",
+    //     headers: {
+    //           "Content-Type": "application/json",
+    //           'Authorization': `Bearer ${token}`
+    //         },
+    //     body: JSON.stringify({
+    //       recruiter_id: recruiterId,
+    //       name: name
+    //     })
+    //   })
+    //     .then((res) => {
+    //       if(res.ok){
+    //       res.json().then((data) => {
       
-            setName("");
-          })
-        }else{
-          res.json().then((err) => {
+    //         setName("");
+    //       })
+    //     }else{
+    //       res.json().then((err) => {
         
-            setErrors([err.errors]);
-            setName('')
-          })
-        }})
+    //         setErrors([err.errors]);
+    //         setName('')
+    //       })
+    //     }})
   };
 
   console.log(errors);

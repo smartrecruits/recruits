@@ -24,8 +24,8 @@ const recruiterToken = getRecruiterToken()
 
   export const createAssessment = createAsyncThunk(
     "assess/createAssessment",
-    async (assessmentData, { rejectWithValue, getState }) => {
-      const { recruiterToken } = getState();
+    async (assessmentData,) => {
+      // const { recruiterToken } = getState();
       try {
         const response = await fetch("https://recruits.onrender.com/assessments", {
           method: "POST",
@@ -38,13 +38,14 @@ const recruiterToken = getRecruiterToken()
         const data = await response.json();
         if (response.ok) {
           return data;
-        } else {
+        } 
+        else {
           console.error(data.errors);
-          return rejectWithValue(data.errors);
+          // return rejectWithValue(data.errors);
         }
       } catch (error) {
         console.error(error.message);
-        return rejectWithValue(error.message);
+        // return rejectWithValue(error.message);
       }
     }
   );
