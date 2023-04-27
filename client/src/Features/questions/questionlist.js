@@ -28,7 +28,7 @@ function QuestionList({assessmentId}) {
   }
 
   function addToAssessment(questionId) {
-    fetch(`assessments_questions`, {
+    fetch(`https://recruits.onrender.com/assessments_questions`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function QuestionList({assessmentId}) {
       .catch(error => console.log(error));
   }
   function removeFromAssessment(questionId) {
-    fetch(`/assessments_questions/${questionId}`, {
+    fetch(`https://recruits.onrender.com/assessments_questions/${questionId}`, {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
@@ -65,15 +65,15 @@ function QuestionList({assessmentId}) {
         {questions.map(question => (
           <li key={question.id}>
             <h6>{question.content}</h6>
-            {questions.some((code) => code.id === question.id) ? (
+            {/* {questions.some((code) => code.id === question.id) ? ( */}
               <button onClick={() => removeFromAssessment(question.id)}>
                 Remove from Assessment
               </button>
-            ) : (
+            {/* ) : ( */}
               <button onClick={() => addToAssessment(question.id)}>
                 Add To Assessment
               </button>
-               )}
+               {/* )} */}
           </li>
         ))}
       </ul>

@@ -112,22 +112,23 @@ const intervieweeToken = getIntervieweeToken()
           state.codes.push(action.payload);
         }
     },
-    extraReducers:{
-        [fetchCode.pending](state) {
+    extraReducers(builder){
+      builder
+        .addCase(fetchCode.pending,(state)=> {
             state.status = "loading";
-        },
-        [fetchCode.fulfilled](state, action) {
+        })
+        .addCase(fetchCode.fulfilled,(state, action)=> {
             state.codes = action.payload;
             state.status = "idle";
-        },
-        [createCode.fulfilled](state, action) {
+        })
+        .addCase(createCode.fulfilled,(state, action)=> {
             state.codes.push(action.payload);
             state.status = "idle";
-        },
-        [fetchCodeChallenge.fulfilled](state, action) {
+        })
+        .addCase(fetchCodeChallenge.fulfilled,(state, action)=> {
             state.codes = action.payload;
             state.status = "idle";
-        },
+        });
     }
 })
  

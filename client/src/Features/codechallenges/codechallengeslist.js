@@ -28,7 +28,7 @@ function CodeChallenges({ assessmentId }) {
   }
 
   function addToAssessment(codeChallengeId) {
-    fetch(`/assessments_code_challenges`, {
+    fetch(`https://recruits.onrender.com/assessments_code_challenges`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ function CodeChallenges({ assessmentId }) {
       .catch((error) => console.log(error));
   }
   function removeFromAssessment(codeChallengeId) {
-    fetch(`/assessments_code_challenges/${codeChallengeId}`, {
+    fetch(`https://recruits.onrender.com/assessments_code_challenges/${codeChallengeId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

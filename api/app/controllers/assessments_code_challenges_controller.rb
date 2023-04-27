@@ -3,7 +3,7 @@ class AssessmentsCodeChallengesController < ApplicationController
     before_action :verify_auth
 
     def create 
-        code = AssessmentsCodeChallenge.create!(AssessCode_params)
+        code = AssessmentsCodeChallenge.create!(assesscode_params)
         render json: code, status: :created  
     end
 
@@ -13,23 +13,23 @@ class AssessmentsCodeChallengesController < ApplicationController
     end
 
     def show
-        code = find_AssessCode
+        code = find_assesscode
         render json: code 
     end 
 
     def destroy 
-        code = find_AssessCode
+        code = find_assesscode
         code.destroy 
         head :no_content
     end
 
     private 
 
-    def find_AssessCode
+    def find_assesscode
         AssessmentsCodeChallenge.find(params[:id])
     end
 
-    def AssessCode_params 
+    def assesscode_params 
         params.permit(:assessment_id,:code_challenge_id)
     end
 

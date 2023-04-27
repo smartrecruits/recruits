@@ -55,18 +55,19 @@ export const fetchQuestions = createAsyncThunk("questions/fetchQuestions", async
           state.questions.push(action.payload);
         }
     },
-    extraReducers:{
-        [fetchQuestions.pending](state) {
+    extraReducers(builder){
+      builder
+        .addCase(fetchQuestions.pending,(state)=> {
             state.status = "loading";
-        },
-        [fetchQuestions.fulfilled](state, action) {
+        })
+        .addCase(fetchQuestions.fulfilled,(state, action)=> {
             state.questions = action.payload;
             state.status = "idle";
-        },
-        [createQuestion.fulfilled](state, action) {
+        })
+        .addCase(createQuestion.fulfilled,(state, action)=> {
             state.questions.push(action.payload);
             state.status = "idle";
-        },
+        });
        
     }
 })

@@ -101,22 +101,23 @@ const recruiterToken = getRecruiterToken()
           state.assessments.push(action.payload);
         }
     },
-    extraReducers:{
-        [fetchAssess.pending](state) {
+    extraReducers(builder){
+      builder 
+        .addCase(fetchAssess.pending,(state)=> {
             state.status = "loading";
-        },
-        [fetchAssess.fulfilled](state, action) {
+        })
+        .addCase(fetchAssess.fulfilled,(state, action)=> {
             state.assessments = action.payload;
             state.status = "idle";
-        },
-        [createAssessment.fulfilled](state, action) {
+        })
+        .addCase(createAssessment.fulfilled,(state, action)=> {
             state.assessments.push(action.payload);
             state.status = "idle";
-        },
-        [reviewAssesment.fulfilled](state, action) {
+        })
+        .addCase(reviewAssesment.fulfilled,(state, action) =>{
           state.assessments.push(action.payload);
           state.status = "idle";
-      },
+      });
     }
 })
  
