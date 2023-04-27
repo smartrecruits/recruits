@@ -40,21 +40,10 @@ function CodeChallenges({ assessmentId }) {
       })
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) =>{ console.log(data)})
       .catch((error) => console.log(error));
   }
-  function removeFromAssessment(codeChallengeId) {
-    fetch(`https://recruits.onrender.com/assessments_code_challenges/${codeChallengeId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${recruiterToken}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-  }
+  
 
   return (
     <div>
@@ -66,9 +55,7 @@ function CodeChallenges({ assessmentId }) {
             <h6>{codeChallenge.name}</h6>
             <h6>{codeChallenge.description}</h6>
              {/* {codeChallenges.some((code) => code.id === codeChallenge.id) ? ( */}
-              <button onClick={() => removeFromAssessment(codeChallenge.id)}>
-                Remove from Assessment
-              </button>
+             
             {/* ) : ( */}
               <button onClick={() => addToAssessment(codeChallenge.id)}>
                 Add To Assessment

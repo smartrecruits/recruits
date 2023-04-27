@@ -44,18 +44,7 @@ function QuestionList({assessmentId}) {
       .then(data => console.log(data))
       .catch(error => console.log(error));
   }
-  function removeFromAssessment(questionId) {
-    fetch(`https://recruits.onrender.com/assessments_questions/${questionId}`, {
-      method: 'DELETE',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${recruiterToken}`,
-      },
-    })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
-  }
+ 
 
   return (
     <div>
@@ -66,9 +55,7 @@ function QuestionList({assessmentId}) {
           <li key={question.id}>
             <h6>{question.content}</h6>
             {/* {questions.some((code) => code.id === question.id) ? ( */}
-              <button onClick={() => removeFromAssessment(question.id)}>
-                Remove from Assessment
-              </button>
+           
             {/* ) : ( */}
               <button onClick={() => addToAssessment(question.id)}>
                 Add To Assessment

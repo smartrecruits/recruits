@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import QuestionList from '../questions/questionlist'
 import { getRecruiterToken } from '../../Components/utils/auth';
+import CodeChallenges from '../codechallenges/codechallengeslist';
 
 function OneAssessment() {
   const [assessment, setAssessment] = useState(null);
   const { id } = useParams()
   const [errors,setErrors] = useState([])
   const [showPopup, setShowPopup] = useState(false);
+  const [Popup,setPopup] = useState(false);
+
   const recruiterToken = getRecruiterToken()
- 
 
   useEffect(() => {
     fetch(`https://recruits.onrender.com/assessments/${id}`,{
@@ -20,14 +22,51 @@ function OneAssessment() {
       .then(response => response.json())
       .then(data => setAssessment(data))
       .catch(error => setErrors(error));
-  }, [id]);
+  }, [id,recruiterToken]);
 
   if (!assessment) {
     return <div>Loading assessment...</div>;
   }
 
+  function removeFromAssessment(questionId) {
+    fetch(`https://recruits.onrender.com/assessments_questions/${questionId}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${recruiterToken}`,
+      },
+    })
+      .then(response => {
+        if(response.ok){
+        response.json()
+      }else{
+        throw new Error('Network response was not ok.');
+      }})
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
+  }
+
+  function removeCodeFromAssessment(codeChallengeId) {
+    fetch(`https://recruits.onrender.com/assessments_code_challenges/${codeChallengeId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${recruiterToken}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  }
+
   function handleAddQuestionClick() {
     setShowPopup(true);
+  }
+  function handleAddCodeClick() {
+    setPopup(true);
+  }
+  function updateAssessment(newAssessment){
+    setAssessment(newAssessment)
   }
   return (
     <div>
@@ -45,14 +84,22 @@ function OneAssessment() {
         {assessment.questions.map(question => (
           <li key={question.id}>
             <h6>{question.content}</h6>
+            <button onClick={() => removeFromAssessment(question.id)}>
+                Remove from Assessment
+              </button>
           </li>
         ))}
         </ul>
         <h4>Code Challenges</h4>
+        <button onClick={handleAddCodeClick}>AddQuestion</button>
+
         <ul>
          {assessment.code_challenges.map(question => (
           <li key={question.id}>
             <h6>{question.content}</h6>
+            <button onClick={() => removeCodeFromAssessment(question.id)}>
+                Remove from Assessment
+              </button>
           </li>
         ))}
       </ul>
@@ -60,7 +107,15 @@ function OneAssessment() {
         <div className="popup">
           <div className="popup-content">
             <button onClick={() => setShowPopup(false)}>Close</button>
-            <QuestionList assessmentId={id} />
+            <QuestionList assessmentId={id}  updateAssessment={updateAssessment}/>
+          </div>
+        </div>
+      )}
+      {Popup && (
+        <div className="popup">
+          <div className="popup-content">
+            <button onClick={() => setPopup(false)}>Close</button>
+            <CodeChallenges assessmentId={id}  updateAssessment={updateAssessment} />
           </div>
         </div>
       )}
