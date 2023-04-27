@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import QuestionList from '../questions/questionlist'
 function OneAssessment() {
+  const [codes, setCodes] = useState(null);
+  const [questions, setQuestions] = useState(null);
   const [assessment, setAssessment] = useState(null);
   const { id } = useParams()
   const [errors,setErrors] = useState([])
@@ -13,6 +15,20 @@ function OneAssessment() {
       .then(data => setAssessment(data))
       .catch(error => setErrors(error));
   }, [id]);
+
+  // useEffect(() => {
+  //   fetch(`https://recruits.onrender.com/assessments/${id}`)
+  //     .then(response => response.json())
+  //     .then(data => setAssessment(data))
+  //     .catch(error => setErrors(error));
+  // }, [id]);
+
+  // useEffect(() => {
+  //   fetch(`https://recruits.onrender.com/assessments/${id}`)
+  //     .then(response => response.json())
+  //     .then(data => setAssessment(data))
+  //     .catch(error => setErrors(error));
+  // }, [id]);
 
   if (!assessment) {
     return <div>Loading assessment...</div>;
