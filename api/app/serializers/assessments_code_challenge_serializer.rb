@@ -1,5 +1,5 @@
 class AssessmentsCodeChallengeSerializer < ActiveModel::Serializer
   attributes :id
-  # has_one :code_challenge
-  # has_one :assessment
+  belongs_to :code_challenge
+  belongs_to :assessment
 end
