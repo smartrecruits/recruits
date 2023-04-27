@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Badge from './Badge';
-import AvatarImage from '../assets/avatarImage2.jpeg';
+import AvatarImage from '../assets/avatarImage4.jpg';
 import { darkThemeColor } from '../../utils/Interview';
 import { RiHomeLine, RiFileCopyLine} from "react-icons/ri"
 // import { FaWallet } from "react-icons/fa"
@@ -24,9 +24,9 @@ function Sidebar() {
     <div className="SideMenu">
     <Container>
   <ProfileContainer>
-    <Avatar src={AvatarImage}/>
-    <Name> Mahat Maghadhi </Name>
-    <Badge content= "I am a Profound Software Engineer. Call me Daddy, hehe!!"/>
+    <Avatar onClick={() => navigate("/MainContent")} src={AvatarImage}/>
+    <Name > Mahat Maghadhi </Name>
+    <Badge content= "I am a Profound Software Engineer. Seeked for by the tycoons hehe!!"/>
   </ProfileContainer>
   <LinksContainer>
     <Links>
@@ -36,14 +36,14 @@ function Sidebar() {
           <h3>Dashboard</h3>
         </li>
       </NewLink>
-      <NewLink onClick={() => navigate("/RecruiterAssessList/:id")}>
+      <NewLink onClick={() => navigate("/QuizApp")}>
         <li>
           <RiFileCopyLine />
           <h3>Assessments</h3>
         </li>
       </NewLink>
       
-      <NewLink onClick={() => navigate("/reports")}>
+      <NewLink onClick={() => navigate("/result")}>
         <li>
           <AiOutlinePieChart />
           <h3>Reports</h3>
@@ -62,11 +62,13 @@ function Sidebar() {
 }
 
 const Container = styled.div`
-  width: 20%;
+  width: 100%;
   height: 100% !important;
   border-radius: 2rem;
+  background-image: url(https://unsplash.com/s/photos/purple-tech); 
   background-color: #091322;
-  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);  display: flex;
+  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);  
+  display: flex;
   // background-image: linear-gradient(-225deg, #FF057C 0%, #7C64D5 48%, #4CC3FF 80%);
   flex-direction: column;
   align-items: center;
@@ -85,9 +87,9 @@ const ProfileContainer = styled.div`
 `;
 
 const Avatar = styled.img`
-  height: 7rem;
+  height: 8rem;
   border-radius: 8rem;
-  margin-top: 20%;
+  margin-top: 8%;
 `;
 
 const Name = styled.h1`
@@ -98,10 +100,12 @@ const Name = styled.h1`
 `;
 
 const LinksContainer = styled.div`
-  background-color: ${darkThemeColor};
+  // background-color: ${darkThemeColor};
+  background-image: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
   // background-image: linear-gradient(to top, #ab00c3, #b105c8, #b70bcc, #bd11d1, #c315d5, #c821da, #cd2ade, #d232e3, #d73fe9, #dd4aef, #e255f5, #e75ffb);  width: 100%;
   border-radius: 1rem;
   height: 60%;
+  
   width: 80%;
 `;
 

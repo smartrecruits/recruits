@@ -1,6 +1,5 @@
 import React from "react";
 import Footer from "./Components/footer";
-import Navbar from "./Components/Navbar";
 import Signing from "./Components/Signing";
 import Home from "./Components/Home";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -24,6 +23,11 @@ import IntervieweeResponses from "./Recruits/view interviewee answers";
 import Recruiterdb from "./Recruits/Recruiterdb";
 import Sidebar from "./Components/Interviewee/everything/Sidebar";
 function App() {
+
+
+  const location = useLocation();
+  
+  
   const renderComponentWithSidebar = (Component) => {
     return (
       <>
@@ -43,6 +47,9 @@ function App() {
   return (
     <div className="App">
       <>
+      {/* <AppInterviewee /> */}
+      {location.pathname.includes('/AppInterviewee') && <AppInterviewee />}
+      
       {/* <Navbar /> */}
       <Routes>
         <Route path='/' element={<Home/>}></Route>
@@ -68,6 +75,7 @@ function App() {
 
       </Routes>
      
+    
       <Footer />
       </>
     </div>

@@ -15,7 +15,7 @@ function Projects() {
           <img src={AvatarImage} alt="" />
         </Avatar>
         <Detail>
-          <Title onClick={() => navigate("/Quizapp")} >Choose me Quiz</Title>
+          <Title onClick={() => navigate("/QuizApp")} >Choose me Quiz</Title>
           <SubTitle>1 day remaining</SubTitle>
         </Detail>
       </Project>

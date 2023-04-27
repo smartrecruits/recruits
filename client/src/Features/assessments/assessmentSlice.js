@@ -25,7 +25,6 @@ const recruiterToken = getRecruiterToken()
   export const createAssessment = createAsyncThunk(
     "assess/createAssessment",
     async (assessmentData,) => {
-      // const { recruiterToken } = getState();
       try {
         const response = await fetch("https://recruits.onrender.com/assessments", {
           method: "POST",
@@ -51,8 +50,7 @@ const recruiterToken = getRecruiterToken()
   );
 
   export const reviewAssesment = createAsyncThunk("assess/reviewAssessment",
-  async ({ assessmentId, reviewData }, { rejectWithValue, getState }) => {
-    const { recruiterToken } = getState();
+  async ({ assessmentId, reviewData }, { rejectWithValue }) => {
     try {
       const response = await fetch(
         `https://recruits.onrender.com/assessments/${assessmentId}`,
@@ -78,15 +76,6 @@ const recruiterToken = getRecruiterToken()
   }
    
   )
-
-// function assesmentReducer(state = initialState, action) {
-//     switch (action.type) {
-//       case 'SET_ASSESSMENTS':
-//         return { ...state, assessments: action.payload };
-//       default:
-//         return state;
-//     }
-// }
 
  const assessmentSlice =  createSlice({
     name: "assessment",

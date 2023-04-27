@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getRecruiter,getRecruiterToken } from '../../Components/utils/auth';
+import { getRecruiter } from '../../Components/utils/auth';
 import { useDispatch } from 'react-redux';
 import { createAssessment } from './assessmentSlice';
 import './create-assessment.css';
@@ -9,7 +9,6 @@ function CreateAssessment() {
   const [name, setName] = useState('');
   const [errors, setErrors] = useState([]);
   const recruiterId = getRecruiter();
-  let token = getRecruiterToken()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,37 +23,8 @@ function CreateAssessment() {
         console.log(result);
         setName('')
       })
-      // .catch((error) => {
-      //   // handle createAssessment error
-      //   console.log([error.payload])
-      //   setErrors([error.payload]);
-      //   setName('')
-      // });
-    // fetch(`https://recruits.onrender.com/assessments`, {
-    //     method: "POST",
-    //     headers: {
-    //           "Content-Type": "application/json",
-    //           'Authorization': `Bearer ${token}`
-    //         },
-    //     body: JSON.stringify({
-    //       recruiter_id: recruiterId,
-    //       name: name
-    //     })
-    //   })
-    //     .then((res) => {
-    //       if(res.ok){
-    //       res.json().then((data) => {
-      
-    //         setName("");
-    //       })
-    //     }else{
-    //       res.json().then((err) => {
-        
-    //         setErrors([err.errors]);
-    //         setName('')
-    //       })
-    //     }})
-  };
+     
+    }
 
   console.log(errors);
 

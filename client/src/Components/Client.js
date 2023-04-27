@@ -43,12 +43,12 @@ function Client() {
           saveInterviewee(data.user.id)
           storeIntervieweeToken(data.token)
           //  console.log(data.user.id)
-          navigate('/clientdb');
+          navigate('/AppInterviewee');
           setLoginEmail('')
           setLoginPassword('')
           navigate('/AppInterviewee');
         })
-        navigate('/clientdb');
+        navigate('/AppInterviewee');
           setLoginEmail('')
           setLoginPassword('')
   }

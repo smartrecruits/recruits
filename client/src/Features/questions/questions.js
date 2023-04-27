@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createQuestion } from './questionsSlice';
 import { useDispatch } from 'react-redux';
-
+import { getRecruiter } from '../../Components/utils/auth';
 function CreateQuestion() {
   const [errors, setErrors] = useState([])
   const [content, setContent] = useState('');
@@ -11,10 +11,12 @@ function CreateQuestion() {
   const [answer4, setAnswer4] = useState('');
   const [correctAnswer, setCorrectAnswer] = useState('');
   let dispatch = useDispatch()
+  let recruiterId = getRecruiter()
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
       createQuestion({
+              recruiter_id: recruiterId,
               content: content,
               answer1: answer1,
               answer2: answer2,
@@ -29,7 +31,7 @@ function CreateQuestion() {
     })
     .catch((error) => {
       // handle createAssessment error
-      setErrors([error.payload] || [error.message]);
+      // setErrors([error.payload] || [error.message]);
     });
     }
 

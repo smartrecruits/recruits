@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from "styled-components";
-import Badge from "./Badge";
 import { cardShadow, hoverEffect, themeColor } from '../../utils/Interview';
-
+import { useNavigate } from 'react-router-dom';
 
 function Info() {
+  const navigate = useNavigate();
   return (
     <InfoCard>
       <Card>
         <CardContent>
           <Row>
-            <Digit>Twitter</Digit>
+            <Digit onClick={() => navigate("/invitesList")}>Invites</Digit>
             <InfoContainer>
-              <Title><br/>Invite</Title>
-              <SubTitle>In top 20%</SubTitle>
+              <Title><br/></Title>
+              <SubTitle></SubTitle>
             </InfoContainer>
           </Row>
         </CardContent>
@@ -21,15 +21,14 @@ function Info() {
       <Card>
         <CardContent>
           <Row>
-            <Digit>32</Digit>
+            <Digit onClick={() => navigate("/result")}>Feedback</Digit>
             <InfoContainer>
-              <Title>Projects</Title>
-              <SubTitle>8 this month</SubTitle>
+              <Title></Title>
+              <SubTitle></SubTitle>
             </InfoContainer>
           </Row>
           <Row justify>
-            <Badge content="mobile app" glow />
-            <Badge content="branding" glow />
+            
           </Row>
         </CardContent>
       </Card>
@@ -62,28 +61,31 @@ const Card = styled.div`
 `;
 
 const CardContent = styled.div`
-  padding: 0.7rem 1rem 0.3rem 1rem;
+  padding: 0.1rem 1rem 0.3rem 1rem;
 `;
 
 const Row = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+  margin-top: 0.6rem;
   ${({ justify }) =>
     justify &&
     `
       justify-content:space-around;
-      width:90%
+      width:100%
   `}
 `;
 const Digit = styled.div`
   background-color: ${themeColor};
-  padding: 0.8rem 1rem;
-  font-size: 1.3rem;
+  padding: 1.8rem 2rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  width: 100%;
   border-radius: 1rem;
 `;
 const InfoContainer = styled.div`
-  margin-left: 0.7rem;
+  margin-left: 0.9rem;
 `;
 const Title = styled.h3`
   color: black;

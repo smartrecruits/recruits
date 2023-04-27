@@ -18,8 +18,7 @@ export const fetchQuestions = createAsyncThunk("questions/fetchQuestions", async
 
   export const createQuestion = createAsyncThunk(
     "question/createQuestion",
-    async (assessmentData, { rejectWithValue, getState }) => {
-      const { recruiterToken } = getState();
+    async (assessmentData) => {
       try {
         const response = await fetch("https://recruits.onrender.com/questions", {
           method: "POST",
@@ -30,13 +29,10 @@ export const fetchQuestions = createAsyncThunk("questions/fetchQuestions", async
           body: JSON.stringify(assessmentData),
         });
         const data = await response.json();
-        if (response.ok) {
-          return data;
-        } else {
-          return rejectWithValue(data.errors);
-        }
+        return data
+        
       } catch (error) {
-        return rejectWithValue(error.message);
+        // return rejectWithValue(error.message);
       }
     }
   );

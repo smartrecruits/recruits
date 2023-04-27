@@ -29,7 +29,7 @@ function ProjectRecommendation() {
         Success in your code test,<br/>
           Looking for a talented Programmer to join the family of my new startup.
         </ProjectInfo>
-        <PriceContainer onClick={() => navigate("/")}>
+        <PriceContainer onClick={() => navigate("/QuizApp")}>
           <Price>Success</Price>
           <Badge content="Start Code-Challenge" clean />
         </PriceContainer>

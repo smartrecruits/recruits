@@ -65,15 +65,15 @@ function CodeChallenges({ assessmentId }) {
           <li key={codeChallenge.id}>
             <h6>{codeChallenge.name}</h6>
             <h6>{codeChallenge.description}</h6>
-             {codeChallenges.some((code) => code.id === codeChallenge.id) ? (
+             {/* {codeChallenges.some((code) => code.id === codeChallenge.id) ? ( */}
               <button onClick={() => removeFromAssessment(codeChallenge.id)}>
                 Remove from Assessment
               </button>
-            ) : (
+            {/* ) : ( */}
               <button onClick={() => addToAssessment(codeChallenge.id)}>
                 Add To Assessment
               </button>
-               )}
+               {/* )} */}
           </li>
         ))}
       </ul>

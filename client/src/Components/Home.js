@@ -1,6 +1,5 @@
 import React from "react";
 import CompanyLogos from "./CompanyLogo";
-import Footer from "./footer";
 import LandingPage from "./LandingPage";
 import Mission from "./mission";
 import Navbar from "./Navbar";
