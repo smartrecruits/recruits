@@ -2,11 +2,15 @@
 
 ## Description
 This is an App that can be used to test the skills of Interviewees. Recruiters can give them tests and code code challenges and release the interviewees grades later
+![landing](https://user-images.githubusercontent.com/109147065/235051958-3d4d9873-30c4-4638-878c-256489c1cd66.png)
+
 
 ### Features
 - Recruites and Interviewees can Login to their specific pages
+![signup](https://user-images.githubusercontent.com/109147065/235052222-ed715b9f-60e6-4f92-a324-4ed7a7c1d3ac.png)
 
 - Recruiters can create assessments and add or remove questions or code challenges
+![createa](https://user-images.githubusercontent.com/109147065/235052722-fd169cd4-e372-467f-8523-b09513dc7e53.png)
 
 - Recruiters can create questions and code challenges
 
