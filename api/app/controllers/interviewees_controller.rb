@@ -48,6 +48,12 @@ class IntervieweesController < ApplicationController
         end
     end
 
+    # def purchases
+    #     user = User.find(params[:id])
+    #     purchases = user.purchases.all
+    #     render json: purchases
+    # end
+
     def logout
         remove_user
     end

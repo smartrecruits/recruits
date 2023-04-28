@@ -77,7 +77,8 @@ class ApplicationController < ActionController::API
         puts "session  #{session[:uid].inspect}"
         Interviewee.find(session[:uid].to_i)
     end
-
+    
+    
     # get logged in recruiter
     def recruiter
         Recruiter.find(@uid) 
