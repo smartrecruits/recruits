@@ -10,7 +10,8 @@ function OneAssessment() {
   const [errors,setErrors] = useState([])
   const [showPopup, setShowPopup] = useState(false);
   const [Popup,setPopup] = useState(false);
-
+  const [questions,setQuestions]= useState([])
+  const [codes, setCodes] =useState([])
   const recruiterToken = getRecruiterToken()
 
   useEffect(() => {
@@ -24,9 +25,32 @@ function OneAssessment() {
       .catch(error => setErrors(error));
   }, [id,recruiterToken]);
 
+  useEffect(() => {
+    fetch(`https://recruits.onrender.com/assessments_questions/`,{
+      headers: {
+        Authorization: `Bearer ${recruiterToken}`,
+      },
+    })
+      .then(response => response.json())
+      .then(data => setQuestions(data))
+      .catch(error => setErrors(error));
+  }, [id,recruiterToken]);
+
+  useEffect(() => {
+    fetch(`https://recruits.onrender.com/assessments_code_challenges/`,{
+      headers: {
+        Authorization: `Bearer ${recruiterToken}`,
+      },
+    })
+      .then(response => response.json())
+      .then(data => setCodes(data))
+      .catch(error => setErrors(error));
+  }, [id,recruiterToken]);
+  
   if (!assessment) {
     return <div>Loading assessment...</div>;
   }
+
 
   function updateAssessmentInDB(updatedAssessment) {
     fetch(`https://recruits.onrender.com/assessments/${id}`, {
@@ -52,7 +76,13 @@ function OneAssessment() {
   }
 
   function removeFromAssessment(questionId) {
-    fetch(`https://recruits.onrender.com/assessments_questions/${questionId}`, {
+    let assessquestId = null;
+    questions.forEach((question) => {
+      if((question.question.id === questionId)&&(question.assessment.id=== id)){
+        assessquestId = question.id
+      }
+    })
+    fetch(`https://recruits.onrender.com/assessments_questions/${assessquestId}`, {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +117,13 @@ function OneAssessment() {
     .catch(error => console.log(error));
   }
   function removeCodeFromAssessment(codeChallengeId) {
-    fetch(`https://recruits.onrender.com/assessments_code_challenges/${codeChallengeId}`, {
+    let assessquestId = null;
+    codes.forEach((question) => {
+      if((question.question.id === codeChallengeId)&&(question.assessment.id=== id)){
+        assessquestId = question.id
+      }
+    })
+    fetch(`https://recruits.onrender.com/assessments_code_challenges/${assessquestId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
