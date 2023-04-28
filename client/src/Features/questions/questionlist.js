@@ -55,7 +55,7 @@ function QuestionList({assessmentId, updateAssessment}) {
       <ul>
         {questions.map((question) => (
           <li key={question.id}>
-            <h6 className="question">{question.content}</h6>
+            <p className="question">{question.content}</p>
             {/* {questions.some((code) => code.id === question.id) ? ( */}
            
             {/* ) : ( */}
