@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index
-      questions = recruiter.questions.all
+      questions = Questions.all
       render json: questions
     end
   

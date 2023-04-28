@@ -28,6 +28,29 @@ function OneAssessment() {
     return <div>Loading assessment...</div>;
   }
 
+  function updateAssessmentInDB(updatedAssessment) {
+    fetch(`https://recruits.onrender.com/assessments/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${recruiterToken}`,
+      },
+      body: JSON.stringify(updatedAssessment),
+    })
+      .then(response => {
+        console.log("Response:", response);
+        return response.json();
+      })
+      .then(data => {
+        console.log("Data:", data);
+        setAssessment(data)
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        setErrors(error)
+      });
+  }
+
   function removeFromAssessment(questionId) {
     fetch(`https://recruits.onrender.com/assessments_questions/${questionId}`, {
       method: 'DELETE',
@@ -36,17 +59,33 @@ function OneAssessment() {
         Authorization: `Bearer ${recruiterToken}`,
       },
     })
-      .then(() => {
-        const updatedQuestions = assessment.questions.filter(question => question.id !== questionId);
-        const updatedAssessment = { ...assessment, questions: updatedQuestions };
-        setAssessment(updatedAssessment);
-        console.log(assessment)
-
+    .then(() => {
+      const updatedQuestions = assessment.questions.filter(question => question.id !== questionId);
+      const updatedAssessment = { ...assessment, questions: updatedQuestions };
+      setAssessment(updatedAssessment); // update the assessment in the state
+      fetch(`https://recruits.onrender.com/assessments/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${recruiterToken}`,
+        },
+        body: JSON.stringify(updatedAssessment),
       })
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
+      .then(response => {
+        console.log("Response:", response);
+        return response.json();
+      })
+      .then(data => {
+        console.log("Data:", data);
+        setAssessment(data)
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        setErrors(error)
+      });
+    })
+    .catch(error => console.log(error));
   }
-
   function removeCodeFromAssessment(codeChallengeId) {
     fetch(`https://recruits.onrender.com/assessments_code_challenges/${codeChallengeId}`, {
       method: "DELETE",
@@ -58,8 +97,9 @@ function OneAssessment() {
       .then(() => {
         const updatedCodeChallenges = assessment.code_challenges.filter(codeChallenge => codeChallenge.id !== codeChallengeId);
         const updatedAssessment = { ...assessment, code_challenges: updatedCodeChallenges };
-        setAssessment(updatedAssessment);
-        console.log(assessment)
+        updateAssessmentInDB(updatedAssessment)
+        .then(() => setAssessment(updatedAssessment))
+        .catch(error => console.log(error));
       })
       .catch((error) => console.log(error));
   }
@@ -75,6 +115,7 @@ function OneAssessment() {
   }
   return (
     <div>
+      <center>
          {errors.length > 0 && (
           <div className="text-danger">
             {errors.map((error, index) => (
@@ -84,8 +125,9 @@ function OneAssessment() {
         )}
       <h2>{assessment.name}</h2>
       <h4>Questions</h4>
+      <br/>
       <button className='button1' onClick={handleAddQuestionClick}>AddQuestion</button>
-      <ul>
+      <center>
         {assessment.questions.map(question => (
           <div className='questcont' key={question.id}>
             <p className='question'>{question.content}</p>
@@ -94,8 +136,9 @@ function OneAssessment() {
               </button>
           </div>
         ))}
-        </ul>
+        </center>
         <h4>Code Challenges</h4>
+        <br/>
         <button className='button1' onClick={handleAddCodeClick}>AddQuestion</button>
 
         <ul>
@@ -124,6 +167,7 @@ function OneAssessment() {
           </div>
         </div>
       )}
+      </center>
     </div>
   );
 }
