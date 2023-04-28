@@ -87,12 +87,12 @@ function OneAssessment() {
       <button className='button1' onClick={handleAddQuestionClick}>AddQuestion</button>
       <ul>
         {assessment.questions.map(question => (
-          <li key={question.id}>
+          <div className='questcont' key={question.id}>
             <p className='question'>{question.content}</p>
-            <button className='button3' onClick={() => removeFromAssessment(question.id)}>
+            <button className='button3'style={{ marginLeft: 'auto' }} onClick={() => removeFromAssessment(question.id)}>
                 Delete 
               </button>
-          </li>
+          </div>
         ))}
         </ul>
         <h4>Code Challenges</h4>
@@ -100,12 +100,12 @@ function OneAssessment() {
 
         <ul>
          {assessment.code_challenges.map(question => (
-          <li key={question.id}>
-            <p className="challenge">{question.content}</p>
+          <div className='questcont' key={question.id}>
+            <p className="question">{question.name}</p>
             <button className='button3' onClick={() => removeCodeFromAssessment(question.id)}>
                 Delete
               </button>
-          </li>
+          </div>
         ))}
       </ul>
       {showPopup && (
