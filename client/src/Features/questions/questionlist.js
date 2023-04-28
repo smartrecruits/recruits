@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import CreateQuestion from './questions';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchQuestions } from './questionsSlice';
-import { getRecruiterToken } from '../../Components/utils/auth';
+import React, { useEffect } from "react";
+import CreateQuestion from "./questions";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchQuestions } from "./questionsSlice";
+import { getRecruiterToken } from "../../Components/utils/auth";
 
 function QuestionList({assessmentId, updateAssessment}) {
   const dispatch = useDispatch()
@@ -36,9 +36,8 @@ function QuestionList({assessmentId, updateAssessment}) {
       },
       body: JSON.stringify({
         assessment_id: assessmentId,
-        question_id: questionId
+        question_id: questionId,
       }),
-
     })
       .then(response => response.json())
       .then(data => {
@@ -52,15 +51,15 @@ function QuestionList({assessmentId, updateAssessment}) {
   return (
     <div>
       <h2>Questions</h2>
-      <CreateQuestion/>
+      <CreateQuestion />
       <ul>
-        {questions.map(question => (
+        {questions.map((question) => (
           <li key={question.id}>
-            <h6>{question.content}</h6>
+            <h6 className="question">{question.content}</h6>
             {/* {questions.some((code) => code.id === question.id) ? ( */}
            
             {/* ) : ( */}
-              <button onClick={() => addToAssessment(question.id)}>
+              <button className="button1" onClick={() => addToAssessment(question.id)}>
                 Add To Assessment
               </button>
                {/* )} */}

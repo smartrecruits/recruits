@@ -57,10 +57,8 @@ function OneAssessment() {
     })
       .then(() => {
         const updatedCodeChallenges = assessment.code_challenges.filter(codeChallenge => codeChallenge.id !== codeChallengeId);
-        setAssessment({
-          ...assessment,
-          code_challenges: updatedCodeChallenges
-        });
+        const updatedAssessment = { ...assessment, code_challenges: updatedCodeChallenges };
+        setAssessment(updatedAssessment);
         console.log(assessment)
       })
       .catch((error) => console.log(error));

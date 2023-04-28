@@ -3,10 +3,12 @@ import CreateCodeChallenge from "./codechallenges";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCode } from "./codechallengesSlice";
 import { getRecruiterToken } from "../../Components/utils/auth";
+import "./codechallenges.css";
+import parse from "html-react-parser";
 
 function CodeChallenges({ assessmentId }) {
   const dispatch = useDispatch();
-  const recruiterToken = getRecruiterToken()
+  const recruiterToken = getRecruiterToken();
 
   useEffect(() => {
     dispatch(fetchCode());
@@ -36,14 +38,17 @@ function CodeChallenges({ assessmentId }) {
       },
       body: JSON.stringify({
         assessment_id: assessmentId,
-        code_challenge_id: codeChallengeId
-      })
+        code_challenge_id: codeChallengeId,
+      }),
     })
       .then((response) => response.json())
       .then((data) =>{ console.log(data)})
       .catch((error) => console.log(error));
   }
-  
+
+  const showdown = require("showdown");
+  const githubExtension = require("showdown-github/dist/showdown-github");
+  const converter = new showdown.Converter({ extensions: [githubExtension] });
 
   return (
     <div>
@@ -52,15 +57,12 @@ function CodeChallenges({ assessmentId }) {
       <ul>
         {codeChallenges.map((codeChallenge) => (
           <li key={codeChallenge.id}>
-            <h6>{codeChallenge.name}</h6>
-            <h6>{codeChallenge.description}</h6>
-             {/* {codeChallenges.some((code) => code.id === codeChallenge.id) ? ( */}
-             
-            {/* ) : ( */}
-              <button onClick={() => addToAssessment(codeChallenge.id)}>
+            <h6 className="challenge">{codeChallenge.name}</h6>
+            <div>{parse(converter.makeHtml(codeChallenge.description))}</div>
+            <br />
+              <button className="button1" onClick={() => addToAssessment(codeChallenge.id)}>
                 Add To Assessment
               </button>
-               {/* )} */}
           </li>
         ))}
       </ul>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createCode } from "./codechallengesSlice";
 import { useDispatch } from "react-redux";
+import "./codechallenges.css";
 
 function CreateCodeChallenge() {
   const [errors, setErrors] = useState([]);
@@ -34,19 +35,25 @@ function CreateCodeChallenge() {
       <h2>Create a new challenge!</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Code challenge name:</label>
-          <textarea
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
+          <label>
+            Code challenge name:
+            <br />
+            <input
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
+          </label>
         </div>
         <div>
-          <label>Description:</label>
-          <input
-            type="text"
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-          />
+          <label>
+            Description:
+            <br />
+            <textarea
+              type="text"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
+          </label>
         </div>
         <div>
           <label>Total Attempts: {totalAttempts}</label>
@@ -54,7 +61,10 @@ function CreateCodeChallenge() {
         <div>
           <label>Total Completed: {totalCompleted}</label>
         </div>
-        <button type="submit">Submit</button>
+        <br />
+        <button type="submit" className="button1">
+          Submit
+        </button>
       </form>
     </div>
   );
