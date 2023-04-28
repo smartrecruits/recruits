@@ -78,8 +78,9 @@ function OneAssessment() {
   function removeFromAssessment(questionId) {
     let assessquestId = null;
     questions.forEach((question) => {
-      if((question.question.id === questionId)&&(question.assessment.id=== id)){
+      if((question.question.id === questionId)){
         assessquestId = question.id
+        console.log(assessquestId);
       }
     })
     fetch(`https://recruits.onrender.com/assessments_questions/${assessquestId}`, {
@@ -119,7 +120,7 @@ function OneAssessment() {
   function removeCodeFromAssessment(codeChallengeId) {
     let assessquestId = null;
     codes.forEach((question) => {
-      if((question.question.id === codeChallengeId)&&(question.assessment.id=== id)){
+      if((question.code_challenge.id === codeChallengeId)){
         assessquestId = question.id
       }
     })
@@ -138,6 +139,7 @@ function OneAssessment() {
       })
       .catch((error) => console.log(error));
   }
+  console.log(questions);
 
   function handleAddQuestionClick() {
     setShowPopup(true);
