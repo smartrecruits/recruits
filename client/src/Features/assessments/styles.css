@@ -1,0 +1,17 @@
+/* styles.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h2 {
+    color: #c41197; /* change the color of the heading */
+    font-family: "Times New Roman", Times, serif; /* change the font family of the heading */
+    font-size: 40px;
+  }
+
+  .tite {
+    margin-top: 20px;
+  }
+  

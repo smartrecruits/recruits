@@ -1,0 +1,388 @@
+Started GET "/ws" for ::1 at 2023-04-27 18:20:32 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-27 18:20:41 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/assessments" for 127.0.0.1 at 2023-04-27 18:20:44 +0300
+Processing by AssessmentsController#index as */*
+  Parameters: {"interviewee_id"=>1, "assessment"=>{}}
+  [1m[36mAssessment Load (1.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.82ms)
+Completed 200 OK in 117ms (Views: 112.4ms | ActiveRecord: 11.5ms | Allocations: 22333)
+
+
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:20:50 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+Completed 500 Internal Server Error in 177ms (ActiveRecord: 0.5ms | Allocations: 38073)
+
+
+  
+SystemStackError (stack level too deep):
+  
+app/controllers/assessments_controller.rb:20:in `show'
+Started GET "/ws" for ::1 at 2023-04-27 18:21:03 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-27 18:21:51 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-27 18:23:02 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-27 18:25:30 +0300
+Started GET "/assessments" for 127.0.0.1 at 2023-04-27 18:28:17 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsController#index as */*
+  Parameters: {"interviewee_id"=>1, "assessment"=>{}}
+  [1m[36mAssessment Load (1.1ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (6.01ms)
+Completed 200 OK in 100ms (Views: 61.2ms | ActiveRecord: 7.0ms | Allocations: 40933)
+
+
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:28:32 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.2ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+Completed 500 Internal Server Error in 72ms (ActiveRecord: 0.4ms | Allocations: 38079)
+
+
+  
+SystemStackError (stack level too deep):
+  
+app/controllers/assessments_controller.rb:20:in `show'
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:30:42 +0300
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:35:29 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (0.32ms)
+Completed 200 OK in 81ms (Views: 3.6ms | ActiveRecord: 7.1ms | Allocations: 38685)
+
+
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:37:14 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (31.9ms)
+Completed 500 Internal Server Error in 82ms (ActiveRecord: 7.9ms | Allocations: 33895)
+
+
+  
+SystemStackError (stack level too deep):
+  
+app/controllers/assessments_controller.rb:19:in `show'
+Started GET "/ws" for ::1 at 2023-04-27 18:38:54 +0300
+Started GET "/assessments" for 127.0.0.1 at 2023-04-27 18:38:54 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (28.32ms)
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 6.5ms | Allocations: 30676)
+
+
+  
+SystemStackError (stack level too deep):
+  
+app/controllers/assessments_controller.rb:19:in `show'
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:41:55 +0300
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:42:54 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (59.27ms)
+Completed 500 Internal Server Error in 146ms (ActiveRecord: 6.7ms | Allocations: 69588)
+
+
+  
+SystemStackError (stack level too deep):
+  
+app/controllers/assessments_controller.rb:19:in `show'
+  [1m[36mAssessment Load (13.1ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" ORDER BY "assessments"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mQuestion Load (5.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 1]]
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+[active_model_serializers]   [1m[36mQuestion Load (0.8ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:21:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (16.39ms)
+Completed 200 OK in 57ms (Views: 32.9ms | ActiveRecord: 11.8ms | Allocations: 14689)
+
+
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:55:50 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+[active_model_serializers]   [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:21:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (17.09ms)
+Completed 200 OK in 181ms (Views: 16.1ms | ActiveRecord: 17.4ms | Allocations: 52104)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Processing by AssessmentsController#index as */*
+  Parameters: {"interviewee_id"=>1, "assessment"=>{}}
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (9.9ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (16.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.5ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 2]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 2]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.8ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 3]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 3]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 4]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 4]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.5ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 5]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.9ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 5]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (3.5ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 6]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 6]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 8]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 8]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 9]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 9]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 10]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 10]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 11]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 11]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 12]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 12]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.1ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 13]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 13]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 14]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 14]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 15]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 15]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 16]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 16]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 17]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 17]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 18]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 18]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 19]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 19]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 20]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 20]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 21]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 21]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 22]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 22]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 23]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 23]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (296.2ms)
+Completed 200 OK in 304ms (Views: 243.8ms | ActiveRecord: 62.3ms | Allocations: 109301)
+
+
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:57:04 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.5ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+[active_model_serializers]   [1m[36mQuestion Load (0.6ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:21:in `show'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.6ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:21:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (25.08ms)
+Completed 200 OK in 55ms (Views: 13.6ms | ActiveRecord: 17.1ms | Allocations: 20921)
+
+
+Started GET "/assessments" for 127.0.0.1 at 2023-04-27 18:57:49 +0300
+Processing by AssessmentsController#index as */*
+  Parameters: {"interviewee_id"=>1, "assessment"=>{}}
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments"[0m
+  ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.5ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 2]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 2]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 3]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 3]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 4]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 4]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 5]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 5]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 6]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 6]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 7]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 8]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 8]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 9]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 9]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 10]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (1.7ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 10]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 11]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 11]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 12]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 12]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 13]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 13]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 14]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 14]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 15]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 15]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 16]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 16]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 17]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 17]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 18]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 18]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 19]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.4ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 19]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 20]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 20]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 21]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 21]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 22]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.3ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 22]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 23]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 23]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (175.75ms)
+Completed 200 OK in 287ms (Views: 271.7ms | ActiveRecord: 14.9ms | Allocations: 61945)
+
+
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 18:58:06 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:21:in `show'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:21:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (6.0ms)
+Completed 200 OK in 9ms (Views: 6.0ms | ActiveRecord: 0.7ms | Allocations: 2816)
+
+
+Started GET "/assessments/1" for 127.0.0.1 at 2023-04-27 19:00:52 +0300
+Processing by AssessmentsController#show as */*
+  Parameters: {"interviewee_id"=>1, "id"=>"1", "assessment"=>{}}
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_controller.rb:18:in `show'
+[active_model_serializers]   [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" INNER JOIN "assessments_code_challenges" ON "code_challenges"."id" = "assessments_code_challenges"."code_challenge_id" WHERE "assessments_code_challenges"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:21:in `show'
+[active_model_serializers]   [1m[36mQuestion Load (0.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions" INNER JOIN "assessments_questions" ON "questions"."id" = "assessments_questions"."question_id" WHERE "assessments_questions"."assessment_id" = $1[0m  [["assessment_id", 1]]
+[active_model_serializers]   ↳ app/controllers/assessments_controller.rb:21:in `show'
+[active_model_serializers] Rendered AssessmentSerializer with ActiveModelSerializers::Adapter::Attributes (21.5ms)
+Completed 200 OK in 49ms (Views: 13.8ms | ActiveRecord: 14.8ms | Allocations: 21355)
+
+
