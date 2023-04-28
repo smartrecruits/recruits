@@ -134,8 +134,7 @@ function OneAssessment() {
         const updatedCodeChallenges = assessment.code_challenges.filter(codeChallenge => codeChallenge.id !== codeChallengeId);
         const updatedAssessment = { ...assessment, code_challenges: updatedCodeChallenges };
         updateAssessmentInDB(updatedAssessment)
-        .then(() => setAssessment(updatedAssessment))
-        .catch(error => console.log(error));
+        setAssessment(updatedAssessment)
       })
       .catch((error) => console.log(error));
   }
