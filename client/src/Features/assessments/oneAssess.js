@@ -139,7 +139,6 @@ function OneAssessment() {
       })
       .catch((error) => console.log(error));
   }
-  console.log(questions);
 
   function handleAddQuestionClick() {
     setShowPopup(true);
