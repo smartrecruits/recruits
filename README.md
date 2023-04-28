@@ -1,6 +1,9 @@
 # Smart Recruiter
 
 ## Description
+Video of the site
+[recvid.webm](https://user-images.githubusercontent.com/109147065/235054617-8497ca5a-16f6-4962-af95-85ee6359ffc8.webm)
+
 This is an App that can be used to test the skills of Interviewees. Recruiters can give them tests and code code challenges and release the interviewees grades later
 ![landing](https://user-images.githubusercontent.com/109147065/235051958-3d4d9873-30c4-4638-878c-256489c1cd66.png)
 
