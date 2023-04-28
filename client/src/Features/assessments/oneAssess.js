@@ -36,12 +36,13 @@ function OneAssessment() {
         Authorization: `Bearer ${recruiterToken}`,
       },
     })
-      .then(response => {
-        if(response.ok){
-        response.json()
-      }else{
-        throw new Error('Network response was not ok.');
-      }})
+      .then(() => {
+        const updatedQuestions = assessment.questions.filter(question => question.id !== questionId);
+        const updatedAssessment = { ...assessment, questions: updatedQuestions };
+        setAssessment(updatedAssessment);
+        console.log(assessment)
+
+      })
       .then(data => console.log(data))
       .catch(error => console.log(error));
   }
@@ -54,8 +55,14 @@ function OneAssessment() {
         Authorization: `Bearer ${recruiterToken}`,
       },
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then(() => {
+        const updatedCodeChallenges = assessment.code_challenges.filter(codeChallenge => codeChallenge.id !== codeChallengeId);
+        setAssessment({
+          ...assessment,
+          code_challenges: updatedCodeChallenges
+        });
+        console.log(assessment)
+      })
       .catch((error) => console.log(error));
   }
 
@@ -66,7 +73,7 @@ function OneAssessment() {
     setPopup(true);
   }
   function updateAssessment(newAssessment){
-    setAssessment(newAssessment)
+    // setAssessment([...assessment,newAssessment])
   }
   return (
     <div>

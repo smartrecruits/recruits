@@ -5,7 +5,7 @@ const recruiterToken = getRecruiterToken()
 
   export const fetchAssess = createAsyncThunk("assess/fetchAssess", async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("https://recruits.onrender.com/assessments", {
+      const response = await fetch(`https://recruits.onrender.com/assessments/`, {
         headers: {
           Authorization: `Bearer ${recruiterToken}`,
         },

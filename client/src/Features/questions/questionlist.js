@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchQuestions } from './questionsSlice';
 import { getRecruiterToken } from '../../Components/utils/auth';
 
-function QuestionList({assessmentId}) {
+function QuestionList({assessmentId, updateAssessment}) {
   const dispatch = useDispatch()
   const recruiterToken = getRecruiterToken()
 
@@ -41,7 +41,10 @@ function QuestionList({assessmentId}) {
 
     })
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        updateAssessment(data)
+        console.log(data)
+      })
       .catch(error => console.log(error));
   }
  
