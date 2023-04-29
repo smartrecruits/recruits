@@ -386,3 +386,1237 @@ Processing by AssessmentsController#show as */*
 Completed 200 OK in 49ms (Views: 13.8ms | ActiveRecord: 14.8ms | Allocations: 21355)
 
 
+Started GET "/ws" for ::1 at 2023-04-28 20:16:06 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-28 20:16:23 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:16:29 +0300
+Processing by AssessmentsCodeChallengesController#index as */*
+  Parameters: {"username"=>"recruiter1", "password"=>"[FILTERED]", "assessments_code_challenge"=>{}}
+  [1m[36mAssessmentsCodeChallenge Load (1.1ms)[0m  [1m[34mSELECT "assessments_code_challenges".* FROM "assessments_code_challenges"[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:42:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.42ms)
+Completed 200 OK in 76ms (Views: 74.5ms | ActiveRecord: 9.5ms | Allocations: 2277)
+
+
+Started GET "/code_challenges" for 127.0.0.1 at 2023-04-28 20:16:40 +0300
+Processing by CodeChallengesController#index as */*
+  Parameters: {"username"=>"recruiter1", "password"=>"[FILTERED]", "code_challenge"=>{}}
+Started GET "/ws" for ::1 at 2023-04-28 20:16:56 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-04-28 20:18:01 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+  [1m[36mCodeChallenge Load (4.1ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges"[0m
+  ↳ app/controllers/code_challenges_controller.rb:8:in `+'
+No serializer found for resource: {"id"=>"62f23d84eb2533004be50c0d", "name"=>"Page replacement algorithms: clock", "slug"=>"page-replacement-algorithms-clock", "category"=>"algorithms", "publishedAt"=>"2022-08-17T15:16:30.875Z", "approvedAt"=>"2022-10-14T14:16:58.106Z", "languages"=>["python", "javascript", "java", "dart", "coffeescript"], "url"=>"https://www.codewars.com/kata/62f23d84eb2533004be50c0d", "rank"=>{"id"=>-6, "name"=>"6 kyu", "color"=>"yellow"}, "createdAt"=>"2022-08-09T10:57:08.834Z", "createdBy"=>{"username"=>"yLaWy", "url"=>"https://www.codewars.com/users/yLaWy"}, "approvedBy"=>{"username"=>"ejini战神", "url"=>"https://www.codewars.com/users/ejini%E6%88%98%E7%A5%9E"}, "description"=>"In a computer operating system that uses paging for virtual memory management, page replacement algorithms decide which memory pages to page out when a page of memory needs to be allocated. Page replacement happens when a requested page is not in memory (page fault) and a free page cannot be used to satisfy the allocation, either because there are none, or because the number of free pages is lower than some threshold.\n\n## The clock page replacement algorithm\nThe clock page replacement algorithm keeps a circular list of slots in memory, with the iterator pointing at the last examined slot in the list. When a page fault occurs and no empty slots exist, the algorithm checks the R-bit (referenced) of the page pointed by the iterator: if the R-bit is 0 the page pointed is removed from the memory, the new page is inserted and the iterator is moved forward, else if the R-bit is 1 it is set to 0 and the iterator is moved forward (this process is repeated until a page with an R-bit equal to 0 is found). Note that the R-bit is set to 1 when a page that is already in memory is referenced again.<br>\n\nYour task is to implement this algorithm. The ```clock``` function will take two parameters as input: the number of maximum pages that can be kept in memory at the same time ```n``` and a ```reference list``` containing numbers. Every number represents a page request for a specific page (you can see this number as the unique ID of a page). The expected output is the status of the memory after the application of the algorithm. Note that when a page is inserted in the memory, it stays at the same position until it is removed from the memory by a page fault.\n\n## Example:\nThe circular list is represented as a normal list with toroidal behaviour. Given:\n  * N = 3,\n  * REFERENCE LIST = \\[6, 3, 6, 3, 2, 5, 1, 6\\],\n  \n```\n    +---+---+\n    |VAL| R |   * 6 is read, page fault\n    +---+---+   * 6 is inserted at position 0\n    | 6 | 0 |   * the iterator is moved forward\n    +---+---+\n--> |   |   |\n    +---+---+\n    |   |   |\n    +---+---+\n    \n    +---+---+\n    |VAL| R |   * 3 is read, page fault\n    +---+---+   * 3 is inserted at position 1\n    | 6 | 0 |   * the iterator is moved forward\n    +---+---+\n    | 3 | 0 |\n    +---+---+\n--> |   |   |\n    +---+---+\n    \n    +---+---+\n    |VAL| R |   * 6 is read, already in memory\n    +---+---+   * R-bit set to 1\n    | 6 | 1 |\n    +---+---+\n    | 3 | 0 |\n    +---+---+\n--> |   |   |\n    +---+---+\n    \n    +---+---+\n    |VAL| R |   * 3 is read, already in memory\n    +---+---+   * R-bit set to 1\n    | 6 | 1 |\n    +---+---+\n    | 3 | 1 |\n    +---+---+\n--> |   |   |\n    +---+---+\n    \n    +---+---+\n    |VAL| R |   * 2 is read, page fault\n    +---+---+   * 2 is inserted at position 2\n--> | 6 | 1 |   * the iterator is moved forward\n    +---+---+\n    | 3 | 1 |\n    +---+---+\n    | 2 | 0 |\n    +---+---+\n    \n    +---+---+\n    |VAL| R |   * 5 is read, page fault\n    +---+---+   * the R-bit of 6 is 1, we set it to 0 and move forward\n--> | 6 | 0 |   * the R-bit of 3 is 1, we set it to 0 and move forward\n    +---+---+   * the R-bit of 2 is 0, we remove it from memory\n    | 3 | 0 |   * 5 is inserted at position 2\n    +---+---+   * the iterator is moved forward\n    | 5 | 0 |\n    +---+---+\n    \n    +---+---+\n    |VAL| R |   * 1 is read, page fault\n    +---+---+   * the R-bit of 6 is 0, we remove it from memory\n    | 1 | 0 |   * 1 is inserted at position 0\n    +---+---+   * the iterator is moved forward\n--> | 3 | 0 |\n    +---+---+\n    | 5 | 0 |\n    +---+---+\n    \n    +---+---+\n    |VAL| R |   * 6 is read, page fault\n    +---+---+   * the R-bit of 3 is 0, we remove it from memory\n    | 1 | 0 |   * 6 is inserted at position 1\n    +---+---+   * the iterator is moved forward\n    | 6 | 0 |\n    +---+---+\n--> | 5 | 0 |\n    +---+---+\n    \n```\n\nSo, at the end we have the list ```[1, 6, 5]```, which is what you have to return. If not all the slots in the memory get occupied after applying the algorithm, fill the remaining slots (at the end of the list) with ```-1``` to represent emptiness (note that the IDs will always be >= 1).", "totalAttempts"=>501, "totalCompleted"=>116, "totalStars"=>14, "voteScore"=>60, "tags"=>["Algorithms", "Lists"], "contributorsWanted"=>true, "unresolved"=>{"issues"=>0, "suggestions"=>0}}
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (10.36ms)
+Completed 200 OK in 81414ms (Views: 11.4ms | ActiveRecord: 14.9ms | Allocations: 145564)
+
+
+Started POST "/assessmets_code_challenges" for 127.0.0.1 at 2023-04-28 20:19:33 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/assessmets_code_challenges"):
+  
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:19:54 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>"1", "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>"1"}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007fdf056182f8>, params: {"assessment_id"=>"1", "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>"1"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 422 Unprocessable Entity in 65ms (Views: 34.2ms | ActiveRecord: 0.0ms | Allocations: 5148)
+
+
+Started GET "/ws" for ::1 at 2023-04-28 20:20:10 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:20:34 +0300
+Error occurred while parsing request parameters.
+Contents:
+
+{
+  "assessment_id":1,
+  "code_challenge_id": 62f23d84eb2533004be50c0d
+}
+Processing by AssessmentsCodeChallengesController#create as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 323)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:20:55 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007fdef80740e8>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 40ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 3695)
+
+
+Started GET "/ws" for ::1 at 2023-04-28 20:24:27 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:24:32 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007fdef814f490>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 422 Unprocessable Entity in 31ms (Views: 0.7ms | ActiveRecord: 1.7ms | Allocations: 3824)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:28:28 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007fdf04a13bb0>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 41ms (Views: 0.7ms | ActiveRecord: 4.1ms | Allocations: 5293)
+
+
+Started GET "/ws" for ::1 at 2023-04-28 20:33:00 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+  [1m[35m (222.4ms)[0m  [1m[35mCREATE DATABASE "api_development" ENCODING = 'unicode'[0m
+  [1m[35m (88.2ms)[0m  [1m[35mCREATE DATABASE "api_test" ENCODING = 'unicode'[0m
+  [1m[35m (17.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (20.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRecruiters (20230417081126)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.0ms)[0m  [1m[35mCREATE TABLE "recruiters" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "company" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417081126"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInterviewees (20230417085139)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE TABLE "interviewees" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "firstname" character varying, "lastname" character varying, "bio" character varying, "grades" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417085139"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAnswers (20230417140023)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "answers" ("id" bigserial primary key, "content" text, "feedback" character varying, "grades" integer, "code_challenge_id" integer, "assessment_id" integer, "interviewee_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230417140023"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateQuestions (20230418053617)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (19.0ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "content" text, "answer_1" character varying, "answer_2" character varying, "answer_3" character varying, "answer_4" character varying, "correct_answer" character varying, "totalAttempts" integer, "recruiter_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230418053617"]]
+  [1m[36mTRANSACTION (6.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInvites (20230419060150)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (18.5ms)[0m  [1m[35mCREATE TABLE "invites" ("id" bigserial primary key, "interviewee_id" bigint NOT NULL, "recruiter_id" bigint NOT NULL, "assessment_id" integer, "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_b4435670b0"
+FOREIGN KEY ("interviewee_id")
+  REFERENCES "interviewees" ("id")
+, CONSTRAINT "fk_rails_c42353fbaf"
+FOREIGN KEY ("recruiter_id")
+  REFERENCES "recruiters" ("id")
+)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_invites_on_interviewee_id" ON "invites" ("interviewee_id")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE INDEX "index_invites_on_recruiter_id" ON "invites" ("recruiter_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230419060150"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAssessments (20230419090035)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "assessments" ("id" bigserial primary key, "recruiter_id" bigint NOT NULL, "name" character varying, "accepted" boolean DEFAULT FALSE, "duedate" timestamp(6), "reviewed" boolean DEFAULT FALSE, "done" boolean DEFAULT FALSE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_a7ac1b7547"
+FOREIGN KEY ("recruiter_id")
+  REFERENCES "recruiters" ("id")
+)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_assessments_on_recruiter_id" ON "assessments" ("recruiter_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230419090035"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCodeChallenges (20230420111420)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (14.3ms)[0m  [1m[35mCREATE TABLE "code_challenges" ("id" bigserial primary key, "name" character varying, "languages" character varying, "description" character varying, "totalAttempts" integer, "totalCompleted" integer, "codewars_id" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230420111420"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResponses (20230420201212)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "responses" ("id" bigserial primary key, "question_id" bigint NOT NULL, "interviewee_id" bigint NOT NULL, "chosen_answer" character varying, "feedback" character varying, "grades" integer, "correct" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_325af149a3"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+, CONSTRAINT "fk_rails_15fe94701f"
+FOREIGN KEY ("interviewee_id")
+  REFERENCES "interviewees" ("id")
+)[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE INDEX "index_responses_on_question_id" ON "responses" ("question_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE INDEX "index_responses_on_interviewee_id" ON "responses" ("interviewee_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230420201212"]]
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStatistics (20230421130719)
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (15.9ms)[0m  [1m[35mCREATE TABLE "statistics" ("id" bigserial primary key, "total_questions" integer, "total_interviewees" integer, "total_responses" integer, "correct_responses" integer, "average_score" float, "highest_score" integer, "lowest_score" integer, "total_code_challenges" integer, "answers_average" integer, "num_interviewees" integer, "num_attempts" integer, "num_incorrect" integer, "num_correct" integer, "num_completed" integer, "code_challenge" character varying, "question" character varying, "avg_grade" float, "pct_completed" float, "pct_correct" float, "code_challenge_stats" integer, "question_stats" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230421130719"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAssessmentsQuestions (20230425193508)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "assessments_questions" ("id" bigserial primary key, "question_id" bigint NOT NULL, "assessment_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_82241f0979"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+, CONSTRAINT "fk_rails_80956120d9"
+FOREIGN KEY ("assessment_id")
+  REFERENCES "assessments" ("id")
+)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE INDEX "index_assessments_questions_on_question_id" ON "assessments_questions" ("question_id")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE INDEX "index_assessments_questions_on_assessment_id" ON "assessments_questions" ("assessment_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230425193508"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAssessmentsCodeChallenges (20230425193623)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "assessments_code_challenges" ("id" bigserial primary key, "code_challenge_id" bigint NOT NULL, "assessment_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_3d89f634be"
+FOREIGN KEY ("code_challenge_id")
+  REFERENCES "code_challenges" ("id")
+, CONSTRAINT "fk_rails_f6cf03ec6d"
+FOREIGN KEY ("assessment_id")
+  REFERENCES "assessments" ("id")
+)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_assessments_code_challenges_on_code_challenge_id" ON "assessments_code_challenges" ("code_challenge_id")[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE INDEX "index_assessments_code_challenges_on_assessment_id" ON "assessments_code_challenges" ("assessment_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230425193623"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-04-28 17:41:23.303922"], ["updated_at", "2023-04-28 17:41:23.303922"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter1@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter1"], ["LIMIT", 1]]
+  [1m[36mRecruiter Create (0.5ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter1"], ["email", "recruiter1@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "John"], ["lastname", "Doe"], ["company", "ABC Inc."], ["created_at", "2023-04-28 17:41:23.850303"], ["updated_at", "2023-04-28 17:41:23.850303"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter2@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter2"], ["LIMIT", 1]]
+  [1m[36mRecruiter Create (0.3ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter2"], ["email", "recruiter2@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Jane"], ["lastname", "Smith"], ["company", "XYZ Corp."], ["created_at", "2023-04-28 17:41:24.090308"], ["updated_at", "2023-04-28 17:41:24.090308"]]
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."email" = $1 LIMIT $2[0m  [["email", "recruiter3@example.com"], ["LIMIT", 1]]
+  [1m[36mRecruiter Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recruiters" WHERE "recruiters"."username" = $1 LIMIT $2[0m  [["username", "recruiter3"], ["LIMIT", 1]]
+  [1m[36mRecruiter Create (0.3ms)[0m  [1m[32mINSERT INTO "recruiters" ("username", "email", "password_digest", "firstname", "lastname", "company", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["username", "recruiter3"], ["email", "recruiter3@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Bob"], ["lastname", "Johnson"], ["company", "123 LLC"], ["created_at", "2023-04-28 17:41:24.342904"], ["updated_at", "2023-04-28 17:41:24.342904"]]
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter1@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter1"], ["LIMIT", 1]]
+  [1m[36mInterviewee Create (0.5ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "grades", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "recruiter1"], ["email", "recruiter1@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "John"], ["lastname", "Doe"], ["bio", "ABC Inc."], ["grades", nil], ["created_at", "2023-04-28 17:41:24.675966"], ["updated_at", "2023-04-28 17:41:24.675966"]]
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter2@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter2"], ["LIMIT", 1]]
+  [1m[36mInterviewee Create (0.3ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "grades", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "recruiter2"], ["email", "recruiter2@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Jane"], ["lastname", "Smith"], ["bio", "XYZ Corp."], ["grades", nil], ["created_at", "2023-04-28 17:41:24.916897"], ["updated_at", "2023-04-28 17:41:24.916897"]]
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."email" = $1 LIMIT $2[0m  [["email", "recruiter3@example.com"], ["LIMIT", 1]]
+  [1m[36mInterviewee Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "interviewees" WHERE "interviewees"."username" = $1 LIMIT $2[0m  [["username", "recruiter3"], ["LIMIT", 1]]
+  [1m[36mInterviewee Create (0.4ms)[0m  [1m[32mINSERT INTO "interviewees" ("username", "email", "password_digest", "firstname", "lastname", "bio", "grades", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["username", "recruiter3"], ["email", "recruiter3@example.com"], ["password_digest", "[FILTERED]"], ["firstname", "Bob"], ["lastname", "Johnson"], ["bio", "123 LLC"], ["grades", nil], ["created_at", "2023-04-28 17:41:25.155284"], ["updated_at", "2023-04-28 17:41:25.155284"]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.9ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (2.1ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is the difference between a class and an object in Ruby?"], ["answer_1", "A class is a blueprint for creating objects, while an object is an instance of a class."], ["answer_2", "A class is an instance of an object, while an object is a blueprint for creating classes."], ["answer_3", "There is no difference between a class and an object in Ruby."], ["answer_4", "A class is a type of object in Ruby."], ["correct_answer", "A class is a blueprint for creating objects, while an object is an instance of a class."], ["totalAttempts", nil], ["recruiter_id", 3], ["created_at", "2023-04-28 17:41:25.304645"], ["updated_at", "2023-04-28 17:41:25.304645"]]
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.5ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.5ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is the difference between a Proc and a lambda in Ruby?"], ["answer_1", "A Proc is a block of code that can be stored in a variable, while a lambda is a block of code that can be passed around like an object."], ["answer_2", "There is no difference between a Proc and a lambda in Ruby."], ["answer_3", "A Proc can be called with any number of arguments, while a lambda will raise an error if called with the wrong number of arguments."], ["answer_4", "A Proc always returns a value, while a lambda returns nil if it doesn't explicitly return a value."], ["correct_answer", "A Proc can be called with any number of arguments, while a lambda will raise an error if called with the wrong number of arguments."], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-28 17:41:25.330562"], ["updated_at", "2023-04-28 17:41:25.330562"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is the difference between a stack and a queue?"], ["answer_1", "A stack is a data structure that follows Last In, First Out (LIFO) principle, while a queue is a data structure that follows First In, First Out (FIFO) principle."], ["answer_2", "A stack is a data structure that follows First In, First Out (FIFO) principle, while a queue is a data structure that follows Last In, First Out (LIFO) principle."], ["answer_3", "There is no difference between a stack and a queue."], ["answer_4", "A stack is used for breadth-first search, while a queue is used for depth-first search."], ["correct_answer", "A stack is a data structure that follows Last In, First Out (LIFO) principle, while a queue is a data structure that follows First In, First Out (FIFO) principle."], ["totalAttempts", nil], ["recruiter_id", 2], ["created_at", "2023-04-28 17:41:25.345265"], ["updated_at", "2023-04-28 17:41:25.345265"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Explain the difference between a binary search tree and a balanced binary search tree."], ["answer_1", "A binary search tree is a data structure where each node has at most two child nodes and the left subtree contains only nodes with keys less than the parent node, while the right subtree contains only nodes with keys greater than the parent node. A balanced binary search tree is a binary search tree where the difference in height between the left and right subtrees of any node is at most 1."], ["answer_2", "A binary search tree is a data structure where each node has at most one child node and the left subtree contains only nodes with keys greater than the parent node, while the right subtree contains only nodes with keys less than the parent node. A balanced binary search tree is a binary search tree where the difference in height between the left and right subtrees of any node is at most 1."], ["answer_3", "There is no difference between a binary search tree and a balanced binary search tree."], ["answer_4", "A binary search tree is a data structure where each node has at most two child nodes and the left subtree contains only nodes with keys greater than the parent node, while the right subtree contains only nodes with keys less than the parent node. A balanced binary search tree is a binary search tree where the difference in height between the left and right subtrees of any node is at most 2."], ["correct_answer", "A binary search tree is a data structure where each node has at most two child nodes and the left subtree contains only nodes with keys less than the parent node, while the right subtree contains only nodes with keys greater than the parent node. A balanced binary search tree is a binary search tree where the difference in height between the left and right subtrees of any node is at most 1."], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-28 17:41:25.357941"], ["updated_at", "2023-04-28 17:41:25.357941"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is recursion and when should it be used?"], ["answer_1", "Recursion is a technique in which a function calls itself, and it should be used when a problem can be divided into smaller subproblems that can be solved using the same approach."], ["answer_2", "Recursion is a technique in which a function calls another function, and it should be used when a problem can be solved using an iterative approach."], ["answer_3", "There is no such thing as recursion in programming."], ["answer_4", "Recursion is a technique in which a function calls itself, and it should be used when a problem can be solved using a loop."], ["correct_answer", "Recursion is a technique in which a function calls itself, and it should be used when a problem can be divided into smaller subproblems that can be solved using the same approach."], ["totalAttempts", nil], ["recruiter_id", 3], ["created_at", "2023-04-28 17:41:25.367405"], ["updated_at", "2023-04-28 17:41:25.367405"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.7ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "How would you optimize a website's loading time?"], ["answer_1", "Minimize the number of HTTP requests, optimize images and other media, and reduce the size of files."], ["answer_2", "Add more content to the website to make it more engaging."], ["answer_3", "Increase the font size and add more whitespace to make the website easier to read."], ["answer_4", "Use a lot of animations and graphics to make the website more visually appealing."], ["correct_answer", "Minimize the number of HTTP requests, optimize images and other media, and reduce the size of files"], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-28 17:41:25.376289"], ["updated_at", "2023-04-28 17:41:25.376289"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.5ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Describe the difference between synchronous and asynchronous programming."], ["answer_1", "Synchronous programming means that code is executed sequentially and the program waits for each operation to complete before moving on to the next one. Asynchronous programming means that code can be executed concurrently and the program does not wait for each operation to complete before moving on to the next one."], ["answer_2", "Synchronous programming is slower than asynchronous programming."], ["answer_3", "Asynchronous programming is slower than synchronous programming."], ["answer_4", "Synchronous programming is used for small applications, while asynchronous programming is used for larger applications."], ["correct_answer", "Synchronous programming means that code is executed sequentially and the program waits for each operation to complete before moving on to the next one. Asynchronous programming means that code can be executed concurrently and the program does not wait for each operation to complete before moving on to the next one."], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-28 17:41:25.385661"], ["updated_at", "2023-04-28 17:41:25.385661"]]
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is the purpose of object-oriented programming?"], ["answer_1", "The purpose of object-oriented programming is to simplify code and make it easier to maintain."], ["answer_2", "The purpose of object-oriented programming is to make code run faster."], ["answer_3", "The purpose of object-oriented programming is to make code more difficult to read."], ["answer_4", "The purpose of object-oriented programming is to make code more modular and reusable."], ["correct_answer", "The purpose of object-oriented programming is to make code more modular and reusable."], ["totalAttempts", nil], ["recruiter_id", 2], ["created_at", "2023-04-28 17:41:25.395159"], ["updated_at", "2023-04-28 17:41:25.395159"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Explain how polymorphism works in object-oriented programming."], ["answer_1", "Polymorphism is the ability of an object to take on many forms. In object-oriented programming, this means that an object can be used as an instance of its class or as an instance of any subclass of its class."], ["answer_2", "Polymorphism is the ability of an object to only take on one form."], ["answer_3", "Polymorphism is the ability of an object to take on many forms, but only within its own class."], ["answer_4", "Polymorphism is the ability of an object to take on many forms, but only within its own subclass."], ["correct_answer", "Polymorphism is the ability of an object to take on many forms. In object-oriented programming, this means that an object can be used as an instance of its class or as an instance of any subclass of its class."], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-28 17:41:25.404401"], ["updated_at", "2023-04-28 17:41:25.404401"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is a closure in JavaScript?"], ["answer_1", "A closure is a function that returns another function."], ["answer_2", "A closure is a function that can be called from anywhere in the program."], ["answer_3", "A closure is a variable that can be accessed from anywhere in the program."], ["answer_4", "A closure is a function that has access to the variables in its outer function, even after the outer function has returned."], ["correct_answer", "A closure is a function that has access to the variables in its outer function, even after the outer function has returned."], ["totalAttempts", nil], ["recruiter_id", 2], ["created_at", "2023-04-28 17:41:25.412702"], ["updated_at", "2023-04-28 17:41:25.412702"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.5ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is the difference between an inner join and an outer join in SQL?"], ["answer_1", "An inner join only returns the rows where there is a match in both tables being joined, while an outer join returns all the rows from both tables and fills in nulls for any missing values."], ["answer_2", "An inner join returns all the rows from both tables and fills in nulls for any missing values, while an outer join only returns the rows where there is a match in both tables being joined."], ["answer_3", "An inner join only returns the rows where there is a match in the first table being joined, while an outer join returns all the rows from the first table and fills in nulls for any missing values in the second table."], ["answer_4", "An outer join only returns the rows where there is a match in the first table being joined, while an inner join returns all the rows from the first table and fills in nulls for any missing values in the second table."], ["correct_answer", "An inner join only returns the rows where there is a match in both tables being joined, while an outer join returns all the rows from both tables and fills in nulls for any missing values."], ["totalAttempts", nil], ["recruiter_id", 3], ["created_at", "2023-04-28 17:41:25.420892"], ["updated_at", "2023-04-28 17:41:25.420892"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "How do you ensure that your code is secure?"], ["answer_1", "Use secure coding practices like input validation, output encoding, and parameterized queries."], ["answer_2", "Store all data in plain text to avoid any potential data loss."], ["answer_3", "Use the latest version of all libraries and frameworks, even if they have known vulnerabilities."], ["answer_4", "Don't worry about security, it's the job of the IT department."], ["correct_answer", "Use secure coding practices like input validation, output encoding, and parameterized queries."], ["totalAttempts", nil], ["recruiter_id", 3], ["created_at", "2023-04-28 17:41:25.430883"], ["updated_at", "2023-04-28 17:41:25.430883"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is the difference between a cookie and a session?"], ["answer_1", "A cookie is stored on the client-side and can be read by both the client and the server, while a session is stored on the server-side and can only be read by the server."], ["answer_2", "A cookie is stored on the server-side and can only be read by the server, while a session is stored on the client-side and can be read by both the client and the server."], ["answer_3", "A cookie and a session are the same thing and can be used interchangeably."], ["answer_4", "A cookie is used for HTTP requests, while a session is used for HTTPS requests."], ["correct_answer", "A cookie is stored on the client-side and can be read by both the client and the server, while a session is stored on the server-side and can only be read by the server."], ["totalAttempts", nil], ["recruiter_id", 2], ["created_at", "2023-04-28 17:41:25.440092"], ["updated_at", "2023-04-28 17:41:25.440092"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Explain what is meant by the term 'scalability' in software engineering."], ["answer_1", "Scalability refers to the ability of a system to handle increasing amounts of work without negatively impacting performance."], ["answer_2", "Scalability refers to the ability of a system to be able to scale vertically, increasing the size of the system's hardware."], ["answer_3", "Scalability refers to the ability of a system to be able to scale horizontally, increasing the number of systems in a distributed environment."], ["answer_4", "Scalability refers to the ability of a system to be able to scale both vertically and horizontally."], ["correct_answer", "Scalability refers to the ability of a system to handle increasing amounts of work without negatively impacting performance."], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-28 17:41:25.460953"], ["updated_at", "2023-04-28 17:41:25.460953"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.4ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is the difference between a web server and an application server?"], ["answer_1", "A web server serves static web content, while an application server is responsible for dynamic web content and application logic."], ["answer_2", "There is no difference between a web server and an application server."], ["answer_3", "A web server can only handle HTTP requests, while an application server can handle a variety of protocols."], ["answer_4", "An application server is used for development, while a web server is used for production."], ["correct_answer", "A web server serves static web content, while an application server is responsible for dynamic web content and application logic."], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-28 17:41:25.467135"], ["updated_at", "2023-04-28 17:41:25.467135"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "How do you handle errors in your code?"], ["answer_1", "I use try-catch blocks to handle errors and exceptions."], ["answer_2", "I use print statements to debug my code."], ["answer_3", "I use unit tests to catch errors before they happen."], ["answer_4", "I don't handle errors in my code."], ["correct_answer", "I use try-catch blocks to handle errors and exceptions."], ["totalAttempts", nil], ["recruiter_id", 2], ["created_at", "2023-04-28 17:41:25.474267"], ["updated_at", "2023-04-28 17:41:25.474267"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is the difference between a compile-time error and a runtime error?"], ["answer_1", "Compile-time errors occur during runtime, while runtime errors occur during compilation."], ["answer_2", "There is no difference between a compile-time error and a runtime error."], ["answer_3", "Compile-time errors are syntax errors that are caught during compilation, while runtime errors are errors that occur during program execution."], ["answer_4", "Runtime errors are syntax errors that are caught during compilation, while compile-time errors are errors that occur during program execution."], ["correct_answer", "Compile-time errors are syntax errors that are caught during compilation, while runtime errors are errors that occur during program execution."], ["totalAttempts", nil], ["recruiter_id", 3], ["created_at", "2023-04-28 17:41:25.480473"], ["updated_at", "2023-04-28 17:41:25.480473"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.4ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.5ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Explain the concept of 'garbage collection' in programming."], ["answer_1", "Garbage collection is the process of manually freeing up memory in your program."], ["answer_2", "Garbage collection is a feature of compiled languages only."], ["answer_3", "Garbage collection is the automatic process of freeing up memory in your program by removing objects that are no longer being used."], ["answer_4", "Garbage collection is the process of optimizing your code to use less memory."], ["correct_answer", "Garbage collection is the automatic process of freeing up memory in your program by removing objects that are no longer being used."], ["totalAttempts", nil], ["recruiter_id", 3], ["created_at", "2023-04-28 17:41:25.492019"], ["updated_at", "2023-04-28 17:41:25.492019"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "What is a mutex and when should it be used?"], ["answer_1", "A mutex is a type of data structure used for storing large amounts of data."], ["answer_2", "A mutex is a type of algorithm used for sorting arrays."], ["answer_3", "A mutex is a synchronization primitive used to ensure that only one thread can access a shared resource at a time."], ["answer_4", "A mutex is a type of database used for storing key-value pairs."], ["correct_answer", "A mutex is a synchronization primitive used to ensure that only one thread can access a shared resource at a time."], ["totalAttempts", nil], ["recruiter_id", 1], ["created_at", "2023-04-28 17:41:25.501067"], ["updated_at", "2023-04-28 17:41:25.501067"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQuestion Create (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("content", "answer_1", "answer_2", "answer_3", "answer_4", "correct_answer", "totalAttempts", "recruiter_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["content", "Explain the difference between a linked list and an array."], ["answer_1", "An array is a data structure that stores a fixed-size sequential collection of elements of the same type, whereas a linked list is a data structure that consists of a collection of nodes, each containing a value and a reference to the next node in the sequence."], ["answer_2", "An array can be accessed randomly with constant time complexity, whereas accessing an element in a linked list requires traversing the list and has linear time complexity."], ["answer_3", "Adding or removing elements from an array requires shifting all the subsequent elements, while in a linked list, adding or removing an element only requires updating the next reference of the previous node."], ["answer_4", "Arrays have a fixed size, while linked lists can grow or shrink dynamically as elements are added or removed."], ["correct_answer", "Adding or removing elements from an array requires shifting all the subsequent elements, while in a linked list, adding or removing an element only requires updating the next reference of the previous node."], ["totalAttempts", nil], ["recruiter_id", 2], ["created_at", "2023-04-28 17:41:25.508527"], ["updated_at", "2023-04-28 17:41:25.508527"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.6ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (0.7ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 1"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-28 17:41:25.624661"], ["updated_at", "2023-04-28 17:41:25.624661"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.1ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (0.3ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 2"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-28 17:41:25.633185"], ["updated_at", "2023-04-28 17:41:25.633185"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (0.5ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 3"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-28 17:41:25.642155"], ["updated_at", "2023-04-28 17:41:25.642155"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mRecruiter Load (0.3ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecruiter Load (0.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE "recruiters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAssessment Create (0.4ms)[0m  [1m[32mINSERT INTO "assessments" ("recruiter_id", "name", "accepted", "duedate", "reviewed", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["recruiter_id", 1], ["name", "trial 4"], ["accepted", false], ["duedate", nil], ["reviewed", false], ["done", false], ["created_at", "2023-04-28 17:41:25.652747"], ["updated_at", "2023-04-28 17:41:25.652747"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:41:56 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4850b38e50>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62f23d84eb2533004be50c0d"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:6:in `find_or_create_code_challenge'
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 62], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:6:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 34ms (Views: 1.5ms | ActiveRecord: 9.1ms | Allocations: 27066)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:43:14 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00005612d679b7a8>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62f23d84eb2533004be50c0d"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:6:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 25ms (Views: 0.6ms | ActiveRecord: 4.2ms | Allocations: 6996)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:43:37 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4850c0bdf0>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62f23d84eb2533004be50c0d"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:6:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 8ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 2735)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:46:51 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860409d68>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62f23d84eb2533004be50c0d"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:6:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 22ms (Views: 1.0ms | ActiveRecord: 4.6ms | Allocations: 7017)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:47:07 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860b3daf8>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62f23d84eb2533004be50c0d"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:6:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 12ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 2734)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:56:08 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860cfae18>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62f23d84eb2533004be50c0d"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:6:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 25ms (Views: 0.6ms | ActiveRecord: 7.0ms | Allocations: 5695)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 20:59:42 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c11ef90>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62f23d84eb2533004be50c0d"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:10:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 15ms (Views: 0.9ms | ActiveRecord: 6.4ms | Allocations: 7032)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 21:00:47 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c32b6e8>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62f23d84eb2533004be50c0d"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:9:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Completed 422 Unprocessable Entity in 1140ms (Views: 2.3ms | ActiveRecord: 3.8ms | Allocations: 6263)
+
+
+Started POST "/code_challenges" for 127.0.0.1 at 2023-04-28 21:02:26 +0300
+Processing by CodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "code_challenge"=>{}}
+[31mUnpermitted parameters: :assessment_id, :code_challenge_id, :code_challenge. Context: { controller: CodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4848021f10>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"code_challenges", "action"=>"create", "code_challenge"=>{}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Create (0.6ms)[0m  [1m[32mINSERT INTO "code_challenges" ("name", "languages", "description", "totalAttempts", "totalCompleted", "codewars_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", nil], ["languages", nil], ["description", nil], ["totalAttempts", nil], ["totalCompleted", nil], ["codewars_id", nil], ["created_at", "2023-04-28 18:02:26.411481"], ["updated_at", "2023-04-28 18:02:26.411481"]]
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered CodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (0.31ms)
+Completed 201 Created in 73ms (Views: 46.8ms | ActiveRecord: 7.2ms | Allocations: 20821)
+
+
+Started GET "/code_challenges" for 127.0.0.1 at 2023-04-28 21:02:44 +0300
+Processing by CodeChallengesController#index as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "code_challenge"=>{}}
+  [1m[36mCodeChallenge Load (0.6ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges"[0m
+  ↳ app/controllers/code_challenges_controller.rb:8:in `+'
+No serializer found for resource: {"id"=>"6329d94bf18e5d0e56bfca77", "name"=>"Page replacement algorithms: LRU", "slug"=>"page-replacement-algorithms-lru", "category"=>"algorithms", "publishedAt"=>"2022-09-20T16:37:48.028Z", "approvedAt"=>"2022-10-13T20:26:25.839Z", "languages"=>["python", "javascript", "java", "dart", "coffeescript"], "url"=>"https://www.codewars.com/kata/6329d94bf18e5d0e56bfca77", "rank"=>{"id"=>-6, "name"=>"6 kyu", "color"=>"yellow"}, "createdAt"=>"2022-09-20T15:16:27.795Z", "createdBy"=>{"username"=>"yLaWy", "url"=>"https://www.codewars.com/users/yLaWy"}, "approvedBy"=>{"username"=>"Ciprian Amza", "url"=>"https://www.codewars.com/users/Ciprian%20Amza"}, "description"=>"In a computer operating system that uses paging for virtual memory management, page replacement algorithms decide which memory pages to page out when a page of memory needs to be allocated. Page replacement happens when a requested page is not in memory (page fault) and a free page cannot be used to satisfy the allocation, either because there are none, or because the number of free pages is lower than some threshold.\n\n## The LRU page replacement algorithm\nThe least recently used (LRU) page replacement algorithm works on the idea that pages that have been most heavily used in the past few instructions are most likely to be used heavily in the next few instructions too. If not all the slots in memory are occupied, the requested page is inserted in the first available slot when  a page fault happens. If the memory is full and a page fault happens, the least recently used page in memory gets replaced by the requested page. To explain it in a clearer way: the least recently used page is the page that is currently in memory and has been referenced further in the past.<br>\n\nYour task is to implement this algorithm. The ```lru``` function will take two parameters as input: the number of maximum pages that can be kept in memory at the same time ```n``` and a ```reference list``` containing numbers. Every number represents a page request for a specific page (you can see this number as the unique ID of a page). The expected output is the status of the memory after the application of the algorithm. Note that when a page is inserted in the memory, it stays at the same position until it is removed from the memory by a page fault.\n\n## Example:\nGiven:\n  * N = 3,\n  * REFERENCE LIST = \\[1, 2, 3, 4, 3, 2, 5\\],\n  \n```\n  * 1 is read, page fault --> free memory available, memory = [1];\n  * 2 is read, page fault --> free memory available, memory = [1, 2];\n  * 3 is read, page fault --> free memory available, memory = [1, 2, 3];\n  * 4 is read, page fault --> LRU = 1, memory = [4, 2, 3];\n  * 3 is read, already in memory, nothing happens;\n  * 2 is read, already in memory, nothing happens;\n  * 5 is read, page fault --> LRU = 4, memory = [5, 2, 3].\n```\n\nSo, at the end we have the list ```[5, 2, 3]```, which is what you have to return. If not all the slots in the memory get occupied after applying the algorithm, fill the remaining slots (at the end of the list) with ```-1``` to represent emptiness (note that the IDs will always be >= 1).\n", "totalAttempts"=>611, "totalCompleted"=>182, "totalStars"=>20, "voteScore"=>71, "tags"=>["Algorithms", "Lists"], "contributorsWanted"=>true, "unresolved"=>{"issues"=>0, "suggestions"=>0}}
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (13.92ms)
+Completed 200 OK in 31072ms (Views: 14.9ms | ActiveRecord: 0.6ms | Allocations: 46855)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 21:04:13 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860a34800>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62f23d84eb2533004be50c0d"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:9:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.26ms)
+Completed 422 Unprocessable Entity in 1275ms (Views: 1.6ms | ActiveRecord: 0.3ms | Allocations: 1902)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 21:08:32 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860950df8>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:9:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 8101ms (Views: 1.5ms | ActiveRecord: 3.5ms | Allocations: 6095)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 21:11:22 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c1c9e30>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:9:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.2ms)
+Completed 422 Unprocessable Entity in 4014ms (Views: 1.5ms | ActiveRecord: 4.5ms | Allocations: 6144)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 21:29:49 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f48480728e8>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:9:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 983ms (Views: 0.9ms | ActiveRecord: 8.2ms | Allocations: 4788)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 21:31:47 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860338650>, params: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"62f23d84eb2533004be50c0d", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "62"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:9:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 801ms (Views: 0.9ms | ActiveRecord: 5.8ms | Allocations: 6162)
+
+
+Started GET "/code_challenges" for 127.0.0.1 at 2023-04-28 21:33:00 +0300
+Processing by CodeChallengesController#index as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"62f23d84eb2533004be50c0d", "code_challenge"=>{}}
+  [1m[36mCodeChallenge Load (0.9ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges"[0m
+  ↳ app/controllers/code_challenges_controller.rb:8:in `+'
+No serializer found for resource: {"id"=>"5830e55fa317216de000001b", "name"=>"How many elephants can the spider web hold?", "slug"=>"how-many-elephants-can-the-spider-web-hold", "category"=>"algorithms", "publishedAt"=>"2016-11-19T23:53:25.201Z", "approvedAt"=>"2018-08-22T13:05:55.268Z", "languages"=>["python", "javascript", "java"], "url"=>"https://www.codewars.com/kata/5830e55fa317216de000001b", "rank"=>{"id"=>-6, "name"=>"6 kyu", "color"=>"yellow"}, "createdAt"=>"2016-11-19T23:50:55.796Z", "createdBy"=>{"username"=>"izubi", "url"=>"https://www.codewars.com/users/izubi"}, "approvedBy"=>{"username"=>"Blind4Basics", "url"=>"https://www.codewars.com/users/Blind4Basics"}, "description"=>"**How many elephants can the spider web hold?**\n\nImagine a spider web that is defined by two variables:\n\n- strength, measured as the weight in kilograms that surely breaks the web\n- length, measured as the number of elephants that fit one after the other on the web :)\n\nParaphrasing the song \"One elephant went out to play\", **how many elephants will the web hold if we put them one after the other, without breaking?** \n\nYou must take into account two things: \n\n- elephants like to create super high pyramids, so, on each level of the structure fits one elephant less than in the previous one.\n- elephants sitting on the first row weight 1000 kg, the ones sitting on the second row weight 2000 kg, and so on. When rows are full of elephants, next elephants go up one level, and weight 1000 kg more than the previous ones. \n\nHave fun!\n\nNotes:\n- check all the possible values for the input parameters, even absurd ones :D\n\n\n", "totalAttempts"=>1569, "totalCompleted"=>133, "totalStars"=>9, "voteScore"=>62, "tags"=>["Fundamentals", "Algorithms"], "contributorsWanted"=>false, "unresolved"=>{"issues"=>0, "suggestions"=>1}}
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (13.48ms)
+Completed 200 OK in 34474ms (Views: 14.8ms | ActiveRecord: 5.6ms | Allocations: 48417)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 21:34:32 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c3f3298>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:9:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 1104ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 1822)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 21:36:12 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4840a76090>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/models/assessments_code_challenge.rb:9:in `find_or_create_code_challenge'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 422 Unprocessable Entity in 888ms (Views: 1.4ms | ActiveRecord: 4.2ms | Allocations: 6229)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:21:27 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 422 Unprocessable Entity in 1295ms (Views: 0.9ms | ActiveRecord: 6.1ms | Allocations: 5883)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:24:31 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c2d7dc8>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c2d7dc8>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 422 Unprocessable Entity in 1004ms (Views: 1.7ms | ActiveRecord: 5.7ms | Allocations: 6277)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:26:40 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860a73c30>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860a73c30>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 422 Unprocessable Entity in 1138ms (Views: 1.6ms | ActiveRecord: 5.0ms | Allocations: 6355)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:28:07 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00005612d6644710>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00005612d6644710>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (1.8ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 1], ["assessment_id", 1], ["created_at", "2023-04-28 19:28:07.156833"], ["updated_at", "2023-04-28 19:28:07.156833"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (38.2ms)
+Completed 201 Created in 183ms (Views: 101.5ms | ActiveRecord: 11.6ms | Allocations: 50207)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:30:23 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "code_challenge_id"=>1, "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c170da8>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "code_challenge_id"=>1, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "1"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c170da8>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "code_challenge_id"=>1, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 422 Unprocessable Entity in 5424ms (Views: 1.0ms | ActiveRecord: 0.2ms | Allocations: 1987)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:32:12 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "code_challenge_id"=>1, "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c6908e8>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "code_challenge_id"=>1, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c6908e8>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "code_challenge_id"=>1, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.25ms)
+Completed 422 Unprocessable Entity in 3398ms (Views: 1.8ms | ActiveRecord: 4.8ms | Allocations: 6401)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:32:26 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c49f160>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c49f160>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 4619ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 2083)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:35:32 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4840582520>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4840582520>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 422 Unprocessable Entity in 953ms (Views: 1.3ms | ActiveRecord: 3.5ms | Allocations: 6274)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:36:33 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c0ecaa8>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.1ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c0ecaa8>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 422 Unprocessable Entity in 1066ms (Views: 1.3ms | ActiveRecord: 4.2ms | Allocations: 6304)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:45:07 +0300
+  
+SyntaxError (/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+            puts "code challenge #{challenge['n...
+                 ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:16: syntax error, unexpected ':', expecting `end'
+            description: challenge['description'],
+                       ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected string literal, expecting `do' or '{' or '('
+            puts "code challenge #{challenge['d...
+                 ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ':', expecting `end'
+            languages: challenge['languages'].join(...
+                     ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ',', expecting `end'
+...allenge['languages'].join(','),
+...                              ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:20: syntax error, unexpected ':', expecting `end'
+            totalAttempts: challenge['totalAttempts'].t...
+                         ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:21: syntax error, unexpected string literal, expecting `do' or '{' or '('
+            puts "code challenge #{challenge['t...
+                 ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:22: syntax error, unexpected ':', expecting `end'
+            totalCompleted: challenge['totalCompleted']....
+                          ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:23: syntax error, unexpected string literal, expecting `do' or '{' or '('
+            puts "code challenge #{challenge['t...
+                 ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:24: syntax error, unexpected ':', expecting `end'
+            codewars_id: challenge['id']
+                       ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:25: syntax error, unexpected ')', expecting `end'
+          )
+          ^
+):
+  
+app/controllers/assessments_code_challenges_controller.rb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:16: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ',', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:20: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:21: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:22: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:23: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:24: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:25: syntax error, unexpected ')', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:16: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ',', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:20: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:21: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:22: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:23: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:24: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:25: syntax error, unexpected ')', expecting `end'
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:46:35 +0300
+  
+SyntaxError (/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+            puts "code challenge 1"
+                 ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:16: syntax error, unexpected ':', expecting `end'
+            description: challenge['description'],
+                       ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected string literal, expecting `do' or '{' or '('
+            puts "code challenge 2"
+                 ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ':', expecting `end'
+            languages: challenge['languages'].join(...
+                     ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ',', expecting `end'
+...allenge['languages'].join(','),
+...                              ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:20: syntax error, unexpected ':', expecting `end'
+            totalAttempts: challenge['totalAttempts'].t...
+                         ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:21: syntax error, unexpected string literal, expecting `do' or '{' or '('
+            puts "code challenge 4"
+                 ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:22: syntax error, unexpected ':', expecting `end'
+            totalCompleted: challenge['totalCompleted']....
+                          ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:23: syntax error, unexpected string literal, expecting `do' or '{' or '('
+            puts "code challenge 5"
+                 ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:24: syntax error, unexpected ':', expecting `end'
+            codewars_id: challenge['id']
+                       ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:25: syntax error, unexpected ')', expecting `end'
+          )
+          ^
+):
+  
+app/controllers/assessments_code_challenges_controller.rb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:16: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ',', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:20: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:21: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:22: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:23: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:24: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:25: syntax error, unexpected ')', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:16: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:18: syntax error, unexpected ',', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:20: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:21: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:22: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:23: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/controllers/assessments_code_challenges_controller.rb:24: syntax error, unexpected ':', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:25: syntax error, unexpected ')', expecting `end'
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:47:23 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4840ac5ff0>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4840ac5ff0>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.29ms)
+Completed 422 Unprocessable Entity in 976ms (Views: 2.2ms | ActiveRecord: 4.6ms | Allocations: 6138)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-28 22:53:28 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c4e1488>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c4e1488>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 422 Unprocessable Entity in 1102ms (Views: 1.1ms | ActiveRecord: 5.7ms | Allocations: 6144)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 05:43:01 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860a71840>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.9ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860a71840>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 422 Unprocessable Entity in 918ms (Views: 1.1ms | ActiveRecord: 31.8ms | Allocations: 5032)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 08:31:41 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f486093d870>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.5ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f486093d870>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 969ms (Views: 0.6ms | ActiveRecord: 7.5ms | Allocations: 4996)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 08:43:23 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c1c8b20>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f485c1c8b20>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 802ms (Views: 1.3ms | ActiveRecord: 11.4ms | Allocations: 6127)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 08:51:41 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c1f9af0>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c1f9af0>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 422 Unprocessable Entity in 1140ms (Views: 1.2ms | ActiveRecord: 7.0ms | Allocations: 6075)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 08:58:42 +0300
+  
+SyntaxError (/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:22: syntax error, unexpected local variable or method, expecting `end'
+...code_challenge}" code_challenge.present?
+...                 ^~~~~~~~~~~~~~
+):
+  
+app/controllers/assessments_code_challenges_controller.rb:22: syntax error, unexpected local variable or method, expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:22: syntax error, unexpected local variable or method, expecting `end'
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 08:59:19 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c16ada0>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f484c16ada0>, params: {"assessment_id"=>1, "codewars_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 422 Unprocessable Entity in 848ms (Views: 1.5ms | ActiveRecord: 5.7ms | Allocations: 6111)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:01:35 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860a83b80>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f4860a83b80>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 1007ms (Views: 1.2ms | ActiveRecord: 6.5ms | Allocations: 6311)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:02:43 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f6928f2a498>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f6928f2a498>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.48ms)
+Completed 422 Unprocessable Entity in 993ms (Views: 6.4ms | ActiveRecord: 5.3ms | Allocations: 27834)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:06:35 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f6924994230>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f6924994230>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.27ms)
+Completed 422 Unprocessable Entity in 1163ms (Views: 1.8ms | ActiveRecord: 4.6ms | Allocations: 7547)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:07:39 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8210a70c58>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8210a70c58>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.27ms)
+Completed 422 Unprocessable Entity in 894ms (Views: 4.3ms | ActiveRecord: 6.2ms | Allocations: 27766)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:09:53 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x0000557f32dc8848>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x0000557f32dc8848>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 933ms (Views: 1.4ms | ActiveRecord: 5.2ms | Allocations: 6293)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:15:15 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821c33dd58>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821c33dd58>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.5ms)
+Completed 422 Unprocessable Entity in 960ms (Views: 1.6ms | ActiveRecord: 5.2ms | Allocations: 6362)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:16:27 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82109671b8>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82109671b8>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.4ms)
+Completed 422 Unprocessable Entity in 762ms (Views: 3.1ms | ActiveRecord: 3.3ms | Allocations: 6398)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:18:26 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f820c363d60>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f820c363d60>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.66ms)
+Completed 422 Unprocessable Entity in 786ms (Views: 4.3ms | ActiveRecord: 4.1ms | Allocations: 6289)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:19:29 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8210ec61b8>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8210ec61b8>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:15:in `create'
+  [1m[36mCodeChallenge Create (0.4ms)[0m  [1m[32mINSERT INTO "code_challenges" ("name", "languages", "description", "totalAttempts", "totalCompleted", "codewars_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "How many elephants can the spider web hold?"], ["languages", "python,javascript,java"], ["description", "**How many elephants can the spider web hold?**\n\nImagine a spider web that is defined by two variables:\n\n- strength, measured as the weight in kilograms that surely breaks the web\n- length, measured as the number of elephants that fit one after the other on the web :)\n\nParaphrasing the song \"One elephant went out to play\", **how many elephants will the web hold if we put them one after the other, without breaking?** \n\nYou must take into account two things: \n\n- elephants like to create super high pyramids, so, on each level of the structure fits one elephant less than in the previous one.\n- elephants sitting on the first row weight 1000 kg, the ones sitting on the second row weight 2000 kg, and so on. When rows are full of elephants, next elephants go up one level, and weight 1000 kg more than the previous ones. \n\nHave fun!\n\nNotes:\n- check all the possible values for the input parameters, even absurd ones :D\n\n\n"], ["totalAttempts", 2046], ["totalCompleted", 168], ["codewars_id", "5830e55fa317216de000001b"], ["created_at", "2023-04-29 06:19:30.902138"], ["updated_at", "2023-04-29 06:19:30.902138"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:15:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8210ec61b8>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8210ec61b8>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:29:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:29:in `create'
+  [1m[36mAssessment Load (0.5ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:29:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (0.9ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 2], ["assessment_id", 1], ["created_at", "2023-04-29 06:19:30.990266"], ["updated_at", "2023-04-29 06:19:30.990266"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:29:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:29:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (61.87ms)
+Completed 201 Created in 1228ms (Views: 146.0ms | ActiveRecord: 24.2ms | Allocations: 72584)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:28:44 +0300
+  
+SyntaxError (/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:15: syntax error, unexpected local variable or method, expecting ')'
+            name: challenge[0]['name'],
+            ^~~~
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:16: syntax error, unexpected tLABEL, expecting '='
+            description: challenge[0]['description'],
+            ^~~~~~~~~~~~
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected tLABEL, expecting '='
+            languages: challenge[0]['languages'].jo...
+            ^~~~~~~~~~
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected ',', expecting `end'
+...enge[0]['languages'].join(','),
+...                              ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:19: syntax error, unexpected tLABEL, expecting '='
+            totalCompleted: challenge[0]['totalCompleted...
+            ^~~~~~~~~~~~~~~
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:20: syntax error, unexpected ')', expecting '='
+          )
+          ^
+/home/me/Documents/MORINGA/phase-5/recruits/api/app/controllers/assessments_code_challenges_controller.rb:61: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/assessments_code_challenges_controller.rb:15: syntax error, unexpected local variable or method, expecting ')'
+app/controllers/assessments_code_challenges_controller.rb:16: syntax error, unexpected tLABEL, expecting '='
+app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected tLABEL, expecting '='
+app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected ',', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:19: syntax error, unexpected tLABEL, expecting '='
+app/controllers/assessments_code_challenges_controller.rb:20: syntax error, unexpected ')', expecting '='
+app/controllers/assessments_code_challenges_controller.rb:61: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:15: syntax error, unexpected local variable or method, expecting ')'
+app/controllers/assessments_code_challenges_controller.rb:16: syntax error, unexpected tLABEL, expecting '='
+app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected tLABEL, expecting '='
+app/controllers/assessments_code_challenges_controller.rb:17: syntax error, unexpected ',', expecting `end'
+app/controllers/assessments_code_challenges_controller.rb:19: syntax error, unexpected tLABEL, expecting '='
+app/controllers/assessments_code_challenges_controller.rb:20: syntax error, unexpected ')', expecting '='
+app/controllers/assessments_code_challenges_controller.rb:61: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:30:12 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82084b5398>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82084b5398>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (1.1ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 2], ["assessment_id", 1], ["created_at", "2023-04-29 06:30:12.122278"], ["updated_at", "2023-04-29 06:30:12.122278"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (2.14ms)
+Completed 201 Created in 51ms (Views: 3.8ms | ActiveRecord: 11.8ms | Allocations: 22608)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:30:58 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8220fdf3a0>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8220fdf3a0>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessment Load (0.2ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (0.5ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 2], ["assessment_id", 1], ["created_at", "2023-04-29 06:30:58.517067"], ["updated_at", "2023-04-29 06:30:58.517067"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (2.46ms)
+Completed 201 Created in 55ms (Views: 3.9ms | ActiveRecord: 18.7ms | Allocations: 23143)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:33:32 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f820c0e0610>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f820c0e0610>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessment Load (0.2ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (0.7ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 2], ["assessment_id", 1], ["created_at", "2023-04-29 06:33:32.496941"], ["updated_at", "2023-04-29 06:33:32.496941"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (3.14ms)
+Completed 201 Created in 59ms (Views: 4.5ms | ActiveRecord: 15.8ms | Allocations: 23182)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:34:34 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821c0b8d30>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "5830e55fa317216de000001b"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821c0b8d30>, params: {"assessment_id"=>1, "code_challenge_id"=>"5830e55fa317216de000001b", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"5830e55fa317216de000001b", "assessment_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (0.4ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 2], ["assessment_id", 1], ["created_at", "2023-04-29 06:34:34.492459"], ["updated_at", "2023-04-29 06:34:34.492459"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (2.14ms)
+Completed 201 Created in 55ms (Views: 3.5ms | ActiveRecord: 16.7ms | Allocations: 23153)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:34:46 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>2, "assessments_code_challenge"=>{"code_challenge_id"=>2, "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8220b4e520>, params: {"assessment_id"=>1, "code_challenge_id"=>2, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>2, "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "2"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8220b4e520>, params: {"assessment_id"=>1, "code_challenge_id"=>2, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>2, "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f8220b4e520>, params: {"assessment_id"=>1, "code_challenge_id"=>2, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>2, "assessment_id"=>1}} }[0m
+  [1m[36mCACHE CodeChallenge Load (0.0ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (0.4ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 2], ["assessment_id", 1], ["created_at", "2023-04-29 06:34:46.302393"], ["updated_at", "2023-04-29 06:34:46.302393"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (0.86ms)
+Completed 201 Created in 19ms (Views: 1.4ms | ActiveRecord: 5.7ms | Allocations: 5126)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:35:23 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>1, "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82209f2c08>, params: {"assessment_id"=>1, "code_challenge_id"=>1, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "1"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82209f2c08>, params: {"assessment_id"=>1, "code_challenge_id"=>1, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82209f2c08>, params: {"assessment_id"=>1, "code_challenge_id"=>1, "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>1, "assessment_id"=>1}} }[0m
+  [1m[36mCACHE CodeChallenge Load (0.0ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (0.6ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 1], ["assessment_id", 1], ["created_at", "2023-04-29 06:35:23.660631"], ["updated_at", "2023-04-29 06:35:23.660631"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:23:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (0.73ms)
+Completed 201 Created in 21ms (Views: 1.2ms | ActiveRecord: 5.5ms | Allocations: 4992)
+
+
+Started GET "/code_challenges" for 127.0.0.1 at 2023-04-29 09:37:31 +0300
+Processing by CodeChallengesController#index as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>1, "code_challenge"=>{}}
+  [1m[36mCodeChallenge Load (0.6ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges"[0m
+  ↳ app/controllers/code_challenges_controller.rb:8:in `+'
+No serializer found for resource: {"id"=>"6344701cd748a12b99c0dbc4", "name"=>"Millipede of words", "slug"=>"millipede-of-words", "category"=>"algorithms", "publishedAt"=>"2022-10-11T17:06:59.483Z", "approvedAt"=>"2022-10-26T16:22:41.215Z", "languages"=>["csharp", "python", "cpp", "javascript", "java", "groovy", "ruby", "vb", "go"], "url"=>"https://www.codewars.com/kata/6344701cd748a12b99c0dbc4", "rank"=>{"id"=>-6, "name"=>"6 kyu", "color"=>"yellow"}, "createdAt"=>"2022-10-10T19:18:52.573Z", "createdBy"=>{"username"=>"RealSup", "url"=>"https://www.codewars.com/users/RealSup"}, "approvedBy"=>{"username"=>"dfhwze", "url"=>"https://www.codewars.com/users/dfhwze"}, "description"=>"The set of words is given.\nWords are joined if the last letter of one word and the first letter of another word are the same. Return `true` if all words of the set can be combined into one word. Each word can and must be used only once. Otherwise return `false`. \n\n## Input\n```if:csharp,cpp,javascript,java,groovy,ruby,vb,go\nArray of 3 to 7 words of random length. No capital letters.\n```\n```if:python\nList of 3 to 7 words of random length. No capital letters.\n```\n\n## Example `true`\n\nSet: excavate, endure, desire, screen, theater, excess, night.<br>\nMillipede:  desirE EndurE ExcavatE ExcesS ScreeN NighT Theater.\n\n## Example `false`\n\nSet: trade, pole, view, grave, ladder, mushroom, president.<br>\nMillipede:  presidenT Trade.", "totalAttempts"=>12692, "totalCompleted"=>606, "totalStars"=>132, "voteScore"=>125, "tags"=>["Algorithms", "Arrays", "Strings"], "contributorsWanted"=>true, "unresolved"=>{"issues"=>0, "suggestions"=>0}}
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (22.15ms)
+Completed 200 OK in 32500ms (Views: 24.0ms | ActiveRecord: 0.6ms | Allocations: 47288)
+
+
+Started GET "/code_challenges" for 127.0.0.1 at 2023-04-29 09:38:31 +0300
+Processing by CodeChallengesController#index as */*
+  Parameters: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "code_challenge"=>{}}
+  [1m[36mCodeChallenge Load (0.7ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges"[0m
+  ↳ app/controllers/code_challenges_controller.rb:8:in `+'
+No serializer found for resource: {"id"=>"6344701cd748a12b99c0dbc4", "name"=>"Millipede of words", "slug"=>"millipede-of-words", "category"=>"algorithms", "publishedAt"=>"2022-10-11T17:06:59.483Z", "approvedAt"=>"2022-10-26T16:22:41.215Z", "languages"=>["csharp", "python", "cpp", "javascript", "java", "groovy", "ruby", "vb", "go"], "url"=>"https://www.codewars.com/kata/6344701cd748a12b99c0dbc4", "rank"=>{"id"=>-6, "name"=>"6 kyu", "color"=>"yellow"}, "createdAt"=>"2022-10-10T19:18:52.573Z", "createdBy"=>{"username"=>"RealSup", "url"=>"https://www.codewars.com/users/RealSup"}, "approvedBy"=>{"username"=>"dfhwze", "url"=>"https://www.codewars.com/users/dfhwze"}, "description"=>"The set of words is given.\nWords are joined if the last letter of one word and the first letter of another word are the same. Return `true` if all words of the set can be combined into one word. Each word can and must be used only once. Otherwise return `false`. \n\n## Input\n```if:csharp,cpp,javascript,java,groovy,ruby,vb,go\nArray of 3 to 7 words of random length. No capital letters.\n```\n```if:python\nList of 3 to 7 words of random length. No capital letters.\n```\n\n## Example `true`\n\nSet: excavate, endure, desire, screen, theater, excess, night.<br>\nMillipede:  desirE EndurE ExcavatE ExcesS ScreeN NighT Theater.\n\n## Example `false`\n\nSet: trade, pole, view, grave, ladder, mushroom, president.<br>\nMillipede:  presidenT Trade.", "totalAttempts"=>12692, "totalCompleted"=>606, "totalStars"=>132, "voteScore"=>125, "tags"=>["Algorithms", "Arrays", "Strings"], "contributorsWanted"=>true, "unresolved"=>{"issues"=>0, "suggestions"=>0}}
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (22.67ms)
+Completed 200 OK in 31196ms (Views: 23.7ms | ActiveRecord: 0.7ms | Allocations: 46895)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:39:20 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821119e480>, params: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "6344701cd748a12b99c0dbc4"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821119e480>, params: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 6344701], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 5ms (Views: 0.7ms | ActiveRecord: 0.4ms | Allocations: 1380)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:40:50 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f820c46af38>, params: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "6344701cd748a12b99c0dbc4"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f820c46af38>, params: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}} }[0m
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 6344701], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:8:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 16ms (Views: 0.8ms | ActiveRecord: 5.4ms | Allocations: 5803)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:47:03 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821435ebc8>, params: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}} }[0m
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "6344701cd748a12b99c0dbc4"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:9:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821435ebc8>, params: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 6344701], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:9:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821435ebc8>, params: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:14:in `rescue in create'
+  [1m[36mCodeChallenge Create (0.7ms)[0m  [1m[32mINSERT INTO "code_challenges" ("name", "languages", "description", "totalAttempts", "totalCompleted", "codewars_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Millipede of words"], ["languages", "csharp,python,cpp,javascript,java,groovy,ruby,vb,go"], ["description", "The set of words is given.\nWords are joined if the last letter of one word and the first letter of another word are the same. Return `true` if all words of the set can be combined into one word. Each word can and must be used only once. Otherwise return `false`. \n\n## Input\n```if:csharp,cpp,javascript,java,groovy,ruby,vb,go\nArray of 3 to 7 words of random length. No capital letters.\n```\n```if:python\nList of 3 to 7 words of random length. No capital letters.\n```\n\n## Example `true`\n\nSet: excavate, endure, desire, screen, theater, excess, night.<br>\nMillipede:  desirE EndurE ExcavatE ExcesS ScreeN NighT Theater.\n\n## Example `false`\n\nSet: trade, pole, view, grave, ladder, mushroom, president.<br>\nMillipede:  presidenT Trade."], ["totalAttempts", 12697], ["totalCompleted", 606], ["codewars_id", "6344701cd748a12b99c0dbc4"], ["created_at", "2023-04-29 06:47:04.779994"], ["updated_at", "2023-04-29 06:47:04.779994"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:14:in `rescue in create'
+  [1m[36mTRANSACTION (4.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:14:in `rescue in create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f821435ebc8>, params: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"6344701cd748a12b99c0dbc4", "assessment_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (0.9ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 3], ["assessment_id", 2], ["created_at", "2023-04-29 06:47:04.827254"], ["updated_at", "2023-04-29 06:47:04.827254"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (40.92ms)
+Completed 201 Created in 1134ms (Views: 43.2ms | ActiveRecord: 23.0ms | Allocations: 26756)
+
+
+Started GET "/code_challenges" for 127.0.0.1 at 2023-04-29 09:49:27 +0300
+Processing by CodeChallengesController#index as */*
+  Parameters: {"assessment_id"=>2, "code_challenge_id"=>"6344701cd748a12b99c0dbc4", "code_challenge"=>{}}
+  [1m[36mCodeChallenge Load (1.0ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges"[0m
+  ↳ app/controllers/code_challenges_controller.rb:8:in `+'
+No serializer found for resource: {"id"=>"63f96036b15a210058300ca9", "name"=>"Find the index of the second occurrence of a letter in a string", "slug"=>"find-the-index-of-the-second-occurrence-of-a-letter-in-a-string", "category"=>"reference", "publishedAt"=>"2023-02-25T02:22:53.552Z", "approvedAt"=>"2023-02-27T12:38:13.734Z", "languages"=>["python", "c", "cpp", "java", "csharp", "javascript"], "url"=>"https://www.codewars.com/kata/63f96036b15a210058300ca9", "rank"=>{"id"=>-7, "name"=>"7 kyu", "color"=>"white"}, "createdAt"=>"2023-02-25T01:11:18.234Z", "createdBy"=>{"username"=>"OlegBuryan", "url"=>"https://www.codewars.com/users/OlegBuryan"}, "approvedBy"=>{"username"=>"dfhwze", "url"=>"https://www.codewars.com/users/dfhwze"}, "description"=>"In this kata, you need to write a function that takes a string and a letter as input and then returns the index of the second occurrence of that letter in the string. If there is no such letter in the string, then the function should return -1. If the letter occurs only once in the string, then -1 should also be returned.\n\nExamples:\n\n```Python\nsecond_symbol('Hello world!!!','l') --> 3\nsecond_symbol('Hello world!!!', 'A') --> -1\n```\n\n```cpp\nsecondSymbol('Hello world!!!','l') --> 3\nsecondSymbol('Hello world!!!', 'A') --> -1\n```\n\n```javascript\nsecondSymbol('Hello world!!!','l')  --> 3\nsecondSymbol('Hello world!!!', 'A') --> -1\n```\n\nGood luck ;) And don't forget to rate this Kata if you liked it.", "totalAttempts"=>6010, "totalCompleted"=>2369, "totalStars"=>29, "voteScore"=>253, "tags"=>["Fundamentals", "Strings"], "contributorsWanted"=>true, "unresolved"=>{"issues"=>0, "suggestions"=>0}}
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (21.17ms)
+Completed 200 OK in 32278ms (Views: 22.9ms | ActiveRecord: 1.0ms | Allocations: 47196)
+
+
+Started POST "/assessments_code_challenges" for 127.0.0.1 at 2023-04-29 09:50:44 +0300
+Processing by AssessmentsCodeChallengesController#create as */*
+  Parameters: {"assessment_id"=>2, "code_challenge_id"=>"63f96036b15a210058300ca9", "assessments_code_challenge"=>{"code_challenge_id"=>"63f96036b15a210058300ca9", "assessment_id"=>2}}
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82084d8258>, params: {"assessment_id"=>2, "code_challenge_id"=>"63f96036b15a210058300ca9", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"63f96036b15a210058300ca9", "assessment_id"=>2}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."codewars_id" = $1 LIMIT $2[0m  [["codewars_id", "63f96036b15a210058300ca9"], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:9:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82084d8258>, params: {"assessment_id"=>2, "code_challenge_id"=>"63f96036b15a210058300ca9", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"63f96036b15a210058300ca9", "assessment_id"=>2}} }[0m
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:9:in `create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82084d8258>, params: {"assessment_id"=>2, "code_challenge_id"=>"63f96036b15a210058300ca9", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"63f96036b15a210058300ca9", "assessment_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:14:in `rescue in create'
+  [1m[36mCodeChallenge Create (0.8ms)[0m  [1m[32mINSERT INTO "code_challenges" ("name", "languages", "description", "totalAttempts", "totalCompleted", "codewars_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Find the index of the second occurrence of a letter in a string"], ["languages", "python,c,cpp,java,csharp,javascript"], ["description", "In this kata, you need to write a function that takes a string and a letter as input and then returns the index of the second occurrence of that letter in the string. If there is no such letter in the string, then the function should return -1. If the letter occurs only once in the string, then -1 should also be returned.\n\nExamples:\n\n```Python\nsecond_symbol('Hello world!!!','l') --> 3\nsecond_symbol('Hello world!!!', 'A') --> -1\n```\n\n```cpp\nsecondSymbol('Hello world!!!','l') --> 3\nsecondSymbol('Hello world!!!', 'A') --> -1\n```\n\n```javascript\nsecondSymbol('Hello world!!!','l')  --> 3\nsecondSymbol('Hello world!!!', 'A') --> -1\n```\n\nGood luck ;) And don't forget to rate this Kata if you liked it."], ["totalAttempts", 6010], ["totalCompleted", 2369], ["codewars_id", "63f96036b15a210058300ca9"], ["created_at", "2023-04-29 06:50:45.815706"], ["updated_at", "2023-04-29 06:50:45.815706"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:14:in `rescue in create'
+  [1m[36mTRANSACTION (5.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:14:in `rescue in create'
+[31mUnpermitted parameter: :assessments_code_challenge. Context: { controller: AssessmentsCodeChallengesController, action: create, request: #<ActionDispatch::Request:0x00007f82084d8258>, params: {"assessment_id"=>2, "code_challenge_id"=>"63f96036b15a210058300ca9", "controller"=>"assessments_code_challenges", "action"=>"create", "assessments_code_challenge"=>{"code_challenge_id"=>"63f96036b15a210058300ca9", "assessment_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (0.5ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mAssessment Load (0.6ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mAssessmentsCodeChallenge Create (1.0ms)[0m  [1m[32mINSERT INTO "assessments_code_challenges" ("code_challenge_id", "assessment_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["code_challenge_id", 4], ["assessment_id", 2], ["created_at", "2023-04-29 06:50:45.840409"], ["updated_at", "2023-04-29 06:50:45.840409"]]
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/assessments_code_challenges_controller.rb:24:in `create'
+[active_model_serializers] Rendered AssessmentsCodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (1.54ms)
+Completed 201 Created in 862ms (Views: 2.2ms | ActiveRecord: 10.7ms | Allocations: 8004)
+
+

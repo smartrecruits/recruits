@@ -3,19 +3,15 @@ import CreateQuestion from "./questions";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchQuestions } from "./questionsSlice";
 import { getRecruiterToken } from "../../Components/utils/auth";
+import { updateAssessment } from "../assessments/assessmentSlice"
 
-function QuestionList({assessmentId, updateAssessment}) {
+function QuestionList({assessmentId}) {
   const dispatch = useDispatch()
   const recruiterToken = getRecruiterToken()
-
-  useEffect(() => {
-    dispatch(fetchQuestions());
-  }, [dispatch]);
-
   const questions = useSelector((state) => state.questions.questions);
   const status = useSelector((state) => state.questions.status);
   const errors = useSelector((state) => state.questions.errors);
-
+  const assessment = useSelector((state) => state.assessments.assessment)
   if (status === "loading") {
     return <div>Loading questions...</div>;
   }
@@ -41,7 +37,19 @@ function QuestionList({assessmentId, updateAssessment}) {
     })
       .then(response => response.json())
       .then(data => {
-        updateAssessment(data)
+        const updatedAssessment = { ...assessment, questions: [...assessment.questions, data.question] };
+
+        console.log(updatedAssessment)
+        dispatch(updateAssessment({
+          assessmentId: assessmentId,
+          updateData: updatedAssessment
+        }))
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
         console.log(data)
       })
       .catch(error => console.log(error));

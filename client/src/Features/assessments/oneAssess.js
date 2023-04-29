@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import QuestionList from '../questions/questionlist'
 import { getRecruiterToken } from '../../Components/utils/auth';
 import CodeChallenges from '../codechallenges/codechallengeslist';
+import { fetchOneAssess, updateAssessment } from './assessmentSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function OneAssessment() {
-  const [assessment, setAssessment] = useState(null);
+  // const [assessment, setAssessment] = useState(null);
   const { id } = useParams()
   const [errors,setErrors] = useState([])
   const [showPopup, setShowPopup] = useState(false);
@@ -13,17 +15,19 @@ function OneAssessment() {
   const [questions,setQuestions]= useState([])
   const [codes, setCodes] =useState([])
   const recruiterToken = getRecruiterToken()
+  const dispatch = useDispatch()
+  const [fetchFinished, setFetchFinished] = useState(false);
+  const assessment  = useSelector(state => state.assessments.assessment);
 
+console.log(assessment);
   useEffect(() => {
-    fetch(`https://recruits.onrender.com/assessments/${id}`,{
-      headers: {
-        Authorization: `Bearer ${recruiterToken}`,
-      },
+    dispatch(fetchOneAssess(id)).then((result)=> {
+        if (fetchOneAssess.rejected.match(result)) {
+            setErrors([result.payload]);
+          }
+          setFetchFinished(true);
     })
-      .then(response => response.json())
-      .then(data => setAssessment(data))
-      .catch(error => setErrors(error));
-  }, [id,recruiterToken]);
+  }, [dispatch,id]);
 
   useEffect(() => {
     fetch(`https://recruits.onrender.com/assessments_questions/`,{
@@ -47,32 +51,8 @@ function OneAssessment() {
       .catch(error => setErrors(error));
   }, [id,recruiterToken]);
   
-  if (!assessment) {
+  if (!fetchFinished) {
     return <div>Loading assessment...</div>;
-  }
-
-
-  function updateAssessmentInDB(updatedAssessment) {
-    fetch(`https://recruits.onrender.com/assessments/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${recruiterToken}`,
-      },
-      body: JSON.stringify(updatedAssessment),
-    })
-      .then(response => {
-        console.log("Response:", response);
-        return response.json();
-      })
-      .then(data => {
-        console.log("Data:", data);
-        setAssessment(data)
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        setErrors(error)
-      });
   }
 
   function removeFromAssessment(questionId) {
@@ -80,7 +60,6 @@ function OneAssessment() {
     questions.forEach((question) => {
       if((question.question.id === questionId)){
         assessquestId = question.id
-        console.log(assessquestId);
       }
     })
     fetch(`https://recruits.onrender.com/assessments_questions/${assessquestId}`, {
@@ -93,27 +72,16 @@ function OneAssessment() {
     .then(() => {
       const updatedQuestions = assessment.questions.filter(question => question.id !== questionId);
       const updatedAssessment = { ...assessment, questions: updatedQuestions };
-      setAssessment(updatedAssessment); // update the assessment in the state
-      fetch(`https://recruits.onrender.com/assessments/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${recruiterToken}`,
-        },
-        body: JSON.stringify(updatedAssessment),
+      dispatch(updateAssessment({
+        assessmentId: id,
+        updateData: updatedAssessment
+      }))
+      .then((result) => {
+        console.log(result)
       })
-      .then(response => {
-        console.log("Response:", response);
-        return response.json();
+      .catch((err) => {
+        setErrors([err.payload] || [err.message])
       })
-      .then(data => {
-        console.log("Data:", data);
-        setAssessment(data)
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        setErrors(error)
-      });
     })
     .catch(error => console.log(error));
   }
@@ -134,8 +102,17 @@ function OneAssessment() {
       .then(() => {
         const updatedCodeChallenges = assessment.code_challenges.filter(codeChallenge => codeChallenge.id !== codeChallengeId);
         const updatedAssessment = { ...assessment, code_challenges: updatedCodeChallenges };
-        updateAssessmentInDB(updatedAssessment)
-        setAssessment(updatedAssessment)
+        // setAssessment(updatedAssessment)
+        dispatch(updateAssessment({
+          assessmentId: id,
+          updateData: updatedAssessment
+        }))
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => {
+          setErrors([err.payload] || [err.message])
+        })
       })
       .catch((error) => console.log(error));
   }
@@ -146,11 +123,9 @@ function OneAssessment() {
   function handleAddCodeClick() {
     setPopup(true);
   }
-  function updateAssessment(newAssessment){
-    // setAssessment([...assessment,newAssessment])
-  }
+ 
   return (
-    <div>
+    <div className='oneassess'>
       <center>
          {errors.length > 0 && (
           <div className="text-danger">
@@ -162,7 +137,7 @@ function OneAssessment() {
       <h2>{assessment.name}</h2>
       <h4>Questions</h4>
       <br/>
-      <button className='button1' onClick={handleAddQuestionClick}>AddQuestion</button>
+      <button className='button1' onClick={handleAddQuestionClick}>Add Question</button>
       <center>
         {assessment.questions.map(question => (
           <div className='questcont' key={question.id}>
@@ -175,7 +150,7 @@ function OneAssessment() {
         </center>
         <h4>Code Challenges</h4>
         <br/>
-        <button className='button1' onClick={handleAddCodeClick}>AddQuestion</button>
+        <button className='button1' onClick={handleAddCodeClick}>Add Code challenge</button>
 
         <ul>
          {assessment.code_challenges.map(question => (
@@ -189,18 +164,20 @@ function OneAssessment() {
       </ul>
       {showPopup && (
         <div className="popup">
-          <div className="popup-content">
-            <button onClick={() => setShowPopup(false)}>Close</button>
-            <QuestionList assessmentId={id}  updateAssessment={updateAssessment}/>
-          </div>
+           <div className="overlay" onClick={()=>setShowPopup(false)}></div>
+            <div className="popup-content">
+              <button onClick={() => setShowPopup(false)}>Close</button>
+              <QuestionList assessmentId={id}/>
+            </div>
         </div>
       )}
       {Popup && (
         <div className="popup">
-          <div className="popup-content">
-            <button onClick={() => setPopup(false)}>Close</button>
-            <CodeChallenges assessmentId={id}  updateAssessment={updateAssessment} />
-          </div>
+           <div className="overlay" onClick={()=>setPopup(false)}></div>
+            <div className="popup-content">
+              <button onClick={() => setPopup(false)}>Close</button>
+              <CodeChallenges assessmentId={id} />
+            </div>
         </div>
       )}
       </center>

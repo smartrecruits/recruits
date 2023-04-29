@@ -150,7 +150,7 @@ return (
                 <p>Question: {response.code_challenge.content}</p>
                 <p>Answer: {response.content}</p>
                 <p>Grade</p>
-                <input placeholder='Set Grade' type='number' onChange={handleGradeChange}/>
+                <input placeholder='Set Grade' type='number' value={grades} onChange={handleGradeChange}/>
                 <p>Recruiter Feedback</p>
                 <textarea onChange={handleAnswerFeedbackChange} value={feedback}></textarea>
                 <button onClick={() => handleSubmit(response.id)}>Submit</button>

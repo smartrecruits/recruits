@@ -5,18 +5,16 @@ import { fetchCode } from "./codechallengesSlice";
 import { getRecruiterToken } from "../../Components/utils/auth";
 import "./codechallenges.css";
 import parse from "html-react-parser";
-
+import { updateAssessment } from "../assessments/assessmentSlice";
 function CodeChallenges({ assessmentId }) {
   const dispatch = useDispatch();
   const recruiterToken = getRecruiterToken();
 
-  useEffect(() => {
-    dispatch(fetchCode());
-  }, [dispatch]);
-
   const codeChallenges = useSelector((state) => state.codes.codes);
   const status = useSelector((state) => state.codes.status);
   const errors = useSelector((state) => state.codes.errors);
+  const assessment = useSelector((state) => state.assessments.assessment)
+
 
   if (status === "loading") {
     return <div>Loading challenges...</div>;
@@ -42,7 +40,19 @@ function CodeChallenges({ assessmentId }) {
       }),
     })
       .then((response) => response.json())
-      .then((data) =>{ console.log(data)})
+      .then((data) =>{
+        const updatedAssessment = { ...assessment, code_challenges: [...assessment.code_challenges, data.code_challenge] };
+        dispatch(updateAssessment({
+          assessmentId: assessmentId,
+          updateData: updatedAssessment
+        }))
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        })
       .catch((error) => console.log(error));
   }
 

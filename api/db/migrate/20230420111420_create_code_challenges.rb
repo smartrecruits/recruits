@@ -6,6 +6,7 @@ class CreateCodeChallenges < ActiveRecord::Migration[7.0]
       t.string :description 
       t.integer :totalAttempts 
       t.integer :totalCompleted
+      t.string :codewars_id
 
       t.timestamps
     end

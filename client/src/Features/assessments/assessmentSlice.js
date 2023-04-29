@@ -13,12 +13,31 @@ const recruiterToken = getRecruiterToken()
       const data = await response.json();
   
       if (!response.ok) {
-        return rejectWithValue(data.errors);
+        return Promise.reject(data.errors);
       }
   
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return Promise.reject(error.message);
+    }
+  });
+  export const fetchOneAssess = createAsyncThunk("assess/fetchOneAssess", 
+  async (assessmentId) => {
+    try {
+      const response = await fetch(`https://recruits.onrender.com/assessments/${assessmentId}`, {
+        headers: {
+          Authorization: `Bearer ${recruiterToken}`,
+        },
+      });
+      const data = await response.json();
+  
+      if (!response.ok) {
+        return Promise.reject(data.errors);
+      }
+  
+      return data;
+    } catch (error) {
+      return Promise.reject(error.message);
     }
   });
 
@@ -40,17 +59,18 @@ const recruiterToken = getRecruiterToken()
         } 
         else {
           console.error(data.errors);
-          // return rejectWithValue(data.errors);
+          return Promise.reject(data.errors);
         }
       } catch (error) {
         console.error(error.message);
-        // return rejectWithValue(error.message);
+        return Promise.reject(error.message);
       }
     }
   );
 
-  export const reviewAssesment = createAsyncThunk("assess/reviewAssessment",
-  async ({ assessmentId, reviewData }, { rejectWithValue }) => {
+  export const reviewAssesment = createAsyncThunk(
+    "assess/reviewAssessment",
+  async ({ assessmentId, reviewData }) => {
     try {
       const response = await fetch(
         `https://recruits.onrender.com/assessments/${assessmentId}`,
@@ -68,10 +88,38 @@ const recruiterToken = getRecruiterToken()
         // handle successful submission
         return data
       } else {
-        return rejectWithValue(data.errors);
+        return Promise.reject(data.errors);
       }
     } catch (error) {
-      return rejectWithValue(error.message);
+      return Promise.reject(error.message);
+    }
+  }
+   
+  )
+  export const updateAssessment = createAsyncThunk(
+    "assess/updateAssessment",
+  async ({ assessmentId, updateData }) => {
+    try {
+      const response = await fetch(
+        `https://recruits.onrender.com/assessments/${assessmentId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${recruiterToken}`,
+          },
+          body: JSON.stringify(updateData),
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        // handle successful submission
+        return data
+      } else {
+        return Promise.reject(data.errors);
+      }
+    } catch (error) {
+      return Promise.reject(error.message);
     }
   }
    
@@ -82,6 +130,7 @@ const recruiterToken = getRecruiterToken()
     initialState:{
         assessments: [],
         status: "idle",
+        assessment:[],
     },
     reducers:{
         setAssessment(state,action){
@@ -100,16 +149,30 @@ const recruiterToken = getRecruiterToken()
             state.assessments = action.payload;
             state.status = "idle";
         })
+        .addCase(fetchOneAssess.fulfilled,(state, action)=> {
+          state.assessment = action.payload;
+          state.status = "idle";
+        })
         .addCase(createAssessment.fulfilled,(state, action)=> {
             state.assessments.push(action.payload);
             state.status = "idle";
         })
-        .addCase(reviewAssesment.fulfilled,(state, action) =>{
+        .addCase(updateAssessment.pending,(state, action)=> {
+          state.status = "loading";
+        })
+        .addCase(updateAssessment.fulfilled,(state, action)=> {
+          state.assessment = action.payload;
           state.assessments.push(action.payload);
           state.status = "idle";
-      });
+        })
+        .addCase(reviewAssesment.fulfilled,(state, action) =>{
+          state.assessments.push(action.payload);
+          state.assessment = action.payload;
+          state.status = "idle";
+        });
     }
 })
  
 
 export default assessmentSlice.reducer
+

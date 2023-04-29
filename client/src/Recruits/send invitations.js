@@ -72,9 +72,6 @@ function redirectToScore(){
         {interviewees.map(interviewee => (
           <li key={interviewee.id}>
             {interviewee.firstname} {interviewee.lastname} {interviewee.email}
-            {/* <button onClick={() => handleInvite(interviewee.id)}>
-              Invite
-            </button> */}
             {assessments.length > 0 && (
               <div>
                 <label htmlFor="assessment-select">Select an assessment:</label>
