@@ -27,6 +27,7 @@ import { useDispatch } from "react-redux";
 import Sidebar from "./Components/Interviewee/everything/Sidebar";
 import { fetchCode } from "./Features/codechallenges/codechallengesSlice";
 import { fetchQuestions } from "./Features/questions/questionsSlice";
+import CodeChallenge from "./Features/codechallenges/oneCode";
 
 function App() {
   const [errors,setErrors]= useState([])
@@ -81,8 +82,9 @@ function App() {
         <Route path='/intervieweescorelist/:id' element={<IntervieweeAssessments/>}></Route>
         <Route exact path='/intervieweescorelist' element={<IntervieweeScoreList/>}></Route>
         <Route path='/intervieweeList' element={<IntervieweeList/>}></Route>
-        <Route path='/assessments' element={<Invites/>}></Route>
+        <Route exact path='/assessments' element={<Invites/>}></Route>
         <Route path='/assessments/:id' element={<OneAssessmentInterviewee/>}></Route>
+        <Route path='/assessment/:assessment_id/code/:id' element={<CodeChallenge/>}></Route>
         <Route path='/invites' element={<InvitesList/>}></Route>
         <Route exact path='/RecruiterAssessList' element={<AssessmentsList/>}></Route>
         <Route path='/RecruiterAssessList/:id' element={<OneAssessment />}></Route>

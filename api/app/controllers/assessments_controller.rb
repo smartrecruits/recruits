@@ -6,7 +6,7 @@ class AssessmentsController < ApplicationController
 
     def index 
         assessments = Assessment.all
-        render json: assessments
+        render json: assessments,include: ['code_challenges','code_challenges.answers','questions','questions.responses']
     end
 
     def create 
@@ -16,12 +16,12 @@ class AssessmentsController < ApplicationController
 
     def show
         assessment = Assessment.find(params[:id])
-        render json: assessment
+        render json: assessment,include: ['code_challenges','code_challenges.answers','questions','questions.responses']
     end
 
     def index_completed
         assessments = Assessment.where(done: true, accepted: true) 
-        render json: assessments
+        render json: assessments,include: ['code_challenges','code_challenges.answers','questions','questions.responses']
     end
 
 
@@ -39,7 +39,7 @@ class AssessmentsController < ApplicationController
 
     private
     def assessment_params 
-        params.require(:assessment).permit(:name,:reviewed,:accepted,:duedate,:recruiter_id,:done)
+        params.require(:assessment).permit(:name,:reviewed,:accepted,:duedate,:recruiter_id,:done,:quizdone,:codedone)
     end
     
     def render_unprocessable_entity_response(invalid)

@@ -67,7 +67,6 @@ class InvitesController < ApplicationController
     if invite.interviewee == inter
         invite.update!(status: 'accepted')
         render json: invite, status: :ok
-        # redirect_to root_path, notice: 'Invite accepted'
     else
         render json: { errors: 'Access denied' }, status: :unauthorized
     end
@@ -79,8 +78,6 @@ class InvitesController < ApplicationController
     if invite.interviewee == inter
         invite.update!(status:'rejected')
         render json: invite, status: :ok
-
-        # redirect_to root_path, notice: 'Invite declined'
     else
         render json: { errors: 'Access denied' }, status: :unauthorized
     end

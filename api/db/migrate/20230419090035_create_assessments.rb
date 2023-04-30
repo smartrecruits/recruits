@@ -7,7 +7,8 @@ class CreateAssessments < ActiveRecord::Migration[7.0]
       t.datetime :duedate
       t.boolean :reviewed, default: false
       t.boolean :done, default: false
-      
+      t.boolean :quizdone, default: false 
+      t.boolean :codedone, default: false 
       
       t.timestamps
     end

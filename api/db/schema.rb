@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_193623) do
     t.integer "code_challenge_id"
     t.integer "assessment_id"
     t.integer "interviewee_id"
+    t.boolean "done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,6 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_193623) do
     t.datetime "duedate"
     t.boolean "reviewed", default: false
     t.boolean "done", default: false
+    t.boolean "quizdone", default: false
+    t.boolean "codedone", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recruiter_id"], name: "index_assessments_on_recruiter_id"

@@ -55,7 +55,7 @@ class AnswersController < ApplicationController
     private
 
     def answer_params
-      params.require(:answer).permit(:content,:code_challenge_id, :interviewee_id,:grades,:feedback)
+      params.require(:answer).permit(:content,:code_challenge_id, :interviewee_id,:grades,:feedback,:done)
     end
 
     def render_unprocessable_entity_response(invalid)

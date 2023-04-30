@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOneAssess } from '../../../Features/assessments/assessmentSlice';
 import AnswerForm from '../IntervieweesTest/Answers';
-
+import { Link } from 'react-router-dom';
 function OneAssessmentInterviewee() {
   const dispatch = useDispatch()
   const { id } = useParams()
@@ -84,10 +84,10 @@ function OneAssessmentInterviewee() {
           <ul>
           {assessment.code_challenges.map(question => (
             <li key={question.id}>
-              <h6>{question.name}</h6>
+              <Link to={`/assessment/${id}/code/${question.id}`}><h6>{question.name}</h6></Link>
             </li>
           ))}
-        </ul>
+         </ul>
         {assessment.done ? (
           <p>This assessment has been marked as completed.</p>
         ) : (
