@@ -15,8 +15,12 @@ const CodeChallenge = () => {
     const [timeLeft, setTimeLeft] = useState(60 * 60); // 60 minutes in seconds
     const navigate = useNavigate()
     const [redirect, setRedirect] = useState(false);
-     let intervalId
+    const [fetchFinished, setFetchFinished] = useState(false);
 
+     let intervalId
+     console.log('====================================');
+     console.log(assessment_id);
+     console.log('====================================');
      useEffect(() => {
       const handleBeforeUnload = (e) => {
         clearInterval(intervalId); // Stop the timer
@@ -41,6 +45,7 @@ const CodeChallenge = () => {
       if (fetchCodeChallenge.rejected.match(result)) {
           setErrors([result.payload]);
         }
+        setFetchFinished(true);
   })
     return () => clearInterval(intervalId);
   }, [navigate,assessment_id, timeLeft,dispatch,id]);
@@ -73,6 +78,10 @@ const CodeChallenge = () => {
     const seconds = timeLeft % 60;
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }
+  if (!fetchFinished) {
+    return <div>Loading code challenge...</div>;
+  }
+
   return (
     <div>
          {errors.length > 0 && (

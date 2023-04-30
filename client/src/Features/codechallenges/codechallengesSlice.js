@@ -129,7 +129,7 @@ const intervieweeToken = getIntervieweeToken()
             state.status = "idle";
         })
         .addCase(fetchCodeChallenge.fulfilled,(state, action)=> {
-            state.codes = action.payload;
+            state.code = action.payload;
             state.status = "idle";
         });
     }

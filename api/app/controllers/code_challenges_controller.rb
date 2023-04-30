@@ -10,8 +10,8 @@ class CodeChallengesController < ApplicationController
     end
 
     def show 
-      code = CodeChallenge.one_code(params[:id])
-      code ||= CodeChallenge.find(params[:id])
+      # code = CodeChallenge.one_code(params[:id])
+      code = CodeChallenge.find(params[:id])
       if code
         render json: code, status: :ok
       else

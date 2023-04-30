@@ -3946,3 +3946,22 @@ Processing by AssessmentsCodeChallengesController#create as */*
 Completed 201 Created in 1613ms (Views: 345.6ms | ActiveRecord: 16.3ms | Allocations: 41435)
 
 
+Started GET "/code_challenges/1" for 127.0.0.1 at 2023-04-30 19:53:13 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CodeChallengesController#show as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"578a8a01e9fd1549e50001f1", "id"=>"1", "code_challenge"=>{}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (11.43ms)
+Completed 422 Unprocessable Entity in 231ms (Views: 50.0ms | ActiveRecord: 6.2ms | Allocations: 21310)
+
+
+Started GET "/code_challenges/1" for 127.0.0.1 at 2023-04-30 19:58:38 +0300
+Processing by CodeChallengesController#show as */*
+  Parameters: {"assessment_id"=>1, "code_challenge_id"=>"578a8a01e9fd1549e50001f1", "id"=>"1", "code_challenge"=>{}}
+  [1m[36mCodeChallenge Load (2.1ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/code_challenges_controller.rb:14:in `show'
+[active_model_serializers]   [1m[36mAnswer Load (2.1ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."code_challenge_id" = $1[0m  [["code_challenge_id", 1]]
+[active_model_serializers]   ↳ app/controllers/code_challenges_controller.rb:16:in `show'
+[active_model_serializers] Rendered CodeChallengeSerializer with ActiveModelSerializers::Adapter::Attributes (1851.14ms)
+Completed 200 OK in 5924ms (Views: 4540.6ms | ActiveRecord: 130.1ms | Allocations: 30906)
+
+
