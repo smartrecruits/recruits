@@ -1,5 +1,3 @@
-require 'net/http'
-
 module CodewarsModule
     def code_challenges
         def to_camel_case(str)

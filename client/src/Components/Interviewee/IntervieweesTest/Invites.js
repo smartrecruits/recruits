@@ -16,7 +16,7 @@ function InviteModal({onClose,intervieweeId,inviteId}) {
 
     function handleAcceptClick() {
         setLoading(true);
-        fetch(`/interviewees/${intervieweeId}/invites/${inviteId}/accept_assessment`, {
+        fetch(`https://recruits.onrender.com/interviewees/${intervieweeId}/invites/${inviteId}/accept_assessment`, {
          method: 'PUT',
          headers: {
             'Content-Type': 'application/json',

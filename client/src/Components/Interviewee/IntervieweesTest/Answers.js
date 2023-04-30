@@ -6,7 +6,7 @@ function AnswerForm({ question }) {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-        const response1 = await fetch(`/questions/${question.id}/check_answer`, {
+        const response1 = await fetch(`https://recruits.onrender.com/questions/${question.id}/check_answer`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ function AnswerForm({ question }) {
         const data1 = await response1.json();
         // handle response data1
     
-        const response2 = await fetch(`/responses`, {
+        const response2 = await fetch(`https://recruits.onrender.com/responses`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
