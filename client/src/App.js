@@ -28,6 +28,7 @@ import Sidebar from "./Components/Interviewee/everything/Sidebar";
 import { fetchCode } from "./Features/codechallenges/codechallengesSlice";
 import { fetchQuestions } from "./Features/questions/questionsSlice";
 import CodeChallenge from "./Features/codechallenges/oneCode";
+import RecruiterNavbar from "./Recruits/Navbar";
 
 function App() {
   const [errors,setErrors]= useState([])
@@ -57,6 +58,7 @@ function App() {
       <>
         <div className="cont">
           <div className="row">
+            <RecruiterNavbar/>
             <div className="col-md-2">
               <Sidebar />
             </div>
