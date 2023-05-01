@@ -85,19 +85,19 @@ const intervieweeToken = getIntervieweeToken()
           state.codes.push(action.payload);
         }
     },
-    extraReducers:{
-        [fetchAnswer.pending](state) {
+    extraReducers(builder){
+      builder
+        .addCase(fetchAnswer.pending,(state)=> {
             state.status = "loading";
-        },
-        [fetchAnswer.fulfilled](state, action) {
+        })
+        .addCase(fetchAnswer.fulfilled,(state, action) =>{
             state.answers = action.payload;
             state.status = "idle";
-        },
-        [createAnswer.fulfilled](state, action) {
+        })
+        .addCase(createAnswer.fulfilled,(state, action)=> {
             state.answers.push(action.payload);
             state.status = "idle";
-        },
-       
+        }); 
     }
 })
  

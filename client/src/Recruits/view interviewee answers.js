@@ -37,7 +37,7 @@ function IntervieweeResponses() {
     },[interviewee_id,recruiterToken])
 
     useEffect(() => {
-      fetch(`interviewees/${interviewee_id}/answers`,{
+      fetch(`https://recruits.onrender.com/interviewees/${interviewee_id}/answers`,{
           headers: {
               Authorization: `Bearer ${recruiterToken}`
             }
@@ -86,7 +86,7 @@ function IntervieweeResponses() {
       
 
   function handleFeedbackSubmit(responseId, feedback) {
-    fetch(`/recruiter/${recruiterId}/responses/${responseId}`, {
+    fetch(`https://recruits.onrender.com/recruiter/${recruiterId}/responses/${responseId}`, {
       method: 'PATCH',
       headers: {
             'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ function IntervieweeResponses() {
     }
 
     function handleSubmit(responseId) {
-      fetch(`/recruiter/${recruiterId}/answers/${responseId}`, {
+      fetch(`https://recruits.onrender.com/recruiter/${recruiterId}/answers/${responseId}`, {
         method: 'PATCH',
         headers: {
               'Content-Type': 'application/json',

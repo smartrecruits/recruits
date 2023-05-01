@@ -4,7 +4,7 @@ function IntervieweeScoreList() {
   const [interviewees, setInterviewees] = useState([]);
   const [errors, setErrors]  = useState([])
   useEffect(() => {
-    fetch('/interviewees/scores')
+    fetch('https://recruits.onrender.com/interviewees/scores')
       .then(res => res.json())
       .then(data => setInterviewees(data))
       .catch(err => setErrors([err.errors]))

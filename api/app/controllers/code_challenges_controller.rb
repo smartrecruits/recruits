@@ -30,24 +30,10 @@ class CodeChallengesController < ApplicationController
       render json: code, status: :ok
     end
 
-    def assign_to_assessment
-      assessment = Assessment.find(params[:assessment_id])
-      code_challenge = CodeChallenge.find(params[:code_challenge_id])
-      assessment.code_challenges << code_challenge
-      render json: assessment
-    end
-
-    def unassign_from_assessment
-      assessment = Assessment.find(params[:assessment_id])
-      code_challenge = CodeChallenge.find(params[:code_challenge_id])
-      assessment.code_challenges.delete(code_challenge)
-      render json: assessment
-    end
-
     private 
 
     def code_challenge_params 
-      params.permit(:assessment_id,:description,:name,:totalAttempts,:totalCompleted)
+      params.permit(:description,:languages,:name,:totalAttempts,:totalCompleted)
     end
 
     def render_unprocessable_entity_response(invalid)

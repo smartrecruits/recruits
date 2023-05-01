@@ -1,0 +1,30 @@
+/* styles.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h2 {
+    color: #c41197; /* change the color of the heading */
+    font-family: "Times New Roman", Times, serif; /* change the font family of the heading */
+    font-size: 40px;
+  }
+
+  .tite {
+    margin-top: 20px;
+  }
+  .button3{
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: none;
+    font-size: 12px;
+    margin-left: auto;
+    cursor: pointer;
+
+  }
+  .questcont{
+    display:flex;
+    flex-direction: row;
+    margin-top: 10px;
+  }

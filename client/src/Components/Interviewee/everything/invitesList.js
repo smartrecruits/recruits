@@ -15,7 +15,7 @@ const InvitesList = () => {
   }, [intervieweeId]);
 
   function handleAcceptClick({id}) {
-    fetch(`/interviewees/${intervieweeId}/invites/${id}/accept_assessment`, {
+    fetch(`https://recruits.onrender.com/interviewees/${intervieweeId}/invites/${id}/accept_assessment`, {
      method: 'PUT',
      headers: {
         'Content-Type': 'application/json',

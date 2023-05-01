@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  resources :assessments_code_challenges ,only: [:create,:index,:show,:destroy]
+  resources :assessments_questions, only: [:create,:index,:show,:destroy]
   resources :questions
+  resources :code_challenges
+
   post '/interviewee/:interviewee_id/question/:question_id/check_answer', to:"questions#checkanswer"
 
   resources :responses, only: [:create]
@@ -7,17 +11,9 @@ Rails.application.routes.draw do
   put '/recruiter/:recruiter_id/responses/:id', to: 'responses#update'
   patch '/recruiter/:recruiter_id/responses/:id', to: 'responses#update'
 
-  resources :code_challenges
-
   resources :assessments
-   # Assign question to assessment
-   post '/assessments/:assessment_id/questions/:question_id', to: 'assessments#add_question'
-   delete '/assessments/:assessment_id/questions/:question_id', to: 'assessments#remove_question'
- 
-   # Assign code challenge to assessment
-   post '/assessments/:assessment_id/code_challenges/:code_challenge_id', to: 'assessments#add_code_challenge'
-   delete '/assessments/:assessment_id/code_challenges/:code_challenge_id', to: 'assessments#remove_code_challenge'
-   
+  get '/assessments/done', to:"assessments#index_completed"
+
   resources :invites, only: [:index,:destroy]
   post '/invites/:interviewee_id', to: 'invites#create'
   put '/invites/:interviewee_id/:id', to: 'invites#update'
@@ -26,13 +22,8 @@ Rails.application.routes.draw do
 
   put 'interviewees/:interviewee_id/invites/:id/accept_assessment', to: 'invites#accept_assessment'
 
-  resources :answers, only: [:create,:show ]
+  resources :answers, only: [:create,:show,:destroy ]
   get '/interviewee/:interviewee_id/answers', to: 'answers#index'
-  # get '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#show'
-  # put '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#update'
-  # patch '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#update'
-  # delete '/code_challenges/:code_challenge_id/answers/:id', to: 'answers#destroy'
-
   put '/recruiter/:recruiter_id/answers/:id', to: 'answers#update'
   patch '/recruiter/:recruiter_id/answers/:id', to: 'answers#update'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

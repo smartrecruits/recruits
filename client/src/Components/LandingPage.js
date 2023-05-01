@@ -11,9 +11,9 @@ const LandingPage = () => {
           <h2>Smart Recruiters </h2>
           <h2>For Job Seekers</h2>
           {/* <h2>Seekers</h2> */}
-          <p className='paragh'>our mission is to connect people with jobs at scale. In</p>
-          <p className='paragh'>order for businesses to hire the best talent,people</p>
-          <p className='paragh'>deserve to easily find a job they love</p>
+          <p className='paragh'>Smart Recruiters is a talent acquisition platform designed to help companies find and hire the best candidates</p>
+          <p className='paragh'>We are committed to providing a user-friendly platform that empowers recruiters and promotes diversity, equity, and inclusion in the hiring process.</p>
+          <p className='paragh'>Our mission is to make hiring better for everyone.</p>
           <div className="button-wrapper">
             <Link to="/Signing">
             <button className="button1">Recruiter</button>

@@ -61,14 +61,14 @@ const Card = styled.div`
 `;
 
 const CardContent = styled.div`
-  padding: 0.7rem 1rem 0.3rem 1rem;
+  padding: 0.1rem 1rem 0.3rem 1rem;
 `;
 
 const Row = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 0.8rem;
-  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+  margin-top: 0.6rem;
   ${({ justify }) =>
     justify &&
     `

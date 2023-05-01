@@ -13,7 +13,7 @@ function IntervieweeAssessments() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`/interviewees/${id}/assessments`, {
+    fetch(`https://recruits.onrender.com/interviewees/${id}/assessments`, {
       headers: {
         Authorization: `Bearer ${recruiterToken}`,
       },

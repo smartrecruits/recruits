@@ -1,8 +1,8 @@
 # Smart Recruiter
 
 ## Description
+[recvid.webm](https://user-images.githubusercontent.com/109147065/235055087-49067f61-79af-4ea7-8edf-57e2eefbe0e2.webm)
 
-here is the link to the database https://recruits.onrender.com
 
 # Interviewee Section - Frontend README
 
@@ -23,7 +23,11 @@ This is the frontend repository for the Interviewee section of our platform, whi
 The frontend of the Interviewee section includes the following features based on the MVP:
 
 - Login component
+![signup](https://user-images.githubusercontent.com/109147065/235052222-ed715b9f-60e6-4f92-a324-4ed7a7c1d3ac.png)
+
 - Assessment list component
+![createa](https://user-images.githubusercontent.com/109147065/235052722-fd169cd4-e372-467f-8523-b09513dc7e53.png)
+
 - Assessment detail component
 - Assessment timer component
 - Assessment submission component

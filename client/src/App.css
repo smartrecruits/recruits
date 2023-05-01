@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+#select-assess{
+  font-size: 10px;
+  color: red;
+}

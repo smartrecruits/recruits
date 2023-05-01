@@ -1,5 +1,5 @@
 class InviteSerializer < ActiveModel::Serializer
   attributes :id, :status
-  has_one :interviewee
-  has_one :recruiter
+  belongs_to :interviewee
+  belongs_to :recruiter
 end

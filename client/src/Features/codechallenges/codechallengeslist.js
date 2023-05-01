@@ -1,67 +1,73 @@
-import React, { useEffect } from "react";
-import CreateCodeChallenge from "./codechallenges";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCode } from "./codechallengesSlice";
+// import React, { useEffect } from "react";
+// import CreateCodeChallenge from "./codechallenges";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchCode } from "./codechallengesSlice";
+// import { getRecruiterToken } from "../../Components/utils/auth";
+// import "./codechallenges.css";
+// import parse from "html-react-parser";
 
-function CodeChallenges({ assessmentId }) {
-  const dispatch = useDispatch();
+// function CodeChallenges({ assessmentId }) {
+//   const dispatch = useDispatch();
+//   // const recruiterToken = getRecruiterToken();
 
-  useEffect(() => {
-    dispatch(fetchCode());
-  }, [dispatch]);
+//   useEffect(() => {
+//     dispatch(fetchCode());
+//   }, [dispatch]);
 
-  const codeChallenges = useSelector((state) => state.codes.codes);
-  const status = useSelector((state) => state.codes.status);
-  const errors = useSelector((state) => state.codes.errors);
+//   const codeChallenges = useSelector((state) => state.codes.codes);
+//   const status = useSelector((state) => state.codes.status);
+//   const errors = useSelector((state) => state.codes.errors);
 
-  if (status === "loading") {
-    return <div>Loading challenges...</div>;
-  }
+//   if (status === "loading") {
+//     return <div>Loading challenges...</div>;
+//   }
 
-  if (!codeChallenges || codeChallenges.length === 0) {
-    return <div>No challenges found.</div>;
-  }
-  if (errors) {
-    return <div>Error: {errors}</div>;
-  }
+//   if (!codeChallenges || codeChallenges.length === 0) {
+//     return <div>No challenges found.</div>;
+//   }
+//   if (errors) {
+//     return <div>Error: {errors}</div>;
+//   }
 
-  function addToAssessment(codeChallengeId) {
-    fetch(`/assessments/${assessmentId}/code_challenges/${codeChallengeId}`, {
-      method: "POST",
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-  }
-  function removeFromAssessment(codeChallengeId) {
-    fetch(`/assessments/${assessmentId}/code_challenges/${codeChallengeId}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-  }
+//   function addToAssessment(codeChallengeId) {
+//     fetch(`https://recruits.onrender.com/assessments_code_challenges`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${recruiterToken}`,
+//       },
+//       body: JSON.stringify({
+//         assessment_id: assessmentId,
+//         code_challenge_id: codeChallengeId,
+//       }),
+//     })
+//       .then((response) => response.json())
+//       .then((data) =>{ console.log(data)})
+//       .catch((error) => console.log(error));
+//   }
 
-  return (
-    <div>
-      <h2>CodeChallenges</h2>
-      <CreateCodeChallenge />
-      <ul>
-        {codeChallenges.map((codeChallenge) => (
-          <li key={codeChallenge.id}>
-            <h6>{codeChallenge.name}</h6>
-            <h6>{codeChallenge.description}</h6>
-            <button onClick={() => addToAssessment(codeChallenge.id)}>
-              Add To Assessment
-            </button>
-            <button onClick={() => removeFromAssessment(codeChallenge.id)}>
-              Remove from Assessment
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+//   const showdown = require("showdown");
+//   const githubExtension = require("showdown-github/dist/showdown-github");
+//   const converter = new showdown.Converter({ extensions: [githubExtension] });
 
-export default CodeChallenges;
+//   return (
+//     <div>
+//       <h2>CodeChallenges</h2>
+//       <CreateCodeChallenge />
+//       <ul>
+//         {codeChallenges.map((codeChallenge) => (
+//           <li key={codeChallenge.id}>
+//             <h6 className="challenge">{codeChallenge.name}</h6>
+//             <div>{parse(converter.makeHtml(codeChallenge.description))}</div>
+//             <br />
+//               <button className="button1" onClick={() => addToAssessment(codeChallenge.id)}>
+//                 Add To Assessment
+//               </button>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
+
+// export default CodeChallenges;

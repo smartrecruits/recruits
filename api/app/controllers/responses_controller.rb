@@ -12,6 +12,7 @@ class ResponsesController < ApplicationController
             render json: response, status: :created
         end
     end
+    
     def update
         recruiter = Recruiter.find(params[:recruiter_id])
         response = Response.find(params[:id])

@@ -1,3 +1,4 @@
 class QuestionSerializer < ActiveModel::Serializer
-  attributes :id, :content, :question, :feedback, :assessment_id, :created_at, :updated_at
+  attributes :id, :content,:correct_answer, :answer_1,:answer_2,:answer_3,:answer_4,:correct_answer, :totalAttempts,:created_at, :updated_at
+  # has_many :responses
 end
