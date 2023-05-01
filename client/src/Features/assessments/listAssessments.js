@@ -18,7 +18,7 @@ const AssessmentsList = () => {
       {!assessments || assessments.length === 0 ? (
         <div>No assessments found.</div>
       ) : (
-        <ul>
+        <ol>
           {assessments.map((assessment) => (
             <li key={assessment.id}>
               <Link to={`/RecruiterAssessList/${assessment.id}`}>
@@ -26,7 +26,7 @@ const AssessmentsList = () => {
               </Link>
             </li>
           ))}
-        </ul>
+        </ol>
       )}
       {errors.length > 0 && (
         <div className="text-danger" id="errors">

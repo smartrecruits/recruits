@@ -13,6 +13,7 @@
 
   .tite {
     margin-top: 20px;
+    text-decoration: overline;
   }
   .button3{
     border-radius: 10px;
@@ -65,4 +66,9 @@
 }
 .oneassess{
   min-height: 100vh;
+}
+.h4-class{
+  color: #c41197; /* change the color of the heading */
+    font-family: "Times New Roman", Times, serif; /* change the font family of the heading */
+    font-size: 20px;
 }

@@ -37,7 +37,7 @@ function CreateQuestion() {
 
   return (
     <div>
-      <h2>Create a new question</h2>
+      <h4 className='h4-class'>Create a new question</h4>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Question content:</label>

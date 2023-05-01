@@ -12,12 +12,14 @@ function Signing() {
   const [errors, setErrors] = useState([]);
   const [loginerrors, setLoginErrors] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
+  const [isLoginLoading, setLoginIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   let navigate = useNavigate();
 
   const handleSignInSubmit = (event) => {
     event.preventDefault();
-    // setLoginLoading(true)  
+    setLoginIsLoading(true)  
     fetch('https://recruits.onrender.com/recruiter/login', {
       method: 'POST',
       headers: {
@@ -44,12 +46,13 @@ function Signing() {
       storeRecruiterToken(data.token)
       //  console.log(data.user.id)
       navigate('/Recruiterdb');
+      setLoginIsLoading(false)  
     })
   }
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign up submission
-    // setLoading(true)  
+    setIsLoading(true)  
     fetch('https://recruits.onrender.com/recruiter', {
       method: 'POST',
       headers: {
@@ -76,6 +79,7 @@ function Signing() {
          setEmail('')
          setPassword('')
          setUsername('')
+         setIsLoading(false)  
       }
     })
   }
@@ -102,7 +106,7 @@ function Signing() {
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" id="loader" aria-hidden="true"></div>
                         </div> ): ( */}
-                                <input type="submit" className="button" value="Sign In" />
+                                <input type="submit" className="button" value="Sign In" disabled={isLoginLoading} />
                         {/* )
                } */}
               </div>
@@ -135,7 +139,7 @@ function Signing() {
                                         <strong>Please Wait...</strong>
                         <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                         </div> ): ( */}
-                                <input type="submit" className="button" value="Sign Up" />
+                                <input type="submit" className="button" value="Sign Up" disabled={isLoading} />
                         {/* )
                }
                  */}

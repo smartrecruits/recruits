@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { getInterviewee, getIntervieweeToken } from '../../utils/auth';
-function AnswerForm({ question }) {
+function AnswerForm({ question, assessmentId }) {
   const [chosenAnswer, setChosenAnswer] = useState('');
   const IntervieweeId = getInterviewee()
   const intervieweeToken= getIntervieweeToken()
@@ -24,7 +24,12 @@ function AnswerForm({ question }) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${intervieweeToken}`,
           },
-          body: JSON.stringify({ chosen_answer: chosenAnswer })
+          body: JSON.stringify({
+             chosen_answer: chosenAnswer,
+             assessment_id: assessmentId,
+             interviewee_id: IntervieweeId,
+             question_id: question.id
+             })
         });
         const data2 = await response2.json();
         // handle response data2

@@ -114,7 +114,11 @@ a {
 .button {
     cursor: pointer;
 }
-
+.button:disabled,
+.button[disabled]{
+  background-color: rgb(223, 0, 255,0.5);
+  color: #666666;
+}
 .login-form .group .input,
 .login-form .group .button {
     border: none;

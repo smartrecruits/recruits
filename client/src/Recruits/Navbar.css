@@ -1,6 +1,8 @@
 .navbar-wrapper {
   display: flex; /* Use flexbox to create horizontal layout */
   justify-content: center; /* Center the links horizontally */
+  background-color: rgb(0, 0, 0,0.6);
+  background-blend-mode: multiply;
   background-image: url(https://expertreviews.b-cdn.net/sites/expertreviews/files/2020/12/best_gaming_keyboard_-_lead1_0.jpg);/* Add some margin for spacing */
   background-position: center;
   background-size: cover;
@@ -12,12 +14,17 @@
 .nav-rec ul {
   display: flex; /* Use flexbox to create horizontal layout */
   align-items: center; /* Center the links vertically */
+  text-decoration: none;
 }
 
-.nav-rec ul li a {
-  background-color: rgb(190, 45, 190);
+.nav-rec ul li{
+  text-decoration: none;
+}
+
+.nav-rec ul li {
+  /* background-color: rgb(190, 45, 190); */
   border-radius: 5px;
-  color: rgb(49, 12, 90);
+  color: rgb(255, 255, 255);
   display: inline-block;
   padding: 10px;
   margin: 20px;

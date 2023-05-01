@@ -3,8 +3,7 @@ import { useNavigate,Link } from "react-router-dom";
 import { saveInterviewee,storeIntervieweeToken } from "./utils/auth";
 // import AppInterviewee from '../AppInterviewee';
 import './Client.css'
-
-
+import { ReactComponent as Loader } from './svg'
 function Client() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,9 +14,12 @@ function Client() {
   const [errors, setErrors] = useState([]);
   let navigate = useNavigate();
   const [loginerrors, setLoginErrors] = useState([]);
+  const [isLoginLoading, setLoginIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSignInSubmit = (event) => {
     event.preventDefault();
+    setLoginIsLoading(true);
         fetch('https://recruits.onrender.com/interviewee/login', {
           method: 'POST',
           headers: {
@@ -47,15 +49,18 @@ function Client() {
           setLoginEmail('')
           setLoginPassword('')
           navigate('/AppInterviewee');
+          setLoginIsLoading(false);
         })
         navigate('/AppInterviewee');
           setLoginEmail('')
           setLoginPassword('')
+          setLoginIsLoading(false);
   }
 
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
     // Code to handle sign up submission
+    setIsLoading(true);
     fetch('https://recruits.onrender.com/interviewee', {
       method: 'POST',
       headers: {
@@ -76,12 +81,14 @@ function Client() {
       setEmail('')
       setPassword('')
       setUsername('')
+      setIsLoading(true);
     }).then(data => {
       if (data) {
         setSuccessMessage('Successfully signed up!');
         setEmail('')
         setPassword('')
         setUsername('')
+        setIsLoading(true);
       }
     })
   }
@@ -103,7 +110,7 @@ function Client() {
                 <input placeholder="Password" id="password" name="password" type="password" className="input" data-type="password" value={loginpassword} onChange={(event) => setLoginPassword(event.target.value)} />
               </div>
               <div className="group">   
-                    <input type="submit" className="button" value="Sign In" />
+                    <input type="submit" className="button" value="Sign In"  disabled={isLoginLoading}/>
               </div>
               {loginerrors.length > 0 && (
                 <div className="text-danger" id="errors">
@@ -132,7 +139,7 @@ function Client() {
            
               <div className="group">
             
-                <input type="submit" className="button" value="Sign Up" />
+                <input type="submit" className="button" value="Sign Up"  disabled={isLoading}/>
             
               </div>
               {successMessage && (

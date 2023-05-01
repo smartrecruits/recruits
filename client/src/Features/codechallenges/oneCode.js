@@ -77,7 +77,7 @@ const CodeChallenge = () => {
 
   useEffect(() => {
     if (redirect) {
-      navigate(`/assessment/${assessment_id}`);
+      navigate(`/assessments/${assessment_id}`);
     }
   }, [redirect,navigate,assessment_id]);
   const showdown = require("showdown");

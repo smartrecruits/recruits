@@ -60,9 +60,9 @@ function QuestionList({assessmentId}) {
     <div>
       <h2>Questions</h2>
       <CreateQuestion />
-      <ul>
+      <div>
         {questions.map((question) => (
-          <li key={question.id}>
+          <div key={question.id}>
             <p className="question">{question.content}</p>
             {/* {questions.some((code) => code.id === question.id) ? ( */}
            
@@ -71,9 +71,9 @@ function QuestionList({assessmentId}) {
                 Add To Assessment
               </button>
                {/* )} */}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

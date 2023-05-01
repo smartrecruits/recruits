@@ -65,12 +65,12 @@ function redirectToScore(){
     navigate('/intervieweescorelist')
 }
   return (
-    <div>
+    <center>
       <h2>List of Interviewees:</h2>
-      <button onClick={redirectToScore}>Interviewees by score</button>
-      <ul>
+      {/* <button onClick={redirectToScore}>Interviewees by score</button> */}
+      <div>
         {interviewees.map(interviewee => (
-          <li key={interviewee.id}>
+          <ol key={interviewee.id}>
             {interviewee.firstname} {interviewee.lastname} {interviewee.email}
             {assessments.length > 0 && (
               <div>
@@ -88,10 +88,10 @@ function redirectToScore(){
                 <button onClick={() => handleInvite(interviewee.id)}>Send invite</button>
               </div>
             )}
-          </li>
+          </ol>
         ))}
-      </ul>
-    </div>
+      </div>
+    </center>
   );
 }
 

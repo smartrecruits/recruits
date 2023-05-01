@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :code_challenges
 
-  post '/interviewee/:interviewee_id/question/:question_id/check_answer', to:"questions#checkanswer"
+  post '/interviewee/:interviewee_id/question/:question_id/check_answer', to:"questions#check_answer"
 
   resources :responses, only: [:create]
   get '/interviewee/:interviewee_id/responses', to: "responses#index"

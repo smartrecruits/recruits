@@ -18,7 +18,7 @@ function IntervieweeResponses() {
   const dispatch = useDispatch()
   const {interviewee_id, assessment_id} = useParams()
   useEffect(() => {
-    fetch(`/interviewees/${interviewee_id}/responses`,{
+    fetch(`https://recruits.onrender.com/interviewees/${interviewee_id}/responses`,{
         headers: {
             Authorization: `Bearer ${recruiterToken}`
           }

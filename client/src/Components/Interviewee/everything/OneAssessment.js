@@ -22,6 +22,9 @@ function OneAssessmentInterviewee() {
             setErrors([result.payload]);
           }
           setFetchFinished(true);
+        if (result.payload.quizdone) {
+          setQuestionsDone(true);
+        }  
     })
   }, [dispatch,id]);
 
@@ -33,10 +36,6 @@ function OneAssessmentInterviewee() {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
   }
 
-  function handleFinish(){
-    setCurrentQuestionIndex(null)
-    setQuestionsDone(true)
-  }
   const markAssessmentCompleted = () => {
     fetch(`https://recruits.onrender.com/assessments/${id}`, {
       method: "PATCH",
@@ -46,6 +45,24 @@ function OneAssessmentInterviewee() {
       },
       body: JSON.stringify({
         done: true
+      })
+    })
+      .then(response => response.json())
+      .then(data => {console.log(data)})
+      .catch(error => setErrors(error));
+  }
+
+  const markQuizCompleted = () => {
+    setCurrentQuestionIndex(null)
+    setQuestionsDone(true)
+    fetch(`https://recruits.onrender.com/assessments/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${intervieweeToken}`,
+      },
+      body: JSON.stringify({
+        quizdone: true
       })
     })
       .then(response => response.json())
@@ -126,11 +143,11 @@ function OneAssessmentInterviewee() {
       </div>
         <div className='quiz'  style={{ textAlign: 'center' }}>
           <h4>Questions {currentQuestionIndex + 1}</h4>
-            <AnswerForm question={currentQuestion}/>
+            <AnswerForm question={currentQuestion} assessmentId={assessment.id}/>
             {currentQuestionIndex < assessment.questions.length - 1 ? (
             <button onClick={handleNext}>Next</button>
           ) : (
-            <button onClick={handleFinish}>Finish</button>
+            <button onClick={markQuizCompleted}>Finish</button>
           )}
       </div>
      
