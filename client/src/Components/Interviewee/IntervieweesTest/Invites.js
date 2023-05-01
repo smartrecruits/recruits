@@ -1,12 +1,13 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React, { useState,useEffect } from 'react';
+import { getIntervieweeToken } from '../../utils/auth';
 
 function InviteModal({onClose,intervieweeId,inviteId}) {
     const [invite, setInvite] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    const intervieweeToken = getIntervieweeToken()
     useEffect(() => {
         const isInviteAccepted = localStorage.getItem(`invite-${inviteId}-accepted`);
         if (isInviteAccepted === 'true') {
@@ -20,7 +21,8 @@ function InviteModal({onClose,intervieweeId,inviteId}) {
          method: 'PUT',
          headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Authorization': `Bearer ${intervieweeToken}`,
+
           }
          })
         .then(response => response.json())

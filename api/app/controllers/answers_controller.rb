@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
     before_action :set_answer, only: [:show, :update, :destroy]
-    before_action :verify_auth
+    before_action :verify_auth, except: [:index]
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   
@@ -55,7 +55,7 @@ class AnswersController < ApplicationController
     private
 
     def answer_params
-      params.require(:answer).permit(:content,:code_challenge_id, :interviewee_id,:grades,:feedback,:done)
+      params.require(:answer).permit(:content,:code_challenge_id,:assessment_id, :interviewee_id,:grades,:feedback,:done)
     end
 
     def render_unprocessable_entity_response(invalid)

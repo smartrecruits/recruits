@@ -6,9 +6,9 @@ const intervieweeToken = getIntervieweeToken()
   export const fetchCode = createAsyncThunk("code/fetchCode", async (_, { rejectWithValue }) => {
     try {
       const response = await fetch("https://recruits.onrender.com/code_challenges", {
-        headers: {
-          Authorization: `Bearer ${recruiterToken}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${recruiterToken}`,
+        // },
       });
       const data = await response.json();
   
@@ -26,9 +26,9 @@ const intervieweeToken = getIntervieweeToken()
     async (id ) => {
       try {
         const response = await fetch(`https://recruits.onrender.com/code_challenges/${id}`,{
-            headers: {
-                Authorization: `Bearer ${intervieweeToken}`,
-              },
+            // headers: {
+            //     Authorization: `Bearer ${intervieweeToken}`,
+            //   },
         });
         const data = await response.json();
   
@@ -108,10 +108,10 @@ const intervieweeToken = getIntervieweeToken()
         code:[],
     },
     reducers:{
-        setAssessment(state,action){
+        setCode(state,action){
           state.codes = action.payload;
         },
-        addAssessment(state, action) {
+        addCode(state, action) {
           state.codes.push(action.payload);
         }
     },

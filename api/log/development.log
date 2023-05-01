@@ -3965,3 +3965,312 @@ Processing by CodeChallengesController#show as */*
 Completed 200 OK in 5924ms (Views: 4540.6ms | ActiveRecord: 130.1ms | Allocations: 30906)
 
 
+Started GET "/ws" for ::1 at 2023-05-01 00:45:48 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/ws" for ::1 at 2023-05-01 00:46:21 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/answers" for 127.0.0.1 at 2023-05-01 00:46:38 +0300
+Processing by AnswersController#create as */*
+  Parameters: {"content"=>"x+y=10", "code_challenge_id"=>1, "interviewee_id"=>1, "assessment_id"=>1, "answer"=>{"content"=>"x+y=10", "code_challenge_id"=>1, "assessment_id"=>1, "interviewee_id"=>1}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.25ms)
+Completed 422 Unprocessable Entity in 19ms (Views: 18.4ms | ActiveRecord: 8.2ms | Allocations: 724)
+
+
+Started POST "/recruiter/login" for 127.0.0.1 at 2023-05-01 00:47:09 +0300
+Processing by RecruitersController#login as */*
+  Parameters: {"username"=>"recruiter1", "password"=>"[FILTERED]", "recruiter"=>{"username"=>"recruiter1"}}
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f11a40133a0>, params: {"username"=>"recruiter1", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"recruiter1"}} }[0m
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f11a40133a0>, params: {"username"=>"recruiter1", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"recruiter1"}} }[0m
+  [1m[36mRecruiter Load (1.2ms)[0m  [1m[34mSELECT "recruiters".* FROM "recruiters" WHERE (username = 'recruiter1' OR email = NULL) ORDER BY "recruiters"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/recruiters_controller.rb:16:in `login'
+[31mUnpermitted parameter: :recruiter. Context: { controller: RecruitersController, action: login, request: #<ActionDispatch::Request:0x00007f11a40133a0>, params: {"username"=>"recruiter1", "password"=>"[FILTERED]", "controller"=>"recruiters", "action"=>"login", "recruiter"=>{"username"=>"recruiter1"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.9ms)
+Completed 200 OK in 344ms (Views: 1.5ms | ActiveRecord: 9.2ms | Allocations: 19151)
+
+
+Started GET "/ws" for ::1 at 2023-05-01 00:47:26 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/interviewee/login" for 127.0.0.1 at 2023-05-01 00:47:49 +0300
+Processing by IntervieweesController#login as */*
+  Parameters: {"username"=>"recruiter1", "password"=>"[FILTERED]", "interviewee"=>{"username"=>"recruiter1"}}
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: login, request: #<ActionDispatch::Request:0x00007f11a0d75128>, params: {"username"=>"recruiter1", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"login", "interviewee"=>{"username"=>"recruiter1"}} }[0m
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: login, request: #<ActionDispatch::Request:0x00007f11a0d75128>, params: {"username"=>"recruiter1", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"login", "interviewee"=>{"username"=>"recruiter1"}} }[0m
+  [1m[36mInterviewee Load (4.9ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE (username = 'recruiter1' OR email = NULL) ORDER BY "interviewees"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:16:in `login'
+[31mUnpermitted parameter: :interviewee. Context: { controller: IntervieweesController, action: login, request: #<ActionDispatch::Request:0x00007f11a0d75128>, params: {"username"=>"recruiter1", "password"=>"[FILTERED]", "controller"=>"interviewees", "action"=>"login", "interviewee"=>{"username"=>"recruiter1"}} }[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.4ms)
+Completed 200 OK in 389ms (Views: 0.9ms | ActiveRecord: 25.9ms | Allocations: 16725)
+
+
+Started POST "/answers" for 127.0.0.1 at 2023-05-01 00:48:19 +0300
+Processing by AnswersController#create as */*
+  Parameters: {"content"=>"x+y=10", "code_challenge_id"=>1, "interviewee_id"=>1, "assessment_id"=>1, "answer"=>{"content"=>"x+y=10", "code_challenge_id"=>1, "assessment_id"=>1, "interviewee_id"=>1}}
+[31mUnpermitted parameter: :assessment_id. Context: { controller: AnswersController, action: create, request: #<ActionDispatch::Request:0x00007f119859b310>, params: {"content"=>"x+y=10", "code_challenge_id"=>1, "interviewee_id"=>1, "assessment_id"=>1, "controller"=>"answers", "action"=>"create", "answer"=>{"content"=>"x+y=10", "code_challenge_id"=>1, "assessment_id"=>1, "interviewee_id"=>1}} }[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (4.1ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mInterviewee Load (0.7ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (38.81ms)
+Completed 422 Unprocessable Entity in 482ms (Views: 40.6ms | ActiveRecord: 31.2ms | Allocations: 53208)
+
+
+Started GET "/ws" for ::1 at 2023-05-01 00:49:35 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started POST "/answers" for 127.0.0.1 at 2023-05-01 00:50:03 +0300
+Processing by AnswersController#create as */*
+  Parameters: {"content"=>"x+y=10", "code_challenge_id"=>1, "interviewee_id"=>1, "assessment_id"=>1, "answer"=>{"content"=>"x+y=10", "code_challenge_id"=>1, "assessment_id"=>1, "interviewee_id"=>1}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAssessment Load (4.0ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAnswer Create (1.6ms)[0m  [1m[32mINSERT INTO "answers" ("content", "feedback", "grades", "code_challenge_id", "assessment_id", "interviewee_id", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["content", "x+y=10"], ["feedback", nil], ["grades", nil], ["code_challenge_id", 1], ["assessment_id", 1], ["interviewee_id", 1], ["done", nil], ["created_at", "2023-04-30 21:50:03.914240"], ["updated_at", "2023-04-30 21:50:03.914240"]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+[active_model_serializers] Rendered AnswerSerializer with ActiveModelSerializers::Adapter::Attributes (34.54ms)
+Completed 201 Created in 222ms (Views: 127.1ms | ActiveRecord: 24.2ms | Allocations: 54370)
+
+
+Started GET "/interviewee/1/assessment/1/answers" for 127.0.0.1 at 2023-05-01 00:53:39 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/interviewee/1/assessment/1/answers"):
+  
+Started GET "/ws" for ::1 at 2023-05-01 00:53:52 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/interviewees/1/assessment/1/answers" for 127.0.0.1 at 2023-05-01 00:53:55 +0300
+Processing by IntervieweesController#show_answers as */*
+  Parameters: {"content"=>"x+y=10", "code_challenge_id"=>1, "interviewee_id"=>"1", "assessment_id"=>"1", "interviewee"=>{}}
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:77:in `show_answers'
+  [1m[36mAssessment Load (8.2ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "invites" ON "assessments"."id" = "invites"."assessment_id" WHERE "invites"."interviewee_id" = $1 AND "assessments"."id" = $2 LIMIT $3[0m  [["interviewee_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:78:in `show_answers'
+  [1m[36mAnswer Load (1.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."assessment_id" = $1[0m  [["assessment_id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+  [1m[36mCodeChallenge Load (0.5ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.72ms)
+Completed 200 OK in 220ms (Views: 61.6ms | ActiveRecord: 16.3ms | Allocations: 13495)
+
+
+Started POST "/answers" for 127.0.0.1 at 2023-05-01 00:57:13 +0300
+Processing by AnswersController#create as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>2, "interviewee_id"=>1, "assessment_id"=>1, "answer"=>{"content"=>"x+y=10 +20", "code_challenge_id"=>2, "assessment_id"=>1, "interviewee_id"=>1}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mInterviewee Load (0.4ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (0.93ms)
+Completed 422 Unprocessable Entity in 14ms (Views: 1.7ms | ActiveRecord: 1.3ms | Allocations: 4234)
+
+
+Started POST "/answers" for 127.0.0.1 at 2023-05-01 00:57:36 +0300
+Processing by AnswersController#create as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>3, "interviewee_id"=>1, "assessment_id"=>1, "answer"=>{"content"=>"x+y=10 +20", "code_challenge_id"=>3, "assessment_id"=>1, "interviewee_id"=>1}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (0.4ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAssessment Load (0.5ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with ActiveModel::Errors (0.58ms)
+Completed 422 Unprocessable Entity in 12ms (Views: 0.9ms | ActiveRecord: 1.8ms | Allocations: 4086)
+
+
+Started POST "/answers" for 127.0.0.1 at 2023-05-01 00:57:44 +0300
+Processing by AnswersController#create as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>1, "interviewee_id"=>1, "assessment_id"=>1, "answer"=>{"content"=>"x+y=10 +20", "code_challenge_id"=>1, "assessment_id"=>1, "interviewee_id"=>1}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAssessment Load (0.2ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAnswer Create (0.3ms)[0m  [1m[32mINSERT INTO "answers" ("content", "feedback", "grades", "code_challenge_id", "assessment_id", "interviewee_id", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["content", "x+y=10 +20"], ["feedback", nil], ["grades", nil], ["code_challenge_id", 1], ["assessment_id", 1], ["interviewee_id", 1], ["done", nil], ["created_at", "2023-04-30 21:57:44.730360"], ["updated_at", "2023-04-30 21:57:44.730360"]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+[active_model_serializers] Rendered AnswerSerializer with ActiveModelSerializers::Adapter::Attributes (1.0ms)
+Completed 201 Created in 20ms (Views: 1.6ms | ActiveRecord: 5.0ms | Allocations: 4848)
+
+
+Started GET "/interviewees/1/assessment/1/answers" for 127.0.0.1 at 2023-05-01 00:58:20 +0300
+Processing by IntervieweesController#show_answers as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>1, "interviewee_id"=>"1", "assessment_id"=>"1", "interviewee"=>{}}
+  [1m[36mInterviewee Load (0.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:77:in `show_answers'
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "invites" ON "assessments"."id" = "invites"."assessment_id" WHERE "invites"."interviewee_id" = $1 AND "assessments"."id" = $2 LIMIT $3[0m  [["interviewee_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:78:in `show_answers'
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."assessment_id" = $1[0m  [["assessment_id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.41ms)
+Completed 200 OK in 13ms (Views: 8.3ms | ActiveRecord: 1.1ms | Allocations: 3843)
+
+
+Started GET "/code_challenges" for 127.0.0.1 at 2023-05-01 00:59:44 +0300
+Processing by CodeChallengesController#index as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>1, "interviewee_id"=>1, "assessment_id"=>1, "code_challenge"=>{}}
+  [1m[36mCodeChallenge Load (0.7ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges"[0m
+  ↳ app/controllers/code_challenges_controller.rb:8:in `+'
+No serializer found for resource: {"id"=>"62013b174c72240016600e60", "name"=>"A Brave New Wordle", "slug"=>"a-brave-new-wordle", "category"=>"algorithms", "publishedAt"=>"2022-02-08T10:04:22.940Z", "approvedAt"=>"2022-06-21T01:33:04.623Z", "languages"=>["javascript", "python"], "url"=>"https://www.codewars.com/kata/62013b174c72240016600e60", "rank"=>{"id"=>-5, "name"=>"5 kyu", "color"=>"yellow"}, "createdAt"=>"2022-02-07T15:30:31.884Z", "createdBy"=>{"username"=>"photo-pizza-importance", "url"=>"https://www.codewars.com/users/photo-pizza-importance"}, "approvedBy"=>{"username"=>"JohanWiltink", "url"=>"https://www.codewars.com/users/JohanWiltink"}, "description"=>"Wordle is a game where users try to guess a hidden 5 letter word. Feedback is given for each guess, in the form of colored tiles, indicating when letters match or occupy the correct position.\n\nsee: https://www.nytimes.com/games/wordle/index.html\n\n### The Brief\nMake a function that takes in a 5 letter guess and, comparing to a known solution, returns clues for the user to solve the wordle puzzle. \n\n### Requirements\n- The function takes in two strings of 5 letters each, a guess and a solution.\n- The function returns a string of 5 letters.\n- The returned string is composed of letters each corresponding to a letter of the guess: 'b' (black) when the letter is not present in the answer; 'y' (yellow) when the letter is present but in a different location; and 'g' (green) when the letter is present and in the right location.\n\n### Duplicates \n- A letter appearing in the correct place is always green, including if it appears elsewhere in the word. \n- A letter can only be green or yellow as many times as it appears in the correct answer. Extra occurences of that letter are marked as 'b'. Below are some examples, see example tests for more:\n- letters are evaluated left to right.\n\n```\nGuess: xxxxx\nAnswer: yxxxx\nExpected Output: bgggg \nExplanation: extra letters marked as 'b'\n\nguess: xxxxz \nanswer:aaaax \nexpected output: ybbbb \nfirst x marked as 'y',  and each one as 'b' after\n```\n\n\n\n\n\n\n\n", "totalAttempts"=>900, "totalCompleted"=>99, "totalStars"=>16, "voteScore"=>50, "tags"=>["Algorithms", "Strings", "Puzzles"], "contributorsWanted"=>true, "unresolved"=>{"issues"=>0, "suggestions"=>2}}
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (16.41ms)
+Completed 200 OK in 33143ms (Views: 17.8ms | ActiveRecord: 0.7ms | Allocations: 55324)
+
+
+Started GET "/ws" for ::1 at 2023-05-01 01:02:25 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/ws"):
+  
+Started GET "/interviewees/1/assessment/1/answers" for 127.0.0.1 at 2023-05-01 01:08:07 +0300
+Processing by IntervieweesController#show_answers as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>1, "interviewee_id"=>"1", "assessment_id"=>"1", "interviewee"=>{}}
+  [1m[36mInterviewee Load (0.4ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:77:in `show_answers'
+  [1m[36mAssessment Load (0.5ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "invites" ON "assessments"."id" = "invites"."assessment_id" WHERE "invites"."interviewee_id" = $1 AND "assessments"."id" = $2 LIMIT $3[0m  [["interviewee_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:78:in `show_answers'
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."assessment_id" = $1[0m  [["assessment_id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.88ms)
+Completed 200 OK in 29ms (Views: 5.6ms | ActiveRecord: 9.1ms | Allocations: 6896)
+
+
+Started POST "/answers" for 127.0.0.1 at 2023-05-01 01:08:38 +0300
+Processing by AnswersController#create as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>1, "interviewee_id"=>3, "assessment_id"=>1, "answer"=>{"content"=>"x+y=10 +20", "code_challenge_id"=>1, "assessment_id"=>1, "interviewee_id"=>3}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mInterviewee Load (0.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAssessment Load (0.5ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAnswer Create (0.5ms)[0m  [1m[32mINSERT INTO "answers" ("content", "feedback", "grades", "code_challenge_id", "assessment_id", "interviewee_id", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["content", "x+y=10 +20"], ["feedback", nil], ["grades", nil], ["code_challenge_id", 1], ["assessment_id", 1], ["interviewee_id", 3], ["done", nil], ["created_at", "2023-04-30 22:08:38.061759"], ["updated_at", "2023-04-30 22:08:38.061759"]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+[active_model_serializers] Rendered AnswerSerializer with ActiveModelSerializers::Adapter::Attributes (0.86ms)
+Completed 201 Created in 19ms (Views: 1.3ms | ActiveRecord: 5.5ms | Allocations: 4835)
+
+
+Started GET "/interviewees/3/assessment/1/answers" for 127.0.0.1 at 2023-05-01 01:09:25 +0300
+Processing by IntervieweesController#show_answers as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>1, "interviewee_id"=>"3", "assessment_id"=>"1", "interviewee"=>{}}
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:77:in `show_answers'
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "invites" ON "assessments"."id" = "invites"."assessment_id" WHERE "invites"."interviewee_id" = $1 AND "assessments"."id" = $2 LIMIT $3[0m  [["interviewee_id", 3], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:78:in `show_answers'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 4ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 1561)
+
+
+Started GET "/interviewees/1/assessment/1/answers" for 127.0.0.1 at 2023-05-01 01:10:07 +0300
+Processing by IntervieweesController#show_answers as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>1, "interviewee_id"=>"1", "assessment_id"=>"1", "interviewee"=>{}}
+  [1m[36mInterviewee Load (0.5ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:77:in `show_answers'
+  [1m[36mAssessment Load (0.4ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "invites" ON "assessments"."id" = "invites"."assessment_id" WHERE "invites"."interviewee_id" = $1 AND "assessments"."id" = $2 LIMIT $3[0m  [["interviewee_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:78:in `show_answers'
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."assessment_id" = $1[0m  [["assessment_id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.31ms)
+Completed 200 OK in 13ms (Views: 5.9ms | ActiveRecord: 1.5ms | Allocations: 4154)
+
+
+Started GET "/interviewees/3/assessment/1/answers" for 127.0.0.1 at 2023-05-01 01:10:18 +0300
+Processing by IntervieweesController#show_answers as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>1, "interviewee_id"=>"3", "assessment_id"=>"1", "interviewee"=>{}}
+  [1m[36mInterviewee Load (0.3ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:77:in `show_answers'
+  [1m[36mAssessment Load (0.5ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "invites" ON "assessments"."id" = "invites"."assessment_id" WHERE "invites"."interviewee_id" = $1 AND "assessments"."id" = $2 LIMIT $3[0m  [["interviewee_id", 3], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:78:in `show_answers'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 422 Unprocessable Entity in 5ms (Views: 0.5ms | ActiveRecord: 0.8ms | Allocations: 1561)
+
+
+Started POST "/answers" for 127.0.0.1 at 2023-05-01 01:12:58 +0300
+Processing by AnswersController#create as */*
+  Parameters: {"content"=>"x+y=10 +20 hyu", "code_challenge_id"=>1, "interviewee_id"=>1, "assessment_id"=>1, "done"=>true, "answer"=>{"content"=>"x+y=10 +20 hyu", "code_challenge_id"=>1, "assessment_id"=>1, "interviewee_id"=>1, "done"=>true}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mCodeChallenge Load (0.3ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mInterviewee Load (0.4ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAssessment Load (0.5ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" WHERE "assessments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mAnswer Create (0.4ms)[0m  [1m[32mINSERT INTO "answers" ("content", "feedback", "grades", "code_challenge_id", "assessment_id", "interviewee_id", "done", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["content", "x+y=10 +20 hyu"], ["feedback", nil], ["grades", nil], ["code_challenge_id", 1], ["assessment_id", 1], ["interviewee_id", 1], ["done", true], ["created_at", "2023-04-30 22:12:58.938297"], ["updated_at", "2023-04-30 22:12:58.938297"]]
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/answers_controller.rb:24:in `create'
+[active_model_serializers] Rendered AnswerSerializer with ActiveModelSerializers::Adapter::Attributes (0.8ms)
+Completed 201 Created in 18ms (Views: 1.2ms | ActiveRecord: 5.7ms | Allocations: 4832)
+
+
+Started POST "/interviewees/1/assessments/1/answers" for 127.0.0.1 at 2023-05-01 01:15:17 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/interviewees/1/assessments/1/answers"):
+  
+Started POST "/interviewees/1/assessment/1/answers" for 127.0.0.1 at 2023-05-01 01:15:25 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/interviewees/1/assessment/1/answers"):
+  
+Started GET "/interviewees/1/assessment/1/answers" for 127.0.0.1 at 2023-05-01 01:15:38 +0300
+Processing by IntervieweesController#show_answers as */*
+  Parameters: {"content"=>"x+y=10 +20", "code_challenge_id"=>3, "interviewee_id"=>"1", "assessment_id"=>"1", "interviewee"=>{}}
+  [1m[36mInterviewee Load (0.2ms)[0m  [1m[34mSELECT "interviewees".* FROM "interviewees" WHERE "interviewees"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:77:in `show_answers'
+  [1m[36mAssessment Load (0.3ms)[0m  [1m[34mSELECT "assessments".* FROM "assessments" INNER JOIN "invites" ON "assessments"."id" = "invites"."assessment_id" WHERE "invites"."interviewee_id" = $1 AND "assessments"."id" = $2 LIMIT $3[0m  [["interviewee_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviewees_controller.rb:78:in `show_answers'
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."assessment_id" = $1[0m  [["assessment_id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+  [1m[36mCodeChallenge Load (0.2ms)[0m  [1m[34mSELECT "code_challenges".* FROM "code_challenges" WHERE "code_challenges"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/interviewees_controller.rb:80:in `show_answers'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.02ms)
+Completed 200 OK in 13ms (Views: 8.1ms | ActiveRecord: 0.9ms | Allocations: 4468)
+
+
+Started GET "/assessment/1" for ::1 at 2023-05-01 11:10:00 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/assessment/1"):
+  
+Started GET "/favicon.ico" for ::1 at 2023-05-01 11:10:01 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  

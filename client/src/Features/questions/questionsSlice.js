@@ -4,9 +4,9 @@ const recruiterToken = getRecruiterToken()
 
 export const fetchQuestions = createAsyncThunk("questions/fetchQuestions", async(rejectWithValue) => {
     const response = await fetch("https://recruits.onrender.com/questions", {
-      headers: {
-        Authorization: `Bearer ${recruiterToken}`,
-      },
+      // headers: {
+      //   Authorization: `Bearer ${recruiterToken}`,
+      // },
     });
     const data = await response.json();
 

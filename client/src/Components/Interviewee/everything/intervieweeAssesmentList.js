@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { getInterviewee } from '../../utils/auth';
+import { getInterviewee,getIntervieweeToken } from '../../utils/auth';
 import { Link } from 'react-router-dom';
 const Invites = () => {
   const [invites, setInvites] = useState([]);
   const intervieweeId = getInterviewee();
-
+  const intervieweeToken = getIntervieweeToken()
   useEffect(() => {
-    fetch(`https://recruits.onrender.com/interviewee/${intervieweeId}/invites`)
+    fetch(`https://recruits.onrender.com/interviewee/${intervieweeId}/invites`,{
+      headers: {
+        'Authorization': `Bearer ${intervieweeToken}`,
+      },
+    })
       .then(response => response.json())
       .then(data => setInvites(data.filter(invite => invite.status === "accepted")))
       .catch(error => console.error(error));
-  }, [intervieweeId]);
+  }, [intervieweeId,intervieweeToken]);
 
   return (
     <div>

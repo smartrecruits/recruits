@@ -5,22 +5,23 @@ import { useParams } from 'react-router-dom';
 import { createAnswer } from '../answers/answersSlice';
 import parse from "html-react-parser";
 import { useNavigate } from 'react-router-dom';
+import './codechallenges.css'
+import { getInterviewee } from '../../Components/utils/auth';
 const CodeChallenge = () => {
     const [answerContent, setAnswerContent] = useState('')
     const { id } = useParams()
     const { assessment_id } = useParams()
     const dispatch = useDispatch();
-    const { codeChallenge } = useSelector((state)=> state.codes.code);
+    const code  = useSelector((state) => state.codes.code);
     const [errors, setErrors] = useState([])
-    const [timeLeft, setTimeLeft] = useState(60 * 60); // 60 minutes in seconds
+    const [timeLeft, setTimeLeft] = useState(60 * 60); 
     const navigate = useNavigate()
     const [redirect, setRedirect] = useState(false);
     const [fetchFinished, setFetchFinished] = useState(false);
-
+    const IntervieweeId = getInterviewee()
      let intervalId
-     console.log('====================================');
-     console.log(assessment_id);
-     console.log('====================================');
+    //  console.log(code);
+    //  console.log(assessment)
      useEffect(() => {
       const handleBeforeUnload = (e) => {
         clearInterval(intervalId); // Stop the timer
@@ -33,6 +34,15 @@ const CodeChallenge = () => {
         window.removeEventListener('beforeunload', handleBeforeUnload);
       };
     }, [intervalId]);
+   
+  useEffect(()=>{
+    dispatch(fetchCodeChallenge(id)).then((result)=> {
+      if (fetchCodeChallenge.rejected.match(result)) {
+          setErrors([result.payload]);
+        }
+        setFetchFinished(true);
+  })
+  },[dispatch,id])  
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -41,19 +51,20 @@ const CodeChallenge = () => {
      let intervalId = setInterval(() => {
       setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
     }, 1000);
-    dispatch(fetchCodeChallenge(id)).then((result)=> {
-      if (fetchCodeChallenge.rejected.match(result)) {
-          setErrors([result.payload]);
-        }
-        setFetchFinished(true);
-  })
+   
     return () => clearInterval(intervalId);
-  }, [navigate,assessment_id, timeLeft,dispatch,id]);
+  }, [navigate,assessment_id, timeLeft]);
 
   const handleSubmit = (e) => {
     e.preventDefault()
     clearInterval(intervalId); // Stop the timer when submitting
-    dispatch(createAnswer({ content: answerContent, code_challenge_id: id }))
+    dispatch(createAnswer({ 
+      content: answerContent, 
+      code_challenge_id: id,
+      assessment_id: assessment_id,
+      interviewee_id: IntervieweeId,
+      done: true 
+     }))
       .then((result) => {
         if (createAnswer.fulfilled.match(result)) {
           setAnswerContent('')
@@ -83,7 +94,7 @@ const CodeChallenge = () => {
   }
 
   return (
-    <div>
+    <div className='contain'>
          {errors.length > 0 && (
             <div className="text-danger" id="errors">
             {errors.map((error, index) => (
@@ -91,21 +102,28 @@ const CodeChallenge = () => {
             ))}
             </div>
             )}
-      <h6>{codeChallenge.name}</h6>
-      <p>Time left: {formatTime(timeLeft)}</p>
-      <div>{parse(converter.makeHtml(codeChallenge.description))}</div>
-      <p>{codeChallenge.languages}</p>
-      <p>{codeChallenge.totalAttempts}</p>
-      <p>{codeChallenge.totalCompleted}</p>
-
-      <form onSubmit={handleSubmit}>
-      <input type='hidden' name='assessment_id' value={assessment_id} />
-      <textarea
-          value={answerContent}
-          onChange={(e) => setAnswerContent(e.target.value)}
-        ></textarea>
-        <button type="submit">Submit</button> 
-      </form>
+           <center>
+            <h3>{code.name}</h3>
+            <em>Time left: {formatTime(timeLeft)}</em>
+          </center> 
+        <div className='onecode'>
+          <div className='left'>
+                <center><h4>Description</h4></center>
+                <div>{parse(converter.makeHtml(code.description))}</div>
+                <p>{code.languages}</p>
+                <p>{code.totalAttempts}</p>
+                <p>{code.totalCompleted}</p>
+          </div>
+          <form onSubmit={handleSubmit} className='right' >
+            <textarea
+                id='answerarea'
+                value={answerContent}
+                onChange={(e) => setAnswerContent(e.target.value)}
+              ></textarea>
+              <br/>
+              <center><button type="submit" className='button1'>Submit</button> </center>
+          </form>
+        </div>
     </div>
   );
 };

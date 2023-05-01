@@ -1,7 +1,7 @@
 require_relative '../models/concerns/codewars_module'
 
 class AssessmentsController < ApplicationController
-    before_action :verify_auth
+    before_action :verify_auth, except: [:index, :show]
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index 

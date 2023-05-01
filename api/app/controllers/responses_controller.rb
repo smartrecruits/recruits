@@ -39,7 +39,7 @@ class ResponsesController < ApplicationController
     private 
 
     def response_params 
-        params.permit(:question_id,:interviewee_id,:chosen_answer,:correct,:feedback)
+        params.permit(:question_id,:interviewee_id,:chosen_answer,:correct,:feedback,:assessment_id)
     end
 
     def render_unprocessable_entity_response(invalid)

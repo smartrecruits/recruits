@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-
+import { getInterviewee, getIntervieweeToken } from '../../utils/auth';
 function AnswerForm({ question }) {
   const [chosenAnswer, setChosenAnswer] = useState('');
-
+  const IntervieweeId = getInterviewee()
+  const intervieweeToken= getIntervieweeToken()
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-        const response1 = await fetch(`https://recruits.onrender.com/questions/${question.id}/check_answer`, {
+        const response1 = await fetch(`https://recruits.onrender.com/interviewee/${IntervieweeId}/question/${question.id}/check_answer`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Authorization': `Bearer ${intervieweeToken}`,
           },
           body: JSON.stringify({ chosen_answer: chosenAnswer })
         });
@@ -21,7 +22,7 @@ function AnswerForm({ question }) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Authorization': `Bearer ${intervieweeToken}`,
           },
           body: JSON.stringify({ chosen_answer: chosenAnswer })
         });

@@ -4,7 +4,7 @@ import { getIntervieweeToken } from "../../Components/utils/auth";
 const recruiterToken = getRecruiterToken()
 const intervieweeToken = getIntervieweeToken()
 
-  export const fetchAnswer = createAsyncThunk("answer/fetchAnswer", async (_, { rejectWithValue }) => {
+  export const fetchAnswer = createAsyncThunk("answer/fetchAnswer", async () => {
     try {
       const response = await fetch("https://recruits.onrender.com/code_challenges", {
         headers: {
@@ -14,12 +14,12 @@ const intervieweeToken = getIntervieweeToken()
       const data = await response.json();
   
       if (!response.ok) {
-        return rejectWithValue(data.errors);
+        return Promise.reject(data.errors);
       }
   
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return Promise.reject(error.message);
     }
   });
 //   export const fetchCodeChallenge = createAsyncThunk(
@@ -46,8 +46,7 @@ const intervieweeToken = getIntervieweeToken()
 
   export const createAnswer = createAsyncThunk(
     "answer/createAnswer",
-    async (AnswerData, { rejectWithValue, getState }) => {
-      const { intervieweeToken } = getState();
+    async (AnswerData) => {
       try {
         const response = await fetch("https://recruits.onrender.com/answers", {
           method: "POST",
@@ -61,10 +60,10 @@ const intervieweeToken = getIntervieweeToken()
         if (response.ok) {
           return data;
         } else {
-          return rejectWithValue(data.errors);
+          return Promise.reject(data.errors);
         }
       } catch (error) {
-        return rejectWithValue(error.message);
+        return Promise.reject(error.message);
       }
     }
   );

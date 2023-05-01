@@ -1,6 +1,6 @@
 class AssessmentsQuestionsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-    before_action :verify_auth
+    before_action :verify_auth, except: [:index, :show]
 
     def create 
         question = AssessmentsQuestion.create!(assessquest_params)

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchOneAssess } from '../../../Features/assessments/assessmentSlice';
 import AnswerForm from '../IntervieweesTest/Answers';
 import { Link } from 'react-router-dom';
+import { getIntervieweeToken } from '../../utils/auth';
 function OneAssessmentInterviewee() {
   const dispatch = useDispatch()
   const { id } = useParams()
@@ -12,6 +13,7 @@ function OneAssessmentInterviewee() {
   const assessment  = useSelector(state => state.assessments.assessment);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(null);
   const [questionsDone,setQuestionsDone]= useState(false)
+  const intervieweeToken = getIntervieweeToken()
   let questionList
 
   useEffect(() => {
@@ -39,7 +41,8 @@ function OneAssessmentInterviewee() {
     fetch(`https://recruits.onrender.com/assessments/${id}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${intervieweeToken}`,
       },
       body: JSON.stringify({
         done: true

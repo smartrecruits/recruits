@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
     # before_action :set_question, only: [:show, :edit, :update, :destroy]
-    before_action :verify_auth
+    before_action :verify_auth, except: [:index, :show]
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index

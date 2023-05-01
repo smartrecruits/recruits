@@ -3,12 +3,12 @@ import { getRecruiterToken } from "../../Components/utils/auth";
 
 const recruiterToken = getRecruiterToken()
 
-  export const fetchAssess = createAsyncThunk("assess/fetchAssess", async (_, { rejectWithValue }) => {
+  export const fetchAssess = createAsyncThunk("assess/fetchAssess", async () => {
     try {
       const response = await fetch(`https://recruits.onrender.com/assessments/`, {
-        headers: {
-          Authorization: `Bearer ${recruiterToken}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${recruiterToken}`,
+        // },
       });
       const data = await response.json();
   
@@ -25,9 +25,9 @@ const recruiterToken = getRecruiterToken()
   async (assessmentId) => {
     try {
       const response = await fetch(`https://recruits.onrender.com/assessments/${assessmentId}`, {
-        headers: {
-          Authorization: `Bearer ${recruiterToken}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${recruiterToken}`,
+        // },
       });
       const data = await response.json();
   

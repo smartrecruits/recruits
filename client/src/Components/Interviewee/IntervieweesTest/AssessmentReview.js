@@ -1,9 +1,16 @@
 import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { getIntervieweeToken } from '../../utils/auth';
 
 function AssessmentReviewedNotification({assessmentId}) {
+  const intervieweeToken =  getIntervieweeToken()
+
     useEffect(() => {
-        fetch(`https://recruits.onrender.com/assessments/${assessmentId}`)
+        fetch(`https://recruits.onrender.com/assessments/${assessmentId}`,{
+            headers: {
+                'Authorization': `Bearer ${intervieweeToken}`,
+              },
+        })
           .then(res => {
             if (res.ok) {
               res.json().then(data => {
@@ -21,7 +28,7 @@ function AssessmentReviewedNotification({assessmentId}) {
               });
             }
           });
-      }, [assessmentId]);
+      }, [assessmentId, intervieweeToken]);
   return null;
 }
 

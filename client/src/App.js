@@ -29,7 +29,7 @@ import { fetchCode } from "./Features/codechallenges/codechallengesSlice";
 import { fetchQuestions } from "./Features/questions/questionsSlice";
 import CodeChallenge from "./Features/codechallenges/oneCode";
 import RecruiterNavbar from "./Recruits/Navbar";
-
+import RecSidebar from "./Recruits/recSidebar";
 function App() {
   const [errors,setErrors]= useState([])
   const dispatch = useDispatch()
@@ -57,12 +57,12 @@ function App() {
     return (
       <>
         <div className="cont">
-          <div className="row">
-            <RecruiterNavbar/>
-            <div className="col-md-2">
-              <Sidebar />
+        <RecruiterNavbar/>
+          <div className="row1">
+            <div className="col1">
+             <RecSidebar/>
             </div>
-            <div className="col-md-10">
+            <div className="col2">
               <Component />
             </div>
           </div>
@@ -79,17 +79,17 @@ function App() {
       {/* <Navbar /> */}
       <Routes>
         <Route path='/' element={<Home/>}></Route>
-        <Route path='/Recruiterdb' element={<Recruiterdb/>}></Route>
+        <Route path='/Recruiterdb' element={renderComponentWithSidebar(Recruiterdb)}></Route>
         <Route path='/answers/:interviewee_id/:assessment_id' element={<IntervieweeResponses/>}></Route>
-        <Route path='/intervieweescorelist/:id' element={<IntervieweeAssessments/>}></Route>
-        <Route exact path='/intervieweescorelist' element={<IntervieweeScoreList/>}></Route>
-        <Route path='/intervieweeList' element={<IntervieweeList/>}></Route>
+        <Route path='/intervieweescorelist/:id' element={renderComponentWithSidebar(IntervieweeAssessments)}></Route>
+        <Route exact path='/intervieweescorelist' element={renderComponentWithSidebar(IntervieweeScoreList)}></Route>
+        <Route path='/intervieweeList' element={renderComponentWithSidebar(IntervieweeList)}></Route>
         <Route exact path='/assessments' element={<Invites/>}></Route>
         <Route path='/assessments/:id' element={<OneAssessmentInterviewee/>}></Route>
         <Route path='/assessment/:assessment_id/code/:id' element={<CodeChallenge/>}></Route>
         <Route path='/invites' element={<InvitesList/>}></Route>
-        <Route exact path='/RecruiterAssessList' element={<AssessmentsList/>}></Route>
-        <Route path='/RecruiterAssessList/:id' element={<OneAssessment />}></Route>
+        <Route exact path='/RecruiterAssessList' element={renderComponentWithSidebar(AssessmentsList)}></Route>
+        <Route path='/RecruiterAssessList/:id' element={renderComponentWithSidebar(OneAssessment)}></Route>
         <Route path='/RecruiterQuestionList' element={<QuestionList/>}></Route>
         <Route path='/signing' element={<Signing/>}></Route>
         <Route path='/Client' element={<Client/>}></Route>
