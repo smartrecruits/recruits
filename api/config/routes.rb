@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   #interviewee routes
+  get '/interviewees/:interviewee_id/assessment/:assessment_id/answers', to: "interviewees#show_answers"
+  get '/interviewees/:interviewee_id/assessment/:assessment_id/responses', to: "interviewees#show_responses"
   get '/interviewees/scores', to: "interviewees#sort_by_score"
   get '/interviewees', to: "interviewees#index"
   delete '/interviewee/logout', to: "interviewees#logout"

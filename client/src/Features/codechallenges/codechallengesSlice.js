@@ -104,7 +104,8 @@ const intervieweeToken = getIntervieweeToken()
     initialState:{
         codes: [],
         status: "idle",
-        error: null
+        error: null,
+        code:[],
     },
     reducers:{
         setAssessment(state,action){
@@ -128,7 +129,7 @@ const intervieweeToken = getIntervieweeToken()
             state.status = "idle";
         })
         .addCase(fetchCodeChallenge.fulfilled,(state, action)=> {
-            state.codes = action.payload;
+            state.code = action.payload;
             state.status = "idle";
         });
     }
@@ -137,4 +138,4 @@ const intervieweeToken = getIntervieweeToken()
 
 export default codechallengesSlice.reducer
 
-export const selectCodeChallenge = (state) => state.codes;
+export const selectCodeChallenge = (state) => state.code;

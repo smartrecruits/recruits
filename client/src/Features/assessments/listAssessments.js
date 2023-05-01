@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAssess } from "./assessmentSlice";
+import React, { useState } from "react";
+import {  useSelector } from "react-redux";
 import CreateAssessment from "./create assessments";
 import { Link } from "react-router-dom";
 import "./styles.css"; // import the CSS file
 
 const AssessmentsList = () => {
-  const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const assessments = useSelector((state) => state.assessments.assessments);
   const status = useSelector((state) => state.assessments.status);
-  useEffect(() => {
-    dispatch(fetchAssess()).then((result) => {
-      if (fetchAssess.rejected.match(result)) {
-        setErrors([result.payload]);
-      }
-    });
-  }, [dispatch]);
+ 
 
   return (
     <div className="container"> {/* add the container class to the outer div */}

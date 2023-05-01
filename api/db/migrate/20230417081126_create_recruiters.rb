@@ -7,6 +7,7 @@ class CreateRecruiters < ActiveRecord::Migration[7.0]
       t.string :firstname
       t.string :lastname
       t.string :company
+      t.string :image, default: "https://iglu.net/wp-content/uploads/2022/08/Game-Programmer-768x511.png"
 
       t.timestamps
     end

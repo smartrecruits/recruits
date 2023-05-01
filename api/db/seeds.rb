@@ -192,4 +192,6 @@ questions = [
     )
   end
 
+  Assessment.create!(recruiter_id: Recruiter.first.id, name: "trial done", duedate: Date.today + 1.days , done: true, quizdone: true, codedone: true , reviewed: false)
+  Invite.create!(status: "accepted", interviewee_id: 1, assessment_id: 1, recruiter_id:1)
   puts "OVER AND OUT"

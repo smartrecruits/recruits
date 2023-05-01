@@ -10,8 +10,8 @@ class CodeChallengesController < ApplicationController
     end
 
     def show 
-      code = CodeChallenge.one_code(params[:id])
-      code ||= CodeChallenge.find(params[:id])
+      # code = CodeChallenge.one_code(params[:id])
+      code = CodeChallenge.find(params[:id])
       if code
         render json: code, status: :ok
       else
@@ -33,7 +33,7 @@ class CodeChallengesController < ApplicationController
     private 
 
     def code_challenge_params 
-      params.permit(:description,:languages,:name,:totalAttempts,:totalCompleted)
+      params.permit(:description,:languages,:name,:totalAttempts,:totalCompleted,:codewars_id)
     end
 
     def render_unprocessable_entity_response(invalid)

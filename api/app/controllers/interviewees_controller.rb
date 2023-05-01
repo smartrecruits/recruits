@@ -31,7 +31,7 @@ class IntervieweesController < ApplicationController
 
     def show
         user = Interviewee.find(params[:id])
-        render json: user 
+        render json: user, include: ['invites', 'invites.assessment', 'invites.assessment.questions','invite.assessment.code_challenges','invites.assessment.questions.responses','invite.assessment.code_challenges.answers']
     end
 
     def show_grades
@@ -48,11 +48,6 @@ class IntervieweesController < ApplicationController
         end
     end
 
-    # def purchases
-    #     user = User.find(params[:id])
-    #     purchases = user.purchases.all
-    #     render json: purchases
-    # end
 
     def logout
         remove_user
@@ -60,7 +55,7 @@ class IntervieweesController < ApplicationController
 
     def index 
         interviewees = Interviewee.all 
-        render json: interviewees, status: :ok
+        render json: interviewees,include: ['invites', 'invites.assessment', 'invites.assessment.questions','invite.assessment.code_challenges','invites.assessment.questions.responses','invite.assessment.code_challenges.answers']
     end
 
     def sort_by_score
@@ -70,6 +65,20 @@ class IntervieweesController < ApplicationController
                                   .order('total_score DESC')
         render json: interviewees
     end
+
+    def show_responses
+        interviewee = Interviewee.find(params[:interviewee_id])
+        assessment = interviewee.assessments.find(params[:assessment_id])
+        responses = assessment.responses.includes(:question)
+        render json: responses,include: [:question]
+    end
+
+    def show_answers
+        interviewee = Interviewee.find(params[:interviewee_id])
+        assessment = interviewee.assessments.find(params[:assessment_id])
+        answers = assessment.answers.includes(:code_challenge)
+        render json: answers, include: [:code_challenge]
+      end
 
     def reset_password
         user = Interviewee.find_by(email: params[:email])

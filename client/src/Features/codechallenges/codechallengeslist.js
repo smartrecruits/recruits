@@ -1,22 +1,20 @@
-// import React, { useEffect } from "react";
-// import CreateCodeChallenge from "./codechallenges";
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchCode } from "./codechallengesSlice";
-// import { getRecruiterToken } from "../../Components/utils/auth";
-// import "./codechallenges.css";
-// import parse from "html-react-parser";
+import React, { useEffect } from "react";
+import CreateCodeChallenge from "./codechallenges";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCode } from "./codechallengesSlice";
+import { getRecruiterToken } from "../../Components/utils/auth";
+import "./codechallenges.css";
+import parse from "html-react-parser";
+import { updateAssessment } from "../assessments/assessmentSlice";
+function CodeChallenges({ assessmentId }) {
+  const dispatch = useDispatch();
+  const recruiterToken = getRecruiterToken();
 
-// function CodeChallenges({ assessmentId }) {
-//   const dispatch = useDispatch();
-//   // const recruiterToken = getRecruiterToken();
+  const codeChallenges = useSelector((state) => state.codes.codes);
+  const status = useSelector((state) => state.codes.status);
+  const errors = useSelector((state) => state.codes.errors);
+  const assessment = useSelector((state) => state.assessments.assessment)
 
-//   useEffect(() => {
-//     dispatch(fetchCode());
-//   }, [dispatch]);
-
-//   const codeChallenges = useSelector((state) => state.codes.codes);
-//   const status = useSelector((state) => state.codes.status);
-//   const errors = useSelector((state) => state.codes.errors);
 
 //   if (status === "loading") {
 //     return <div>Loading challenges...</div>;
@@ -29,22 +27,34 @@
 //     return <div>Error: {errors}</div>;
 //   }
 
-//   function addToAssessment(codeChallengeId) {
-//     fetch(`https://recruits.onrender.com/assessments_code_challenges`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${recruiterToken}`,
-//       },
-//       body: JSON.stringify({
-//         assessment_id: assessmentId,
-//         code_challenge_id: codeChallengeId,
-//       }),
-//     })
-//       .then((response) => response.json())
-//       .then((data) =>{ console.log(data)})
-//       .catch((error) => console.log(error));
-//   }
+  function addToAssessment(codeChallengeId) {
+    fetch(`https://recruits.onrender.com/assessments_code_challenges`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${recruiterToken}`,
+      },
+      body: JSON.stringify({
+        assessment_id: assessmentId,
+        code_challenge_id: codeChallengeId,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) =>{
+        const updatedAssessment = { ...assessment, code_challenges: [...assessment.code_challenges, data.code_challenge] };
+        dispatch(updateAssessment({
+          assessmentId: assessmentId,
+          updateData: updatedAssessment
+        }))
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        })
+      .catch((error) => console.log(error));
+  }
 
 //   const showdown = require("showdown");
 //   const githubExtension = require("showdown-github/dist/showdown-github");

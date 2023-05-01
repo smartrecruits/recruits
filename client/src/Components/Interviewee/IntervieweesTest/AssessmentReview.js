@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 function AssessmentReviewedNotification({assessmentId}) {
     useEffect(() => {
-        fetch(`/assessments/${assessmentId}`)
+        fetch(`https://recruits.onrender.com/assessments/${assessmentId}`)
           .then(res => {
             if (res.ok) {
               res.json().then(data => {

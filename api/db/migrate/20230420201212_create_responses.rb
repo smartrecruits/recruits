@@ -3,6 +3,7 @@ class CreateResponses < ActiveRecord::Migration[7.0]
     create_table :responses do |t|
       t.belongs_to :question, null: false, foreign_key: true
       t.belongs_to :interviewee, null: false, foreign_key: true
+      t.integer :assessment_id
       t.string :chosen_answer
       t.string :feedback
       t.integer :grades

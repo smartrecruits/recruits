@@ -7,7 +7,8 @@ class Assessment < ApplicationRecord
   has_many :invites 
   has_many :interviewees, through: :invites
   has_many :code_challenges, through: :assessments_code_challenges
-
+  has_many :answers 
+  has_many :responses
   validates :name, presence: true
 
   
