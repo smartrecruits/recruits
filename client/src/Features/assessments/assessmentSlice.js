@@ -41,6 +41,30 @@ const recruiterToken = getRecruiterToken()
     }
   });
 
+  export const deleteAssessment = createAsyncThunk(
+    "assess/deleteAssessment",
+    async (assessmentId) => {
+      try {
+        const response = await fetch(`https://recruits.onrender.com/assessments/${assessmentId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${recruiterToken}`,
+          },
+        });
+  
+        if (response.ok) {
+          return assessmentId;
+        } else {
+          const data = await response.json();
+          return Promise.reject(data.errors);
+        }
+      } catch (error) {
+        return Promise.reject(error.message);
+      }
+    }
+  );
+
   export const createAssessment = createAsyncThunk(
     "assess/createAssessment",
     async (assessmentData,) => {
@@ -157,12 +181,19 @@ const recruiterToken = getRecruiterToken()
             state.assessments.push(action.payload);
             state.status = "idle";
         })
-        .addCase(updateAssessment.pending,(state, action)=> {
+        .addCase(updateAssessment.pending,(state)=> {
           state.status = "loading";
         })
         .addCase(updateAssessment.fulfilled,(state, action)=> {
           state.assessment = action.payload;
           state.assessments.push(action.payload);
+          state.status = "idle";
+        })
+        .addCase(deleteAssessment.fulfilled, (state, action) => {
+          const assessmentId = action.payload;
+          state.assessments = state.assessments.filter(
+            (assessment) => assessment.id !== assessmentId
+          );
           state.status = "idle";
         })
         .addCase(reviewAssesment.fulfilled,(state, action) =>{

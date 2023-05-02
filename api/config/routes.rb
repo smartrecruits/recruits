@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get '/interviewee/:id', to:"interviewees#show"
   get '/interviewee/grades/:id', to: "interviewees#show_grades"
   get '/interviewees/completed', to: "interviewees#completed_assessments"
+  get 'recruiter/:recruiter_id/invites', to: "interviewees#invites"
   #to delete a user 
  delete '/interviewee/delete/:id', to:"interviewees#delete_account" 
 

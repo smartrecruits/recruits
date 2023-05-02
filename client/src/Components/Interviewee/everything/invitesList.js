@@ -8,12 +8,12 @@ const InvitesList = () => {
   let intervieweeToken = getIntervieweeToken()
   let navigate = useNavigate()
   useEffect(() => {
-    fetch(`/interviewees/${intervieweeId}/invites`)
+    fetch(`https://recruits.onrender.com/interviewee/${intervieweeId}/invites`)
       .then(response => response.json())
       .then(data => setInvites(data))
       .catch(error => setErrors(error));
   }, [intervieweeId]);
-
+console.log(invites)
   function handleAcceptClick({id}) {
     fetch(`https://recruits.onrender.com/interviewees/${intervieweeId}/invites/${id}/accept_assessment`, {
      method: 'PUT',

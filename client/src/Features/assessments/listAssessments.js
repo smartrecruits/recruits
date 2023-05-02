@@ -1,14 +1,22 @@
 import React, { useState } from "react";
-import {  useSelector } from "react-redux";
+import {  useSelector, useDispatch } from "react-redux";
 import CreateAssessment from "./create assessments";
 import { Link } from "react-router-dom";
 import "./styles.css"; // import the CSS file
+import { FaTrash } from "react-icons/fa";
+import { deleteAssessment } from "./assessmentSlice";
 
 const AssessmentsList = () => {
   const [errors, setErrors] = useState([]);
   const assessments = useSelector((state) => state.assessments.assessments);
   const status = useSelector((state) => state.assessments.status);
- 
+  const dispatch = useDispatch()
+
+  const handleDelete = (id) => {
+    // if (window.confirm("Are you sure you want to delete this assessment?")) {
+      dispatch(deleteAssessment(id)); // dispatch the deleteAssessment action with the assessment ID
+    // }
+  };
 
   return (
     <div className="container"> {/* add the container class to the outer div */}
@@ -20,11 +28,14 @@ const AssessmentsList = () => {
       ) : (
         <ol>
           {assessments.map((assessment) => (
-            <li key={assessment.id}>
+            <li key={assessment.id} className="assess-list">
               <Link to={`/RecruiterAssessList/${assessment.id}`}>
-                <p>Name: {assessment.name}</p>
+                <p className="assess-name">Name: {assessment.name}</p>
               </Link>
-            </li>
+              <button onClick={() => handleDelete(assessment.id)} className="delete-button">
+                <FaTrash />
+              </button>
+            </li>  
           ))}
         </ol>
       )}

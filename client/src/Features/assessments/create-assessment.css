@@ -54,4 +54,7 @@
     font-family: Times New Roman;
     color: red;
   }
-  
+  .assess-input{
+    border-radius: 5px;
+    border: none;
+  }

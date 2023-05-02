@@ -1,5 +1,5 @@
 class InvitesController < ApplicationController
-    before_action :verify_auth
+    before_action :verify_auth, except: [:index_interviewee_invites, :show_interviewee_invite]
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def create 

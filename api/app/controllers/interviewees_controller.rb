@@ -95,6 +95,12 @@ class IntervieweesController < ApplicationController
         end
     end
 
+    def invites
+        recruiter = Recruiter.find(params[:recruiter_id])
+        interviewees = recruiter.interviewees
+        render json: interviewees, include: ['invites', 'invites.assessment']
+    end
+
     private 
     def render_unprocessable_entity_response(invalid)
         render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity

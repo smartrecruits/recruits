@@ -35,7 +35,7 @@ function CreateAssessment() {
         <form onSubmit={handleSubmit} className="create-assessment-form">
           <label className="create-assessment-label">
             Name:
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} className='assess-input' />
           </label>
           <br />
           <button type="submit" className="create-assessment-button">
