@@ -8,6 +8,8 @@ class Interviewee < ApplicationRecord
     has_many :answers
     has_many :code_challenges
 
+    has_many :completed_assessments, -> { where(done: true) }, through: :invites, source: :assessment
+
     validates :email,{
         uniqueness: true,
         presence: true

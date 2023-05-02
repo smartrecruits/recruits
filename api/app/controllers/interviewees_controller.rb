@@ -58,6 +58,11 @@ class IntervieweesController < ApplicationController
         render json: interviewees,include: ['invites', 'invites.assessment', 'invites.assessment.questions','invite.assessment.code_challenges','invites.assessment.questions.responses','invite.assessment.code_challenges.answers']
     end
 
+    def completed_assessments
+        interviewees = Interviewee.joins(:completed_assessments).distinct
+        render json: interviewees, include: ['completed_assessments']
+    end
+
     def sort_by_score
         interviewees = Interviewee.joins(:responses)
                                   .group('interviewees.id')
