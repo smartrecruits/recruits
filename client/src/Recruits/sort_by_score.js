@@ -24,7 +24,7 @@ function IntervieweeScoreList() {
         <tbody>
           {interviewees.map(interviewee => (
             <tr key={interviewee.id}>
-              <Link to={`/intervieweescorelist/${interviewee.id}`}><td>{interviewee.name}</td></Link>
+              <Link to={`/intervieweescorelist/${interviewee.id}`}><td>{interviewee.username}</td></Link>
               <td>{interviewee.email}</td>
               <td>{interviewee.total_score}</td>
             </tr>

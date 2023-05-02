@@ -24,6 +24,12 @@ class AssessmentsController < ApplicationController
         render json: assessments,include: ['code_challenges','code_challenges.answers','questions','questions.responses']
     end
 
+    def index_assigned_to_interviewee
+        interviewee = Interviewee.find(params[:interviewee_id])
+        assessments = interviewee.assessments
+        render json: assessments, include: ['code_challenges','code_challenges.answers','questions','questions.responses']
+    end
+
 
     def destroy 
         assessment = Assessment.find(params[:id])

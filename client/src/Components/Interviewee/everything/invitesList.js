@@ -13,7 +13,6 @@ const InvitesList = () => {
       .then(data => setInvites(data))
       .catch(error => setErrors(error));
   }, [intervieweeId]);
-console.log(invites)
   function handleAcceptClick({id}) {
     fetch(`https://recruits.onrender.com/interviewees/${intervieweeId}/invites/${id}/accept_assessment`, {
      method: 'PUT',
@@ -38,10 +37,11 @@ console.log(invites)
         console.error('Error:', error);
     });
 }function handleAssessmentClick(id) {
-  const acceptedInvite = invites.find(invite => invite.assessment.id === id && invite.status === 'accepted');
-  if (acceptedInvite) {
+  console.log(id)
+  // const acceptedInvite = invites.find(invite => invite.assessment.id === id && invite.status === 'accepted');
+  // if (acceptedInvite) {
     navigate(`/assessments/${id}`);
-  }
+  // }
 }
 
   return (
@@ -50,15 +50,15 @@ console.log(invites)
       <ul>
         {invites.map(invite => (
           <li key={invite.id}>
-            <p>Recruiter: {invite.recruiter.name}</p>
-            <p>Interviewee: {invite.interviewee.name}</p>
-            <p>Assessment: {invite.assessment.name}</p>
+            <p>Recruiter: {invite.recruiter.username}</p>
+            <p>Interviewee: {invite.interviewee.username}</p>
+            {/* <p>Assessment: {invite.assessment.name}</p> */}
             <p>Status: {invite.status}</p>
             {invite.status === 'accepted' && (
               <button onClick={() => handleAssessmentClick(invite.assessment.id)}>Go to assessment</button>
             )}
             {invite.status !== 'accepted' && (
-              <button onClick={() => handleAcceptClick(invite.id)}>Accept</button>
+              <button onClick={() => handleAcceptClick({ id: invite.id })}>Accept</button>
             )}
           </li>
         ))}

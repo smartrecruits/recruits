@@ -23,7 +23,7 @@ const Invites = () => {
         {invites.map(invite => (
           <li key={invite.assessment.id}>
             <Link to={`/assessments/${invite.assessment.id}`}><p>Assessment Name: {invite.assessment.name}</p></Link>
-            <p>Recruiter Name: {invite.recruiter.name}</p>
+            <p>Recruiter Name: {invite.recruiter.username}</p>
             <p>Status: {invite.status}</p>
           </li>
         ))}

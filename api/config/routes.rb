@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 
   resources :assessments
   get '/assessments/done', to:"assessments#index_completed"
-
+  get '/interviewee/:interviewee_id/assessments', to: "index_assigned_to_interviewee"
+  
   resources :invites, only: [:index,:destroy]
   post '/invites/:interviewee_id', to: 'invites#create'
   put '/invites/:interviewee_id/:id', to: 'invites#update'

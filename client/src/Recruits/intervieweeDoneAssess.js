@@ -24,6 +24,8 @@ function IntervieweeAssessments() {
             const filteredAssessments = data.filter(
                 assessment => assessment.interviewee_id === id && assessment.done
               );
+              console.log(data)
+              console.log(filteredAssessments)
               setAssessments(filteredAssessments);
           });
         } else {
@@ -31,7 +33,8 @@ function IntervieweeAssessments() {
         }
       });
   }, [id, recruiterToken]);
-
+  console.log(errors)
+console.log(assessments)
   return (
     <div>
       {errors.length > 0 && (
