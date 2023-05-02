@@ -83,7 +83,7 @@ function IntervieweeResponses() {
       function handleGradeChange(event) {
         setGrades(event.target.value);
       }
-      
+      console.log(answers)
 
   function handleFeedbackSubmit(responseId, feedback) {
     fetch(`https://recruits.onrender.com/recruiter/${recruiterId}/responses/${responseId}`, {
@@ -147,7 +147,7 @@ return (
         <h4>Interviewee Code Challenge Responses</h4>
         {answers.map(response => (
             <div key={response.id}>
-                <p>Question: {response.code_challenge.content}</p>
+                <p>Question: {response.code_challenge.name}</p>
                 <p>Answer: {response.content}</p>
                 <p>Grade</p>
                 <input placeholder='Set Grade' type='number' value={grades} onChange={handleGradeChange}/>

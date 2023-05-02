@@ -80,7 +80,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/Recruiterdb' element={renderComponentWithSidebar(Recruiterdb)}></Route>
-        <Route path='/answers/:interviewee_id/:assessment_id' element={<IntervieweeResponses/>}></Route>
+        <Route path='/answers/:interviewee_id/:assessment_id' element={renderComponentWithSidebar(IntervieweeResponses)}></Route>
         <Route path='/intervieweescorelist/:id' element={renderComponentWithSidebar(IntervieweeAssessments)}></Route>
         <Route exact path='/intervieweescorelist' element={renderComponentWithSidebar(IntervieweeScoreList)}></Route>
         <Route path='/intervieweeList' element={renderComponentWithSidebar(IntervieweeList)}></Route>
