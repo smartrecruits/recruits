@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   post '/interviewee/reset', to:"interviewees#reset_password"
   get '/interviewee/:id', to:"interviewees#show"
   get '/interviewee/grades/:id', to: "interviewees#show_grades"
-  get '/interviewees/completed', to: "interviewees#ccompleted_assessments"
+  get '/interviewees/completed', to: "interviewees#completed_assessments"
   #to delete a user 
  delete '/interviewee/delete/:id', to:"interviewees#delete_account" 
 
