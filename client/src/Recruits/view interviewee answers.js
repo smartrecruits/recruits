@@ -18,7 +18,7 @@ function IntervieweeResponses() {
   const dispatch = useDispatch()
   const {interviewee_id, assessment_id} = useParams()
   useEffect(() => {
-    fetch(`https://recruits.onrender.com/interviewees/${interviewee_id}/responses`,{
+    fetch(`https://recruits.onrender.com/interviewees/${interviewee_id}/assessment/${assessment_id}/responses`,{
         headers: {
             Authorization: `Bearer ${recruiterToken}`
           }
@@ -34,10 +34,10 @@ function IntervieweeResponses() {
             res.json().then((err)=>setErrors([err.errors]))
         }
         })
-    },[interviewee_id,recruiterToken])
-
+    },[interviewee_id,recruiterToken,assessment_id])
+    // /interviewees/:interviewee_id/assessment/:assessment_id/answers
     useEffect(() => {
-      fetch(`https://recruits.onrender.com/interviewees/${interviewee_id}/answers`,{
+      fetch(`https://recruits.onrender.com/interviewees/${interviewee_id}/assessment/${assessment_id}/answers`,{
           headers: {
               Authorization: `Bearer ${recruiterToken}`
             }
@@ -51,7 +51,7 @@ function IntervieweeResponses() {
               res.json().then((err)=>setErrors([err.errors]))
           }
           })
-      },[interviewee_id,recruiterToken])
+      },[interviewee_id,recruiterToken,assessment_id])
 
     function handleReviewChange(event) {
         setReviewed(event.target.value === 'true');
@@ -133,7 +133,7 @@ return (
                 ))}
             </div>
             )}
-        <h2>Interviewee Question Responses:</h2>
+        <h4>Interviewee Question Responses:</h4>
         {responses.map(response => (
             <div key={response.id}>
                 <p>Question: {response.question.content}</p>
@@ -144,7 +144,7 @@ return (
                 <button onClick={() => handleFeedbackSubmit(response.id, feedback)}>Submit</button>
             </div>
         ))}
-        <h2>Interviewee Code Challenge Responses</h2>
+        <h4>Interviewee Code Challenge Responses</h4>
         {answers.map(response => (
             <div key={response.id}>
                 <p>Question: {response.code_challenge.content}</p>

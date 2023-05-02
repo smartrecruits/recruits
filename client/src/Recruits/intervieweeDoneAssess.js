@@ -13,7 +13,7 @@ function IntervieweeAssessments() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`https://recruits.onrender.com/interviewees/${id}/assessments`, {
+    fetch(`https://recruits.onrender.com/interviewee/${id}/assessments`, {
       headers: {
         Authorization: `Bearer ${recruiterToken}`,
       },
@@ -22,7 +22,7 @@ function IntervieweeAssessments() {
         if (res.ok) {
           res.json().then((data) => {
             const filteredAssessments = data.filter(
-                assessment => assessment.interviewee_id === id && assessment.done
+                assessment => assessment.done
               );
               console.log(data)
               console.log(filteredAssessments)
