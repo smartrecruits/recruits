@@ -6,6 +6,7 @@ class Interviewee < ApplicationRecord
     has_many :recruiters, through: :invites 
     has_many :assessments, through: :invites 
     has_many :answers
+    has_many :code_challenges
 
     validates :email,{
         uniqueness: true,
