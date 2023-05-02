@@ -46,6 +46,7 @@ function App() {
   };
   return (
     <div className="App">
+
       <>
       {/* <AppInterviewee /> */}
       {location.pathname.includes('/AppInterviewee') && <AppInterviewee />}
@@ -78,6 +79,7 @@ function App() {
     
       <Footer />
       </>
+
     </div>
   );
 }
